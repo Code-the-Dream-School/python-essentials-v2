@@ -2,16 +2,18 @@
 # **Lesson 05 — Data Wrangling and Aggregation**
 
 ## **Lesson Overview**
-**Learning objective:** Students will learn to manipulate, summarize, and combine datasets in Pandas using selection, aggregation, merging, and transformation methods. They will practice accessing specific data, performing group-level calculations, and combining data from multiple sources.
+**Learning objective:** Students will learn to manipulate, summarize, and combine datasets in Pandas using selection, aggregation, pivot tables, merging, and transformation methods. They will practice accessing specific data, performing group-level calculations, reshaping datasets with pivot tables, creating new features with apply(), and combining data from multiple sources.
 
 
 ### **Topics:**
 1. Pandas Review (Optional): Recap of Series, DataFrames, and key methods from Lesson 3.
 2. Data Selection: Selecting subsets with `.loc[]`, `.iloc[]`, `.at[]`, and `.iat[]`; filtering rows by conditions; applying string methods.
 3. Data Aggregation: Grouping data with `groupby()`; applying functions like `sum()`, `mean()`, and `count()`; using `agg()` for multiple aggregations.
-4. Merging and Joining: Combining DataFrames with `merge()` and `join()`; inner, outer, left, and right joins; joining on one or multiple keys.
-5. Data Transformation: Adding, updating, and deleting columns; using operators, Series methods, `map()`, and NumPy functions for transformation.
-6. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
+4. Pivot Tables: Reshaping and summarizing datasets with `pd.pivot_table()` for multi-level and cross-tab reporting.
+5. Merging and Joining: Combining DataFrames with `merge()` and `join()`; inner, outer, left, and right joins; joining on one or multiple keys.
+6. Data Transformation: Adding, updating, and deleting columns; using operators, Series methods, `map()`, and NumPy functions for transformation.
+7. Using `apply()`: Creating new columns or row-wise calculations with flexible user-defined logic.
+8. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
 ---
 
 ## **4.1 Pandas Review & Deep Dive** *(Optional)*
@@ -161,7 +163,48 @@ If you print out result1 and result2, you'll see that they look different.  The 
 
 In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
 
-## **4.4 Merging and Joining**
+## 4.4 Pivot Tables
+
+As usual, run these examples in the Python interactive shell of your `python_homework` terminal session.
+
+Consider the following case. Acme Inc. has 3 sales employees and 2 regions.  The employees each report the revenue they got from sales of each of the products in each of the regions.  These reports are probably kept in a database, but for our purposes, they look like this:
+```python
+include pandas as pd
+data = [{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'West', 'Revenue': 9000}, \
+{'Employee': 'Jones', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 4000}, \
+{'Employee': 'Jones', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 11000}, \
+{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'East', 'Revenue': 4000}, \
+{'Employee': 'Jones', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 5500}, \
+{'Employee': 'Jones', 'Product': 'Doohickey', 'Region': 'East', 'Revenue': 2345}, \
+{'Employee': 'Smith', 'Product': 'Widget', 'Region': 'West', 'Revenue': 9007}, \
+{'Employee': 'Smith', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 40003}, \
+{'Employee': 'Smith', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 110012}, \
+{'Employee': 'Smith', 'Product': 'Widget', 'Region': 'East', 'Revenue': 9002}, \
+{'Employee': 'Smith', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 15500}, \
+{'Employee': 'Garcia', 'Product': 'Widget', 'Region': 'West', 'Revenue': 6007}, \
+{'Employee': 'Garcia', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 42003}, \
+{'Employee': 'Garcia', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 160012}, \
+{'Employee': 'Garcia', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 16500}, \
+{'Employee': 'Garcia', 'Product': 'Doohickey', 'Region': 'East', 'Revenue': 2458}]
+sales = pd.DataFrame(data)
+print(sales)
+```
+Ok, all the information is here, but it is not organized as the CFO would like.  You have already learned one way to summarize the data, using groupby().  Another is to use pivot tables.  Here are three examples:
+
+```python
+sales_pivot1 = pd.pivot_table(sales,index=['Product','Region'],values=['Revenue'],aggfunc='sum',fill_value=0)
+print(sales_pivot1)
+# This creates a two level index to show sales by product and region. The revenue values are summed for each product and region.
+sales_pivot2 = pd.pivot_table(sales,index='Product',values='Revenue',columns='Region', aggfunc='sum',fill_value=0)
+print(sales_pivot2)
+# The result here is similar, but instead of a two level index, you have columns to give sales by region.
+sales_pivot3 = pd.pivot_table(sales,index='Product',values='Revenue',columns=['Region','Employee'], aggfunc='sum',fill_value=0)
+print(sales_pivot3)
+# By adding the employee column, you get these revenue numbers broken down by employee.  The fill value is used when there is no corresponding entry.
+```
+By gaining familiarity with pivot tables, you can present data in various ways that make it easy to show the business picture.
+
+## **4.5 Merging and Joining**
 
 ### **Overview**
 Combine multiple DataFrames using shared keys (columns or indices). 
@@ -234,7 +277,7 @@ joined_df = df1.join(df2, how='outer')
 print(joined_df)
 ```
 
-## **Data Transformation**
+## **4.6 Data Transformation**
 
 While one can do transformation of the DataFrame as a whole, for the moment we will focus on approaches that do it one column at a time.  You can add, replace, or delete a column of a DataFrame at any time.
 
@@ -271,7 +314,37 @@ print(new_df)
 ```
 The map() method takes one parameter, a function that does the conversion.  In the example above, a lambda is used to specify the function, and a ternary expression is used in the lambda.
 
-## **Utility Methods**
+## 4.7 **Using apply()**
+
+You have already learned several ways to generate a new column from an existing one.  Suppose, however, that you want to combine information from several columns.  For example, you could do the following:
+```python
+sales_pivot2['Total'] = sales_pivot2['East'] + sales_pivot2['West'] # adding two columns to make a new one
+print(sales_pivot2)
+per_employee_sales=sales.groupby('Employee').agg({'Revenue':'sum'})
+per_employee_sales['Commission Percentage'] = [0.12, 0.09, 0.1]
+per_employee_sales['Commission'] = per_employee_sales['Revenue'] * per_employee_sales['Commission Percentage']
+print(per_employee_sales)
+```
+Ok, so far so good.  But suppose the combination rules are a little more complicated.  Consider this case:
+```python
+per_employee_sales=sales.groupby('Employee').agg({'Revenue':'sum'})
+per_employee_sales['Commission Plan'] = ['A', 'A', 'B']
+```
+Sales employees on commission plan A get $1000 for the first 10000 in revenue, and 5% for revenue over 10000.  Everyone else gets $1400 for the first 10000 in revenue, but 4% for revenue over 10000.  All employees get zip if they don't get at least 10000 in revenue. You use apply(), and you specify `axis=1` to request the entire row.  You pass a function to apply(), and the function is called once per row.  As follows:
+```python
+def calculate_commission(row):
+    if row['Revenue'] < 10000:
+        return 0
+    if row['Commission Plan'] == 'A':
+        return 1000 + 0.05 * (row['Revenue'] - 10000)
+    else:
+        return 1400 + 0.04 * (row['Revenue'] - 10000)
+
+per_employee_sales['Commission'] = per_employee_sales.apply(calculate_commission, axis=1)
+print(per_employee_sales)
+```
+
+## **4.8 Utility Methods**
 
 ### **Changing Column Names**
 
@@ -309,7 +382,7 @@ print(joined_df)
 
 ---
 
-## **Check for Understanding**
+## **4.9 Check for Understanding**
 
 1. **How can you select rows where the "Age" column is greater than 25?**
    - A) `df.loc[df['Age'] > 25]`
@@ -335,13 +408,15 @@ print(joined_df)
 </details>
 ---
 
-## **Summary**
+## **4.10 Summary**
 
 In this lesson, you’ve learned:
 - How to select and slice subsets of data using `.loc[]` and `.iloc[]`.
 - How to use `groupby()` for aggregations like `sum()` and `mean()`.
+- How to reshape and summarize datasets with pivot tables using `pd.pivot_table()`.
 - How to combine DataFrames using `merge()` and `join()`.
-- How to transform the data.
+- How to transform columns using operators, Series methods, and NumPy functions.
+- How to create new features or row-wise calculations with the apply() method.
 - Some utilities to rename columns, sort, convert a column to an index, and reset the index.
 
 Use these techniques to perform advanced data analysis in Pandas. For further exploration, refer to the [Pandas Documentation](https://pandas.pydata.org/docs/) and Python's [official documentation](https://docs.python.org/3/).
