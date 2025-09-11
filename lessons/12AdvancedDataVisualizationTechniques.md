@@ -133,7 +133,7 @@ Try it out!  The interactive plot comes up in your browser, and you can hover ov
 - **Customization:** Wide range of customization options for visual aesthetics and user interaction.
 ---
 
-## **11.4 Reflection**
+## **11.3 Reflection**
 
 ### **Differences Between Static and Interactive Visualizations:**
 - **Static Visualizations:** Easier to create and quicker to render but lack user interaction.
@@ -181,7 +181,7 @@ First, let's set up a virtual environment and install Streamlit:
 
 Streamlit provides a variety of methods to render static content such as text, markdown, and code. These elements are useful for building the layout and guiding users through your app.
 
-#### Exercise 1: Text and Data Display
+## Exercise 1: Text and Data Display
 - Create a python script app.py
 In this exercise, you will add static content to your app by writing the following code into your app.py file:
 ```python
@@ -212,7 +212,7 @@ Open your browser to http://localhost:8501 to view your app.
 Note: Any time you change a value in one of the input components, go to the browser tab and refresh ,Streamlit  reruns the entire script from top to bottom using the updated values. This means your app always reflects the latest state .
 You can refresh the tab manually, or use the “Always rerun” option in the top-right of the Streamlit page for instant updates as you code.
 
-#### Exercise - 2
+## Exercise - 2
 ### Data Input Components
 ```python
 # Text input
