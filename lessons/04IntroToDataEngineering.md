@@ -10,7 +10,7 @@ Topics:
   * Loading Data: Reading data from CSV, JSON, and dictionaries.
   * Data Inspection: Using head(), tail(), info() to inspect datasets.
 
-## 3.1 Intro to Pandas
+## 4.1 Intro to Pandas
 
 **Pandas** is a very powerful, open-source library for data analysis and manipulation in Python. It's widely used for handling and analyzing data structures, particularly in tabular format. With Pandas, you can work easily with structured data, perform data cleaning, and conduct complex transformations.  You can read more about pandas [here](https://pandas.pydata.org/docs/index.html).
 
@@ -187,7 +187,7 @@ print(df)
 
 ```
 
-#### the DataFrame index and column labels
+#### The DataFrame index and column labels
 DataFrames include an index.  The index provides a label for each row.  Again, this is **not** the same as the row number.  It can be useful for operations such as indexing, data alignment and subsetting.  For some of the operations we will discuss, we add an optional parameter to ignore the index since there is additional complexity involved in setting it up correctly.  For example, the index would need to be reset when combining two DataFrames.  DataFrames also have column labels.  These are typically descriptive strings.  You *can* have non-distinct column labels, but this is usually not helpful.
 
 
@@ -476,7 +476,7 @@ Bob,31,Los Angeles,80000
 Charlie,36,Chicago,90000
 
 ```
-### 3.1 Videos: Installing and Using Pandas
+### 4.1.1 Videos: Installing and Using Pandas
 
 In these two videos, we'll walk through installing and using Pandas in Python. This is an important step! If you're still feeling confused, contact a 1:1 mentor to walk through Pandas.
 
@@ -486,7 +486,7 @@ In these two videos, we'll walk through installing and using Pandas in Python. T
 
 **[Video: Installing Pandas in VSCode](https://youtu.be/4WZK0eovQIA?feature=shared).**
 
-### 3.1 Check for Understanding
+### 4.1.2 Check for Understanding
 
 1. Which data structure is used for storing a two-dimensional table in Pandas?
   * A) List
@@ -516,7 +516,7 @@ In these two videos, we'll walk through installing and using Pandas in Python. T
 
 Great work! With these basics, you can now start using Pandas for various data manipulation and analysis tasks.
 
-## 3.2 Loading Data in Pandas
+## 4.2 Loading Data in Pandas
 
 Pandas provides convenient methods for loading data from various sources, such as CSV and JSON files, as well as Python dictionaries. This makes it easy to get your data into a format where you can start analyzing it.
 
@@ -692,7 +692,7 @@ This will output:
 | JSON       | `pd.read_json()`  | `df = pd.read_json('data.json')` |
 | Dictionary | `pd.DataFrame()`  | `df = pd.DataFrame(data)`        |
 
-### 3.2 Check for Understanding
+### 4.2.1 Check for Understanding
 
 1. Which function is used to load data from a JSON file into a DataFrame?
 
@@ -723,7 +723,7 @@ This will output:
 
 With these functions, you’re equipped to load data from different formats into Pandas, ready for analysis!
 
-## 3.3 Data Inspection
+## 4.3 Data Inspection
 
 Once you've loaded data into a DataFrame, it’s essential to inspect it to understand its structure, spot any missing values, and identify the data types of each column. Pandas provides several convenient methods for quickly viewing and summarizing your dataset.
 
@@ -815,7 +815,7 @@ From this output, you can see the column names, data types, number of non-null e
 | `tail()`       | Displays the last five rows of the DataFrame  | 
 | `info()` | Summarizes the DataFrame, including data types, null counts, and memory usage  | 
 
-### 3.3 Check for Understanding
+### 4.3.1 Check for Understanding
 
 1. What is the default number of rows displayed when using `df.head()`?
 

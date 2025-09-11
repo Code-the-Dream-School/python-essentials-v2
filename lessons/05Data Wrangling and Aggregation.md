@@ -16,7 +16,7 @@
 8. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
 ---
 
-## **4.1 Pandas Review & Deep Dive** *(Optional)*
+## **5.1 Pandas Review & Deep Dive** *(Optional)*
 
 Last week, we introduced Pandas, a powerful tool for data analysis. If you want a refresher on key Pandas concepts, **[listen to this NotebookLM-generated podcast](https://youtu.be/T46zVBxHrjc) reviewing what we learned last week**. 
 
@@ -25,7 +25,7 @@ Last week, we introduced Pandas, a powerful tool for data analysis. If you want 
   * (PDF) [Introduction to Pandas](https://github.com/Code-the-Dream-School/python-essentials/blob/ff583aac6befdb1e008b4d149527bc0dd5c437ef/lessons/resources/Pandas%201%20PDF.pdf)
   * (Slide Deck) [Pandas for Dummies](https://www.slideshare.net/slideshow/numpy-and-pandas-introduction-for-beginners/281988048)
 
-## **4.2 Data Selection**
+## **5.2 Data Selection**
 
 ### **Overview**
 Indexing and slicing allow you to extract specific rows or columns from a DataFrame, making it easier to analyze subsets of your data.
@@ -91,7 +91,7 @@ print(df)
 ```
 
 
-## **4.3 Data Aggregation**
+## **5.3 Data Aggregation**
 
 ### **Overview**
 Aggregating data involves summarizing it by groups, enabling insights at a higher level (e.g., total sales by region, average score by category).
@@ -163,7 +163,7 @@ If you print out result1 and result2, you'll see that they look different.  The 
 
 In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
 
-## 4.4 Pivot Tables
+## 5.4 Pivot Tables
 
 As usual, run these examples in the Python interactive shell of your `python_homework` terminal session.
 
@@ -204,7 +204,7 @@ print(sales_pivot3)
 ```
 By gaining familiarity with pivot tables, you can present data in various ways that make it easy to show the business picture.
 
-## **4.5 Merging and Joining**
+## **5.5 Merging and Joining**
 
 ### **Overview**
 Combine multiple DataFrames using shared keys (columns or indices). 
@@ -277,7 +277,7 @@ joined_df = df1.join(df2, how='outer')
 print(joined_df)
 ```
 
-## **4.6 Data Transformation**
+## **5.6 Data Transformation**
 
 While one can do transformation of the DataFrame as a whole, for the moment we will focus on approaches that do it one column at a time.  You can add, replace, or delete a column of a DataFrame at any time.
 
@@ -314,7 +314,7 @@ print(new_df)
 ```
 The map() method takes one parameter, a function that does the conversion.  In the example above, a lambda is used to specify the function, and a ternary expression is used in the lambda.
 
-## 4.7 **Using apply()**
+## 5.7 **Using apply()**
 
 You have already learned several ways to generate a new column from an existing one.  Suppose, however, that you want to combine information from several columns.  For example, you could do the following:
 ```python
@@ -344,7 +344,7 @@ per_employee_sales['Commission'] = per_employee_sales.apply(calculate_commission
 print(per_employee_sales)
 ```
 
-## **4.8 Utility Methods**
+## **5.8 Utility Methods**
 
 ### **Changing Column Names**
 
@@ -382,7 +382,7 @@ print(joined_df)
 
 ---
 
-## **4.9 Check for Understanding**
+## **5.9 Check for Understanding**
 
 1. **How can you select rows where the "Age" column is greater than 25?**
    - A) `df.loc[df['Age'] > 25]`
@@ -408,7 +408,7 @@ print(joined_df)
 </details>
 ---
 
-## **4.10 Summary**
+## **5.10 Summary**
 
 In this lesson, you’ve learned:
 - How to select and slice subsets of data using `.loc[]` and `.iloc[]`.
