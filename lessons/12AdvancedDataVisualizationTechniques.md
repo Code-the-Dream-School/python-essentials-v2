@@ -212,8 +212,7 @@ Open your browser to http://localhost:8501 to view your app.
 Note: Any time you change a value in one of the input components, go to the browser tab and refresh ,Streamlit  reruns the entire script from top to bottom using the updated values. This means your app always reflects the latest state .
 You can refresh the tab manually, or use the “Always rerun” option in the top-right of the Streamlit page for instant updates as you code.
 
-## Exercise - 2
-### Data Input Components
+## Exercise 2: Data Input Components
 ```python
 # Text input
 st.header("Section 2")  # A new section to group interactive input components
