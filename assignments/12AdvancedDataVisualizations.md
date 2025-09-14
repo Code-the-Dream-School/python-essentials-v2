@@ -110,6 +110,7 @@ This assignment is to be implemented using **Streamlit**.
 You will **import a dataset**, **build a dashboard**, **visualize insights**, **showcase data cleaning**, and **deploy your app** to **Streamlit Community Cloud**.
 
 ### Requirements
+- Download the dataset from here: [Retail sales dataset](https://www.kaggle.com/datasets/mohammadtalib786/retail-sales-dataset)
 - Import a dataset that has already been cleaned and prepared
 - Explain what cleaning and preparation was done
 - Visualize key insights through interactive dashboards
