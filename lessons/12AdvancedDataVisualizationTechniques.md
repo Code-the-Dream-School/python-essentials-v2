@@ -172,9 +172,47 @@ Streamlit is a Python library that makes it easy to create custom web apps for m
 
 ### Installation and Setup
 
-First, let's set up a virtual environment and install Streamlit:
+Before we start building apps, let’s set up our environment:
 
-1. Create a project folder named `streamlit_project` in the top level of your `assignment12` folder and change to that folder.
+1. **Create a new project folder**
+   ```bash
+   mkdir streamlit_project
+   cd streamlit_project
+   ```
+2. **Initialize a Git repository:**
+    ```bash
+    git init
+    ```
+
+3. **Create a .gitignore file with the following entries:**
+   ```bash
+   .venv/
+   __pycache__/
+   *.pyc
+   .DS_Store
+   ```
+
+4. **Set up a virtual environment:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate   # macOS/Linux
+   .venv\Scripts\activate      # Windows
+   ``` 
+
+5. **Create a requirements.txt file:**
+   ```bash
+   streamlit
+   pandas
+   plotly
+   numpy
+   matplotlib
+   ```
+
+6. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+7. Create a Python file named `streamlit_app.py` in your project folder. This is the main script Streamlit will run when deploying your app.
 
 ## Basic Streamlit Components
 ### Text and Data Display
@@ -343,7 +381,7 @@ If you completed the Streamlit lesson, add and commit the additional folder and 
 - Add input forms, layouts, and sidebars
 - Build simple dashboards with metrics and charts
 
-## ** Streamlit**
+## Streamlit
 
 Streamlit is a way of creating a web based dashboard for data presentation.
 

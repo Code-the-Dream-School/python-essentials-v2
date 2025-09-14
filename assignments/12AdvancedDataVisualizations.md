@@ -117,42 +117,7 @@ You will **import a dataset**, **build a dashboard**, **visualize insights**, **
 
 ## Task 1: Project Setup
 
-1. Create a new folder called ``streamlit-assignment`` for your project on your local machine.  It will be initialized as a git repository, so make sure it is outside of any other git repository.  
-
-2. Initialize a Git repository inside this folder:
-```bash
-git init
-```
-
-3. Create a .gitignore file and make sure it includes:
-```bash
-.venv/
-__pycache__/
-*.pyc
-.DS_Store
-```
-
-4. Set up a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # on macOS/Linux
-.venv\Scripts\activate     # on Windows
-```
-
-5. Create requirements.txt file.  You can use the same requirements.txt file which you used for the Streamlit lesson.
-```bash
-streamlit
-pandas
-plotly
-numpy
-matplotlib
-```
-6. Install the dependencies. Run following command in your vs code terminal.
-```bash
-pip install -r requirements.txt
-```
-7. Create a Python file named `streamlit_app.py` in your project folder.
-   This is the main script Streamlit will run when deploying your app.
+Go through Lesson 12 for Streamlit setup.
 
 ## Task 2: Build Your Streamlit Dashboard
 
