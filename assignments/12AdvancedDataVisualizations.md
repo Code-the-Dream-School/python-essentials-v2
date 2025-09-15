@@ -51,59 +51,22 @@ This assignment is to be created in the `assignment12` folder of your `python-as
 
 ---
 
-## **Task 4: A Dashboard with Dash**
-
-Ok, deep breath.  Start by copying `python-assignment12/assignment12/lesson11_c.py` to `python-assignment12/myapp.py`. We can reuse the template.  This is in the root of the project folder because you are going to deploy this to the cloud in Task 5.
-
-1. The dataset to use is the Plotly built in `gapminder` dataset.  This has, among other things, the per capita GDP for various countries for each year.  For a given country, there will be one row per year.  This means that the 'countries' column has many duplicates.
-2. You want a dropdown that has each unique country name. You create a Series called `countries` that is the list of countries with duplicates removed.  You use this Series to populate the dropdown.  Give the dropdown the initial value of 'Canada'.
-3. You give the dropdown the id of 'country-dropdown' and also create a dcc.Graph with id 'gdp-growth'.
-4. You create the decorator for the callback, associating the input with the dropdown and the output with the graph.
-5. The decorator decorates an `update_graph()` function.  This is passed the country name as a parameter.  You need to filter the dataset to get only the rows where the country column matches this name.  Then you create a line plot for 'year' vs. 'gdpPercap`.  Give the plot a descriptive name that includes the country name.
-6. The line to run the app doesn't need to change.
-7. Run the program, and check it out in the browser.  Make bug fixes as needed.
-
----
-
-## **Task 5: Deploying to Render.com**
-
-1. Create a free account at Render.com.
-2. Change `myapp.py` to add a line:
-   ```python
-   app = Dash(__name__)
-   server = app.server # <-- This is the line you need to add
-   ```
-3. Add, commit, and push your changes to GitHub.  If you are using a branch, create a PR and merge that branch with main.
-4. Go to your render.com dashboard and create a new web service.  Provide the public URL of your python-assignment12 repository.  You must specify a unique name.  The default name is the same as your GitHub repository, so that will likely conflict with another student.
-5. The "Start Command" for the web service should be changed to read:
-   ```
-   gunicorn myapp:server
-   ```
-   The gunicorn package is a Python web server, which is used to run the Flask server for your Dash app.
-6. Click the "Deploy Service" button.
-7. Wait. Wait. Wait. The Render free plan is not fast.
-8. Eventually, it will say that the service is running.  Wait.  Wait some more.
-9. Click on the https link for your service in the upper part of your render.com dashboard.  Wait.  Wait.  Keep waiting.
-10. After a while, you'll see the app!  Congratulations, you are live! 
-
----
-
-## **Task 6: Reflection**
+## **Task 4: Reflection**
 Create a file in the assignment12 folder called reflection.txt, and put in the following thoughts:
 
 1. Reflect on the differences between static and interactive visualizations.
 2. Write a short paragraph discussing the advantages of using dashboards for real-time data exploration.
-3. Explain how interactive tools like Plotly and Dash can improve data communication in professional settings.
+3. Explain how interactive tools like Plotly can improve data communication in professional settings.
 
-## **Task 7: Commit Your Work**
+## **Task 5: Commit Your Work**
 
 Add and commit all of the files created for the assignment to the `assignment12` branch.
 
 ---
 
-#  Optional Assignment on Streamlit
+# Assignment on Streamlit
 
-You can use either Dash or Streamlit for your capstone project.
+You can use Streamlit for your capstone project.
 
 ## Overview
 This assignment is to be implemented using **Streamlit**.  
