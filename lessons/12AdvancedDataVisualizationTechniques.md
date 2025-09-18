@@ -2,27 +2,26 @@
 # **Lesson 12 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
-**Learning objective:** students will learn how to build advanced, interactive visualizations using Python libraries such as Pandas, Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and developing simple dashboards for real-time data exploration. To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`. An optional section introduces Streamlit for dashboard development.
+**Learning objective:** students will learn how to build advanced, interactive visualizations using Python libraries such as Pandas, Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and developing simple dashboards for real-time data exploration. To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`. A section introduces Streamlit for dashboard development.
 
 ### **Topics:**
 1. Plotting with Pandas: Visualizing data directly from DataFrames.
 2. Interactive Visualizations: Using Plotly for interactive plotting.
-3. Dashboards: Creating dynamic dashboards with Plotly.
-4. Advanced Customization: Advanced interactivity, subplots, and real-time updates.
-5. Optional lesson on Streamlit.
+3. Building interactive apps using Streamlit.
+4. Reflection
 
 Note:
-For your final project, you will create a dashboard using one of these tools.  Which one you use is up to you.  Check out the optional Streamlit information and assignment if you are interested in Streamlit.
+For your final project, you will create a dashboard using Streamlit. Check out the Streamlit overview and the assignment for details.
 
 ### **Setup**
 
-You are using your own repository, both for the lesson and for the assignment.  If you do the Streamlit portions, these are also to be done within a second new repository.  The steps are these:
+You are using your own repository for both the lesson and the assignment. Do the Streamlit portions in the same repository (e.g., in a streamlit/ folder).
 
 1. Create a folder called  `python-assignment12`.  This should **not** be inside of the `python_homework` folder.  Change to this directory.
 2. Do a `git init`.
 3. Create a `.gitignore` file.  You can copy the one from `python_homework`, but be sure you know why that one says what it does.
 4. Create a virtual environment called `.venv`.  See the README.md for `python_homework` if you don't remember how this is done.
-5. Create a `requirements.txt` file.  This should include the following packages.  These will also cover the optional streamlit lesson.
+5. Create a `requirements.txt` file.  This should include the following packages.  These will cover the streamlit lesson.
     - numpy
     - pandas
     - matplotlib
@@ -31,7 +30,7 @@ You are using your own repository, both for the lesson and for the assignment.  
     - gunicorn
     - streamlit
     
-    If you do the Streamlit assignment, some further setup is needed since a separate repo will be created.  You can specify specific versions of these packages (see the requirements.txt for `python_homework`), but if you don't, you will get the latest version of each of these.
+  You can specify specific versions of these packages (see the requirements.txt for `python_homework`), but if you don't, you will get the latest version of each of these.
 6.  **Important** Activate the virtual environment, with the command:
     ```bash
     source .venv/bin/activate
@@ -131,24 +130,12 @@ Try it out!  The interactive plot comes up in your browser, and you can hover ov
 ### **Key Features of Plotly:**
 - **Interactivity:** Hover tooltips, zooming, and panning.
 - **Customization:** Wide range of customization options for visual aesthetics and user interaction.
----
-
-## **11.3 Reflection**
-
-### **Differences Between Static and Interactive Visualizations:**
-- **Static Visualizations:** Easier to create and quicker to render but lack user interaction.
-- **Interactive Visualizations:** Allow users to explore data, zoom, filter, and interact, providing a deeper and more engaging analysis experience.
-
-### **Advantages of Dashboards:**
-- Real-time data exploration and updates.
-- User interaction with data (e.g., dropdowns, sliders) enables custom insights.
-- Efficient presentation of key metrics in a professional setting.
 
 ---
 
-# Building Interactive Apps with Streamlit
+# 11.3 Building Interactive Apps with Streamlit
 
-This portion of the lesson supports the optional assignment on Streamlit.  For the capstone final project, you can use Streamlit.
+This portion of the lesson supports the assignment on Streamlit.  For the capstone final project, you will use Streamlit.
 
 ## Lesson Overview
 
@@ -172,47 +159,9 @@ Streamlit is a Python library that makes it easy to create custom web apps for m
 
 ### Installation and Setup
 
-Before we start building apps, let’s set up our environment:
+You already created the virtual environment and installed all dependencies at the top.
 
-1. **Create a new project folder**
-   ```bash
-   mkdir streamlit_project
-   cd streamlit_project
-   ```
-2. **Initialize a Git repository:**
-    ```bash
-    git init
-    ```
-
-3. **Create a .gitignore file with the following entries:**
-   ```bash
-   .venv/
-   __pycache__/
-   *.pyc
-   .DS_Store
-   ```
-
-4. **Set up a virtual environment:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate   # macOS/Linux
-   .venv\Scripts\activate      # Windows
-   ``` 
-
-5. **Create a requirements.txt file:**
-   ```bash
-   streamlit
-   pandas
-   plotly
-   numpy
-   matplotlib
-   ```
-
-6. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-7. Create a Python file named `streamlit_app.py` in your project folder. This is the main script Streamlit will run when deploying your app.
+Create a Python file named `streamlit_app.py` in your existing repo folder. This is the main script Streamlit will run when deploying your app.
 
 ## Basic Streamlit Components
 ### Text and Data Display
@@ -373,7 +322,7 @@ in your terminal execute
 streamlit run dashboard_app.py
 ```
 
-If you completed the Streamlit lesson, add and commit the additional folder and files created.
+Once you hvae completed the Streamlit lesson, add and commit the folder and files created.
 
 ## Conclusion
  You now know how to:
@@ -392,7 +341,20 @@ Disadvantages:
 - Not as widely used (though gaining popularity)
 - In a production environment, it is not very scalable
 
+---
 
+## **11.4 Reflection**
+
+### **Differences Between Static and Interactive Visualizations:**
+- **Static Visualizations:** Easier to create and quicker to render but lack user interaction.
+- **Interactive Visualizations:** Allow users to explore data, zoom, filter, and interact, providing a deeper and more engaging analysis experience.
+
+### **Advantages of Dashboards:**
+- Real-time data exploration and updates.
+- User interaction with data (e.g., dropdowns, sliders) enables custom insights.
+- Efficient presentation of key metrics in a professional setting.
+
+---
 ## **Summary**
 
 In this lesson, you learned:
