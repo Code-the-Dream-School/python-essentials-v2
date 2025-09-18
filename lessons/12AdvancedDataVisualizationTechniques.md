@@ -30,7 +30,7 @@ You are using your own repository for both the lesson and the assignment. Do the
     - gunicorn
     - streamlit
     
-  You can specify specific versions of these packages (see the requirements.txt for `python_homework`), but if you don't, you will get the latest version of each of these.
+    You can specify specific versions of these packages (see the requirements.txt for `python_homework`), but if you don't, you will get the latest version of each of these.
 6.  **Important** Activate the virtual environment, with the command:
     ```bash
     source .venv/bin/activate
