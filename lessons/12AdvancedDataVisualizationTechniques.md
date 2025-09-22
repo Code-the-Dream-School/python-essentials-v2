@@ -2,7 +2,7 @@
 # **Lesson 12 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
-**Learning objective:** students will learn how to build advanced, interactive visualizations using Python libraries such as Pandas, Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and developing simple dashboards for real-time data exploration. To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`. A section introduces Streamlit for dashboard development.
+**Learning objective:** Students will learn to build advanced, interactive visualizations and simple, deployable dashboards with Streamlit alongside Pandas and Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and turning analyses into lightweight web apps for real-time exploration (with Streamlit components like widgets, layout, and state). To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`.
 
 ### **Topics:**
 1. Plotting with Pandas: Visualizing data directly from DataFrames.
@@ -371,4 +371,5 @@ For more details, explore the [Plotly Documentation](https://plotly.com/python/)
 1. **Matplotlib Tutorials:** For more detailed Matplotlib tutorials, check out [Matplotlib Tutorials](https://matplotlib.org/stable/tutorials/index.html).
 2. **Seaborn Gallery:** Explore different plot examples at the [Seaborn Gallery](https://seaborn.pydata.org/examples/index.html).
 3. **Data Visualization in Python:** To explore more about data visualization strategies and best practices, visit [Data Visualization in Python](https://realpython.com/python-data-visualization-using-matplotlib/).
+4. **Streamlit Playground:** To try out streamlit versions on your browser, visit [Streamlit Playground](https://streamlit.io/playground)
 

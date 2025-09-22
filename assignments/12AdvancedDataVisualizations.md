@@ -171,7 +171,7 @@ Go through Lesson 12 for Streamlit setup.
 📌 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Add, Commit, and Push Your Changes** 
-- Create a file called `service_urls.txt` in the assignment12 folder. Once you complete the Streamlit assignment, make sure the Streamlit github repository url and streamlit.io service url are added to the `service_urls.txt` file.
+- Create a file called `service_urls.txt` in the assignment12 folder. Once you complete the Streamlit assignment, make sure the streamlit.io service url are added to the `service_urls.txt` file.
 - Within your `python-assignment12` folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment12` branch.
 - Push that branch to GitHub. 
 
@@ -184,8 +184,8 @@ Go through Lesson 12 for Streamlit setup.
 #### **3️⃣ Submit Your GitHub Link**  
 - Your browser now has the link to your pull request.  Copy that link. 
 - Paste the URL into the **assignment submission form**.
-- if you did the Streamlit assignment, make sure that repository link and the url for the streamlit.io service are included in the `service_urls.txt` file. 
+- Once you are done with the Streamlit assignment, make sure that the url for the streamlit.io service is included in the `service_urls.txt` file. 
 
-To summarize, a pull request for the `assignment12` branch in your new `python-assignment12` repository is pasted into the link submission field in the **assignment submission form**. For the streamlit assignment, the link for the `streamlit-assignment` repository and the url for the `streamlit.io` service are included in the `service_urls.txt` file.
+To summarize, a pull request for the `assignment12` branch in your new `python-assignment12` repository is pasted into the link submission field in the **assignment submission form**. For the streamlit assignment, the link for the url for the `streamlit.io` service are included in the `service_urls.txt` file.
 
 ---
