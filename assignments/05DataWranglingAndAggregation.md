@@ -2,8 +2,9 @@
 ### Advanced Data Wrangling and Aggregation with Pandas
 
 ### **Objective:**
-The purpose of this assignment is to deepen your understanding of data wrangling and aggregation using the Pandas library in Python. You will work with sample DataFrames to perform various operations such as filtering, handling missing values, merging, sorting, and transforming.
+The purpose of this assignment is to deepen your understanding of data wrangling and aggregation using the Pandas library in Python. You will work with sample DataFrames to perform various operations such as filtering, handling missing values, merging, sorting, transforming, pivot tables and apply().
 
+Note: Tasks 3–4 are mini-labs (independent datasets) and pair together; These use independent Kaggle datasets; do them together, then resume Task 5.
 ### **Setup**
 
 The assignments up to this one have required you to create `.py` files and to submit them by creating pull requests for your python_homework repository.  For this assignment, you create a Jupyter notebook file.  Jupyter notebooks are a way to do data presentation and analysis, using Python code.  A notebook is comprised of a sequence of cells, which come in two kinds: Markdown cells, for putting in the text you want to show, and code cells, where you put your Python code.
@@ -58,7 +59,29 @@ Again, you create a markdown cell to describe this task, and a code cell contain
    - Calculate the mean, sum, and count of the salary for each age group.
    - Display the aggregated results.
 
-### **Task 3: Merging and Joining DataFrames**
+### **Task 3: Practice Pivot Tables**
+
+1. In the upper right of your notebook page click on "Add Input" and then "Datasets".  Search on "Ecommerce Consumer Behavior".  You should find a dataset from Salahuddin Ahmed.  Click on the plus button to add this one to your notebook.
+
+2. Resolve the file you need to read, by running the first cell in your notebook. Then read the file into a DataFrame called `ecommerce`.  Print out the first 5 rows, so that you know what the data looks like.
+
+3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.
+
+4. Create a "buying_patterns" pivot table from the data.  The index should be the 'Purchase_Category'.  The columns should be 'Gender' and 'Income_Level'.  The value you sum should be 'Purchase_Amount'.  Print out the resulting DataFrame.
+
+5. Create a "demographics" pivot table from the ecommerce DataFrame.  You want two levels of index, on 'Income_Level' and 'Education_Level'.  For columns you want 'Marital_Status'.  You want to count the 'Customer_ID' values.  Print out the resulting DataFrame.
+
+### **Task 4: Practice apply()**
+
+1. Add another input.  This time, you search for "AI-Powered Job Recommendations".  You should find a dataset from Samay Ashar.  
+
+2. Create a new code cell.  Add code to resolve the name of the file you need to read.  For this part, you use the job recommendations file.  Read it into a DataFrame called "jobs".  Print out the first 10 lines, so that you know what the column names are.
+
+3. Use the `apply()` method to create an additional column in the jobs DataFrame called 'Check These Out'.  Give that a value of "Yes" if the job is entry level, has a salary greater than or equal to 70000, and requires both SQL and Python.  Give the column a value of "No" otherwise.
+
+4. Create a DataFrame called "my_jobs".  Select the rows from "jobs" that have a 'Check These Out' column value of 'Yes'.  Print out the first 10 lines.
+
+### **Task 5: Merging and Joining DataFrames**
 1. **Merge `df1` and `df3` into `df_1_3_merged` on the 'Name' column:**
    - Use an outer merge to combine the two DataFrames and handle any missing data.
    - Use the suffixes `_left` and `_right` to differentiate columns from each DataFrame. (You specify `suffixes=['_left','_right']` on the call to merge.)
@@ -82,34 +105,34 @@ Again, you create a markdown cell to describe this task, and a code cell contain
    - Create new DataFrames df1_b and df3_b from df1 and df3.  In these new DataFrames, set 'Name' as the index.
    - Join the DataFrames with outer join logic and display the result.  Do not use `inplace=True`.  Unlike the merge method, the join method does not provide default suffixes if there are overlapping columns.  Check the online documentation to find out how to specify them.
 
-### **Task 4: Filtering Rows Based on Conditions**
+### **Task 6: Filtering Rows Based on Conditions**
 1. **Filter rows in `df1` where 'Age' is greater than 30:**
    - Display the filtered rows.
 
-### **Task 5: Sorting Data**
+### **Task 7: Sorting Data**
 1. **Sort `df1` by the 'Salary' column in descending order:**
    - Display the sorted DataFrame.
 
-### **Task 6: Renaming Columns**
+### **Task 8: Renaming Columns**
 1. **Rename columns in `df1`:**
    - Rename 'Age' to 'Employee Age' and 'Salary' to 'Employee Salary'.  Do not use `inplace=True`, because then you wouldn't be able to do Task 9.
    - Display the DataFrame with the renamed columns.
 
-### **Task 7: Data Transformation**
+### **Task 9: Data Transformation**
 1. **Apply a transformation to the 'Salary' column in `df1`:**
    - Increase the salary by 10% for each employee.
    - Display the updated DataFrame.
 
-### **Task 8: Concatenating DataFrames**
+### **Task 10: Concatenating DataFrames**
 1. **Concatenate `df1` and `df2` to add the rows of `df2` to the end of `df1`**
    - Use `ignore_index=True` to reset the index.
    - Display the result.
 
-### **Task 9: Data Wrangling a Kaggle Dataset**
+### **Task 11: Data Wrangling a Kaggle Dataset**
 
 Kaggle has some nice datasets you can use in exercises.  These are `csv` files.  We are going to do some data wrangling on one of those provided files. For this task, we are going to find the international football teams that are especially bad on defense.
 - On the upper right of your notebook, click on 'Add Input'.  Click on the 'Datasets' button.  Then do a search on 'international football results'.  You should see one from Mart Jürisoo.  Click on the plus sign next to that one.  That adds the dataset to your notebook, so that you can read the CSV files.
-- Create a markdown cell for Task 9, and then create a new code cell for the following steps.
+- Create a markdown cell for Task 11, and then create a new code cell for the following steps.
 - You need to find the available CSV file path names.  The first cell in your notebook, the one it started out with, has the following code:
     ```python
     import pandas as pd
@@ -128,9 +151,9 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
 - Do a `groupby()` on 'team'.  Get the mean() of the 'points_against' column.  Store the result (it is a Series) in the variable points_against.
 - Sort points_against so the values are descending.  Print out the first 10 lines.  These are the teams that are very bad on defense.
 
-### **Task 10: More Data Wrangling for Football Results**
+### **Task 12: More Data Wrangling for Football Results**
 
-This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 9, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
+This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
 
 
 ### **Submit the Notebook for Your Assignment**  
