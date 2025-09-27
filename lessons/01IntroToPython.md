@@ -31,6 +31,8 @@ Topics:
 - **Debugging**:  
   - **Error Handling**: Introduction to `try`, `except` for handling runtime errors.  
   - **Basic Debugging**: Using print statements and the `logging` module to debug code effectively.
+- **Concurrent Final Project**
+  During the course, students will contribute incrementally to a final project.
 
 ## 1.1 Setting up your environment 
 
@@ -1016,6 +1018,46 @@ print(f"The pie cost ${cost:.2f}.")
 ```
 
 ## 🎉 Congratulations on finishing your first lesson in Python Essentials!
+
+## Introducing the incremental final project
+
+At the end of the class, you will turn in a final project which you will contribute to as you progress through the lessons.  You'll get started once you have a few lessons completed, but it's not too soon to start thinking about what you would like to do.  Here are a few details about the project.
+
+### Project details
+
+Throughout the class, part of you assignment will be to add to your final project.  The project has two parts.
+
+#### 1. Kaggle Data Pipeline
+
+One of the main focal points of the class is data engineering.  To demonstrate those skills, students will create a data pipeline which demonstrates cleaning, aggregation, analysis and visualization published in a Kaggle Notebook.  Kaggle will be covered in a later lesson.  It is a public site for sharing dataset and analysis.
+
+##### Data Sources
+
+  The student can select one of four curated datasets listed below or one of their own choosing with CIL approval.
+
+  **[Global Superstore](https://www.kaggle.com/datasets/anandaramg/global-superstore/data)**
+
+    Find business insights from sales data at a global superstore to drive business decisions.
+
+  **[TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv)**
+
+    Find the factors which influence movie performance to find factors which influence success.
+
+  **[Life Expectancy (WHO)](https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who/data)**
+
+    Find the factors which influence life expectancy.
+
+  **[Seattle Airbnb Open Data (2016)](https://www.kaggle.com/datasets/airbnb/seattle/data?select=listings.csv)**
+
+    Find the factors which influence listing performance.
+
+#### 2. Web scraping, persistance and visualization
+
+In the last week, students will publish a public github repository which demonstrates web scraping, data cleaning, analysis, persistance in a sql database and web-based presentation using Streamlit.  The visualization will be available on Streamlit.io.
+
+Students will scrape the [Weather Around The World](https://www.timeanddate.com/weather/) and display results in a Streamlit dashboard.
+
+## On to the assignment!
 
 Your next step is to complete the coding assignment. As always, reach out to your mentor if you have questions, and take time to celebrate your hard work. 
 
