@@ -1025,7 +1025,7 @@ At the end of the class, you will turn in a final project which you will contrib
 
 ### Project details
 
-Throughout the class, part of you assignment will be to add to your final project.  The project has two parts.
+Throughout the class, part of your assignment will be to add to your final project.  The project has two parts.
 
 #### 1. Kaggle Data Pipeline
 
