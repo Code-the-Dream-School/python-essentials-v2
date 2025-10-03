@@ -155,8 +155,11 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
 
 This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
 
+### **Start Your Final Project**
 
-### **Submit the Notebook for Your Assignment**  
+Now that you have worked with pandas and gotten started with data cleaning and aggregation, it's time to start your final project.  Throughout the course, you'll apply the techniques you have learned incrementally to your project.  For this week, you will create a Kaggle notebook for you data pipeline final project.  The notebook name is up to you but you might use something like **CTD Python Data Pipeline**.
+
+### **Submit the Notebooks for Your Assignment**  
 
 📌 **Follow these steps to submit your work:**  
 
