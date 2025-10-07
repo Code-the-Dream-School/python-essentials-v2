@@ -3,129 +3,38 @@
 
 **Lesson Overview**
 
-**Learning objective:** Students will learn essential data cleaning and transformation techniques in Pandas, including handling missing values, outliers, and duplicates. They will also use pivot tables, the `apply()` method, and column-wise operations to reshape and enrich datasets.
+**Learning objective:** Students will learn to clean and standardize real-world datasets by handling missing values, duplicates, outliers, and inconsistent formats. They will validate ranges and categories, apply encoding and basic feature engineering, and use advanced tools such as regular expressions to prepare data for analysis.
+
 
 
 ### Topics
+1. What is Data Cleaning?
+2. Handling Missing Data (`isnull`, `dropna`, `fillna`)
+3. Data Types & Datetime (`astype`, `to_numeric`, `to_datetime`)
+4. Validation (ranges / allowed values)
+5. Duplicates (`duplicated`, `drop_duplicates`)
+6. Outliers (simple rules; median/IQR concept)
+7. Text Standardization & Regex (`lower/strip`, `replace` vs `map`, `str.contains`/`str.extract`/`str.replace`, `filter(regex=...)`)
+8. Categorical Encoding (`category`, `pd.get_dummies`)
+9. Handling Inconsistent Data (normalize text; brief fuzzy-matching note)
+10. Feature Engineering (binning with `pd.cut`)
 
-1. **Pivot Tables**: A way to present summary data.
-2. **Transforming DataFrames with apply()**: A flexible way to create new columns by combining column entries from existing columns.
-3. **Intro to Data Cleaning**: Identifying dirty data; understanding standardization, outliers, deduplication, and validation. 
-4. **Handling Missing Data**: Removing rows with `dropna()`, replacing values with `fillna()`. 
-5. **Data Transformation**: Converting data types, reformatting dates, **feature engineering**, **data discretization**. 
-6. **Removing Duplicates**: Identifying and removing duplicate records.
-7. **Removing Outliers**: Identify and removing outlying records
 ---
 
-## 5.1 Pivot Tables.
+## What is Data Cleaning?
 
-As usual, run these examples in the Python interactive shell of your `python_homework` terminal session.
+Garbage in → garbage out. Cleaning prepares messy, real-world data so analysis is trustworthy.
 
-Consider the following case. Acme Inc. has 3 sales employees and 2 regions.  The employees each report the revenue they got from sales of each of the products in each of the regions.  These reports are probably kept in a database, but for our purposes, they look like this:
-```python
-include pandas as pd
-data = [{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'West', 'Revenue': 9000}, \
-{'Employee': 'Jones', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 4000}, \
-{'Employee': 'Jones', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 11000}, \
-{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'East', 'Revenue': 4000}, \
-{'Employee': 'Jones', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 5500}, \
-{'Employee': 'Jones', 'Product': 'Doohickey', 'Region': 'East', 'Revenue': 2345}, \
-{'Employee': 'Smith', 'Product': 'Widget', 'Region': 'West', 'Revenue': 9007}, \
-{'Employee': 'Smith', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 40003}, \
-{'Employee': 'Smith', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 110012}, \
-{'Employee': 'Smith', 'Product': 'Widget', 'Region': 'East', 'Revenue': 9002}, \
-{'Employee': 'Smith', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 15500}, \
-{'Employee': 'Garcia', 'Product': 'Widget', 'Region': 'West', 'Revenue': 6007}, \
-{'Employee': 'Garcia', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 42003}, \
-{'Employee': 'Garcia', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 160012}, \
-{'Employee': 'Garcia', 'Product': 'Gizmo', 'Region': 'East', 'Revenue': 16500}, \
-{'Employee': 'Garcia', 'Product': 'Doohickey', 'Region': 'East', 'Revenue': 2458}]
-sales = pd.DataFrame(data)
-print(sales)
-```
-Ok, all the information is here, but it is not organized as the CFO would like.  You have already learned one way to summarize the data, using groupby().  Another is to use pivot tables.  Here are three examples:
+- **Standardize:** consistent formats (dates, phones, casing).
+- **Handle missing values:** drop vs fill (mean/median/constant/ffill/bfill).
+- **Remove duplicates:** ensure unique records.
+- **Check outliers:** domain-aware; don’t delete real extremes blindly.
+- **Validate:** ranges, allowed sets, uniqueness (IDs), and sanity checks.
 
-```python
-sales_pivot1 = pd.pivot_table(sales,index=['Product','Region'],values=['Revenue'],aggfunc='sum',fill_value=0)
-print(sales_pivot1)
-# This creates a two level index to show sales by product and region. The revenue values are summed for each product and region.
-sales_pivot2 = pd.pivot_table(sales,index='Product',values='Revenue',columns='Region', aggfunc='sum',fill_value=0)
-print(sales_pivot2)
-# The result here is similar, but instead of a two level index, you have columns to give sales by region.
-sales_pivot3 = pd.pivot_table(sales,index='Product',values='Revenue',columns=['Region','Employee'], aggfunc='sum',fill_value=0)
-print(sales_pivot3)
-# By adding the employee column, you get these revenue numbers broken down by employee.  The fill value is used when there is no corresponding entry.
-```
-By gaining familiarity with pivot tables, you can present data in various ways that make it easy to show the business picture.
+Optional: [3-min intro video](https://www.youtube.com/watch?v=WpX2F2BS3Qc)  
+> Tip: always **keep an untouched raw copy** before cleaning.
 
-## 5.2 Using apply()
-
-You have already learned several ways to generate a new column from an existing one.  Suppose, however, that you want to combine information from several columns.  For example, you could do the following:
-```python
-sales_pivot2['Total'] = sales_pivot2['East'] + sales_pivot2['West'] # adding two columns to make a new one
-print(sales_pivot2)
-per_employee_sales=sales.groupby('Employee').agg({'Revenue':'sum'})
-per_employee_sales['Commission Percentage'] = [0.12, 0.09, 0.1]
-per_employee_sales['Commission'] = per_employee_sales['Revenue'] * per_employee_sales['Commission Percentage']
-print(per_employee_sales)
-```
-Ok, so far so good.  But suppose the combination rules are a little more complicated.  Consider this case:
-```python
-per_employee_sales=sales.groupby('Employee').agg({'Revenue':'sum'})
-per_employee_sales['Commission Plan'] = ['A', 'A', 'B']
-```
-Sales employees on commission plan A get $1000 for the first 10000 in revenue, and 5% for revenue over 10000.  Everyone else gets $1400 for the first 10000 in revenue, but 4% for revenue over 10000.  All employees get zip if they don't get at least 10000 in revenue. You use apply(), and you specify `axis=1` to request the entire row.  You pass a function to apply(), and the function is called once per row.  As follows:
-```python
-def calculate_commission(row):
-    if row['Revenue'] < 10000:
-        return 0
-    if row['Commission Plan'] == 'A':
-        return 1000 + 0.05 * (row['Revenue'] - 10000)
-    else:
-        return 1400 + 0.04 * (row['Revenue'] - 10000)
-
-per_employee_sales['Commission'] = per_employee_sales.apply(calculate_commission, axis=1)
-print(per_employee_sales)
-```
-
-## 5.3 What is Data Cleaning?
-
-Data is often dirty.  Values may be missing, or duplicated, or incorrectly formatted, or have values that are not plausible or manageable by data analysis.  The following optional [video](https://www.youtube.com/watch?v=WpX2F2BS3Qc) expains the concepts.  The main idea is garbage-in, garbage-out.  Any analysis you do on data that is partly incorrect may be invalid.  Data cleaning involves the following procedures:
-
-- Standardization.  For example, you want to represent dates and phone numbers in a standard way.
-- Addressing outliers.  These are values that appear improbable and were likely entered in error.
-- Deduplication.
-- Addressing missing values.
-- Validation.
-
-You will learn various technical approaches to each of these.
-
-### Standardization
-
-You can check, for example, that email addresses are of a valid format.  Suppose some are not.  You can either flag the rows for manual correction, or discard the rowss, or attempt to reformat the addresses to correct the problem, or derive the correct addresses from other information in the row or perhaps in a separate dataset.  For US phone numbers, you could check that each is a string of 10 numeric characters.
-
-### Addressing Outliers
-
-Sometimes outliers are easy to identify.  If a person's age is negative, or greater than 120, this is an outlier.  But in other cases, it might not be so clear.  For example, if you discarded outliers for daily rainfall in a region, you could end up discarding all flood events, which are important records that are needed for the analysis.
-
-### Deduplication
-
-Deduplication is pretty easy if the rows are exactly the same.  But, if one of the values in the row is a little bit different, it may not be as clear.  Perhaps you have access to a reliable key, such as a known phone number or email address.
-
-### Addressing missing values
-
-You can throw away the rows with missing information ... but other parts of the record may have valuable information.
-
-You can substitute a plausible value ... but this distorts the data.  For example, if the data contains a person's net worth, you could substitute the mean value for that column, but actually most people don't have nearly the 'average' net worth.  You could substitute the median value instead, but again, most people have incomes that differ from the median by quite a bit.
-
-Each automated change to clean the data involves a tradeoff.  You should always archive the original data, in case cleaning introduces distortions.
-
-### Validation
-
-This is a process to check that the cleaned data is in fact correct.  For example, for information about a person, you might want to ask the person if the stored information is correct.
-
-
-## 5.4 Handling Missing Data
+## 6.1 Handling Missing Data
 
 ### Overview
 
@@ -175,25 +84,16 @@ print(df_filled)
 
 `fillna()` is used to replace missing values. In this case, the `Age` column's missing values are replaced with 0, and the `Score` column's missing values are filled with the mean of the existing scores. This can cause issues if the values you are replacing become outliers.
 
-## 5.5 Data Transformation
+## 6.2 Data Types & Datetime
 
 ### Overview
-
-Data transformation is essential for ensuring that all data conforms to the correct format and type, which makes it easier to manipulate and analyze. This includes tasks like converting strings to numeric values, reformatting date strings into datetime objects, **creating new features** (feature engineering), and **discretizing continuous variables**.
+Get columns into the right types so everything else works (math, comparisons, joins, time ops).
 
 ### Key Tasks
+- Convert text numbers to numeric with `astype` or `pd.to_numeric`.
+- Parse dates with `pd.to_datetime` (use `errors='coerce'` to flag bad values).
 
-- Converting data types (e.g., strings to integers).
-- Reformatting date strings into datetime objects.
-- **Creating new features:** 
-    - Combining existing features (e.g., `Age` and `YearsOfExperience` to create `AgeGroup`).
-    - Extracting features from existing ones (e.g., extracting `Year` and `Month` from a `Date` column).
-    - Generating interaction features (e.g., multiplying two features).
-- **Data Discretization:** 
-    - Binning continuous variables into discrete categories (e.g., age ranges, income brackets).
-    - Using techniques like `pd.cut()` or `pd.qcut()`.
-
-### Why Transform Data?
+### Why this matters
 
 - Prevents errors due to mismatched data types.
 - Simplifies operations such as comparisons and calculations.
@@ -220,95 +120,35 @@ df['JoinDate'] = pd.to_datetime(df['JoinDate'])
 print(df.dtypes)  # Verify data types
 print(df)
 ```
-In addition you can use the Series map() method to change items in a column.
+---
+## **6.3 Validating Data Ranges**
 
+### **Overview**
+Validating data ranges ensures all values fall within acceptable limits, avoiding invalid or erroneous data.
+
+### **Example Task:**
+- Ensure ages are between 18 and 65. Replace invalid values with `NaN` and fill them with the median.
+
+### **Code Example:**
 ```python
-import pandas as pd
+# Replace invalid ages with NaN
+df['Age'] = df['Age'].apply(lambda x: x if 18 <= x <= 65 else None)
 
-# Sample DataFrame
+# Fill missing values with median
+df['Age'] = df['Age'].fillna(df['Age'].median())
 
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
-        'Location': ['LA', 'LA', 'NY'],
-        'JoinDate': ['2023-01-15', '2022-12-20', '2023-03-01']}
-df = pd.DataFrame(data)
-
-# Convert 'Location' abbreviations into full names
-
-df['Location'] = df['Location'].map({'LA': 'Los Angeles', 'NY': "New York"})
+print("DataFrame after validating age ranges:")
 print(df)
 ```
 
-The problem with the code above is that if the value in the 'Location' column is not either 'LA' or 'NY', it is converted to `NaN`.  Suppose you want to preserve the existing value in this case. You'd use the replace() method instead:
-
-```python
-df['Location'] = df['Location'].replace({'LA': 'Los Angeles', 'NY': "New York"})
-```
-
-Here is another case.  Suppose we have a list of people's phone numbers, but they are not in standard format.  We can attempt to clean this up in this way:
-
-```python
-import pandas as pd
-data = {'Name': ['Tom', 'Dick', 'Harry', 'Mary'], 'Phone': [3212347890, '(212)555-8888', '752-9103','8659134568']}
-df = pd.DataFrame(data)
-df['Correct Phone'] = df['Phone'].astype(str)
-
-def fix_phone(phone):
-    if phone.isnumeric():
-        out_string = phone
-    else:
-        out_string = ''
-        for c in phone:
-            if c in '0123456789':
-                out_string += c
-    if len(out_string) == 10:
-        return out_string
-    return None
-    
-df['Correct Phone'] = df['Correct Phone'].map(fix_phone)
-print(df)
-```
-In the code above, the 'Phone' column is preserved, in case there is useful information, but the 'Correct Phone' column is created, with a best effort at reformatting the phone numbers.  Note that the logic did not fit in a lambda, so a function was declared to pass to map().
-
-Finally we can use built in numpy functions in order to change all of the data in a data frame by following a function
-```python
-
-import pandas as pd
-
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
-	'Age': [20, 22, 43]}
-
-df = pd.DataFrame(data)
-
-# Increase the age by 1 as a new year has passed
-df['Age'] = df['Age'] + 1
-print(df)
-```
-
-
-For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
-
-```python
-import pandas as pd
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
-        'Location': ['LA', 'LA', 'NY'],
-        'Grade': [78, 40, 85]}
-df = pd.DataFrame(data)
-
-# Convert grade into three catagories, "bad", "okay", "great"
-
-df['Grade'] = pd.cut(df['Grade'], 3, labels = ["bad", "okay", "great"])
-print(df)
-```
-
-**Explanation:**
-
-`astype(int)` converts the `Age` column, originally stored as strings, into integers.
-`pd.to_datetime()` converts the `JoinDate` column into Python’s datetime objects for easier date manipulation and comparison.
-`pd.cut()` allows us to create bins for data and provide data discretization
+### **Explanation:**
+- Any age outside the range of 18 to 65 is replaced with `None` (NaN).
+- Missing values in the `Age` column are filled with the median value of the column.
 
 ---
 
-## 5.6 Removing Duplicates
+
+## 6.4 Duplicates
 
 ### Overview
 
@@ -343,6 +183,7 @@ print(df_cleaned)
 df_cleaned_by_name = df.drop_duplicates(subset='Name')
 print(df_cleaned_by_name)
 ```
+Use `duplicated()` to see which rows are duplicates.
 
 **Explanation:**
 
@@ -351,7 +192,7 @@ print(df_cleaned_by_name)
 
 ---
 
-## **5.7 Handling Outliers**
+## **6.5 Handling Outliers**
 
 ### **Overview**
 Outliers are extreme values that deviate significantly from other observations and can bias statistical calculations.
@@ -375,12 +216,204 @@ print(df)
 - Outliers in the `Age` column that are greater than 100 or less than 0 are replaced by the median value of the `Age` column.
 
 ---
+## 6.6 Text Standardization & Regex
+
+### Overview
+Real data has typos, inconsistent casing, and extra symbols. Standardize first, then analyze.
+
+### Basic normalization
+- Lowercase & trim: `df["Name"] = df["Name"].str.lower().str.strip()`
+- Prefer `replace` over `map` when you don’t want unmapped values to become `NaN`.
+
+### Example: map vs replace (Location)
+
+You can use the Series map() method to change items in a column.
+
+```python
+import pandas as pd
+
+# Sample DataFrame
+
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Location': ['LA', 'LA', 'NY'],
+        'JoinDate': ['2023-01-15', '2022-12-20', '2023-03-01']}
+df = pd.DataFrame(data)
+
+# Convert 'Location' abbreviations into full names
+
+df['Location'] = df['Location'].map({'LA': 'Los Angeles', 'NY': "New York"})
+print(df)
+```
+
+The problem with the code above is that if the value in the 'Location' column is not either 'LA' or 'NY', it is converted to `NaN`.  Suppose you want to preserve the existing value in this case. You'd use the replace() method instead:
+
+```python
+df['Location'] = df['Location'].replace({'LA': 'Los Angeles', 'NY': "New York"})
+```
+### Example: normalize phone numbers
+Here is another case.  Suppose we have a list of people's phone numbers, but they are not in standard format.  We can attempt to clean this up in this way:
+
+```python
+import pandas as pd
+data = {'Name': ['Tom', 'Dick', 'Harry', 'Mary'], 'Phone': [3212347890, '(212)555-8888', '752-9103','8659134568']}
+df = pd.DataFrame(data)
+df['Correct Phone'] = df['Phone'].astype(str)
+
+def fix_phone(phone):
+    if phone.isnumeric():
+        out_string = phone
+    else:
+        out_string = ''
+        for c in phone:
+            if c in '0123456789':
+                out_string += c
+    if len(out_string) == 10:
+        return out_string
+    return None
+    
+df['Correct Phone'] = df['Correct Phone'].map(fix_phone)
+print(df)
+```
+In the code above, the 'Phone' column is preserved, in case there is useful information, but the 'Correct Phone' column is created, with a best effort at reformatting the phone numbers.  Note that the logic did not fit in a lambda, so a function was declared to pass to map().
 
 
+```python
 
-### Example
+import pandas as pd
 
-**Check for Understanding**
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+	'Age': [20, 22, 43]}
+
+df = pd.DataFrame(data)
+
+# Increase the age by 1 as a new year has passed
+df['Age'] = df['Age'] + 1
+print(df)
+```
+
+
+### Practical regex with Pandas
+```python
+import pandas as pd
+
+# Remove non-digits (e.g., clean phone strings)
+s = pd.Series(["(123) 456-7890", "+1-555-123-4567", "555.456.7890"])
+clean = s.str.replace(r"\D", "", regex=True)
+
+# Remove HTML tags
+html = pd.Series(["<p>Hello</p>", "<div>Hi <b>there</b></div>"])
+text_only = html.str.replace(r"<.*?>", "", regex=True)
+
+# Extract with capture groups (domain from email)
+emails = pd.Series(["john.doe@example.com","user@my-domain.org"])
+domains = emails.str.extract(r"@(\w[\w\.-]+)")
+
+# Contains (case-insensitive)
+orders = pd.Series(["Order #10 shipped", "Canceled order", "Shipment #22"])
+shipped = orders[orders.str.contains(r"ship", case=False, regex=True)]
+
+# Select columns by name pattern
+df = pd.DataFrame({"created_at":[1], "updated_at":[2], "note":[3]})
+time_cols = df.filter(regex=r"_at$")
+```
+
+Tip: Greedy patterns like `.*` can over-match. Use `.*?` (non-greedy) when needed.
+
+## 6.7 Categorical Encoding
+
+### **Overview**
+Handling categorical data involves encoding non-numeric values, which is especially useful for machine learning models that require numerical input.
+
+### **Key Techniques:**
+- **Label Encoding**: Converting each category into a number.
+- **One-Hot Encoding**: Creating binary columns for each category.
+
+### **Why Handle Categorical Data?**
+- Many machine learning algorithms require numerical data, so we need some way to convert categories into numbers.
+- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically: with [one hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent: this is a very popular technique in machine learning. 
+- In pandas, one-hot-encoding is implemented with the `get_dummies()` function. 
+
+### **Code Example:**
+```python
+# Sample DataFrame with categorical data
+data = {'Color': ['Red', 'Blue', 'Green', 'Blue', 'Red']}
+df = pd.DataFrame(data)
+
+# Label encoding: Convert categories to numbers
+df['Color_Label'] = df['Color'].map({'Red': 1, 'Blue': 2, 'Green': 3})
+
+# One-Hot Encoding: Create binary columns for each category
+df_encoded = pd.get_dummies(df['Color'], prefix='Color')
+
+print("DataFrame with Categorical Data Handled:")
+print(df_encoded)
+```
+
+### **Explanation:**
+- **Label Encoding** maps the `Color` column's categories to integer values.
+- **One-Hot Encoding** use the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
+---
+
+
+## 6.8 Handling Inconsistent Data
+
+### **Overview**
+Inconsistent data can result from typos, different formats, or various naming conventions. Handling inconsistencies ensures uniformity in the dataset.
+
+### **Key Techniques:**
+- **Fuzzy Matching**: Identifying and standardizing similar but non-exact values.
+- **Regex (Regular Expressions)**: Using patterns to extract or replace inconsistent data.
+
+### **Why Handle Inconsistent Data?**
+- Improves the quality of data for analysis.
+- Helps identify patterns across otherwise unmatchable data points.
+
+### **Code Example:**
+```python
+
+# Sample DataFrame with inconsistent data
+data = {'City': ['New York', 'new york', 'San Francisco', 'San fran']}
+df = pd.DataFrame(data)
+
+# Standardize text data (convert to lowercase and strip spaces)
+df['City'] = df['City'].str.lower().str.strip()
+
+# Use Regex to replace shorthand names
+df['City'] = df['City'].replace({'san fran': 'san francisco'})
+
+print("DataFrame with Inconsistent Data Handled:")
+print(df)
+```
+
+### **Explanation:**
+- **String standardization**: Converts all entries in the `City` column to lowercase and removes extra spaces.
+- **Regex**: Matches and replaces shorthand for cities with their full names.
+
+---
+## 6.9 Feature Engineering (binning)
+
+### Overview
+Derived features (e.g., buckets) can simplify relationships.
+
+For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
+
+```python
+import pandas as pd
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Location': ['LA', 'LA', 'NY'],
+        'Grade': [78, 40, 85]}
+df = pd.DataFrame(data)
+
+# Convert grade into three categories, "bad", "okay", "great"
+
+df['Grade'] = pd.cut(df['Grade'], 3, labels = ["bad", "okay", "great"])
+print(df)
+```
+**Explanation:**
+`pd.cut()` allows us to create bins for data and provide data discretization
+
+
+## 6.10 Quick Knowledge Check
 
 Which method removes rows with missing values?
 
@@ -427,14 +460,16 @@ D) `remove_redundant()`
 
 **Summary**
 
-In this lesson, you’ve learned:
+In this lesson, you learned how to:
 
-* How to use pivot tables for improved data presentation.
-* How to use apply() on a DataFrame to generate a new column.
-* Concepts in data cleaning.
-* How to handle missing data using `isnull()`, `dropna()` and `fillna()`.
-* How to transform data by converting data types, reformatting dates, and discretizing continuous variables.
-* How to identify and remove duplicate records with `drop_duplicates()`.
-* How to remove outliers using statistical methods.
+* Handle missing data with `isna/notna`, `dropna`, and `fillna`.
+* Convert data types and parse datetimes.
+* Validate ranges / allowed values (e.g., age 18–65).
+* Identify and remove duplicates with `drop_duplicates`.
+* Flag/handle outliers with simple rules.
+* Standardize text and apply regex (`replace`, `contains`, `extract`, `filter(regex)`).
+* Encode categorical data with `get_dummies`.
+* Normalize inconsistent values (and when to consider fuzzy matching).
+* Create simple features with `pd.cut`.
 
 By applying these techniques, you can clean and validate your datasets for accurate and effective analysis. For further exploration, refer to the Pandas Documentation and Python's official documentation.
