@@ -1,5 +1,5 @@
 
-# **Lesson 12 — Advanced Data Visualization Techniques**
+# **Lesson 11 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
 **Learning objective:** Students will learn to build advanced, interactive visualizations and simple, deployable dashboards with Streamlit alongside Pandas and Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and turning analyses into lightweight web apps for real-time exploration (with Streamlit components like widgets, layout, and state). To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`.
@@ -17,7 +17,7 @@ For your final project, you will create a dashboard using Streamlit. Check out t
 
 You are using your own repository for both the lesson and the assignment. Do the Streamlit portions in the same repository (e.g., in a streamlit/ folder).
 
-1. Create a folder called  `python-assignment12`.  This should **not** be inside of the `python_homework` folder.  Change to this directory.
+1. Create a folder called  `python-assignment11`.  This should **not** be inside of the `python_homework` folder.  Change to this directory.
 2. Do a `git init`.
 3. Create a `.gitignore` file.  You can copy the one from `python_homework`, but be sure you know why that one says what it does.
 4. Create a virtual environment called `.venv`.  See the README.md for `python_homework` if you don't remember how this is done.
@@ -43,22 +43,22 @@ You are using your own repository for both the lesson and the assignment. Do the
     ```bash
     which python
     ```
-    This should return a python location within your python-assignment12 folder.
+    This should return a python location within your python-assignment11 folder.
 7. Load the required packages as follows:
     ```bash
     pip install -r requirements.txt
     ```
 8. Do `VSCode .`.  Bring up VSCode command palette (Ctrl-Shift-P) and select Python: Select Interpreter.  Select the one with `.venv`.  Close any VSCode terminal sessions and start a new one.  You should see in the command prompt that `.venv` is active.
-9. On GitHub, create a new public repository called python-assignment12.  Do not create a README.md or .gitignore or license.  Copy the URL of the repository.  You can use either the HTTL or SSH URL, depending on your preference.  Set the remote for the repository, and push your code.
+9. On GitHub, create a new public repository called python-assignment11.  Do not create a README.md or .gitignore or license.  Copy the URL of the repository.  You can use either the HTTL or SSH URL, depending on your preference.  Set the remote for the repository, and push your code.
     ```bash
     git remote add origin <url>
     git add -A
     git commit -m "first commit"
     git push origin main
     ```
-10. Create an `assignment12` git branch. Create a folder called `assignment12`.  This is for the exercises prior to the assignment and will also be used for the assignment.
+10. Create an `assignment11` git branch. Create a folder called `assignment11`.  This is for the exercises prior to the assignment and will also be used for the assignment.
 
-For the following code examples, you create programs in the `assignment12` folder.  Some of this code won't run correctly within the Python interactive shell.  As you do the lesson and assignment, periodically add and commit your changes and push the `assignment12` branch to GitHub.  This is to practice the procedures of a development shop.  When you use these procedures, you can be confident that you won't break something and have to start over.  You can just switch back to the last commit if something breaks.
+For the following code examples, you create programs in the `assignment11` folder.  Some of this code won't run correctly within the Python interactive shell.  As you do the lesson and assignment, periodically add and commit your changes and push the `assignment11` branch to GitHub.  This is to practice the procedures of a development shop.  When you use these procedures, you can be confident that you won't break something and have to start over.  You can just switch back to the last commit if something breaks.
 
 ---
 
@@ -77,7 +77,7 @@ Pandas simplifies data visualization by providing built-in plotting methods for 
 - **Bar Plots** are ideal when you need to compare quantities between different categories, such as the sales of different products or regions.
 - **Histograms** are useful for analyzing the distribution of numerical data, identifying patterns, skewness, or the range of values.
 
-Within the `assignment12` folder of your `python-assignment12` directory, create `lesson11_a.py`.  This code uses the DataFrame plot() method, which is part of Pandas, but, to actually display the plot, you also need Matplotlib, to do the `show()`.  Your program should contain the following code:
+Within the `assignment11` folder of your `python-assignment11` directory, create `lesson11_a.py`.  This code uses the DataFrame plot() method, which is part of Pandas, but, to actually display the plot, you also need Matplotlib, to do the `show()`.  Your program should contain the following code:
 
 ### **Example Code: Plotting with Pandas**
 
@@ -110,7 +110,7 @@ Try this out.  The behavior of Matplotlib is like what you saw in the previous l
 ## **11.2 Interactive Visualizations with Plotly**
 
 ### **Overview**
-Plotly is a powerful library for creating interactive, highly customizable plots. It allows for hover tooltips, zooming, and dynamic interactions that improve user experience.  The code below uses a sample dataset that is provided as part of Plotly, but in the general case, you would use a Pandas DataFrame loaded from a CSV file or database.  Within the `assignment12` folder, create `lesson11_b.py` with the following code:
+Plotly is a powerful library for creating interactive, highly customizable plots. It allows for hover tooltips, zooming, and dynamic interactions that improve user experience.  The code below uses a sample dataset that is provided as part of Plotly, but in the general case, you would use a Pandas DataFrame loaded from a CSV file or database.  Within the `assignment11` folder, create `lesson11_b.py` with the following code:
 
 ### **Example Code: Interactive Scatter Plot**
 ```python
