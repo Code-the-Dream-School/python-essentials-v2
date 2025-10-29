@@ -1,9 +1,9 @@
 
-## Lesson 06 — Data Cleaning and Validation I
+## Lesson 06 — Data Cleaning and Validation
 
 **Lesson Overview**
 
-**Learning objective:** Students will learn to clean and standardize real-world datasets by handling missing values, duplicates, outliers, and inconsistent formats. They will validate ranges and categories, apply encoding and basic feature engineering, and use advanced tools such as regular expressions to prepare data for analysis.
+**Learning objective:** Students will learn to clean and standardize real-world datasets by handling missing values, duplicates, outliers, and inconsistent formats. They will validate ranges and categories, clean inconsistent formats, and use regular expressions to prepare data for analysis.
 
 
 
@@ -15,10 +15,7 @@
 5. Duplicates (`duplicated`, `drop_duplicates`)
 6. Outliers (simple rules; median/IQR concept)
 7. Text Standardization & Regex (`lower/strip`, `replace` vs `map`, `str.contains`/`str.extract`/`str.replace`, `filter(regex=...)`)
-8. Categorical Encoding (`category`, `pd.get_dummies`)
-9. Handling Inconsistent Data (normalize text; brief fuzzy-matching note)
-10. Feature Engineering (binning with `pd.cut`)
-
+8. Handling Inconsistent Data (normalize text; brief fuzzy-matching note)
 ---
 
 ## What is Data Cleaning?
@@ -319,43 +316,7 @@ time_cols = df.filter(regex=r"_at$")
 
 Tip: Greedy patterns like `.*` can over-match. Use `.*?` (non-greedy) when needed.
 
-## 6.7 Categorical Encoding
-
-### **Overview**
-Handling categorical data involves encoding non-numeric values, which is especially useful for machine learning models that require numerical input.
-
-### **Key Techniques:**
-- **Label Encoding**: Converting each category into a number.
-- **One-Hot Encoding**: Creating binary columns for each category.
-
-### **Why Handle Categorical Data?**
-- Many machine learning algorithms require numerical data, so we need some way to convert categories into numbers.
-- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically: with [one hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent: this is a very popular technique in machine learning. 
-- In pandas, one-hot-encoding is implemented with the `get_dummies()` function. 
-
-### **Code Example:**
-```python
-# Sample DataFrame with categorical data
-data = {'Color': ['Red', 'Blue', 'Green', 'Blue', 'Red']}
-df = pd.DataFrame(data)
-
-# Label encoding: Convert categories to numbers
-df['Color_Label'] = df['Color'].map({'Red': 1, 'Blue': 2, 'Green': 3})
-
-# One-Hot Encoding: Create binary columns for each category
-df_encoded = pd.get_dummies(df['Color'], prefix='Color')
-
-print("DataFrame with Categorical Data Handled:")
-print(df_encoded)
-```
-
-### **Explanation:**
-- **Label Encoding** maps the `Color` column's categories to integer values.
-- **One-Hot Encoding** use the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
----
-
-
-## 6.8 Handling Inconsistent Data
+## 6.7 Handling Inconsistent Data
 
 ### **Overview**
 Inconsistent data can result from typos, different formats, or various naming conventions. Handling inconsistencies ensures uniformity in the dataset.
@@ -390,30 +351,8 @@ print(df)
 - **Regex**: Matches and replaces shorthand for cities with their full names.
 
 ---
-## 6.9 Feature Engineering (binning)
 
-### Overview
-Derived features (e.g., buckets) can simplify relationships.
-
-For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
-
-```python
-import pandas as pd
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
-        'Location': ['LA', 'LA', 'NY'],
-        'Grade': [78, 40, 85]}
-df = pd.DataFrame(data)
-
-# Convert grade into three categories, "bad", "okay", "great"
-
-df['Grade'] = pd.cut(df['Grade'], 3, labels = ["bad", "okay", "great"])
-print(df)
-```
-**Explanation:**
-`pd.cut()` allows us to create bins for data and provide data discretization
-
-
-## 6.10 Quick Knowledge Check
+## 6.8 Quick Knowledge Check
 
 Which method removes rows with missing values?
 
@@ -468,8 +407,6 @@ In this lesson, you learned how to:
 * Identify and remove duplicates with `drop_duplicates`.
 * Flag/handle outliers with simple rules.
 * Standardize text and apply regex (`replace`, `contains`, `extract`, `filter(regex)`).
-* Encode categorical data with `get_dummies`.
 * Normalize inconsistent values (and when to consider fuzzy matching).
-* Create simple features with `pd.cut`.
 
 By applying these techniques, you can clean and validate your datasets for accurate and effective analysis. For further exploration, refer to the Pandas Documentation and Python's official documentation.
