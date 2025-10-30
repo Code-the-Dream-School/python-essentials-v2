@@ -1,36 +1,12 @@
-## Lesson 6 Assignment — Data Cleaning and Validation I
+## Lesson 6 Assignment — Data Cleaning and Validation
 ### Data Cleaning and Validation with Pandas
 
 ### **Objective:**
-This assignment gives you practice in several data manipulation techniques. In subsequent sections, the focus is on exploring fundamental data cleaning and validation techniques using the Pandas library in Python. You will learn how to handle missing data, transform data types, remove duplicates, manage outliers, standardize data, encode categorical variables, and validate data ranges.
-
-This assignment is to be created in a Kaggle notebook, as you did for Assignment 5.  This time, create a notebook called CTD_Assignment_6 for code as described below.
+In this assignment, you will gain hands-on experience cleaning and validating real-world datasets using the Pandas library. You’ll practice identifying and handling missing values, correcting data types, detecting duplicates and outliers, standardizing inconsistent text, encoding categorical variables, and validating data ranges. You’ll also work on a mini-project that simulates cleaning multiple messy files using techniques like fuzzy matching and regular expressions—building a strong foundation for reliable, analysis-ready data.
 
 ### **Tasks:**
 
-### **Task 1: Practice Pivot Tables**
-
-1. In the upper right of your notebook page click on "Add Input" and then "Datasets".  Search on "Ecommerce Consumer Behavior".  You should find a dataset from Salahuddin Ahmed.  Click on the plus button to add this one to your notebook.
-
-2. Resolve the file you need to read, by running the first cell in your notebook. Then read the file into a DataFrame called `ecommerce`.  Print out the first 5 rows, so that you know what the data looks like.
-
-3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.
-
-4. Create a "buying_patterns" pivot table from the data.  The index should be the 'Purchase_Category'.  The columns should be 'Gender' and 'Income_Level'.  The value you sum should be 'Purchase_Amount'.  Print out the resulting DataFrame.
-
-5. Create a "demographics" pivot table from the ecommerce DataFrame.  You want two levels of index, on 'Income_Level' and 'Education_Level'.  For columns you want 'Marital_Status'.  You want to count the 'Customer_ID' values.  Print out the resulting DataFrame.
-
-### **Task 2: Practice apply()**
-
-1. Add another input.  This time, you search for "AI-Powered Job Recommendations".  You should find a dataset from Samay Ashar.  
-
-2. Create a new code cell.  Add code to resolve the name of the file you need to read.  For this part, you use the job recommendations file.  Read it into a DataFrame called "jobs".  Print out the first 10 lines, so that you know what the column names are.
-
-3. Use the `apply()` method to create an additional column in the jobs DataFrame called 'Check These Out'.  Give that a value of "Yes" if the job is entry level, has a salary greater than or equal to 70000, and requires both SQL and Python.  Give the column a value of "No" otherwise.
-
-4. Create a DataFrame called "my_jobs".  Select the rows from "jobs" that have a 'Check These Out' column value of 'Yes'.  Print out the first 10 lines.
-
-### **Task 3: Handling Missing Data**
+### **Task 1: Handling Missing Data**
 
 1. **Create a DataFrame using the provided data:**
 
@@ -65,7 +41,7 @@ df = pd.DataFrame(data)
      - Convert the 'Age' column in df2 to **integer** type using `astype(int)`.
      - Print the updated df2 DataFrame.
 
-### **Task 4: Data Transformation**
+### **Task 2: Data Transformation**
 1. **Convert Data Types:**
    - Add another input.  This time search for "Code The Dream Eclipses".  This is a list of eclipses that were or will be observed in Arkansas.
    - Load the CSV file into a DataFrame called df3.  **Note:** The separator is "|" for this CSV file.
@@ -74,7 +50,16 @@ df = pd.DataFrame(data)
    - Add `errors='coerce` to your `pd.to_datetime()` statement and try the conversion again.
    - Print the first 20 lines of the revised df3.  Examine what is stored for the dates that could not be converted.
 
-### **Task 5: Removing Duplicates**
+### **Task 3: Validating Data Ranges**
+1. **Ensure the 'Age' column contains values within the valid range (18 to 65):**
+   - Replace invalid ages (less than 18 or greater than 65) with a NaN value.  (NaN is actually part of numpy: `np.nan` is the value you should use.  Don't use the string 'NaN'!)
+   - Print the updated Dataframe.
+   - Fill the NaN values with the **median** of the 'Age' column.
+   - Print the updated DataFrame.
+
+**Explanation:** Validating data ranges ensures that your data is consistent and suitable for analysis or modeling.
+
+### **Task 4: Removing Duplicates & Outliers**
 1. **Identify and remove duplicate records:**
    - Print `df3.info()`.
    - Use the `duplicated()` method to identify duplicate rows in the DataFrame, and save the result in duplicate_series.  This Series has `True` for each duplicate entry.
@@ -85,8 +70,7 @@ df = pd.DataFrame(data)
   
 By default, `drop_duplicates()` keeps the first occurrence of each duplicate row. You could use the `keep` parameter to change this behavior, but the default is ok for now.
 
-### **Task 6: Handling Outliers**
-1. **Identify and replace outliers in the 'Age' column:**
+2. **Identify and replace outliers in the 'Age' column:**
    - For this and the following tasks, use df2 again.
    - Consider outliers as values greater than 100 or less than 0.
    - Replace outliers with the **median** of the 'Age' column.
@@ -94,7 +78,7 @@ By default, `drop_duplicates()` keeps the first occurrence of each duplicate row
 
 Outliers can also be identified using statistical methods like the Interquartile Range (IQR) or Z-scores -- but we'll just keep it simple for now
 
-### **Task 7: Standardizing Data**
+### **Task 5: Standardizing Data**
 1. **Standardize the 'Name' column:**
    - Convert all names to lowercase and trim any leading or trailing whitespace using `str.lower()` and `str.strip()`.
    - Print the updated DataFrame.
@@ -107,14 +91,116 @@ Outliers can also be identified using statistical methods like the Interquartile
    - Replace variations like 'NYC' with 'New York' and 'LA' with 'Los Angeles'.
    - Print the updated DataFrame.
 
-### **Task 8: Validating Data Ranges**
-1. **Ensure the 'Age' column contains values within the valid range (18 to 65):**
-   - Replace invalid ages (less than 18 or greater than 65) with a NaN value.  (NaN is actually part of numpy: `np.nan` is the value you should use.  Don't use the string 'NaN'!)
-   - Print the updated Dataframe.
-   - Fill the NaN values with the **median** of the 'Age' column.
-   - Print the updated DataFrame.
+**Task 6 — Encoding Categorical Variables**
 
-**Explanation:** Validating data ranges ensures that your data is consistent and suitable for analysis or modeling.
+1. Create a new DataFrame with a `Color` column = `['Red','Blue','Green','Blue']`.
+2. Apply:
+```python
+   df["Color_Label"] = df["Color"].map({"Red":1,"Blue":2,"Green":3})
+   df_encoded = pd.get_dummies(df["Color"], prefix="Color")
+```
+3. Display results.
+
+**Task 7 — Consolidating Messy Files (Mini Project)**
+
+1. Add input dataset "Code The Dream Assignment 6" → contains 4 CSV files (400 rows each).
+2. Load all 4 into DataFrames and concatenate → `df_all` (~1600 rows).
+3. Install and import thefuzz for approximate string matching:
+```python
+   try:
+       from thefuzz import process
+   except ImportError:
+       !pip install thefuzz
+       from thefuzz import process
+```
+
+4. Fix spelling errors:
+```python
+   df_names = df_all.value_counts("Name")
+   good_names = list(df_names[df_names > 2].index)
+   df_all["Name"] = df_all["Name"].map(
+       lambda x: x if x in good_names else process.extractOne(x, good_names)[0]
+   )
+```
+   Repeat for `Address`.
+
+5. Fix Zip and Phone:
+```python
+   def fix_anomaly(group):
+       group_na = group.dropna()
+       if group_na.empty:
+           return group
+       mode = group_na.mode()
+       if mode.empty:
+           return group
+       return mode.iloc[0]
+
+   df_all["Zip"] = df_all.groupby(["Name","Address"])["Zip"].transform(fix_anomaly)
+   df_all["Phone"] = df_all.groupby(["Name","Address"])["Phone"].transform(fix_anomaly)
+```
+
+6. Drop duplicates → expect ≈ 400 unique records.
+7. Print `info()` and remaining nulls.
+
+---
+
+**Task 8 — Regular Expressions for Validation**
+
+1. Extract Log Info:
+```python
+   log_entries = pd.Series([
+       "[2023-10-26 10:00:00] INFO: User logged in",
+       "[2023-10-26 10:05:30] WARNING: Invalid input",
+       "[2023-10-26 10:10:15] ERROR: Database connection failed"
+   ])
+   extracted_logs = log_entries.str.extract(r"\[(.*?)\]\s(\w+):\s(.*)")
+```
+
+2. Standardize Placeholders:
+```python
+   text_data = pd.Series([
+       "Value is {amount}.",
+       "The price is [value].",
+       "Cost: (number)",
+       "Quantity = <qty>"
+   ])
+   standardized_text = text_data.replace(
+       [r"\{.*?\}", r"\[.*?\]", r"\(.*?\)", r"\<.*?\>"],
+       "<VALUE>",
+       regex=True,
+   )
+```
+
+3. Select Columns Ending in `_at`:
+```python
+   df = pd.DataFrame({
+       "order_id":[1,2],
+       "created_at":["2021-01-05","2021-01-06"],
+       "updated_at":["2021-01-07","2021-01-08"]
+   })
+   time_cols = df.filter(regex="_at$")
+```
+
+4. Find Shipped Orders:
+```python
+   orders = pd.Series([
+       "Order #123 has been shipped on 2021-01-05",
+       "Order #124 has been cancelled",
+       "Shipment #125 confirmed on 02/06/2021"
+   ])
+   shipped_orders = orders[orders.str.contains("ship", case=False)]
+```
+
+---
+
+**Task 9 — Reflection & Validation**
+
+Create a markdown cell summarizing:
+* Most common data issues found
+* Which techniques worked best
+* How you could automate cleaning in a real workflow
+
+---
 
 ### **Submit the Notebook for Your Assignment**  
 
