@@ -1,4 +1,4 @@
-# **Lesson 09 — Advanced SQL and Database Integration**
+# **Lesson 10 — Advanced SQL and Database Integration**
 
 ## **Lesson Overview**
 **Learning objective:** Students will deepen their understanding of SQL by learning advanced techniques such as subqueries, complex `JOIN`s, aggregation with functions, and using `HAVING` for conditional filtering. This lesson also introduces performance optimization techniques, transactions, parameterized queries, window functions, and more.
@@ -17,7 +17,7 @@
 
 ---
 
-## **8.1 Understanding Subqueries**
+## **10.1 Understanding Subqueries**
 
 ### **Overview**
 Subqueries are nested SQL queries used to perform intermediate calculations or selections before the main query executes.
@@ -62,7 +62,7 @@ conn.close()
 
 ---
 
-## **8.2 Complex JOINs**
+## **10.2 Complex JOINs**
 
 ### **Overview**
 Complex `JOIN`s allow you to retrieve data from multiple related tables.
@@ -100,7 +100,7 @@ WHERE Projects.name = 'Project A';
 
 ---
 
-## **8.3 Aggregation**
+## **10.3 Aggregation**
 
 ### **Overview**
 Aggregation functions like `MIN()`, `MAX()`, `COUNT()`, and `AVG()` allow you to summarize data across groups.
@@ -124,7 +124,7 @@ GROUP BY department_id;
 
 ---
 
-## **8.4 Aggregation with HAVING**
+## **10.4 Aggregation with HAVING**
 
 ### **Overview**
 The `HAVING` clause filters aggregated results after the `GROUP BY` operation.
@@ -149,7 +149,7 @@ HAVING AVG(e.salary) > 70000;
 
 ---
 
-## **8.5 Performance Optimization: Indexing**
+## **10.5 Performance Optimization: Indexing**
 
 ### **Overview**
 SQL queries can sometimes be slow if they involve large tables. Indexes can be created on columns that are frequently used in `WHERE`, `JOIN`, or `ORDER BY` clauses to speed up query performance.
@@ -163,7 +163,7 @@ This creates an index on the `department_id` column to speed up queries that fil
 
 ---
 
-## **8.6 Transactions and Rollbacks**
+## **10.6 Transactions and Rollbacks**
 
 ### **Overview**
 Transactions ensure that multiple database operations are completed successfully before committing them. If an error occurs, you can roll back the changes to keep the database in a consistent state.
@@ -187,7 +187,7 @@ conn.close()
 
 ---
 
-## **8.7 Parameterized Queries to Prevent SQL Injection**
+## **10.7 Parameterized Queries to Prevent SQL Injection**
 
 ### **Overview**
 SQL injection can be prevented by using parameterized queries, ensuring that user input is treated safely.
@@ -207,7 +207,7 @@ cursor.execute("SELECT * FROM Employees WHERE department_id = " + department_id 
 
 ---
 
-## **8.8 Window Functions**
+## **10.8 Window Functions**
 
 ### **Overview**
 SQL window functions allow for advanced analysis over a specified range of rows. For example, calculating the rank of employees within a department based on salary.
@@ -221,7 +221,7 @@ FROM Employees;
 
 ---
 
-## **8.9 Date and Time Functions**
+## **10.9 Date and Time Functions**
 
 ### **Overview**
 SQL provides functions for manipulating and querying date and time data, which are useful when working with time-based analysis.
@@ -235,7 +235,7 @@ FROM Employees;
 
 ---
 
-## **8.10 Implementing All Techniques in Python**
+## **10.10 Implementing All Techniques in Python**
 
 ### **Implementation Tips**
 

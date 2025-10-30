@@ -1,5 +1,5 @@
 
-# **Lesson 11 — Introduction to Data Visualization**
+# **Lesson 7 — Introduction to Data Visualization**
 
 ## **Lesson Overview**
 **Learning objective:** In this lesson, students will learn to create and customize both basic and advanced data visualizations using Python libraries such as Matplotlib and Seaborn. By the end of this lesson, students will be able to effectively tell stories with data using visual representation, enhancing their ability to communicate insights.
@@ -12,7 +12,7 @@
 
 ---
 
-## **10.1 Introduction to Matplotlib**
+## **7.1 Introduction to Matplotlib**
 
 ### **Setup**
 
@@ -81,7 +81,7 @@ plt.show()
 The third example uses an interesting function, `randn()`.  This gives a random collection of values, but the random values cluster around the average value.  This is called a normal or Gaussian distribution, and many things in nature, such as people's heights, lifetimes of lightbulbs, sizes of snowflakes, and measurement errors in typical experiments, are roughly Gaussian.
 ---
 
-## **10.2 Customizing Plots**
+## **7.2 Customizing Plots**
 
 ### **Overview**
 Customizations make plots more informative and visually appealing. This includes:
@@ -126,7 +126,7 @@ plt.show()
 
 ---
 
-## **10.3 Introduction to Seaborn**
+## **7.3 Introduction to Seaborn**
 
 ### **Overview**
 Seaborn is a powerful Python visualization library built on top of Matplotlib. It simplifies the creation of complex statistical plots and integrates well with Pandas DataFrames. Seaborn provides better default aesthetics for some plots, making them visually appealing with minimal effort.
@@ -183,7 +183,7 @@ plt.show()
 
 ---
 
-## **10.4 Advanced Customization**
+## **7.4 Advanced Customization**
 
 ### **Overview**
 Advanced customization techniques include working with multiple subplots, adjusting figure sizes, and using color palettes to enhance the aesthetics of visualizations.

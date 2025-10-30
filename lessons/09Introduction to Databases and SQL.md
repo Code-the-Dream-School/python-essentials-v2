@@ -1,5 +1,5 @@
 
-# **Lesson 08 — Introduction to Databases and SQL**
+# **Lesson 9 — Introduction to Databases and SQL**
 
 ## **Lesson Overview**
 **Learning objective**: Students will gain foundational knowledge of SQL databases using Python and SQLite. They will define relational schemas, insert and query data using SQL, handle many-to-many relationships, and interact with databases directly from Pandas for analysis and reporting.
@@ -42,7 +42,7 @@ pip install pyreadline3
 
 ---
 
-## **7.1 What SQL Is, and Why it is Used**
+## **9.1 What SQL Is, and Why it is Used**
 
 SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheat.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite only supports TEXT, NUMERIC, INTEGER, REAL, or BLOB datatypes.  Other datatypes are supported in SQLite by mapping them to one of these four.  (Other SQL implementations support more.)  One can compare this to no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema can seem like a straitjacket, but it is really more a set of rails, organizing data into a structured form.
 
@@ -88,7 +88,7 @@ SQLite, by default, does not turn on the foreign key constraint, but in the exam
 
 ---
 
-## **7.2 Creating a New SQLite Database**
+## **9.2 Creating a New SQLite Database**
 
 ### **Overview**
 
@@ -121,7 +121,7 @@ Run the program to create a database.
 
 Running the script creates a `school.db` file in the db folder.
 
-## **7.3 Defining the Database Structure**
+## **9.3 Defining the Database Structure**
 
 ### **Overview**
 
@@ -190,7 +190,7 @@ Answers:
 
 2. A student may enroll in many courses, and a given course may have many students enrolled.  This is a many-to-many association.  The Enrollments table acts as the join table to tie the two together, and both of its foreign keys are needed to manage the association.
 
-## **7.4 Populating Tables with Data**
+## **9.4 Populating Tables with Data**
 
 ### **Overview**
 
@@ -281,7 +281,7 @@ with sqlite3.connect("../db/school.db") as conn:
 
 The code above uses a **parameterized statement**.  You have `?` markers in the original SQL.  You pass a tuple as a second parameter for the `cursor.execute()`, and the values from the tuple are plugged into the statement in place of the `?` markers.
 
-## **7.5 Writing SQL Queries**
+## **9.5 Writing SQL Queries**
 
 ### **Overview**
 
@@ -331,7 +331,7 @@ Within Python, SQL SELECT statements are executed like the INSERT statements, bu
 ```
 When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() creates an iterable connection of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Alice", and the first element in the tuple is the student_id.
 
-## **7.6 Adding Entries with Foreign Keys**
+## **9.6 Adding Entries with Foreign Keys**
 
 Now you are ready to add enrollments, because you can resolve the primary keys that are used as foreign keys in the Enrollments table.  The steps are:
 
@@ -399,7 +399,7 @@ Answer:
     ```
     Try this out!
 
-## **7.7 More Complicated Queries**
+## **9.7 More Complicated Queries**
 
 In the WHERE clause, you can use various comparison operators such as `< > <= >= <>`.  The `<>` means not equals.  You can also do math, such as `quantity * price`.  And, you can use the LIKE operator to find strings with the `%` sign used as a wildcard.  For example, to find all the math courses, you could do this:
 
@@ -450,7 +450,7 @@ Answer:
 Of course, any of the SQL above can be executed from Python.
 
 
-## **7.8 The UPDATE Statement**
+## **9.8 The UPDATE Statement**
 
 The UPDATE SQL statement changes one or more existing rows.  You specify the rows you want to change with a WHERE clause, like you would use in a SELECT statement.
 
@@ -464,7 +464,7 @@ UPDATE products SET price=price * 1.1;
 ```
 This statement raises all the prices by 10%.  As there is no WHERE statement, every record is changed.
 
-## **7.9 The DELETE Statement**
+## **9.9 The DELETE Statement**
 
 The DELETE Statement deletes one or more existing rows.  For example, the following statement deletes all product records if the price is less than 1.00:
 
@@ -477,13 +477,13 @@ If you leave off the WHERE clause, it deletes every record in the table!
 
 This is a very brief and incomplete summary of the SQL language.  The SQLBolt tutorial mentioned below gives more complete instruction, and a very good reference is available here: <https://www.w3schools.com/sql/default.asp>.  Some advanced topics, such as aggregation and subqueries, are discussed in the next lesson.
 
-## **7.10 SQL Query Practice**
+## **9.10 SQL Query Practice**
 
 Your python_homework folder contains a program called `load_db.py`.  Take a look at its contents.  It creates a series of tables, for employees, customers, orders, products, and order_details.  Each order is associated with a customer and an employee.  For each order, there are line_items associated with the order, one line item for each product comprising the order.  You'll see the schema created at the top of the file.  Then, the file uses pandas to load data for each table from csv files into the database.  The resulting database is stored as `./db/lesson.db`.
 
 Change the directory to the python_homework folder and run the `load_db.py` program to create and populate the database.  You can run it again as needed to restore the database to its initial state.  Next, run the `sqlcommand.py` program.  This prompts you with a command line you can use to enter SQL statements.  (Each statement must end with a semicolon.)  Experiment with various SELECT, INSERT, UPDATE, and DELETE statements.  Have a look at the code in `sqlcommand.py` to see how it works.
 
-## **7.11 SQL from Pandas**
+## **9.11 SQL from Pandas**
 
 How does a data analyst use SQL?
 
@@ -502,7 +502,7 @@ with sqlite3.connect("../db/lesson.db") as conn:
 This loads a dataframe from the results of a SELECT statement.  You then have access to all the statistical power of pandas.  In this case, we get a dataframe that lists all the customer names, all the orders, and the names of all the product that were ordered.  Note that there is a many-to-many association between orders and products, in that an order may have many products, but there may be many orders for a given product. The line_items table acts as a join table for orders and products.
 
 
-## **7.12 Optional: More Practice**
+## **9.12 Optional: More Practice**
 
 An excellent tutorial on SQL is available at the following link: <https://sqlbolt.com/>.  This tutorial is optional, but it is **strongly recommended, including the More Topics section**.
 

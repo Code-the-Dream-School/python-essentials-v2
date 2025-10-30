@@ -1,13 +1,13 @@
-# Assignment 12: Advanced Data Visualization
+# Assignment 11: Advanced Data Visualization
 
-This assignment is to be created in the `assignment12` folder of your `python-assignment12` directory which is a separate repository. Continue to work in the ``assignment12`` branch.
+This assignment is to be created in the `assignment11` folder of your `python-assignment11` directory which is a separate repository. Continue to work in the ``assignment11`` branch.
 
 ---
 
 
 ## **Task 1: Plotting with Pandas**
 1. Create a file called employee_results.py.
-2. Load a DataFrame called employee_results using SQL.  Copy the `db/lesson.db` database from your `python_homework` folder to your `python-assignment12` folder.  Copy the `db` folder and the `lesson.db` file within it.  This can be done using the `cp -r` command.  In your `assignment12` folder, connect to `../db/lesson.db`. You use SQL to join the employees table with the orders table with the line_items table with the products table.  You then group by employee_id, and you SELECT the last_name and revenue, where revenue is the sum of price * quantity.  Ok, that's a lot of SQL to mess with, so here is the statement you need:
+2. Load a DataFrame called employee_results using SQL.  Copy the `db/lesson.db` database from your `python_homework` folder to your `python-assignment11` folder.  Copy the `db` folder and the `lesson.db` file within it.  This can be done using the `cp -r` command.  In your `assignment11` folder, connect to `../db/lesson.db`. You use SQL to join the employees table with the orders table with the line_items table with the products table.  You then group by employee_id, and you SELECT the last_name and revenue, where revenue is the sum of price * quantity.  Ok, that's a lot of SQL to mess with, so here is the statement you need:
    ```SQL
    SELECT last_name, SUM(price * quantity) AS revenue FROM employees e JOIN orders o ON e.employee_id = o.employee_id JOIN line_items l ON o.order_id = l.order_id JOIN products p ON l.product_id = p.product_id GROUP BY e.employee_id;
    ```
@@ -52,7 +52,7 @@ This assignment is to be created in the `assignment12` folder of your `python-as
 ---
 
 ## **Task 4: Reflection**
-Create a file in the assignment12 folder called reflection.txt, and put in the following thoughts:
+Create a file in the assignment11 folder called reflection.txt, and put in the following thoughts:
 
 1. Reflect on the differences between static and interactive visualizations.
 2. Write a short paragraph discussing the advantages of using dashboards for real-time data exploration.
@@ -60,7 +60,7 @@ Create a file in the assignment12 folder called reflection.txt, and put in the f
 
 ## **Task 5: Commit Your Work**
 
-Add and commit all of the files created for the assignment to the `assignment12` branch.
+Add and commit all of the files created for the assignment to the `assignment11` branch.
 
 ---
 
@@ -81,7 +81,7 @@ You will **import a dataset**, **build a dashboard**, **visualize insights**, **
 
 ## Task 1: Project Setup
 
-Go through Lesson 12 for Streamlit setup.
+Go through Lesson 11 for Streamlit setup.
 
 ## Task 2: Build Your Streamlit Dashboard
 
@@ -148,9 +148,9 @@ Go through Lesson 12 for Streamlit setup.
 ## Task 4: Submit Your Assignment
 
 ### Required Submissions
-- Your **Streamlit Community Cloud app URL** (deployment link), this link is added to the ``service_urls.txt`` in the ``assignment12` folder in the `python-assignment12` repo.
+- Your **Streamlit Community Cloud app URL** (deployment link), this link is added to the ``service_urls.txt`` in the ``assignment11` folder in the `python-assignment11` repo.
 - Your **GitHub repository URL** link is also added to the `service_urls.txt`
-- Add and commit the `service_urls.txt` file in the `assignment12` branch.
+- Add and commit the `service_urls.txt` file in the `assignment11` branch.
 
 ### Resources
 - [Streamlit Cheat Sheet](https://cheat-sheet.streamlit.app/)
@@ -171,14 +171,14 @@ Go through Lesson 12 for Streamlit setup.
 📌 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Add, Commit, and Push Your Changes** 
-- Create a file called `service_urls.txt` in the assignment12 folder. Once you complete the Streamlit assignment, make sure the streamlit.io service url are added to the `service_urls.txt` file.
-- Within your `python-assignment12` folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment12` branch.
+- Create a file called `service_urls.txt` in the assignment11 folder. Once you complete the Streamlit assignment, make sure the streamlit.io service url are added to the `service_urls.txt` file.
+- Within your `python-assignment11` folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment11` branch.
 - Push that branch to GitHub. 
 
 #### **2️⃣ Create a Pull Request**  
 - Log on to your GitHub account.
-- Open your `python-assignment12` repository.
-- Select your `assignment12` branch.  It should be one or several commits ahead of your main branch.
+- Open your `python-assignment11` repository.
+- Select your `assignment11` branch.  It should be one or several commits ahead of your main branch.
 - Create a pull request.
 
 #### **3️⃣ Submit Your GitHub Link**  
@@ -186,6 +186,6 @@ Go through Lesson 12 for Streamlit setup.
 - Paste the URL into the **assignment submission form**.
 - Once you are done with the Streamlit assignment, make sure that the url for the streamlit.io service is included in the `service_urls.txt` file. 
 
-To summarize, a pull request for the `assignment12` branch in your new `python-assignment12` repository is pasted into the link submission field in the **assignment submission form**. For the streamlit assignment, the link for the url for the `streamlit.io` service are included in the `service_urls.txt` file.
+To summarize, a pull request for the `assignment11` branch in your new `python-assignment11` repository is pasted into the link submission field in the **assignment submission form**. For the streamlit assignment, the link for the url for the `streamlit.io` service are included in the `service_urls.txt` file.
 
 ---

@@ -1,5 +1,5 @@
 
-# **Lesson 10 — Introduction to Web Scraping**
+# **Lesson 8 — Introduction to Web Scraping**
 
 ## **Lesson Overview**
 **Learning objective:** Students will gain a comprehensive understanding of web scraping, focusing on the fundamentals such as HTML structure, DOM representation, and using Python libraries like `Selenium` and `WebDriver Manager` to scrape and extract data from web pages. Additionally, students will explore the ethical aspects of web scraping, including adhering to guidelines provided by `robots.txt` and managing server requests responsibly.
@@ -25,7 +25,7 @@ Here are some examples:
 
 ---
 
-## **9.1 Basics of HTML and DOM**
+## **8.1 Basics of HTML and DOM**
 
 ### **Overview**
 HTML (Hypertext Markup Language) is the backbone of web pages, providing structure and content. The Document Object Model (DOM) is a tree structure that represents the page content. Understanding the structure of web pages and the DOM is essential for locating and extracting data during web scraping.  When you pull up a web page in your browser, a request is sent to a web server and an HTML document is returned.  Your browser then parses that document and presents the page.  When you do web scraping, you'll also parse that page, not for presentation, but to capture information from that page so that it can be stored in a structured way.  You need to understand HTML and the DOM structure to do screen scraping.  Many of you may already be familiar with HTML -- if so, skip ahead.
@@ -78,7 +78,7 @@ The DOM is a hierarchical tree structure. Here's an example:
 
 ---
 
-## **9.2 Web Scraping Tools: Selenium and WebDriver Manager**
+## **8.2 Web Scraping Tools: Selenium and WebDriver Manager**
 
 ### **Overview and Setup**
 
@@ -221,7 +221,7 @@ finally:
 
 ---
 
-## **9.3 Ethical Web Scraping**
+## **8.3 Ethical Web Scraping**
 
 ### **Overview**
 While web scraping can be a powerful tool, it is important to follow ethical guidelines and respect website owners’ wishes to avoid excessive server load and legal issues.
@@ -255,7 +255,7 @@ driver.quit()
 
 ---
 
-## **9.4 XPath to Traverse the DOM**
+## **8.4 XPath to Traverse the DOM**
 
 ### **Overview**
 After scraping basic data, you can refine your scraping strategy to focus on specific sections of a webpage.  Sometimes, though, the find by CSS selector approach does not suffice.  Have a look at the [Wikipedia Web Scraping page.](https://en.wikipedia.org/wiki/Web_scraping) Somewhere near the bottom, you see the `See also` section.  Suppose you want to scrape each of the links in that section.  You first open up the developer tools in your browser to see how you find the section.  Open up the elements tab and do a ctrl-f to find "See also".  The second hit gets you pretty close.  This is an `h2` element.  If you scroll down a little bit, you see a `div` further down in the page, and that div has the list of links you want.  But (sigh) there are no good identifiers like class or id or attribute to find this div.  So you go back to that h2 with "See also".  That h2 has the id of "See_also".  This helps some.  What you want to do is go up to the parent div, the one that contains that h2, call it parent_div.  Then you get the div that is the next div sibling of parent_div.  That's the one you want.
@@ -295,7 +295,7 @@ Test the script on different Wikipedia pages to ensure consistency and robustnes
 
 ---
 
-## **9.5 Managing Requests and Handling Errors**
+## **8.5 Managing Requests and Handling Errors**
 
 ### **Overview**
 When scraping large numbers of web pages, managing requests responsibly is essential. Techniques include delaying requests and handling connection errors.  
@@ -318,7 +318,7 @@ When scraping large numbers of web pages, managing requests responsibly is essen
     ```
 ---
 
-## **9.6 Saving Scraped Data**
+## **8.6 Saving Scraped Data**
 
 ### **Overview**
 Once you've scraped valuable data, you may want to save it in a structured format, such as CSV or JSON.
@@ -351,7 +351,7 @@ Suppose you are scraping from multiple sites.  You may want to record different 
 
 For example, you may scrape airline sites for destinations, prices, and departure times.  You could create three tables, one for airlines, which would record the airline name and URL, and then three others for destinations, prices, and departure_times.  There would be a many-to-many relationship between airlines and destinations, which might have where_we_fly as a join table.  There would be a one-to-many relationship between where_we_fly entries and departure_times, and a one-to-many relationship between departure_times and prices (for economy, business, and first class). This is a little more complicated, to be sure -- but think about your data model when you get ready to store web scraping data!
 
-## **9.7 Frailty in Web Scraping**
+## **8.7 Frailty in Web Scraping**
 
 Web scraping programs can be frail.  The authors of the websites that you are accessing to scrape data can change the format of the page.  This can break the scraping logic, as the DOM may no longer be organized as you expect, or because the entries have different classes or ids.  Sometimes you can make your scraping more robust by finding known strings within the formatted page, and traversing from that point, but sometimes you can only log the error so as to trigger work on a fix.
 
