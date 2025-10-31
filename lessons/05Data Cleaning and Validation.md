@@ -1,5 +1,5 @@
 
-## Lesson 06 — Data Cleaning and Validation
+## Lesson 05 — Data Cleaning and Validation
 
 **Lesson Overview**
 
@@ -31,7 +31,7 @@ Garbage in → garbage out. Cleaning prepares messy, real-world data so analysis
 Optional: [3-min intro video](https://www.youtube.com/watch?v=WpX2F2BS3Qc)  
 > Tip: always **keep an untouched raw copy** before cleaning.
 
-## 6.1 Handling Missing Data
+## 5.1 Handling Missing Data
 
 ### Overview
 
@@ -81,7 +81,7 @@ print(df_filled)
 
 `fillna()` is used to replace missing values. In this case, the `Age` column's missing values are replaced with 0, and the `Score` column's missing values are filled with the mean of the existing scores. This can cause issues if the values you are replacing become outliers.
 
-## 6.2 Data Types & Datetime
+## 5.2 Data Types & Datetime
 
 ### Overview
 Get columns into the right types so everything else works (math, comparisons, joins, time ops).
@@ -118,7 +118,7 @@ print(df.dtypes)  # Verify data types
 print(df)
 ```
 ---
-## **6.3 Validating Data Ranges**
+## **5.3 Validating Data Ranges**
 
 ### **Overview**
 Validating data ranges ensures all values fall within acceptable limits, avoiding invalid or erroneous data.
@@ -145,7 +145,7 @@ print(df)
 ---
 
 
-## 6.4 Duplicates
+## 5.4 Duplicates
 
 ### Overview
 
@@ -189,7 +189,7 @@ Use `duplicated()` to see which rows are duplicates.
 
 ---
 
-## **6.5 Handling Outliers**
+## **5.5 Handling Outliers**
 
 ### **Overview**
 Outliers are extreme values that deviate significantly from other observations and can bias statistical calculations.
@@ -213,7 +213,7 @@ print(df)
 - Outliers in the `Age` column that are greater than 100 or less than 0 are replaced by the median value of the `Age` column.
 
 ---
-## 6.6 Text Standardization & Regex
+## 5.6 Text Standardization & Regex
 
 ### Overview
 Real data has typos, inconsistent casing, and extra symbols. Standardize first, then analyze.
@@ -316,7 +316,7 @@ time_cols = df.filter(regex=r"_at$")
 
 Tip: Greedy patterns like `.*` can over-match. Use `.*?` (non-greedy) when needed.
 
-## 6.7 Handling Inconsistent Data
+## 5.7 Handling Inconsistent Data
 
 ### **Overview**
 Inconsistent data can result from typos, different formats, or various naming conventions. Handling inconsistencies ensures uniformity in the dataset.
@@ -352,7 +352,7 @@ print(df)
 
 ---
 
-## 6.8 Quick Knowledge Check
+## 5.8 Quick Knowledge Check
 
 Which method removes rows with missing values?
 
