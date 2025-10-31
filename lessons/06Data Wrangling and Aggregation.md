@@ -14,6 +14,9 @@
 6. Data Transformation: Adding, updating, and deleting columns; using operators, Series methods, `map()`, and NumPy functions for transformation.
 7. Using `apply()`: Creating new columns or row-wise calculations with flexible user-defined logic.
 8. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
+9. **Categorical Encoding:** Encoding categorical variables using label encoding and one-hot encoding for numerical analysis.
+10. **Feature Engineering (Binning):** Discretizing continuous variables into categories or bins using `pd.cut()`.
+
 ---
 
 ## **6.1 Pandas Review & Deep Dive** *(Optional)*
@@ -380,9 +383,65 @@ joined_df.reset_index(inplace=True, drop=True)
 print(joined_df)
 ```
 
----
+## 6.9 Categorical Encoding
 
-## **6.9 Check for Understanding**
+### **Overview**
+Handling categorical data involves encoding non-numeric values, which is especially useful for machine learning models that require numerical input.
+
+### **Key Techniques:**
+- **Label Encoding**: Converting each category into a number.
+- **One-Hot Encoding**: Creating binary columns for each category.
+
+### **Why Handle Categorical Data?**
+- Many machine learning algorithms require numerical data, so we need some way to convert categories into numbers.
+- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically: with [one hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent: this is a very popular technique in machine learning. 
+- In pandas, one-hot-encoding is implemented with the `get_dummies()` function. 
+
+### **Code Example:**
+```python
+# Sample DataFrame with categorical data
+data = {'Color': ['Red', 'Blue', 'Green', 'Blue', 'Red']}
+df = pd.DataFrame(data)
+
+# Label encoding: Convert categories to numbers
+df['Color_Label'] = df['Color'].map({'Red': 1, 'Blue': 2, 'Green': 3})
+
+# One-Hot Encoding: Create binary columns for each category
+df_encoded = pd.get_dummies(df['Color'], prefix='Color')
+
+print("DataFrame with Categorical Data Handled:")
+print(df_encoded)
+```
+
+### **Explanation:**
+- **Label Encoding** maps the `Color` column's categories to integer values.
+- **One-Hot Encoding** use the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
+
+
+## 6.10 Feature Engineering (binning)
+
+### Overview
+Derived features (e.g., buckets) can simplify relationships.
+
+For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
+
+```python
+import pandas as pd
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Location': ['LA', 'LA', 'NY'],
+        'Grade': [78, 40, 85]}
+df = pd.DataFrame(data)
+
+# Convert grade into three categories, "bad", "okay", "great"
+
+df['Grade'] = pd.cut(df['Grade'], 3, labels = ["bad", "okay", "great"])
+print(df)
+```
+**Explanation:**
+`pd.cut()` allows us to create bins for data and provide data discretization
+
+
+## **6.11 Check for Understanding**
 
 1. **How can you select rows where the "Age" column is greater than 25?**
    - A) `df.loc[df['Age'] > 25]`
@@ -406,9 +465,9 @@ print(joined_df)
 2. A  
 
 </details>
----
 
-## **6.10 Summary**
+
+## **6.12 Summary**
 
 In this lesson, you’ve learned:
 - How to select and slice subsets of data using `.loc[]` and `.iloc[]`.
