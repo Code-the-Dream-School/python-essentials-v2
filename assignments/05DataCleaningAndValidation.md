@@ -1,4 +1,4 @@
-## Lesson 6 Assignment — Data Cleaning and Validation
+## Lesson 5 Assignment — Data Cleaning and Validation
 ### Data Cleaning and Validation with Pandas
 
 ### **Objective:**
