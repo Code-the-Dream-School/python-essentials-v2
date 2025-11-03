@@ -1,5 +1,5 @@
 
-# **Lesson 05 — Data Wrangling and Aggregation**
+# **Lesson 06 — Data Wrangling and Aggregation**
 
 ## **Lesson Overview**
 **Learning objective:** Students will learn to manipulate, summarize, and combine datasets in Pandas using selection, aggregation, pivot tables, merging, and transformation methods. They will practice accessing specific data, performing group-level calculations, reshaping datasets with pivot tables, creating new features with apply(), and combining data from multiple sources.
@@ -14,9 +14,12 @@
 6. Data Transformation: Adding, updating, and deleting columns; using operators, Series methods, `map()`, and NumPy functions for transformation.
 7. Using `apply()`: Creating new columns or row-wise calculations with flexible user-defined logic.
 8. Utility Methods: Renaming columns, setting or resetting index, and sorting data.
+9. **Categorical Encoding:** Encoding categorical variables using label encoding and one-hot encoding for numerical analysis.
+10. **Feature Engineering (Binning):** Discretizing continuous variables into categories or bins using `pd.cut()`.
+
 ---
 
-## **5.1 Pandas Review & Deep Dive** *(Optional)*
+## **6.1 Pandas Review & Deep Dive** *(Optional)*
 
 Last week, we introduced Pandas, a powerful tool for data analysis. If you want a refresher on key Pandas concepts, **[listen to this NotebookLM-generated podcast](https://youtu.be/T46zVBxHrjc) reviewing what we learned last week**. 
 
@@ -25,7 +28,7 @@ Last week, we introduced Pandas, a powerful tool for data analysis. If you want 
   * (PDF) [Introduction to Pandas](https://github.com/Code-the-Dream-School/python-essentials/blob/ff583aac6befdb1e008b4d149527bc0dd5c437ef/lessons/resources/Pandas%201%20PDF.pdf)
   * (Slide Deck) [Pandas for Dummies](https://www.slideshare.net/slideshow/numpy-and-pandas-introduction-for-beginners/281988048)
 
-## **5.2 Data Selection**
+## **6.2 Data Selection**
 
 ### **Overview**
 Indexing and slicing allow you to extract specific rows or columns from a DataFrame, making it easier to analyze subsets of your data.
@@ -91,7 +94,7 @@ print(df)
 ```
 
 
-## **5.3 Data Aggregation**
+## **6.3 Data Aggregation**
 
 ### **Overview**
 Aggregating data involves summarizing it by groups, enabling insights at a higher level (e.g., total sales by region, average score by category).
@@ -163,7 +166,7 @@ If you print out result1 and result2, you'll see that they look different.  The 
 
 In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
 
-## 5.4 Pivot Tables
+## 6.4 Pivot Tables
 
 As usual, run these examples in the Python interactive shell of your `python_homework` terminal session.
 
@@ -204,7 +207,7 @@ print(sales_pivot3)
 ```
 By gaining familiarity with pivot tables, you can present data in various ways that make it easy to show the business picture.
 
-## **5.5 Merging and Joining**
+## **6.5 Merging and Joining**
 
 ### **Overview**
 Combine multiple DataFrames using shared keys (columns or indices). 
@@ -277,7 +280,7 @@ joined_df = df1.join(df2, how='outer')
 print(joined_df)
 ```
 
-## **5.6 Data Transformation**
+## **6.6 Data Transformation**
 
 While one can do transformation of the DataFrame as a whole, for the moment we will focus on approaches that do it one column at a time.  You can add, replace, or delete a column of a DataFrame at any time.
 
@@ -314,7 +317,7 @@ print(new_df)
 ```
 The map() method takes one parameter, a function that does the conversion.  In the example above, a lambda is used to specify the function, and a ternary expression is used in the lambda.
 
-## 5.7 **Using apply()**
+## 6.7 **Using apply()**
 
 You have already learned several ways to generate a new column from an existing one.  Suppose, however, that you want to combine information from several columns.  For example, you could do the following:
 ```python
@@ -344,7 +347,7 @@ per_employee_sales['Commission'] = per_employee_sales.apply(calculate_commission
 print(per_employee_sales)
 ```
 
-## **5.8 Utility Methods**
+## **6.8 Utility Methods**
 
 ### **Changing Column Names**
 
@@ -380,9 +383,65 @@ joined_df.reset_index(inplace=True, drop=True)
 print(joined_df)
 ```
 
----
+## 6.9 Categorical Encoding
 
-## **5.9 Check for Understanding**
+### **Overview**
+Handling categorical data involves encoding non-numeric values, which is especially useful for machine learning models that require numerical input.
+
+### **Key Techniques:**
+- **Label Encoding**: Converting each category into a number.
+- **One-Hot Encoding**: Creating binary columns for each category.
+
+### **Why Handle Categorical Data?**
+- Many machine learning algorithms require numerical data, so we need some way to convert categories into numbers.
+- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically: with [one hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent: this is a very popular technique in machine learning. 
+- In pandas, one-hot-encoding is implemented with the `get_dummies()` function. 
+
+### **Code Example:**
+```python
+# Sample DataFrame with categorical data
+data = {'Color': ['Red', 'Blue', 'Green', 'Blue', 'Red']}
+df = pd.DataFrame(data)
+
+# Label encoding: Convert categories to numbers
+df['Color_Label'] = df['Color'].map({'Red': 1, 'Blue': 2, 'Green': 3})
+
+# One-Hot Encoding: Create binary columns for each category
+df_encoded = pd.get_dummies(df['Color'], prefix='Color')
+
+print("DataFrame with Categorical Data Handled:")
+print(df_encoded)
+```
+
+### **Explanation:**
+- **Label Encoding** maps the `Color` column's categories to integer values.
+- **One-Hot Encoding** use the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
+
+
+## 6.10 Feature Engineering (binning)
+
+### Overview
+Derived features (e.g., buckets) can simplify relationships.
+
+For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
+
+```python
+import pandas as pd
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Location': ['LA', 'LA', 'NY'],
+        'Grade': [78, 40, 85]}
+df = pd.DataFrame(data)
+
+# Convert grade into three categories, "bad", "okay", "great"
+
+df['Grade'] = pd.cut(df['Grade'], 3, labels = ["bad", "okay", "great"])
+print(df)
+```
+**Explanation:**
+`pd.cut()` allows us to create bins for data and provide data discretization
+
+
+## **6.11 Check for Understanding**
 
 1. **How can you select rows where the "Age" column is greater than 25?**
    - A) `df.loc[df['Age'] > 25]`
@@ -406,9 +465,9 @@ print(joined_df)
 2. A  
 
 </details>
----
 
-## **5.10 Summary**
+
+## **6.12 Summary**
 
 In this lesson, you’ve learned:
 - How to select and slice subsets of data using `.loc[]` and `.iloc[]`.

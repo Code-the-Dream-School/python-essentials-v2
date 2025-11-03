@@ -1,4 +1,4 @@
-## Lesson 6 Assignment — Data Cleaning and Validation
+## Lesson 5 Assignment — Data Cleaning and Validation
 ### Data Cleaning and Validation with Pandas
 
 ### **Objective:**
@@ -201,6 +201,16 @@ Create a markdown cell summarizing:
 * How you could automate cleaning in a real workflow
 
 ---
+**Task 10: Start Your Final Project**
+
+Now that you have worked with pandas and gotten started with data cleaning and aggregation, it's time to start your final project.  
+
+Throughout the course, you'll apply the techniques you have learned incrementally to your project.  
+
+For this week, you will create a Kaggle notebook for your data pipeline final project.  
+The notebook name is up to you, but you might use something like **CTD Python Data Pipeline**.
+
+----
 
 ### **Submit the Notebook for Your Assignment**  
 
