@@ -434,7 +434,11 @@ Include ``Markdown`` sections which explain the graphs and analysis.
 </details>
 
 ### **This week's capstone project goals**
-For this week, you are just getting started.  Create your Kaggle notebook and then look at the four datasets and decide which one you would like to work with.  You can also select a different dataset which meets rubric criteria with CIL approval.  Review the data in your chosen data set and add one or more cells to your notebook to clean up any issues.  Add a markdown cell to describe what you needed to fix.
+For this week, you are just getting started. Create your Kaggle notebook and review the four datasets provided to decide which one you would like to work with. You may also select a different dataset that meets the rubric criteria with CIL approval.
+
+Use the techniques you've learned so far for data analysis and cleaning. Add code cells as needed to clean up any issues in the dataset (e.g., missing values, duplicates, incorrect types, or outliers). Include markdown cells to describe what the issues were and how you fixed them.
+
+Submit the current version of your capstone notebook using the second link field in the submission form.
 
 
 ### **Submit the Notebook for Your Assignment**  
