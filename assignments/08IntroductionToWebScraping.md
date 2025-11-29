@@ -102,10 +102,7 @@ Extract a web page section and store the information.
 
 ---
 
-
 ### Submit Your Assignment on GitHub**  
-
-📌 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Add, Commit, and Push Your Changes**  
 - Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment8` branch.
@@ -117,9 +114,96 @@ Extract a web page section and store the information.
 - Select your `assignment8` branch.  It should be one or several commits ahead of your main branch.
 - Create a pull request.
 
-#### **3️⃣ Submit Your GitHub Link**  
-- Your browser now has the link to your pull request.  Copy that link. 
-- Paste the URL into the **assignment submission form**. 
+---
+
+### **Task 7: Start your web scraping capstone project**
+
+Now you're ready to get started on your second capstone project.  In this project you will use web scraping to create your dataset, save it in a sqlite database and then create interactive, web-based visualizations to find and illustrate insights gained from the scraped data.  We recommend using the [Weather Around The World](https://www.timeanddate.com/weather/) web site, however you can use another site with CIL approval if there's a different topic you would like to explore.  Bear in mind that web scraping friendliness varies significantly and also depends on how often the structure and content changes.
+
+For this capstone projectyou will create **four programs** that retrieve data from the **Weather Around The World** website (or another approved site) and display the results in an interactive dashboard. The project will involve **Selenium** for web scraping, data cleaning, transforming the data into a structured format, storing it in a SQLite database, querying it via command line, and presenting it using **Streamlit** for interactive visualizations.
+
+This week, you will scrape data from the web site, clean it and save it to a csv file.
+
+#### **Set up capstone project github repository**
+
+You will create a new, separate git hub repository for your web scraping capstone project, ourside of all you other repos.  You can call it anything you want.  
+
+1. Create a new empty repository in your github account.  Please include a README which you will use to explain how to set up and run the project.
+2. Clone the repo to your local computer
+
+#### **Create your web scraping code**
+
+1. Examine the web site and decide what you would like to explore.
+2. Create a branch to implement your web scraping code
+3. Submit a pull request
+
+#### **Web scraping capstone project rubrics**
+
+<details>
+
+<summary>This is the complete web scraping capstone project rubric</summary>
+
+## **Web Scraping and Dashboard Project**
+
+### **Web Scraping**
+- Uses **Selenium** to retrieve data from the web.
+- Handles common scraping challenges like missing tags, pagination, and user-agent headers.
+- Saves raw data as a **CSV**.
+- Avoids scraping duplication or redundant requests.
+
+### **Data Cleaning & Transformation**
+- Loads raw data into a **Pandas DataFrame**.
+- Cleans missing, duplicate, or malformed entries effectively.
+- Applies appropriate transformations, groupings, or filters.
+- Shows before/after stages of cleaning or reshaping.
+
+### **Data Visualization**
+- Includes at least three visualizations using **Streamlit** or **Dash**.
+- Visuals are relevant, well-labeled, and support the data story.
+- User interactions such as dropdowns or sliders are implemented.
+- Visualizations respond correctly to user input or filters.
+
+### **Dashboard / App Functionality**
+- Built with **Streamlit** or **Dash** to display data and insights.
+- Features clean layout and responsive components.
+- Allows users to explore different aspects of the data.
+- Provides clear titles, instructions, and descriptions for user guidance.
+
+### **Code Quality & Documentation**
+- Code is well-organized and split into logical sections or functions.
+- Inline comments or markdown cells explain major steps or choices.
+- All dependencies are listed and environment setup is reproducible.
+- Comments or markdown cells explain logic.
+- **README.md** includes summary, setup steps, and a screenshot.
+
+---
+</details>
+<br>
+
+This week you will perform web scraping, data cleaning, and save the raw data to a **CSV** file.
+
+##### **Web Scraping**
+- Uses **Selenium** to retrieve data from the web.
+- Handles common scraping challenges like missing tags, pagination, and user-agent headers.
+- Saves raw data as a **CSV**.
+- Avoids scraping duplication or redundant requests.
+
+##### **Data Cleaning & Transformation**
+- Loads raw data into a **Pandas DataFrame**.
+- Cleans missing, duplicate, or malformed entries effectively.
+- Applies appropriate transformations, groupings, or filters.
+- Shows before/after stages of cleaning or reshaping.
+
+
+This week, you will submit your pull request to show progress on webscraping and data cleaning on your capstone project.  You have until the final week of class to refine your project.
+
+---
+
+📌 **Follow these steps to submit your work:**  
+
+## **Submit Your GitHub Links**  
+- Get a link to your assignment pull request and paste the **URL** into the first submission field on the **assignment submission form**.
+- Get a link to you capstone project pull request and paste **URL** into the second submission field on the **assignment submission form**.
 
 ---
 
