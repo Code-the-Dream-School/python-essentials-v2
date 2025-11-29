@@ -57,6 +57,27 @@ Suppose you decide that the data you care about most is in the "Diabetes_012", "
 3. The plot is hard to read.  There are too many values for BMI.  Use `qcut()` to divide BMI into 10 quantiles, and add the resulting Series to the `d_h_i` DataFrame.  Then plot Age vs. BMI Quantiles, with the same hue as before.
 4. Give this pair plot a descriptive title and show it.
 
+## **Task 8: Add visualizations to your capstone project**
+
+Now it's time to use the visualization tools you have learned about in this lesson for you final project.  Use visualizations to help you gain insights about the data and then illustrate those insights in you project.  Add code blocks to create charts and markdown blocks to explain them and how they illustrate details about the data.
+
+### **These are the rubrics for data visualization:**
+
+**Visualization Quality**
+
+    * [ ]  Creates multiple (3+) high-quality, informative, and visually appealing visualizations using appropriate libraries (e.g., Matplotlib, Seaborn, Plotly).
+    * [ ]  Visualizations are clear, concise, and easy to understand, with appropriate titles, labels, legends, and color schemes.
+    * [ ]  Demonstrates strong understanding of design principles.
+    * [ ]  Provides clear explanations of the insights conveyed by each visualization.
+
+**Chart Types and Interpretation**
+
+    * [ ]  Uses a diverse range of chart types (e.g., scatter plots, bar charts, histograms, box plots, heatmaps) to provide a comprehensive view of the data.
+    * [ ]  Demonstrates a clear understanding of the strengths and weaknesses of each chart type and selects them strategically.
+    * [ ]  Provides insightful interpretations of the visualizations, connecting them to the data analysis and the problem domain.
+
+Once you have added visualizations, you Kaggle data pipeline project is complete.  You will submit a second Kaggle link this week to show your progress. You have until the last week of class to refine your data pipeline project.  Next week you will start on your second capstone project which involves web scraping, a sql database and interactive, web-based visualizations.
+
 ### **Submit the Notebook for Your Assignment**  
 
 📌 **Follow these steps to submit your work:**  
@@ -65,7 +86,8 @@ Suppose you decide that the data you care about most is in the "Diabetes_012", "
 - On the upper right of the Kaggle page, click on Save Version and save, accepting all defaults.  You can just do a quick save.
 - On the upper right, click on Share.  Choose Public, make sure that Allow Comments is on, and copy the public URL to your clipboard.
 
-#### **2️⃣ Submit Your Kaggle Link**  
-- Paste the URL into the **assignment submission form**.  
+#### **2️⃣ Submit Your Kaggle Links**  
+You will submit two links this week.  One for the homework assignment and one for your final project updated with visualizations.
+- Paste the URLs into the two link submissions fields in the **assignment submission form**.  
 
 ---
