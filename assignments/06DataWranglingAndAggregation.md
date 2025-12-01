@@ -155,9 +155,9 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
 
 This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
 
-### Task 13 — Continue Your Final Project (Week 6 Progress)
+### **Task 13: — Continue Your Final Project (Week 6 Progress)**
 
-This week, you will build on the final project started in Lesson 5 and expanded in Assignment 5.  
+This week, you will build on the final project started in Assignment 5.  
 Now that your dataset is cleaned, begin exploring and transforming it using the techniques from this week’s lesson.
 
 For this week's progress, complete the following in **the same Kaggle notebook** you created for your final project:
@@ -171,7 +171,7 @@ For this week's progress, complete the following in **the same Kaggle notebook**
    - Use `groupby` with functions like `sum`, `mean`, `count`, or `agg`.
    - Summarize key trends from your dataset.
 
-3. **Add at least one engineered feature**:
+3. **Add at least two engineered features**:
    - Use `apply()`, `map()`, or mathematical operations to create a new column,  
      **or** create categorical bins using `pd.cut()` if applicable.
 
@@ -180,13 +180,32 @@ For this week's progress, complete the following in **the same Kaggle notebook**
    - Why you chose these operations,
    - What insights the aggregations provided.
 
-#### Rubric Areas Addressed This Week
+#### **Rubric Areas Addressed This Week**
 
 This week’s work on your capstone should focus on the following rubric areas:
 
 - **Data Wrangling** (filtering, selection, string transforms)  
 - **Data Aggregation** (`groupby`, summary metrics)  
 - **Feature Engineering** (new columns, transformations, binning)
+
+##### **Specific rubric details**
+
+* **Data Wrangling and Transformation**
+
+    * [ ]  Demonstrates proficiency in using Pandas for data selection, filtering, and transformation.
+    * [ ]  Implements advanced data manipulation techniques, including indexing, slicing, and data type conversion.
+    * [ ]  Handles missing data effectively using `dropna()` or `fillna()` with appropriate strategies.
+    * [ ]  Identifies and removes duplicate records if necessary using Pandas.
+    * [ ]  Code is efficient, well-documented, and follows Pandas best practices.
+    * [ ]  At least two extracted features
+
+* **Data Aggregation**
+
+    * [ ]  Uses Pandas `groupby()` function effectively to aggregate data and gain insights.
+    * [ ]  Applies a variety of aggregation functions (e.g., `sum()`, `mean()`, `count()`, `min()`, `max()`) to analyze grouped data.
+    * [ ]  Clearly presents and interprets the results of data aggregation.
+    * [ ]  At least 2 aggregations
+
 
 
 ### **Submit the Notebooks for Your Assignment**  
