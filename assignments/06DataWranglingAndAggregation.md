@@ -155,6 +155,39 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
 
 This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
 
+### Task 13 — Continue Your Final Project (Week 6 Progress)
+
+This week, you will build on the final project started in Lesson 5 and expanded in Assignment 5.  
+Now that your dataset is cleaned, begin exploring and transforming it using the techniques from this week’s lesson.
+
+For this week's progress, complete the following in **the same Kaggle notebook** you created for your final project:
+
+1. **Perform data wrangling steps** on your chosen dataset:
+   - Filter rows using conditions (`loc`, boolean masks).
+   - Select columns or subsets relevant to your analysis.
+   - Apply string operations where necessary.
+
+2. **Apply aggregations** to understand patterns:
+   - Use `groupby` with functions like `sum`, `mean`, `count`, or `agg`.
+   - Summarize key trends from your dataset.
+
+3. **Add at least one engineered feature**:
+   - Use `apply()`, `map()`, or mathematical operations to create a new column,  
+     **or** create categorical bins using `pd.cut()` if applicable.
+
+4. **Add a markdown cell** summarizing:
+   - What transformations you performed,
+   - Why you chose these operations,
+   - What insights the aggregations provided.
+
+#### Rubric Areas Addressed This Week
+
+This week’s work on your capstone should focus on the following rubric areas:
+
+- **Data Wrangling** (filtering, selection, string transforms)  
+- **Data Aggregation** (`groupby`, summary metrics)  
+- **Feature Engineering** (new columns, transformations, binning)
+
 
 ### **Submit the Notebooks for Your Assignment**  
 
