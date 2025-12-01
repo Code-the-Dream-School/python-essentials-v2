@@ -83,6 +83,22 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
    - Add code `advanced_sql.py` to print out the employee_id, first_name, last_name, and an order count for each of the employees with more than 5 orders.
    - Test your program.
 
+---
+
+## **Task 5: Web Scraping Capstone project**
+For the web scraping capstone project, you will save your cleaned and transformed data into a **Sqlite** database.  This is the second week covering databases so this week, you need to finalize your capstone project **Sqilte** database.  Import each of the **CSV** files into a separate table in a **Sqlite** database.  You can also use database tools to do some of the data transformation if you choose to.
+
+### **These are the relevant rubrics for the database portion of the project**
+#### **Data Cleaning & Transformation**
+- Loads raw data into a **Pandas DataFrame**.
+- Cleans missing, duplicate, or malformed entries effectively.
+- Applies appropriate transformations, groupings, or filters.
+- Shows before/after stages of cleaning or reshaping.
+- Saves the clean, transformed data into a **Sqlite** database
+
+This week, you will submit a pull request with the database code for your project. Put the link for your pull request in the second submission field. You have until the final week of class to refine your project.
+
+
 ### Submit Your Assignment on GitHub**  
 
 📌 **Follow these steps to submit your work:**  
@@ -97,10 +113,10 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
 - Select your `assignment10` branch.  It should be one or several commits ahead of your main branch.
 - Create a pull request.
 
-#### **3️⃣ Submit Your GitHub Link**  
+#### **3️⃣ Submit Your GitHub Links**
 - Your browser now has the link to your pull request.  Copy that link. 
 - Paste the URL into the **assignment submission form**. 
-
+- Paste the URL for your capstone project database pull request into the second submission field. 
 ---
 
 ### **Resources**

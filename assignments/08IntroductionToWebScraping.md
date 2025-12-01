@@ -156,15 +156,16 @@ You will create a new, separate git hub repository for your web scraping capston
 - Cleans missing, duplicate, or malformed entries effectively.
 - Applies appropriate transformations, groupings, or filters.
 - Shows before/after stages of cleaning or reshaping.
+- Saves the clean, transformed data into a **Sqlite** database
 
 ### **Data Visualization**
-- Includes at least three visualizations using **Streamlit** or **Dash**.
+- Includes at least three visualizations using **Streamlit**.
 - Visuals are relevant, well-labeled, and support the data story.
 - User interactions such as dropdowns or sliders are implemented.
 - Visualizations respond correctly to user input or filters.
 
 ### **Dashboard / App Functionality**
-- Built with **Streamlit** or **Dash** to display data and insights.
+- Built with **Streamlit** to display data and insights.
 - Features clean layout and responsive components.
 - Allows users to explore different aspects of the data.
 - Provides clear titles, instructions, and descriptions for user guidance.
@@ -201,7 +202,7 @@ This week, you will submit your pull request to show progress on webscraping and
 
 📌 **Follow these steps to submit your work:**  
 
-## **Submit Your GitHub Links**  
+## **Submit Your GitHub Links**
 - Get a link to your assignment pull request and paste the **URL** into the first submission field on the **assignment submission form**.
 - Get a link to you capstone project pull request and paste **URL** into the second submission field on the **assignment submission form**.
 
