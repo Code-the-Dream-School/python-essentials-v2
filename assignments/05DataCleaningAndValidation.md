@@ -390,14 +390,14 @@ Include ``Markdown`` sections which explain the graphs and analysis.
     * [ ]  Handles missing data effectively using `dropna()` or `fillna()` with appropriate strategies.
     * [ ]  Identifies and removes duplicate records if necessary using Pandas.
     * [ ]  Code is efficient, well-documented, and follows Pandas best practices.
-    * [ ]  At least three extracted features
+    * [ ]  At least two extracted features
 
 * **Data Aggregation**
 
     * [ ]  Uses Pandas `groupby()` function effectively to aggregate data and gain insights.
     * [ ]  Applies a variety of aggregation functions (e.g., `sum()`, `mean()`, `count()`, `min()`, `max()`) to analyze grouped data.
     * [ ]  Clearly presents and interprets the results of data aggregation.
-    * [ ]  At least 3 aggregations
+    * [ ]  At least 2 aggregations
 
 * **Visualization Quality**
 
