@@ -373,3 +373,8 @@ For more details, explore the [Plotly Documentation](https://plotly.com/python/)
 3. **Data Visualization in Python:** To explore more about data visualization strategies and best practices, visit [Data Visualization in Python](https://realpython.com/python-data-visualization-using-matplotlib/).
 4. **Streamlit Playground:** To try out streamlit versions on your browser, visit [Streamlit Playground](https://streamlit.io/playground)
 
+## **Final week of class**
+
+This is the final week of class.  There are assignments related to this week's lesson and you will also use **Streamlit** to create a dashboard for your web scraping capstone project.  Details about final project submission are included in the assignment section this week.
+
+
