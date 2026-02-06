@@ -181,6 +181,29 @@ plt.show()
 - The **Pair Plot** provides pairwise relationships between 'age', 'fare', and 'adult_male', as colored by whether these passengers survived.
     Some of these plots are not very useful.  Scatter plots where the variable on one of the axes only has two values are typically not very helpful, as you see.  The plots on the diagonal have a single variable plotted against itself, which doesn't seem too useful either, except that the default plot in this case is a "kde" plot, which shows the distribution of that single variable, as colored by who survived, and those plots do convey a story.
 
+### AI Learning Prompt: Retrieval Practice
+
+Now that you have learned about different types of plots, let’s reinforce your ability to choose the right visualization for your data:
+1. Open your preferred AI chatbot.
+2. Explain in your own words when you would choose a Line Plot versus a Bar Plot or a Histogram.
+3. Provide a real-world example for each (e.g., tracking stock prices or comparing sales by region).
+4. Ask the AI to give you feedback on your explanation and suggest one other type of data that would fit one of these plots.
+
+> **Example prompt:** "I am learning about Matplotlib. Here is my understanding of when to use line plots, bar plots, and histograms: [your explanation]. Does this accurately reflect when each is most effective? Also, can you suggest one more real-world example for a histogram?"
+
+### AI Learning Prompt: Predict-then-Check
+Let’s test your understanding of correlations and how they are visualized in a Seaborn Heatmap. 
+
+Study this scenario: 
+> You are looking at a heatmap of the Titanic dataset. You see a correlation of -0.5 between 'pclass' (passenger class) and 'fare'.
+
+Before asking the AI for the answer:
+1. Predict what this negative correlation means. Does a lower class number (like 1st class) generally mean a higher or lower fare?
+2. Explain your reasoning to an AI chatbot.
+3. Ask: "Is my interpretation of this negative correlation in the context of the Titanic data correct?"
+
+> **Example prompt:** "In a Seaborn heatmap of the Titanic dataset, I see a negative correlation between 'pclass' and 'fare'. I predict this means [your prediction] because [your reasoning]. Am I understanding how negative correlations work in this context?"
+
 ---
 
 ## **7.4 Advanced Customization**
@@ -248,6 +271,19 @@ In this lesson, you learned:
 4. Advanced techniques for creating subplots, using color palettes, and adding annotations for more insightful visualizations.
 
 For more details, explore the [Matplotlib Documentation](https://matplotlib.org/stable/contents.html), [Seaborn Documentation](https://seaborn.pydata.org/), and the [Python Data Visualization](https://matplotlib.org/stable/gallery/index.html).
+
+### AI Learning Prompt: Scaffold Removal
+As you work on your Kaggle notebook assignments, you might run into issues with plot layouts or syntax errors. 
+
+Instead of asking:
+
+> "Show me the code to create a 2x2 subplot."
+
+Try this:
+
+> "I’m trying to create a figure with multiple subplots using Matplotlib, but my titles are overlapping. Can you give me 3 high-level hints or keywords for functions that help manage subplot spacing without giving me the full code?" Or: "I'm getting an error when trying to map a color palette to my Seaborn Pair Plot. Here is my code: [paste code]. Can you ask me 3 questions that will help me find the mistake in how I'm passing the arguments?"
+
+Remember: The goal of data visualization is for you to communicate insights clearly. Use AI to help you master the tools, but ensure the "story" the data tells comes from your own analysis
 
 ---
 
