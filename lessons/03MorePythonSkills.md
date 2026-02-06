@@ -11,7 +11,7 @@
 4. Closures
 ---
 
-## 10.1 Object-oriented programming in Python
+## 3.1 Object-oriented programming in Python
 Everything in Python is an object, and objects are instances of *classes*. That means when you create a variable like a string, list, or even a function — you’re actually creating an object. Before finishing Python 100, it's worth understanding what this actually means.  
 
 Until now we have been following principles of *functional programming*: writing standalone functions that take in inputs, return outputs, and typically don't remember anything between calls. But sometimes we want to bundle together data and the functions -- called *methods* -- that operate on that data. This is the core idea of object-oriented programming (OOP). This bundling is called *encapsulation*, and helps keep related code organized in one place. If you are creating a new data type, OOP lets you define not only what that data type is, but what you can do with it. 
@@ -151,9 +151,19 @@ print(x) # prints HELLO THERE
 ```
 In this case, the subclass overrides the `__new__` method of the `str` class, and not the `__init__` method, because strings are immutable. 
 
+### AI Learning Prompt: Retrieval Practice
+Now that you have explored the basics of Object-Oriented Programming (OOP), let's solidify your understanding of how data and functions are bundled together:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words the difference between an instance variable (like self.name) and a class variable (like _count).
+3. Use a real-world analogy to describe inheritance—for example, how a BigDog class might inherit traits from a Dog class.
+4. Ask the AI to give you feedback on your explanation.
+
+**Example prompt**: "I'm learning about Python OOP. Here is my explanation of the difference between instance variables and class variables: [your explanation]. Also, I think inheritance is like [your analogy]. Does this accurately reflect how Python handles these concepts?"
+
 ---
 
-## 10.2: Introduction to Decorators
+## 3.2: Introduction to Decorators
 We’ve already seen some decorators like `@classmethod` in our class definitions. But what are these things? A decorator is syntactic sugar that says, “Take this function or class, and pass it through another function to modify it.” You will probably *use* decorators more than you write them in Python, so let's see them in action to see how useful they can be.   
 
 #### Examples of decorators
@@ -384,9 +394,35 @@ print(callback_dict["for_goodbye"]()) # Will print "begin:Goodbye, World!:end"
 
 Here, the decorated functions, in their wrappered form, get registered for callbacks in `callback_dict`.  This is like what Dash is doing when you use the decorator `@app.callback`.
 
+### AI Learning Prompt: Predict-then-Check
+
+Let’s test your intuition on how decorators modify function behavior. Study this code based on the lesson examples without running it:
+
+```python
+def uppercase_decorator(func):
+    def wrapper():
+        result = func()
+        return result.upper()
+    return wrapper
+
+@uppercase_decorator
+def greet():
+    return "hello world"
+
+print(greet())
+```
+
+Before running it:
+1. Predict exactly what will be printed to the console.
+2. Explain to an AI chatbot why the output changes even though the greet() function itself only returns lowercase letters.
+3. Ask: "Is my understanding of how the wrapper function modifies the original function's return value correct?"
+4. Run the code to see if your prediction was right.
+
+**Example prompt**: "Looking at this decorator code: [paste code]. I predict it will print '[your prediction]' because the wrapper function [your reasoning]. Am I correct in how I think the decorator is 'wrapping' the greet function?"
+
 ---
 
-## **10.3 Python List Comprehensions**
+## **3.3 Python List Comprehensions**
 
 ### **Overview**  
 A list comprehension is a fast and Pythonic way to generate a list.  For example, suppose you want a list of the integers from 0 to 19.  You could do
@@ -425,7 +461,7 @@ for y in odd_squares_generator:
 
 ---
 
-## **10.4 Python Closures**
+## **3.4 Python Closures**
 
 A Python closure is a way of wrappering information by returning a function that has access to that information.  This provides some protection for the stuff you wrapper.  For example:
 
@@ -464,13 +500,26 @@ game1("magic") # Prints nope, bad guesses 1
 game1("magic") # Prints nope, bad guesses 2
 ```
 
+### AI Learning Prompt: Retrieval Practice
+
+List comprehensions are a "Pythonic" way to generate lists quickly. Let's practice translating logic into this shorthand:
+
+1. Open your AI chatbot.
+2. Describe the logic for a list comprehension that would take a list of numbers and return only the squares of the even numbers.
+3. Ask the AI: "Can you review my logic for this list comprehension? Don't give me the code yet—just tell me if my understanding of the for and if placement within the brackets is correct."
+
+**Example prompt** "I want to write a list comprehension for the squares of even numbers. My logic is: [explain where you would put the square operation, the loop, and the filter]. Is this the correct structure for a Python list comprehension?"
+
+
 ---
 
 
-## **Summary**
-In this lesson, you learned:
+## 🎉 Great work on Lesson 3!
+
+You learned:
 1. Declaring and Using Custom Python Classes
 2. How to use Python Decorators
 3. How to use Python List Comprehensions
 4. Closures in Python
 
+Next, complete the weekly coding assignment and attend a mentor session!
