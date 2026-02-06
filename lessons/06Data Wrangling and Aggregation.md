@@ -21,7 +21,7 @@
 
 ## **6.1 Pandas Review & Deep Dive** *(Optional)*
 
-Last week, we introduced Pandas, a powerful tool for data analysis. If you want a refresher on key Pandas concepts, **[listen to this NotebookLM-generated podcast](https://youtu.be/T46zVBxHrjc) reviewing what we learned last week**. 
+Previously, we introduced Pandas, a powerful tool for data analysis. If you want a refresher on key Pandas concepts, **[listen to this NotebookLM-generated podcast](https://youtu.be/T46zVBxHrjc) reviewing what we learned last week**. 
 
 *Note: The podcast references two sources, linked below.*
 
@@ -93,6 +93,28 @@ df['Name'] = df['Name'].str.upper()                     # Does work!
 print(df)
 ```
 
+### AI Prompt: Predict-then-Check
+
+Let’s test your understanding of how .loc[] and .iloc[] differ in their slicing behavior. Study this code without running it:
+
+```python
+import pandas as pd
+data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'], 'Age': [3]}
+df = pd.DataFrame(data)
+
+# Slice 1
+subset_loc = df.loc[0:2, ['Name']]
+# Slice 2
+subset_iloc = df.iloc[0:2, ]
+```
+
+Before running it:
+1. Predict how many rows will be in subset_loc versus subset_iloc.
+2. Explain to an AI chatbot why the results might be different, even though they both use the numbers 0 and 2.
+3. Ask: "Is my reasoning about label-based slicing versus position-based slicing correct?"
+4. Run the code and see if you were right.
+
+> **Example prompt:** "Looking at this Pandas code: [paste code]. I predict subset_loc will have [number] rows and subset_iloc will have [number] rows because [your reasoning]. Am I correct in how I think .loc includes the end label while .iloc does not?"
 
 ## **6.3 Data Aggregation**
 
@@ -279,6 +301,17 @@ df2 = pd.DataFrame({'Score': [85, 92, 88]}, index=[1, 2, 4])
 joined_df = df1.join(df2, how='outer')
 print(joined_df)
 ```
+
+### AI Prompt: Retrieval Practice
+
+Now that you have explored different ways to combine datasets, let's clarify your understanding of Merging and Joining:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words the difference between an inner merge and a left merge.
+3. Provide a real-world scenario where using a left merge would be better than an inner merge (for example, keeping track of all students even if they haven't submitted a specific assignment yet).
+4. Ask the AI to give you feedback on your explanation.
+
+> **Example prompt:** "I am learning about merging DataFrames in Pandas. Here is my explanation of the difference between an inner merge and a left merge: [your explanation]. I think a left merge is useful for [your scenario]. Can you tell me what I got right and if there are any technical details about how NaN values are handled that I should refine?"
 
 ## **6.6 Data Transformation**
 
@@ -467,7 +500,7 @@ print(df)
 </details>
 
 
-## **6.12 Summary**
+## **Lesson 6 Summary**
 
 In this lesson, you’ve learned:
 - How to select and slice subsets of data using `.loc[]` and `.iloc[]`.
