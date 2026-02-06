@@ -203,6 +203,34 @@ Video 2.1 explains lists, sets, and tuples.
 
 </details>
 
+### 2.1 AI Prompt: Retrieval Practice
+
+Now that you've learned about the difference between mutable and immutable data structures, let's reinforce your understanding:
+1. Open your preferred AI chatbot (CTD's AI Reviewer, ChatGPT, Microsoft Copilot, etc.)
+2. Explain in your own words the difference between a list and a tuple, and provide a real-world analogy (like the clay vs. ceramic example) for why you might choose one over the other.
+3. Ask the AI to give you feedback on your explanation.
+
+**Example prompt:** "I just learned about lists and tuples in Python. Here's my understanding of why lists are mutable and tuples are immutable: [your explanation]. Can you tell me what I got right and where I could strengthen my understanding?"
+
+### 2.1 AI Prompt: Predict-then-Check
+
+Let's test your understanding of how Python evaluates Lambdas and the    map() function. Study this code without running it:
+
+```python
+numbers = [10-13]
+result = list(map(lambda x: x * 2, numbers))
+print(result)
+```
+
+Before running it:
+1. Predict what will be printed to the console.
+2. Explain to an AI chatbot why you think that output will appear based on how the lambda function processes the list.
+3. Ask: "Is my reasoning about how this lambda and map function work correct?"
+4. Run the code and see if you were right.
+5. If you were wrong, ask the AI to explain what you misunderstood about iterables or lambda syntax.
+
+**Example prompt:** "Looking at this code: [paste code]. I predict it will print '[your prediction]' because [your reasoning]. Am I correct? If not, what am I misunderstanding about how lambdas work with the map function?"
+
 ## 2.2 File Handling
 
 In Python, reading from and writing to text files is handled with the `open()` function. Text files are simple, containing plain text data, making them ideal for storing simple logs, configuration data, or notes.
@@ -305,6 +333,15 @@ In this video, we'll demonstrate reading and writing to a real CSV file. After t
 **Answer**: C) Overwrites the file with new data, creating it if it doesn’t exist.
 
 </details>
+
+### 2.2 AI Prompt: Retrieval Practice
+
+Now that you have explored File Handling and different file modes, let's check your knowledge:
+1. Open your AI chatbot.
+2. Explain the difference between opening a file in "w" (write) mode versus "a" (append) mode.
+3. Ask the AI: "In what specific scenario would I accidentally lose data if I used the wrong mode?"
+
+**Example prompt:** "I am learning about Python file modes. I think 'w' mode is for [your explanation] and 'a' mode is for [your explanation]. Is this correct? Also, can you explain the risk of using 'w' on an existing file?"
 
 ## 2.3 Introduction to Modules
 
@@ -719,6 +756,6 @@ Check out Video 2.6 for a quick overview of setting up a virtual environment for
 
 Check out this week's coding assignment, and reach out to a mentor if you need help!
 
----
-This content was written by Janet Zulu, Reid Russom, and CTD volunteers—with special thanks to the brain trust of John McGarvey, Rebecca Callari-Kaczmarczyk, Tom Arns, and Josh Sternfeld. To submit feedback, please fill out the **[CTD Curriculum Feedback Form](https://forms.gle/RZq5mav7wotFxyie6)**.
+### Reminder on working with AI:
 
+As you work on this week's assignment creating a calculator or handling CSV files, you may encounter bugs. When it happens, try this approach with AI: Instead of asking: "Fix this code for my CSV reader." Try this: "I'm working on a Python script to read a CSV file. Here's my code: [paste code]. I'm getting this error: [paste error]. Can you ask me 3 questions that will help me figure out the solution myself?" Or: "I'm stuck on using the os module to list files. Can you give me 3 high-level hints for how to approach this without giving me the answer?" *Remember: The goal is for **you** to solve the problem. AI tools should guide your thinking, not do the thinking for you.*
