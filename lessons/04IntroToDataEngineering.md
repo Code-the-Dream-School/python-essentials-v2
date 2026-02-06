@@ -476,7 +476,7 @@ Bob,31,Los Angeles,80000
 Charlie,36,Chicago,90000
 
 ```
-### 4.1.1 Videos: Installing and Using Pandas
+### 4.1. Videos: Installing and Using Pandas
 
 In these two videos, we'll walk through installing and using Pandas in Python. This is an important step! If you're still feeling confused, contact a 1:1 mentor to walk through Pandas.
 
@@ -486,7 +486,7 @@ In these two videos, we'll walk through installing and using Pandas in Python. T
 
 **[Video: Installing Pandas in VSCode](https://youtu.be/4WZK0eovQIA?feature=shared).**
 
-### 4.1.2 Check for Understanding
+### 4.1. Check for Understanding
 
 1. Which data structure is used for storing a two-dimensional table in Pandas?
   * A) List
@@ -513,6 +513,17 @@ In these two videos, we'll walk through installing and using Pandas in Python. T
 2. A) `df.loc[df['column'] > 10]`
 
 </details>
+
+### 4.1 AI Learning Prompt: Retrieval Practice
+
+Now that you have been introduced to the core components of Pandas, let's clarify the difference between its two primary data structures:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words the difference between a Series and a DataFrame.
+3. Use a simple analogy—for example, how a Series is like a single column in a spreadsheet, while a DataFrame is the entire table.
+4. Ask the AI to give you feedback on your explanation.
+
+**Example prompt:** "I am learning Pandas. Here is my understanding of the difference between a Series and a DataFrame: [your explanation]. Does this accurately describe their relationship and dimensions?"
 
 Great work! With these basics, you can now start using Pandas for various data manipulation and analysis tasks.
 
@@ -692,7 +703,7 @@ This will output:
 | JSON       | `pd.read_json()`  | `df = pd.read_json('data.json')` |
 | Dictionary | `pd.DataFrame()`  | `df = pd.DataFrame(data)`        |
 
-### 4.2.1 Check for Understanding
+### 4.2 Check for Understanding
 
 1. Which function is used to load data from a JSON file into a DataFrame?
 
@@ -720,6 +731,24 @@ This will output:
 2. D) Both B and C
 
 </details>
+
+### 4.2 AI Prompt: Predict-then-Cheeck
+Let’s test your understanding of how custom indexes work in Pandas. Remember that indexes are not the same as row numbers. Study this code without running it:
+
+```python
+import pandas as pd
+data = {'City': ['New York', 'Chicago', 'Austin'], 'Population': [8.3, 2.7, 0.9]}
+df = pd.DataFrame(data, index=['a', 'b', 'a'])
+print(df.loc['a'])
+```
+
+Before running it:
+1. Predict what the output will be. (Hint: Pay close attention to the fact that the index 'a' is not unique).
+2. Explain to an AI chatbot why you expect that specific output to appear.
+3. Ask: "Is my reasoning about how Pandas handles non-unique index labels correct?"
+4. Run the code and see if you were right.
+
+**Example prompt:** "Looking at this Pandas code: [paste code]. I predict it will return [your prediction] because [your reasoning about the index]. Am I correct in how I think .loc handles duplicate index labels?"
 
 With these functions, you’re equipped to load data from different formats into Pandas, ready for analysis!
 
