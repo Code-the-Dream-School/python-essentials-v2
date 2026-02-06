@@ -1117,6 +1117,3 @@ Students will scrape the [Weather Around The World](https://www.timeanddate.com/
 ## On to the assignment!
 
 Your next step is to complete the coding assignment. As always, reach out to your mentor if you have questions, and take time to celebrate your hard work. 
-
----
-This content was written by several CTD volutneers and contributors, with special thanks to Tom Arns, John McGarvey, Janet Zulu, Rebecca Callari-Kaczmarczyk, Sankalp Biswal, and Josh Sternfeld. To submit feedback, please fill out the **[CTD Curriculum Feedback Form](https://forms.gle/RZq5mav7wotFxyie6)**.
