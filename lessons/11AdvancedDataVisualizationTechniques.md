@@ -131,6 +131,16 @@ Try it out!  The interactive plot comes up in your browser, and you can hover ov
 - **Interactivity:** Hover tooltips, zooming, and panning.
 - **Customization:** Wide range of customization options for visual aesthetics and user interaction.
 
+### AI Learning Prompt: Retrieval Practice
+
+Now that you’ve compared static visualizations (Pandas/Matplotlib) and interactive ones (Plotly), let's solidify when to use each:
+1. Open your preferred AI chatbot.
+2. Explain in your own words the primary difference between a static chart and an interactive one in terms of user experience.
+3. Provide a scenario where a static plot is actually better than an interactive one (e.g., for a printed report), and a scenario where Plotly’s zooming and hovering features are essential.
+4. Ask the AI to give you feedback on your explanation.
+
+> **Example prompt**: "I'm learning about different types of data visualization. Here's my understanding of why I'd use a static Matplotlib plot versus an interactive Plotly plot: [your explanation]. Does this accurately reflect the strengths of each library?"
+
 ---
 
 # 11.3 Building Interactive Apps with Streamlit
@@ -340,6 +350,27 @@ Advantages of Streamlit:
 Disadvantages:
 - Not as widely used (though gaining popularity)
 - In a production environment, it is not very scalable
+
+### AI Prompt: Predict-then-Check
+
+Let’s test your understanding of how Streamlit handles script execution and state. Study this logic without running the code:
+
+```python
+import streamlit as st
+
+st.title("Counter App")
+if st.button("Click to add 1"):
+    st.write("You clicked the button!")
+st.write("Current status: Waiting...")
+```
+
+Before running it in your app.py:
+1. Predict what happens to the "You clicked the button!" message if you refresh your browser tab.
+2. Explain to an AI chatbot why you think that message will stay or disappear based on how Streamlit reruns scripts from top to bottom.
+3. Ask: "Is my understanding of Streamlit's 'stateless' buttons and script rerunning correct?"
+4. Run the code and test your prediction.
+
+> **Example prompt:** "Looking at this Streamlit code: [paste code]. I predict that if I refresh the browser after clicking the button, the 'You clicked the button' text will [disappear/stay] because [your reasoning about rerunning]. Am I correct in how I think Streamlit handles this?"
 
 ---
 
