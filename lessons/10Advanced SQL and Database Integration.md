@@ -60,6 +60,17 @@ print(cursor.fetchall())
 conn.close()
 ```
 
+### AI Learning Prompt: Retrieval Practice
+
+Now that you've explored subqueries and how they allow for dynamic filtering, let's reinforce your understanding:
+
+1. Open your preferred AI chatbot (ChatGPT, Claude, Microsoft Copilot, etc.).
+2. Explain in your own words what a subquery is and why it is useful for performing intermediate calculations before a main query executes.
+3. Provide a real-world example of when you might use a subquery, such as finding the highest-paid employee within a specific department.
+4. Ask the AI to give you feedback on your explanation.
+
+> **Example prompt:** "I just learned about SQL subqueries. Here is my understanding of how they work: [your explanation]. I think a good use case is [your example]. Can you tell me what I got right and where I could improve my technical explanation?"
+
 ---
 
 ## **10.2 Complex JOINs**
@@ -147,6 +158,25 @@ HAVING AVG(e.salary) > 70000;
 - Use `HAVING` instead of `WHERE` to filter aggregated results.
 - Combine `JOIN`s and `GROUP BY` for advanced aggregations.
 
+### AI Learning Prompt: Predict-then-Check
+
+Let's test your understanding of the difference between the `WHERE` clause and the `HAVING` clause. Study this code without running it:
+
+```sql
+SELECT department_id, AVG(salary) as avg_salary
+FROM employees
+GROUP BY department_id
+HAVING avg_salary > 70000;
+```
+
+Before running it:
+1. Predict what this query will return compared to a query that uses `WHERE salary > 70000`.
+2. Explain to an AI chatbot why the `HAVING` clause is necessary here instead of `WHERE`.
+3. Ask: "Is my understanding of the SQL execution order—specifically why aggregation happens before HAVING—correct?".
+4. Run the code and see if your prediction about the filtered groups was right.
+
+> **Example prompt:** "Looking at this SQL code: [paste code]. I predict it will return [your prediction] because the `HAVING` clause filters [your reasoning]. Am I correct? If not, what am I misunderstanding about how `HAVING` filters aggregated data?"
+
 ---
 
 ## **10.5 Performance Optimization: Indexing**
@@ -204,6 +234,16 @@ cursor.execute(f"SELECT * FROM Employees WHERE department_id = {department_id};"
 # or, equally bad:
 cursor.execute("SELECT * FROM Employees WHERE department_id = " + department_id + ";")
 ```
+
+### AI Learning Prompt: Retrieval Practice
+
+Security is a critical part of database integration. Let's practice explaining SQL Injection and how to prevent it:
+
+1. Open your AI chatbot.
+2. Explain what a parameterized query is and why using placeholders (like ?) is safer than using f-strings or string concatenation to build a query.
+3. Ask the AI: "Can you explain a scenario where failing to use a parameterized query could allow a 'rogue SQL' statement to harm a database?".
+
+> **Example prompt:** "I am learning about preventing SQL injection in Python. I think parameterized queries work by [your explanation]. Is this correct? Also, can you show me a simple example of 'unsafe' code versus 'safe' code using placeholders?"
 
 ---
 
