@@ -7,6 +7,7 @@ Welcome to **Python Essentials** with Code the Dream!
 * Start by reading the lesson's **learning objective** in the `Lesson Overview` section. Each weekly assignment will measure your skill related to the learning objective.
 * Lessons are split into **subsections**, labeled like this: `1.1`, `1.2`, etc.
 * Several subsections also have a short **supplemental video** that will help you understand the content in that subsection.
+* You'll also find AI Learning Prompts in these lessons. These are optinal, interactive prompts that let you get immediate feedback from an AI tool on your learning so far.
 * At the end of each subsection, you'll find a multiple-choice **"Check for Understanding"** question. Complete the question and review the material if your answer is not correct!
 * After reading through the lesson content and correctly answering the "Check for Understanding" questions, complete the **Weekly Assignment**.
 
@@ -263,6 +264,17 @@ result = int(2.8) + 3  # 5 (integer, because we explicitly converted the float t
 Learn how to work with data types in Python in our first video, which covers essential type conversions with `int()`, `float()`, `str()`, and `bool()`, practical examples of when to use them, and tips to avoid common pitfalls.  In general, you are not required to view the videos for this class, as the lesson text covers the same information, but the videos may help you learn and remember.
 
 **[Watch the video here.](https://youtu.be/v5NBGGHKJtI)**
+
+### AI Learning Prompt: Retrieval Practice
+
+Now that you've learned about implicit and explicit data conversion in Python, let's solidify your understanding.
+
+1. Open your preferred AI chatbot (CTD's AI Reviewer, ChatGPT, Microsoft Copilot, etc.)
+2. Explain the difference between implicit and explicit data conversion in your own words. Feel free to use the example prompt below.
+3. Ask the AI to give you feedback on your explanation.
+
+**Example Prompt**
+> "I just learned about implicit and explicit data conversion in Python. Here is my understanding of the difference: [your explanation]. Can you tell me what I got right and what I should refine in my understanding?"
 
 ## 1.3 Operators in Python
 
@@ -586,6 +598,18 @@ Our next video is a breakdown of  common situations in which someone might use l
 
 **[Watch the video here](https://youtu.be/VUwzi5TVMzM).**
 
+## AI Learning Prompt: Retrieval Practice
+
+Now that you've read about for loops and while loops, let's reinforce that knowledge:
+
+1. Open your preferred AI chatbot (CTD's AI Reviewer, ChatGPT, etc.).
+2. Explain the difference between for loops and while loops in your own words, including when you would choose one over the other.
+3. Ask the AI to give you feedback on your explanation.
+
+**Example Prompt:**
+
+>"I just learned about for loops and while loops in Python. Here's my understanding of the difference: [your explanation]. Can you tell me what I got right and what I should refine in my understanding?"
+
 ## 1.6 Functions
 
 **Functions** are reusable blocks of code that perform specific tasks. They help keep your code organized, modular, and easy to understand.
@@ -776,6 +800,34 @@ Our supplemental video for this section overviews functions, arguments, and para
 
 **[Watch the video here](https://youtu.be/89cGQjB5R4M?feature=shared).**
 
+### AI Learing Prompt: Predict-Then-Check
+
+Study the following code without running it in your editor:
+
+```python
+# A global variable
+score = 50
+
+def update_score(current_score):
+    current_score = current_score + 10
+    return current_score
+
+# Calling the function
+update_score(score)
+
+# What will print?
+print(score)
+```
+
+1. Open your preferred AI chatbot and use the following prompt:
+
+> "I am studying Python functions and scope. Looking at this code: [paste code]
+I predict it will print [insert your predicted number] because [insert your reasoning about why the variable 'score' did or did not change].
+Am I correct? If not, what am I misunderstanding about how parameters and return values work in relation to global variables?"
+
+2. After the AI responds, run the code in your VSCode environment to see if your prediction was correct.
+3. If the output surprised you, ask the AI: "Can you explain why the global variable score remained the same even though I passed it into the function?"
+
 ### Check for Understanding
 
 **Question**: What is the purpose of the `return` statement in a function?
@@ -884,6 +936,12 @@ Let's wrap up this section with a short video on debugging.
 
 **[View the video here!](https://youtu.be/R4pCjyknKD0?feature=shared)**
 
+### AI Learning Prompt: Scaffold Removal
+
+If you encounter a bug while practicing the code samples in this lesson, do not ask the AI for the solution. Instead, provide the AI with your error message or a screenshot of your code and use one of these two requests:
+* "I’m stuck on this part of the debugging exercise—can you give me 3 high-level hints for how to solve this problem without giving me the answer?"
+* "There’s a bug in my code and I’m getting this error message [paste error]. Ask me 3 questions that will help me solve this on my own."
+
 ### Check for Understanding
 
 **Question**: What is the primary purpose of using `print` statements in debugging?
@@ -898,7 +956,6 @@ Let's wrap up this section with a short video on debugging.
 
 **Answer**: A) To find and correct errors in variable values and program flow
 </details>
----
 
 ## 1.8 Error Handling
 
@@ -1062,4 +1119,4 @@ Students will scrape the [Weather Around The World](https://www.timeanddate.com/
 Your next step is to complete the coding assignment. As always, reach out to your mentor if you have questions, and take time to celebrate your hard work. 
 
 ---
-This content was written by Janet Zulu, Reid Russom, and CTD volunteers—with special thanks to the brain trust of John McGarvey, Rebecca Callari-Kaczmarczyk, Tom Arns, and Josh Sternfeld. To submit feedback, please fill out the **[CTD Curriculum Feedback Form](https://forms.gle/RZq5mav7wotFxyie6)**.
+This content was written by several CTD volutneers and contributors, with special thanks to Tom Arns, John McGarvey, Janet Zulu, Rebecca Callari-Kaczmarczyk, Sankalp Biswal, and Josh Sternfeld. To submit feedback, please fill out the **[CTD Curriculum Feedback Form](https://forms.gle/RZq5mav7wotFxyie6)**.
