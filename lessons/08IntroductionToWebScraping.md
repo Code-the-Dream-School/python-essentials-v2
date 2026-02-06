@@ -355,6 +355,66 @@ For example, you may scrape airline sites for destinations, prices, and departur
 
 Web scraping programs can be frail.  The authors of the websites that you are accessing to scrape data can change the format of the page.  This can break the scraping logic, as the DOM may no longer be organized as you expect, or because the entries have different classes or ids.  Sometimes you can make your scraping more robust by finding known strings within the formatted page, and traversing from that point, but sometimes you can only log the error so as to trigger work on a fix.
 
+## **8.8 AI Prompts**
+
+### AI Learning Prompt: Retrieval Practice
+Now that you have learned about the Document Object Model (DOM) and why we use tools like Selenium, let’s reinforce your understanding:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words why we need "heavy machinery" like Selenium and WebDriver Manager to scrape modern websites instead of just downloading a static HTML file.
+3. Mention the role of JavaScript in your explanation.
+4. Ask the AI to give you feedback on your explanation and tell you what you got right or what you should refine.
+
+> **Example prompt:** "I just learned about web scraping with Selenium. Here is my understanding of why we use a browser engine like Selenium instead of just simple requests: [your explanation]. Can you tell me what I got right and if I'm missing any key details about how dynamic pages work?"
+
+### AI Learning Prompt: Predict-then-Check
+
+Let’s test your ability to identify elements using CSS Selectors. Study this HTML snippet without running any code:
+
+```html
+<div class="product-list">
+  <p class="description">Item A</p>
+  <a href="www.link1.com" class="buy-button">Buy Now</a>
+  <p class="description">Item B</p>
+  <a href="www.link2.com" class="buy-button">Buy Now</a>
+</div>
+```
+
+Before writing your script:
+1. Predict what a tool like `driver.find_elements(By.CSS_SELECTOR, "div.product-list p")` would return.
+2. Explain to an AI chatbot why you think that specific selector will grab the paragraphs but not the links.
+3. Ask: "Is my understanding of how CSS selectors target nested elements correct?"
+4. Check your prediction against the lesson materials or by running a small test script.
+
+> **Example prompt:** "Looking at this HTML: [paste snippet]. I predict that the selector div.product-list p will select [your prediction] because [your reasoning]. Am I correct? If not, what am I misunderstanding about how CSS selectors work?"
+
+### AI Learning Prompt: Retrieval Practice
+
+Understanding Ethical Web Scraping is just as important as the code itself.
+
+1. Open your AI chatbot.
+2. Explain what a robots.txt file is and why it is critical for a developer to check it before starting a large scraping project.
+3. Ask the AI: "Can you provide a hypothetical scenario where ignoring a robots.txt file could cause problems for either the website owner or the person scraping?"
+
+> **Example prompt:** "I'm learning about ethical web scraping. I understand that robots.txt is used for [your explanation]. Why is it so important to follow these rules, and what is one real-world risk of ignoring them?"
+
+### AI Learning Prompt: Scaffold Removal
+Web scraping programs are notoriously frail because website formats change often. If you are struggling to locate a specific piece of data that doesn't have a clear ID or Class: 
+
+Instead of asking: 
+
+> "Write the XPath to find the 'See also' section on Wikipedia."
+
+Try this: 
+
+> "I am trying to use XPath to find a specific sibling element in a list, but I'm stuck. Here is the HTML structure: [paste snippet]. Can you ask me 3 questions that will help me figure out the correct axis (like parent or sibling) to use myself?"
+
+Or: 
+
+> "My scraper stopped working because the website updated its layout. Can you give me 3 high-level hints for how to make my CSS selectors more robust so they don't break as easily?"
+
+**Remember:** The goal is to build your skills in navigating the DOM yourself, as websites will constantly change their structure.
+
 ---
 
 ## **Summary**
