@@ -5,8 +5,6 @@
 
 **Learning objective:** Students will learn to clean and standardize real-world datasets by handling missing values, duplicates, outliers, and inconsistent formats. They will validate ranges and categories, clean inconsistent formats, and use regular expressions to prepare data for analysis.
 
-
-
 ### Topics
 1. What is Data Cleaning?
 2. Handling Missing Data (`isnull`, `dropna`, `fillna`)
@@ -80,6 +78,17 @@ print(df_filled)
 `dropna()` removes any row that contains a `None` (missing) value. This can remove quite a lot of data, especially if you have a lot of columns.
 
 `fillna()` is used to replace missing values. In this case, the `Age` column's missing values are replaced with 0, and the `Score` column's missing values are filled with the mean of the existing scores. This can cause issues if the values you are replacing become outliers.
+
+### AI Prompt: Retrieval Practice
+
+Now that you have learned about handling missing data, let's reflect on the decision-making process:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words the difference between using dropna() and fillna().
+3. Describe a specific scenario where dropping a row might be better than filling it, and a scenario where filling it with a median or mean is the safer choice.
+4. Ask the AI to give you feedback on your explanation.
+
+> **Example prompt:** "I am learning about missing data in Pandas. Here is my explanation of when to use dropna() versus fillna(): [your explanation]. I also think [scenario A] is better for dropping and [scenario B] is better for filling. Can you tell me what I got right and if there are risks I’m missing?"
 
 ## 5.2 Data Types & Datetime
 
@@ -247,6 +256,26 @@ The problem with the code above is that if the value in the 'Location' column is
 ```python
 df['Location'] = df['Location'].replace({'LA': 'Los Angeles', 'NY': "New York"})
 ```
+#### AI Prompt: Predict-then-Check
+Let’s test your understanding of how map() handles values that aren't in your dictionary versus how replace() handles them. Study this code without running it:
+
+```python
+import pandas as pd
+df = pd.DataFrame({'City': ['LA', 'NY', 'Chicago']})
+# Option A
+df['City_A'] = df['City'].map({'LA': 'Los Angeles', 'NY': 'New York'})
+# Option B
+df['City_B'] = df['City'].replace({'LA': 'Los Angeles', 'NY': 'New York'})
+```
+
+Before running it:
+1. Predict what will happen to the value 'Chicago' in the `City_A` column versus the `City_B` column.
+2. Explain to an AI chatbot why you think one method might create a "null" or NaN value while the other keeps the original text.
+3. Ask: "Is my understanding of the difference between Series map and replace correct?"
+4. Run the code and see if you were right.
+
+> **Example prompt:** "Looking at this Pandas code: [paste code]. I predict that City_A will show [your prediction] and City_B will show [your prediction] because [your reasoning]. Am I correct in how I think map handles unmapped values?"
+
 ### Example: normalize phone numbers
 Here is another case.  Suppose we have a list of people's phone numbers, but they are not in standard format.  We can attempt to clean this up in this way:
 
@@ -288,6 +317,15 @@ df['Age'] = df['Age'] + 1
 print(df)
 ```
 
+#### AI Prompt: Retrieval Practice
+
+Cleaning text and phone numbers often requires complex logic or regular expressions (regex).
+
+1. Open your AI chatbot.
+2. Explain why it is important to perform string standardization (like .str.lower() and .str.strip()) before trying to match or replace data.
+3. Ask the AI: "In my data cleaning workflow, why would extra spaces or inconsistent casing cause my analysis to be 'Garbage in, garbage out'?"
+
+> **Example prompt:** "I'm learning about text standardization. I think it's important to use .lower() and .strip() because [your explanation]. Can you explain a specific error that might happen in a groupby or value_counts operation if I skip this step?"
 
 ### Practical regex with Pandas
 ```python
@@ -352,7 +390,7 @@ print(df)
 
 ---
 
-## 5.8 Quick Knowledge Check
+## 5.8 Check for Understanding
 
 Which method removes rows with missing values?
 
