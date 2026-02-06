@@ -59,6 +59,16 @@ An association exists between tables if one table has a foreign key that points 
 3. A magazine publisher has magazines and subscribers.  Each subscriber may subscribe to several magazines, and each magazine may have many subscribers.  Now we have a problem.  
 We can't put a list of subscribers into a magazine record. Relational database records can't contain lists.  For a given magazine, we could create one record for each subscriber, but we'd be duplicating all the information that describes the magazine many times over.  Similarly, there is no way for the `subscribers` table to contain records for each magazine for each subscriber.  So, you need a table in the middle, sometimes called a **join table**.  In this case, the join table might be `subscriptions`.  Each subscription record has two foreign keys, one for the magazine and one for the subscriber.  This is a many-to many association.
 
+### AI Prompt: Retrieval PRactice
+
+Relational databases use associations to connect data. Let's practice explaining the most complex one:
+1. Open your AI chatbot.
+2. Explain why we need a join table (like the Enrollments table) to manage a many-to-many association between Students and Courses,.
+3. Explain why we can't just put a list of courses directly into a single student's record.
+4. Ask the AI: "Can you review my explanation of join tables and many-to-many relationships? Did I correctly identify why relational databases can't store lists in a single record?"
+
+> **Example prompt:** "I am learning about many-to-many associations in SQL. Here is my explanation of why a join table is necessary: [your explanation]. Does this accurately explain the role of foreign keys in a join table?"
+
 ### **Transactions**
 
 A transaction is a write operation on an SQL database that guarantees consistency.  Consider a banking operation.  A user wants to transfer money from one account to another.  The sequence of SQL operations is as follows (this is pseudocode of course):
@@ -72,6 +82,17 @@ A transaction is a write operation on an SQL database that guarantees consistenc
 The transaction maintains consistency.  When the read occurs, that entry is locked. (This depends on the isolation level and other stuff we won't get into now.)  That lock is important, as otherwise there could be another withdrawal from the account that happens after the read but before the update, and the account would go overdrawn.  Neither do you want the update that decreases the balance to complete while the update that increases the balance in the other account fails.  That would anger the user, and justifiably so.  With transactions, either both write operations succeed or neither succeeds.
 
 Relational databases' strength, by comparision with no-SQL databases, is the efficient handing of structured and interrelated data and transactional operations on that data.
+
+#### AI Prompt: Retrieval Practice
+
+Now that you have explored the concept of transactions and how they maintain consistency, let's reinforce your understanding:
+
+1. Open your preferred AI chatbot.
+2. Explain in your own words what a transaction is and why it is described as "all or nothing",.
+3. Use a real-world scenario other than banking—such as an e-commerce order or a library book checkout—to illustrate why a transaction is necessary to prevent data errors,.
+4. Ask the AI to give you feedback on your explanation and if your example accurately demonstrates transactional consistency.
+
+> **Example prompt:** "I'm learning about SQL transactions. Here is my explanation of what they are and a scenario where they are useful: [your explanation and scenario]. Does this accurately reflect how transactions ensure data consistency? Is there any part of the 'commit' process I should clarify?"
 
 ### **Constraints**
 
@@ -436,6 +457,29 @@ FROM Enrollments
 JOIN Students ON Enrollments.student_id = Students.student_id
 JOIN Courses ON Enrollments.course_id = Courses.course_id;
 ```
+
+### AI Prompt: Predict-then-Check
+
+Let’s test your intuition on how JOINs combine data from different tables. Study this schema and query without running it: 
+
+**Tables:**
+• Students: (student_id: 1, name: 'Alice'), (student_id: 2, name: 'Bob').
+• Enrollments: (enrollment_id: 101, student_id: 1, course_id: 5). 
+
+Query:
+
+```sql
+SELECT Students.name, Enrollments.course_id
+FROM Students
+LEFT JOIN Enrollments ON Students.student_id = Enrollments.student_id;
+```
+
+Before running any code:
+1. Predict what the output will look like for Bob, specifically. (Hint: Does Bob have a matching record in the Enrollments table?,).
+2. Explain to an AI chatbot why you think Bob will (or will not) appear in the results and what will happen to his course_id column.
+3. Ask: "Is my reasoning about how a LEFT JOIN handles records without matches correct?"
+
+> **Example prompt:** "Looking at this SQL query: [paste query]. I predict the output for Bob will be [your prediction] because [your reasoning about LEFT JOINs]. Am I correct? If not, what am I misunderstanding about how LEFT JOINs handle missing associations?"
 
 ### **Check for Understanding**
 
