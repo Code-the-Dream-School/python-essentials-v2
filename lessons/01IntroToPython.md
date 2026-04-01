@@ -128,8 +128,8 @@ Follow the installation instructions for your operating system:
     - Your assignments will use a git repository, and the instructions for setting up that repository are included in the first lesson.  You should also have a separate folder to try the code samples from the lessons.  This working folder should be outside of the cloned repository on your computer.  For example, you could create a folder called `python_class`.  Inside that folder, create a folder called `working` to use for lesson code samples.  When you do the first assignment, you will also clone a repository called `python_homework` inside the `python_class` folder.  Your lessons and assignments will require some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
     
     Create a folder, cd to that folder, and then do the following:
-    - Install the virtualenv package: `pip install virtualenv` (or perhaps `pip3 install virtualenv`).
-    - Then, create the virtual environment.
+
+    - Create the virtual environment.
         - Windows users enter the following commands:
             ```bash
             python -m venv .venv
