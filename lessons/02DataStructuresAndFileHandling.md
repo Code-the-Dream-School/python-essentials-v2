@@ -217,7 +217,7 @@ Now that you've learned about the difference between mutable and immutable data 
 Let's test your understanding of how Python evaluates Lambdas and the    map() function. Study this code without running it:
 
 ```python
-numbers = [10-13]
+numbers = [10, 11, 12, 13]
 result = list(map(lambda x: x * 2, numbers))
 print(result)
 ```
