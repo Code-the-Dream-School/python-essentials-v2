@@ -4,11 +4,21 @@
 ### **Objective:**
 In this assignment, you will gain hands-on experience cleaning and validating real-world datasets using the Pandas library. You’ll practice identifying and handling missing values, correcting data types, detecting duplicates and outliers, standardizing inconsistent text, encoding categorical variables, and validating data ranges. You’ll also work on a mini-project that simulates cleaning multiple messy files using techniques like fuzzy matching and regular expressions—building a strong foundation for reliable, analysis-ready data.
 
+### **Setup**
+
+The assignments up to this one have required you to create `.py` files and to submit them by creating pull requests for your python_homework repository.  For this assignment, you create a Jupyter notebook file.  Jupyter notebooks are a way to do data presentation and analysis, using Python code.  A notebook is comprised of a sequence of cells, which come in two kinds: Markdown cells, for putting in the text you want to show, and code cells, where you put your Python code.  You typically alternate Markdown and code cells.    
+
+With a little setup, you can create Jupyter notebooks in VSCode, and submit them to GitHub.  However, GitHub is not a friendly environment for collaboration on notebooks.  Your reviewer wants to see the notebooks, to run them, and to give you comments in context.  For that purpose, we use [https://kaggle.com].  That site also has an interesting collection of data sets you can use for practice in data analysis and presentation.  Your first capstone project will be based in Kaggle. Connect to the site now and register, so that you have an account. The AI reviewer accepts Kaggle links.
+
 ### **Tasks:**
 
 ### **Task 1: Handling Missing Data**
 
-1. **Create a DataFrame using the provided data:**
+1. **On the Kaggle site, click on the plus button in the upper left, and create a notebook called CTD_Assignment_5.**  It comes up with a code cell already present.  Leave that one alone, and click on the plus markdown button to add a cell that says "Task 1". You do not have to use markdown formatting directives, however if you do choose to use formatting, it's worth noting that level two headings starting with '## ' are automatically added to the table of contents.  This is how you convey information about your code to your reviewer, Jupyter notebook style.  After adding a markdown cell, click on the plus code button to add another cell.  You add the code for this task to the cell.  As you complete each of the following tasks, run the cell to make sure your code works.  You run the cell by clicking on the arrow at the top left of the cell.
+
+**Note:** The various code cells in a Jupyter notebook are all part of the same program, so you have access to the variables and functions of one cell from each of the ones that follow.  You only need to import Pandas once, for example.  However, Kaggle sessions **time out** if you go to the kitchen for a sandwich or something.  When they time out, your variables go away.  So, if you then run cell 2, which is dependent on something in cell 1, you'll get an error.  To correct this, click on the Run All button at the top of your Kaggle notebook screen, and the entirety of the program runs in the order the cells appear.  You can turn on variable persistence in the lower right under Session Options at the lower right to avoid having variables time out.
+
+2. **Create a DataFrame using the provided data:**
 
    - Add another input dataset.  This time, search on "code the dream lesson 5"
    - Create another code block.
@@ -30,7 +40,7 @@ data = {
 df = pd.DataFrame(data)
 ```
 
-2. **Perform the following operations on new DataFrames:**
+3. **Perform the following operations on new DataFrames:**
      - Create df1 by using `dropna()` on the df DataFrame created above.  Print the `info()` for df and df1 to see how many lines have missing values.
      - **Replace missing values** in df using the `fillna()` method:
      - Replace missing 'Name' values with `'Unknown'`.
