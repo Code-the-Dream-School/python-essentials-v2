@@ -201,7 +201,7 @@ print(c.diameter)
 Another nice feature is that while `area` and `diameter` are calculated using methods, if you change the `radius`, they will automatically repopulate with the correct values without you having to re-run those methods:
 
 ```Python
-c.radios = 5
+c.radius = 5
 print(c.area)
 ```
 You didn't have to re-assign anything: `area` (and `diamater`) are always recalculated based on the current radius. 
@@ -354,8 +354,8 @@ Here's what happened behind the scenes:
 
 Feel free to modify the code or the parameters (e.g., change ">>" to "**" or 3 to 5) to see how the decorator’s behavior changes. Parameterized decorators are a powerful but advanced concept, so take your time to experiment and build your intuition.
 
-### Callback to Dash application
-Decorators are often used in another way.  They register a function that is to be called by system code.  For example, in the lesson on Dash, you had the following lines:
+### Decorators in use: The Dash visualization framework
+Decorators are often used in another way.  They register a function that is to be called by system code.  [Dash](https://dash.plotly.com/) is a web visualization framework. It makes use of decorators to avoid code duplication and efficiently handle callback functions:
 
 ```Python
 @app.callback(
@@ -371,7 +371,6 @@ callback_dict={}
 
 def wrap_output(before, after,greeting_type):
     def decorator_wrap_output(func):
-        callback_dict[greeting_type] = func
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             return before + result + after
@@ -392,7 +391,7 @@ print(callback_dict["for_hello"]()) # Will print "begin:Hello, World!:end"
 print(callback_dict["for_goodbye"]()) # Will print "begin:Goodbye, World!:end"
 ```
 
-Here, the decorated functions, in their wrappered form, get registered for callbacks in `callback_dict`.  This is like what Dash is doing when you use the decorator `@app.callback`.
+Here, the decorated functions, in their wrappered form, get registered for callbacks in `callback_dict`.  This similar to what Dash does when you use the decorator `@app.callback`.
 
 ### AI Learning Prompt: Predict-then-Check
 
