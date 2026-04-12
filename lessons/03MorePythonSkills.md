@@ -21,7 +21,7 @@ Until now we have been following principles of *functional programming*: writing
 ### Basic class definition
 Let’s look at a very simple example — a class that represents dogs:
 
-```Python
+```python
 class Dog:
     def __init__(self, name, age):
         self.name = name
@@ -58,7 +58,7 @@ Within a class definition, `self` refers to the current instance of the class �
 ### Expanding the class: class attributes and class methods
 We can add more bells and whistles to our simple Dog class. For example, suppose we want to count how many dogs have been created. Instead of storing that information in each individual dog, we can store it once at the class level:
 
-```Python
+```python
 class Dog:
     _count = 0  
 
@@ -101,7 +101,7 @@ Suppose you want to create a class that’s similar to `Dog`, but with a few dif
 
 Here's an example where we create a class `BigDog` that explicitly inherits from `Dog`:
 
-```Python
+```python
 class BigDog(Dog): # inherits from Dog
     def __init__(self, name, age): 
         # Call the parent class's __init__ to set name/age
@@ -141,7 +141,7 @@ print(dog1.__dict__) # prints the attributes of the instance and their values.
 
 You can also create classes from system classes:
 
-```Python
+```python
 class Shout(str):
    def __new__(cls, content):
       return str.__new__(cls, content.upper())
@@ -169,7 +169,7 @@ We’ve already seen some decorators like `@classmethod` in our class definition
 #### Examples of decorators
 Python provides lots of built-in decorators. We've already seen one:
 
-```Python
+```python
 @classmethod
 def get_dog_count(cls):
 ```
@@ -177,7 +177,7 @@ This tells Python: “Don’t treat `get_dog_count()` like a normal method. Trea
 
 There are *many* useful built-in decorators. Sometimes, we want a method in a class to act like an attribute — it does a calculation, but we want to access it without parentheses:
 
-```Python
+```python
 class Circle:
     def __init__(self, radius):
         self.radius = radius
@@ -193,14 +193,14 @@ class Circle:
 
 Now you can access those properties (area and diameter) as if they were attributes of the object, using dot notation: 
 
-```Python
+```python
 c = Circle(3)
 print(c.area)    
 print(c.diameter)  
 ```
 Another nice feature is that while `area` and `diameter` are calculated using methods, if you change the `radius`, they will automatically repopulate with the correct values without you having to re-run those methods:
 
-```Python
+```python
 c.radius = 5
 print(c.area)
 ```
@@ -210,7 +210,7 @@ You didn't have to re-assign anything: `area` (and `diamater`) are always recalc
 
 So far we’ve seen decorators used with functions and methods, like `@property` and `@classmethod`. However, decorators can also be used with *classes*. One useful example is the built-in `@dataclass` decorator, which lets you quickly and conveniently define simple classes for storing structured data, without needing an `__init__` method.
 
-```Python
+```python
 from dataclasses import dataclass
 
 @dataclass
@@ -235,7 +235,7 @@ There are a few things to notice about `dataclass` objects:
 ### Writing your own decorators
 Python classifies functions as first-class objects, which means you can treat them just like any other variable or object. That is, you can pass them as arguments to other functions. For instance:
 
-```Python
+```python
 def say_hello():
     print("Hello!")
 
@@ -276,7 +276,7 @@ What's happening here?
 - The decorator returns the new `wrapper()` function that includes this extra behavior that is wrapped around `func()`. 
 - When you add the `@my_decorator` above the `print_name()` function declaration, Python runs the following behind the scenes:
 
-```Python
+```python
 print_name = my_decorator(print_name)
 ```
 Decorators let you add behavior to a function without modifying its original code. You didn’t have to touch `print_name()` -- you just wrapped it.
@@ -324,7 +324,7 @@ Sometimes you want to pass *arguments* into a decorator — like how many times 
 
 Let's look at an example where we allow users to specify how many times a message is repeated, and what prefix to add:
 
-```Python
+```python
 def repeat_with_prefix(prefix, num_repeats): # decorator factory
     def decorator(func):  # The decorator: takes the function
         def wrapper(*args, **kwargs):  # The wrapper: runs the function with extra behavior
@@ -354,10 +354,10 @@ Here's what happened behind the scenes:
 
 Feel free to modify the code or the parameters (e.g., change ">>" to "**" or 3 to 5) to see how the decorator’s behavior changes. Parameterized decorators are a powerful but advanced concept, so take your time to experiment and build your intuition.
 
-### Decorators in use: The Dash visualization framework
+### Decorators in action: The Dash visualization framework
 Decorators are often used in another way.  They register a function that is to be called by system code.  [Dash](https://dash.plotly.com/) is a web visualization framework. It makes use of decorators to avoid code duplication and efficiently handle callback functions:
 
-```Python
+```python
 @app.callback(
     Output("stock-price", "figure"),
     [Input("stock-dropdown", "value")]
@@ -366,7 +366,7 @@ def update_graph(symbol):
 ```
 The `app.callback` method runs before `update_graph()` is ever called.  It records the fact that `update_graph()`, as wrappered by the `app.callback` wrapper function, is to be called whenever the stock dropdown changes.  You could do something like this, registering the functions to be wrapped, as follows:
 
-```Python
+```python
 callback_dict={}
 
 def wrap_output(before, after,greeting_type):
@@ -426,21 +426,21 @@ Before running it:
 ### **Overview**  
 A list comprehension is a fast and Pythonic way to generate a list.  For example, suppose you want a list of the integers from 0 to 19.  You could do
 
-```Python
+```python
 integer_list=[]
 for x in range(20):
     integer_list.append(x)
 ```
 but, with Python, you can use a list comprehension as a shorthand:
-```Python
+```python
 integer_list = [x for x in range(20)]
 ```
 Or, to get just the odd ones:
-```Python
+```python
 odd_list = [x for x in range(20) if x%2 != 0]
 ```
 Or, to get the squares of the odd ones:
-```Python
+```python
 odd_squares_list = [x**2 for x in range(20) if x%2 !=0]
 # or
 odd_squares_list = [x**2 for x in odd_list]
@@ -464,7 +464,7 @@ for y in odd_squares_generator:
 
 A Python closure is a way of wrappering information by returning a function that has access to that information.  This provides some protection for the stuff you wrapper.  For example:
 
-```Python
+```python
 def make_secret(secret):
     def did_you_guess(guess):
         if guess == secret:
@@ -482,7 +482,7 @@ game2("magic") # Prints you got it
 ```
 
 Of course, the wrappered function could also store data, but you may need the `nonlocal` keyword.  This makes the variable still wrappered within the outer function, but accessible within the inner function:
-```Python
+```python
 def make_secret(secret):
     bad_guesses = 0
     def did_you_guess(guess):

@@ -415,8 +415,8 @@ import pandas as pd
 
 # Sample data with dates in various formats and some invalid values
 data = {
-    "Event": ["Project Start", "Client Meeting", "Beta Release", "Final Launch"],
-    "Date": ["2021/01/15", "2021-02-30", "03-15-2021", "April 31, 2021"]  # Some invalid or unusual dates
+    "Event": ["Project Start", "Client Meeting", "Beta Release", "Final Launch", "End of Support"],
+    "Date": ["2021/01/15", "2021-02-27", "03-15-2021", "April 30, 2021", "April 31, 2022"]  # Some invalid or unusual dates
 }
 df = pd.DataFrame(data)
 
@@ -434,7 +434,15 @@ print(df)
 num_invalid_dates = df["Date_converted"].isna().sum()
 print(f"\nNumber of invalid dates converted to NaT: {num_invalid_dates}")
 
+# You can use format='mixed' if you have dates in multiple formats
+df["More_dates_converted"] = pd.to_datetime(df["Date"], format='mixed', errors="coerce")
 
+print("\nAfter converting to datetime:")
+print(df)
+
+# Check how many were converted again
+num_invalid_dates = df["More_dates_converted"].isna().sum()
+print(f"\nNumber of invalid dates converted to NaT: {num_invalid_dates}")
 ```
 
 ### Saving DataFrames to CSV Files
