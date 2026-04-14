@@ -72,8 +72,8 @@ df = pd.DataFrame(data)
 ### **Task 4: Removing Duplicates & Outliers**
 1. **Identify and remove duplicate records:**
    - Print `df3.info()`.
-   - Use the `duplicated()` method to identify duplicate rows in the DataFrame, and save the result in duplicate_series.  This Series has `True` for each duplicate entry.
-   - Print `duplicate_series[duplicate_series == True].head(10)` to see the first 10 duplicated entries.
+   - Use the `duplicated()` method to identify duplicate rows in the `DataFrame`, and save the result in `duplicate_series`.  This `Series` has `True` for each duplicate entry.
+   - Print `df3[duplicate_series == True].head(10)` to see the first 10 duplicated entries.
    - Print `duplicate_series.value_counts()` to see how many duplicates you have.
    - Use the `drop_duplicates()` method to remove duplicate rows.
    - Print `info()` for the updated DataFrame.
