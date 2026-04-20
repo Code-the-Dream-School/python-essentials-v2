@@ -99,7 +99,7 @@ Let’s test your understanding of how .loc[] and .iloc[] differ in their slicin
 
 ```python
 import pandas as pd
-data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'], 'Age': [3]}
+data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'], 'Age': [23, 27, 32, 44]}
 df = pd.DataFrame(data)
 
 # Slice 1
@@ -194,7 +194,7 @@ As usual, run these examples in the Python interactive shell of your `python_hom
 
 Consider the following case. Acme Inc. has 3 sales employees and 2 regions.  The employees each report the revenue they got from sales of each of the products in each of the regions.  These reports are probably kept in a database, but for our purposes, they look like this:
 ```python
-include pandas as pd
+import pandas as pd
 data = [{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'West', 'Revenue': 9000}, \
 {'Employee': 'Jones', 'Product': 'Gizmo', 'Region': 'West', 'Revenue': 4000}, \
 {'Employee': 'Jones', 'Product': 'Doohickey', 'Region': 'West', 'Revenue': 11000}, \
