@@ -137,7 +137,7 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
         for filename in filenames:
             print(os.path.join(dirname, filename))
     ```
-   Click on this cell to make it active, and run the cell.  This will list, among others, the path `/kaggle/input/international-football-results-from-1872-to-2017/results.csv`.  This is the one you want.  Read it into a DataFrame called football_results.
+   Click on this cell to make it active, and run the cell.  This will list, among others, the path `/kaggle/input/datasets/martj42/international-football-results-from-1872-to-2017/results.csv`.  This is the one you want.  Read it into a DataFrame called football_results.
 
 - Print the first 5 lines of this file.
 - All the entries have a home team and an away team.  This is kind of clumsy for us, because we want results for each team whether they were home or away.  So, we'll create a new DataFrame that organizes the in that way.  First, create a DataFrame called results_1.  You select the following columns from football_results: 'home_team','away_team','home_score','away_score',  and 'date'.  Print out the first 5 lines.
