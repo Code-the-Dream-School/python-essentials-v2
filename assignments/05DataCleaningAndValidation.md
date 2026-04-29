@@ -41,7 +41,7 @@ df = pd.DataFrame(data)
 ```
 
 3. **Perform the following operations on new DataFrames:**
-     - Create df1 by using `dropna()` on the df DataFrame created above.  Print the `info()` for df and df1 to see how many lines have missing values.
+     - Create df1 by using `dropna()` on the df DataFrame created above.  Run the `info()` method for df and df1 to see how many lines have missing values.  Note that `info()` prints directly.  Don't print `info()`, it returns `None`.
      - **Replace missing values** in df using the `fillna()` method:
      - Replace missing 'Name' values with `'Unknown'`.
      - Replace missing 'Age' values with the **mean** of the 'Age' column.
@@ -55,7 +55,7 @@ df = pd.DataFrame(data)
 1. **Convert Data Types:**
    - Add another input.  This time search for "Code The Dream Eclipses".  This is a list of eclipses that were or will be observed in Arkansas.
    - Load the CSV file into a DataFrame called df3.  **Note:** The separator is "|" for this CSV file.
-   - Print df3.info() and the first 5 rows of df3.
+   - Run `df3.info()` and the first 5 rows of df3.
    - Attempt to convert the 'Date' column to **datetime** format using `pd.to_datetime()`.  You will see that an error is thrown for an invalid date.
    - Add `errors='coerce` to your `pd.to_datetime()` statement and try the conversion again.
    - Print the first 20 lines of the revised df3.  Examine what is stored for the dates that could not be converted.
@@ -71,12 +71,12 @@ df = pd.DataFrame(data)
 
 ### **Task 4: Removing Duplicates & Outliers**
 1. **Identify and remove duplicate records:**
-   - Print `df3.info()`.
+   - Run `df3.info()`.
    - Use the `duplicated()` method to identify duplicate rows in the `DataFrame`, and save the result in `duplicate_series`.  This `Series` has `True` for each duplicate entry.
    - Print `df3[duplicate_series == True].head(10)` to see the first 10 duplicated entries.
    - Print `duplicate_series.value_counts()` to see how many duplicates you have.
    - Use the `drop_duplicates()` method to remove duplicate rows.
-   - Print `info()` for the updated DataFrame.
+   - Run `info()` for the updated DataFrame.
   
 By default, `drop_duplicates()` keeps the first occurrence of each duplicate row. You could use the `keep` parameter to change this behavior, but the default is ok for now.
 
@@ -150,11 +150,13 @@ Outliers can also be identified using statistical methods like the Interquartile
 ```
 
 6. Drop duplicates → expect ≈ 400 unique records.
-7. Print `info()` and remaining nulls.
+7. Run `info()` and see how many remaining nulls there are.
 
 ---
 
 **Task 8 — Regular Expressions for Validation**
+
+Run these examples to see more examples of how regexes can be used.
 
 1. Extract Log Info:
 ```python
