@@ -16,7 +16,7 @@
 
 ### **Setup**
 
-You should run each of the code examples below from within your `python_homework` directory.  You need several additional libraries, so within `python_homework`, do the following:
+You need two additional libraries to run this week's examples, so within the directory you use for lesson code, do the following:
 
 ```bash
 pip install matplotlib
