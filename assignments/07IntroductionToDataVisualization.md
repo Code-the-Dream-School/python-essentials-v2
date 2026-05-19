@@ -54,7 +54,7 @@ Suppose you decide that the data you care about most is in the "Diabetes_012", "
 
 1. Using the `diabetes` DataFrame, create a pair plot for "BMI" and "Age", with a `hue` of "Diabetes_012".  I find that `palette=['#FF5733', '#33FF57', '#3357FF']` gives a helpful display.
 2. Give the pair plot a descriptive title and show it.
-3. The plot is hard to read.  There are too many values for BMI.  Use `qcut()` to divide BMI into 10 quantiles, and add the resulting Series to the `d_h_i` DataFrame.  Then plot Age vs. BMI Quantiles, with the same hue as before.
+3. The plot is hard to read.  There are too many values for BMI.  Use `qcut()` to divide BMI into 10 quantiles, and add the resulting Series to the `diabetes` DataFrame.  Then plot Age vs. BMI Quantiles, with the same hue as before.
 4. Give this pair plot a descriptive title and show it.
 
 ## **Task 8: Add visualizations to your capstone project**
