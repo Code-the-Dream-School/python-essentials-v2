@@ -16,7 +16,7 @@ With a little setup, you can create Jupyter notebooks in VSCode, and submit them
 
 1. **On the Kaggle site, click on the plus button in the upper left, and create a notebook called CTD_Assignment_5.**  It comes up with a code cell already present.  Leave that one alone, and click on the plus markdown button to add a cell that says "Task 1". You do not have to use markdown formatting directives, however if you do choose to use formatting, it's worth noting that level two headings starting with '## ' are automatically added to the table of contents.  This is how you convey information about your code to your reviewer, Jupyter notebook style.  After adding a markdown cell, click on the plus code button to add another cell.  You add the code for this task to the cell.  As you complete each of the following tasks, run the cell to make sure your code works.  You run the cell by clicking on the arrow at the top left of the cell.
 
-**Note:** The various code cells in a Jupyter notebook are all part of the same program, so you have access to the variables and functions of one cell from each of the ones that follow.  You only need to import Pandas once, for example.  However, Kaggle sessions **time out** if you go to the kitchen for a sandwich or something.  When they time out, your variables go away.  So, if you then run cell 2, which is dependent on something in cell 1, you'll get an error.  To correct this, click on the Run All button at the top of your Kaggle notebook screen, and the entirety of the program runs in the order the cells appear.  You can turn on variable persistence in the lower right under Session Options at the lower right to avoid having variables time out.
+**Note:** The various code cells in a Jupyter notebook are all part of the same program, so you have access to the variables and functions of one cell from each of the ones that follow.  You only need to import Pandas once, for example.  However, Kaggle sessions **time out** if your session is idle for a while.  When they time out, your variables go away.  So, if you then run cell 2, which is dependent on something in cell 1, you'll get an error.  To correct this, click on the Run All button at the top of your Kaggle notebook screen, and the entirety of the program runs in the order the cells appear.  You can turn on variable persistence in the lower right under Session Options at the lower right to avoid having variables time out.
 
 2. **Create a DataFrame using the provided data:**
 
@@ -56,8 +56,8 @@ df = pd.DataFrame(data)
    - Add another input.  This time search for "Code The Dream Eclipses".  This is a list of eclipses that were or will be observed in Arkansas.
    - Load the CSV file into a DataFrame called df3.  **Note:** The separator is "|" for this CSV file.
    - Run `df3.info()` and the first 5 rows of df3.
-   - Attempt to convert the 'Date' column to **datetime** format using `pd.to_datetime()`.  You will see that an error is thrown for an invalid date.
-   - Add `errors='coerce` to your `pd.to_datetime()` statement and try the conversion again.
+   - Attempt to convert the 'Date' column to **datetime** format using `pd.to_datetime()`.  You will see that Pandas raises an error for an invalid date.
+   - Add `errors='coerce'` to your `pd.to_datetime()` statement and try the conversion again.
    - Print the first 20 lines of the revised df3.  Examine what is stored for the dates that could not be converted.
 
 ### **Task 3: Validating Data Ranges**
@@ -86,7 +86,7 @@ By default, `drop_duplicates()` keeps the first occurrence of each duplicate row
    - Replace outliers with the **median** of the 'Age' column.
    - Print the updated DataFrame after handling outliers.
 
-Outliers can also be identified using statistical methods like the Interquartile Range (IQR) or Z-scores -- but we'll just keep it simple for now
+For this task, we'll use fixed thresholds instead of a statistical method.
 
 ### **Task 5: Standardizing Data**
 1. **Standardize the 'Name' column:**
