@@ -96,7 +96,7 @@ def incrementor(x):
 list_two = list(map(incrementor, list_one)) # [4,5,6]
 ```
 
-You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversion to create a list.  Now, the incrementor() function above looks a little stupid.  You'd like to pass something in line, and for that, Python provides:
+You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversion to create a list.  Now, the incrementor() function above is more verbose than necessary.  You'd like to pass something in line, and for that, Python provides:
 
 ### Lambdas
 
@@ -105,7 +105,18 @@ list_one = [3,4,5]
 list_two = list(map(lambda x: x+1, list_one)) # [4,5,6]
 ```
 
-The lambda feature is a way to declare a simple function.  Lambdas are, in some respects, similar to arrow functions in JavaScript, but they are much more limited.  A lambda is a simple one liner.  The syntax is as follows: the word `lambda` followed by the arguments to be passed (the map function only passes one parameter, so in the case above there is only argument for the lambda), followed by a colon `:`, followed by an expression.  The value of the expression is what is returned by the lambda.  You can only give one expression in a lambda, so there is no room for multiple statements.
+A lambda is a feature in Python used to declare a simple, one-line function. While lambdas share some similarities with JavaScript arrow functions, they are much more limited because they can only contain a single expression.
+
+Here is how the syntax breaks down:
+
+$$\text{lambda } \underline{\text{arguments}} : \underline{\text{expression}}$$
+
+* lambda: The keyword that starts the function.
+* Arguments: The inputs passed into the function, separated by commas. (Note: Because functions like `map()` only pass one parameter at a time, you will often see lambdas with just a single argument).
+* The Colon (:): Separates the arguments from the action.
+* Expression: The single operation or calculation to perform. The result of this expression is automatically returned.
+
+Key Limitation: A lambda can only contain one expression. There is no room for multiple lines of code or complex statements inside a lambda function.
 
 ### Slicing Lists
 
@@ -233,7 +244,7 @@ Before running it:
 
 ## 2.2 File Handling
 
-In Python, reading from and writing to text files is handled with the `open()` function. Text files are simple, containing plain text data, making them ideal for storing simple logs, configuration data, or notes.
+In Python, reading from and writing to text files is handled with the `open()` function. Text files contain plain text data, making them a good fit for logs, configuration data, or notes.
 
 #### Reading a Text File
 
@@ -245,7 +256,7 @@ with open('example.txt', 'r') as file:
     print(content)
 ```
 
-The python above uses the `with` statement.  This is a way to keep your code looking clean.  You always want to close the file when you are done.  The `with` statement closes it for you on exit from the block.  The file is closed even if there is an exception, but the exception is still passed on to you.  Later in the course, you will also use the `with` statement for a database connection, and it serves the same purpose.
+The python above uses the `with` statement.  This is a way to keep your code looking clean.  You always want to close the file when you are done.  The `with` statement closes it for you on exit from the block.  Python still closes the file even if an exception occurs, and still raises that exception for you to handle.  Later in the course, you will also use the `with` statement for a database connection, and it serves the same purpose.
 
 File operations, including the open(), can raise exceptions.  To make your code robust, you put them in a try block, as follows:
 
@@ -393,7 +404,7 @@ print(math_tools.add(2, 3))  # Output: 5
 
 ### Packages
 
-A package is a collection of related modules organized in a directory structure. Packages require an `__init__.py` file to mark the directory as a Python package.  In this course, we don't create large projects with many modules, but as a Python professional, you will need to do this.  The contents of `__init__.py` are not described in this lesson, but you can view [this tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) to see how it is to be done (this is optional for this course).
+A package is a collection of related modules organized in a directory structure. Packages require an `__init__.py` file to mark the directory as a Python package.  In this course, we don't create large projects with many modules, but as a Python professional, you will likely encounter this.  The contents of `__init__.py` are not described in this lesson, but you can view [this tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) to see how it is to be done (this is optional for this course).
 
 #### Package Structure Example
 ```
@@ -455,7 +466,7 @@ What are Python modules? How do you import and work with them? Check out vido 2.
 
 ## 2.4 Keyboard Input
 
-In Python, handling keyboard input is straightforward, making it easy to interact with users. The input() function is the main way to capture user input from the keyboard, which you can then use directly or store in a variable for further processing.
+In Python, handling keyboard input follows a consistent pattern. The `input()` function is the main way to capture user input from the keyboard, which you can then use directly or store in a variable for further processing.
 
 #### Using `input()`
 
@@ -615,7 +626,7 @@ os.system('ls')  # For Linux/Mac
 os.system('dir')  # For Windows
 ```
 
-*Keep in mind that `os.system()` doesn't return the output of the command. If you need the output, consider using `subprocess.run()` instead.*
+*Note that `os.system()` doesn't return the output of the command. If you need the output, consider using `subprocess.run()` instead.*
 
 **Environment Variables**
 
