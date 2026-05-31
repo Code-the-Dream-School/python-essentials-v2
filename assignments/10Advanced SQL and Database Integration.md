@@ -22,7 +22,7 @@ For each of the following tasks, you first use the sqlcommand command line to ge
 
 **Help Available!**  
 
-This lesson combines a lot of concepts that have been presented only briefly. You may find these tasks a little challenging.  If you get stuck, 1:1 mentors are available to answer your questions.  Appointments are available in the [1:1 Mentor Table](https://airtable.com/appoSRJMlXH9KvE6w/shrQinGb1phZYwdiL)
+This lesson combines concepts that have been presented only briefly.  If you get stuck, 1:1 mentors are available to answer your questions.  Appointments are available in the [1:1 Mentor Table](https://airtable.com/appoSRJMlXH9KvE6w/shrQinGb1phZYwdiL)
 
 ---
 
@@ -68,7 +68,7 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
 2. **Deliverable**:   
    - Get this working in sqlcommand.  (Note that sqlcommand does not provide a way to begin and end transactions, so for sqlcommand, the creation of the order and line_item records are separate transactions.)
    - Use sqlcommand to delete the line_items records for the order you created.  (This is one delete statement.)  Delete also the order record you created.
-   - Add statements for the complete transaction and the subsequent SELECT statement into `advanced_py.sql`, and to print out the result of the SELECT.
+   - Add statements for the complete transaction and the subsequent SELECT statement into `advanced_sql.py`, and to print out the result of the SELECT.
    - Test your program.
 
 ---
@@ -86,7 +86,7 @@ This lesson combines a lot of concepts that have been presented only briefly. Yo
 ---
 
 ## **Task 5: Web Scraping Capstone project**
-For the web scraping capstone project, you will save your cleaned and transformed data into a **Sqlite** database.  This is the second week covering databases so this week, you need to finalize your capstone project **Sqilte** database.  Import each of the **CSV** files into a separate table in a **Sqlite** database.  You can also use database tools to do some of the data transformation if you choose to.
+For the web scraping capstone project, you will save your cleaned and transformed data into a **SQLite** database.  This is the second week covering databases so this week, you need to finalize your capstone project **Sqilte** database.  Import each of the **CSV** files into a separate table in a **SQLite** database.  You can also use database tools to do some of the data transformation if you choose to.
 
 ### **These are the relevant rubrics for the database portion of the project**
 #### **Data Cleaning & Transformation**
@@ -94,7 +94,7 @@ For the web scraping capstone project, you will save your cleaned and transforme
 - Cleans missing, duplicate, or malformed entries effectively.
 - Applies appropriate transformations, groupings, or filters.
 - Shows before/after stages of cleaning or reshaping.
-- Saves the clean, transformed data into a **Sqlite** database
+- Saves the clean, transformed data into a **SQLite** database
 
 This week, you will submit a pull request with the database code for your project. Put the link for your pull request in the second submission field. You have until the final week of class to refine your project.
 
@@ -122,4 +122,3 @@ This week, you will submit a pull request with the database code for your projec
 ### **Resources**
 - [SQLite Documentation](https://www.sqlite.org/docs.html)
 - [Python `sqlite3` Library Documentation](https://docs.python.org/3/library/sqlite3.html)
-```
