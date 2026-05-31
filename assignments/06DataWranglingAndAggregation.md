@@ -81,11 +81,11 @@ Again, you create a markdown cell to describe this task, and a code cell contain
 1. **Merge `df1` and `df3` into `df_1_3_merged` on the 'Name' column:**
    - Use an outer merge to combine the two DataFrames and handle any missing data.
    - Use the suffixes `_left` and `_right` to differentiate columns from each DataFrame. (You specify `suffixes=['_left','_right']` on the call to merge.)
-   - Display the result with print(). When you do, you will see some annoying warning messages that contain words like "Runtime Warning: invalid value encountered ...".  This is because of the NaN values in the frame.  You could suppress these warnings by 
+   - Display the result with print(). When you do, you will see some warning messages that contain words like "Runtime Warning: invalid value encountered ...".  This is because of the NaN values in the frame.  You could suppress these warnings by 
       ```python
       np.warnings.filterwarnings('ignore')
       ```
-      But, don't do this yet.  You might see some other warnings if you make a mistake, and you don't want to miss them.  Just ignore these particular warnings.
+      But, don't do this yet.  You might see some other warnings if you make a mistake, and you don't want to miss them. Ignore these particular warnings for now.
    - We see that the 'Salary' column has `NaN` values.  Transform this column to replace `NaN` with the starting salary of 15000.  Hint: fillna() can be used on a Series.
    - Also, transform the 'Favorite Color' column to replace `NaN` values with 'yellow'.
    - Display the result.
@@ -140,12 +140,12 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
    Click on this cell to make it active, and run the cell.  This will list, among others, the path `/kaggle/input/datasets/martj42/international-football-results-from-1872-to-2017/results.csv`.  This is the one you want.  Read it into a DataFrame called football_results.
 
 - Print the first 5 lines of this file.
-- All the entries have a home team and an away team.  This is kind of clumsy for us, because we want results for each team whether they were home or away.  So, we'll create a new DataFrame that organizes the in that way.  First, create a DataFrame called results_1.  You select the following columns from football_results: 'home_team','away_team','home_score','away_score',  and 'date'.  Print out the first 5 lines.
+- All the entries have a home team and an away team.  This structure is awkward for our purposes because we want results for each team whether they were home or away.  So, we'll create a new DataFrame that organizes the in that way.  First, create a DataFrame called results_1.  You select the following columns from football_results: 'home_team','away_team','home_score','away_score',  and 'date'.  Print out the first 5 lines.
 - Next, create a DataFrame called results_2 from results_1.  You rename the column for 'home_team' to 'team', for 'away_team' to 'opponent', for 'home_score' to 'points_for', and for 'away_score' to 'points_against'.  Do not use `inplace=True`.  This dataset gives all the entries for the home teams.  Print out the first 5 lines.
 - Next, create a DataFrame called results_3 from results_1.  This also renames the columns, but now the rename is: 'away_team' becomes 'team', 'home_team' becomes 'opponent', 'away_score' becomes 'points_for', and 'home_score' becomes 'points_against'.  This dataset gives all the entries for the away teams.  Print out the first 5 lines.
 - Concatenate the results, resetting the index.  Store the result in football_results.  Print out the first 5 lines.  Now we have all the entries per team.
 - Do a `groupby()` on 'team'.  Get the mean() of the 'points_against' column.  Store the result (it is a Series) in the variable points_against.
-- Sort points_against so the values are descending.  Print out the first 10 lines.  These are the teams that are very bad on defense.
+- Sort points_against so the values are descending.  Print out the first 10 lines.  These are the teams that concede the most points on average.
 
 ### **Task 12: More Data Wrangling for Football Results**
 
@@ -209,7 +209,7 @@ This week’s work on your capstone should focus on the following rubric areas:
 📌 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Get a Sharing Link for Your Assignment**  
-- On the upper right of the Kaggle page, click on Save Version and save, accepting all defaults.  You can just do a quick save.
+- On the upper right of the Kaggle page, click on Save Version and save, accepting all defaults.  Do a quick save.
 - On the upper right, click on Share.  Choose Public, make sure that Allow Comments is on, and copy the public URL to your clipboard.
 
 #### **2️⃣ Submit Your Kaggle Links**  
