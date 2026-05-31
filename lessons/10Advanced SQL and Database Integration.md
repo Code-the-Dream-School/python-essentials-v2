@@ -272,7 +272,7 @@ conn.close()
 ### **Python example which uses Inner Join so department name is used:**
 
 ```python
-"""
+query = """
 SELECT d.department_name AS department,
        MIN(e.salary)  AS min_salary,
        MAX(e.salary)  AS max_salary,
@@ -283,6 +283,7 @@ JOIN Departments AS d
 GROUP BY d.department_id, d.department_name
 ORDER BY d.department_name;
 """
+
 cursor.execute(query)
 print(cursor.fetchall())
 
@@ -392,8 +393,8 @@ conn = sqlite3.connect("company.db")
 cursor = conn.cursor()
 
 try:
-    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('John Doe', 2)")
-    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('Jane Smith', 3)")
+    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('Mario Rossi', 2)")
+    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('Yamada Hanako', 3)")
     conn.commit()  # Commit transaction
 except Exception as e:
     conn.rollback()  # Rollback transaction if there's an error
@@ -407,30 +408,43 @@ conn.close()
 ## **10.7 Parameterized Queries to Prevent SQL Injection**
 
 ### **Overview**
-SQL injection can be prevented by using parameterized queries, ensuring that user input is treated safely.
+**SQL injection** is an attack where malicious input is crafted to alter the structure of a SQL query — potentially allowing an attacker to read, modify, or delete data they shouldn't have access to. Parameterized queries prevent this by treating user input as data rather than as executable SQL.
 
-### **Example:**
+### **Vulnerable approach**
+When user input is inserted directly into a query string, the result is vulnerable to SQL injection:
+
+```python
+cursor.execute(f"SELECT * FROM Employees WHERE department_id = {department_id};")
+# or equivalently:
+cursor.execute("SELECT * FROM Employees WHERE department_id = " + department_id + ";")
+```
+
+These examples are vulnerable because the value of `department_id` becomes part of the SQL statement itself. If a user provides a value like `1 OR 1=1`, the query becomes:
+
+```sql
+SELECT * FROM Employees WHERE department_id = 1 OR 1=1;
+```
+
+That query returns every row in the table, regardless of department. A more targeted input could expose sensitive data or delete records entirely.
+
+### **Secure approach**
+Parameterized queries use a `?` placeholder, and the value is passed separately:
+
 ```python
 cursor.execute("SELECT * FROM Employees WHERE department_id = ?;", (department_id,))
 ```
 
-This ensures that `department_id` is treated as a parameter and not part of the SQL statement itself.  If any part of the SQL statement comes from the end user or other untrusted source, always put that part in a parameter so that it can be sanitized to strip out rogue SQL.  Don't do it like this:
-
-```python
-cursor.execute(f"SELECT * FROM Employees WHERE department_id = {department_id};")
-# or, equally bad:
-cursor.execute("SELECT * FROM Employees WHERE department_id = " + department_id + ";")
-```
+The database driver handles the substitution and ensures the value is always treated as data — never as SQL. Any part of a query that originates from user input or an untrusted source should be passed as a parameter this way.
 
 ### AI Learning Prompt: Retrieval Practice
 
-Security is a critical part of database integration. Let's practice explaining SQL Injection and how to prevent it:
+Security is an important part of database integration. Let's practice explaining SQL injection and how to prevent it:
 
 1. Open your AI chatbot.
-2. Explain what a parameterized query is and why using placeholders (like ?) is safer than using f-strings or string concatenation to build a query.
-3. Ask the AI: "Can you explain a scenario where failing to use a parameterized query could allow a 'rogue SQL' statement to harm a database?".
+2. Explain what a parameterized query is and why using placeholders (like `?`) is safer than using f-strings or string concatenation to build a query.
+3. Ask the AI: "Can you walk me through a scenario where a missing parameterized query could allow a malicious input to alter or expose data in a database?"
 
-> **Example prompt:** "I am learning about preventing SQL injection in Python. I think parameterized queries work by [your explanation]. Is this correct? Also, can you show me a simple example of 'unsafe' code versus 'safe' code using placeholders?"
+> **Example prompt:** "I am learning about preventing SQL injection in Python. I think parameterized queries work by [your explanation]. Is this correct? Can you show me a concrete example of what could go wrong with an f-string query if a user provides unexpected input?"
 
 ---
 
