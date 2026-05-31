@@ -7,7 +7,7 @@ Welcome to **Python Essentials** with Code the Dream!
 * Start by reading the lesson's **learning objective** in the `Lesson Overview` section. Each weekly assignment will measure your skill related to the learning objective.
 * Lessons are split into **subsections**, labeled like this: `1.1`, `1.2`, etc.
 * Several subsections also have a short **supplemental video** that will help you understand the content in that subsection.
-* You'll also find AI Learning Prompts in these lessons. These are optinal, interactive prompts that let you get immediate feedback from an AI tool on your learning so far.
+* You'll also find AI Learning Prompts in these lessons. These are optional, interactive prompts that let you get immediate feedback from an AI tool on your learning so far.
 * At the end of each subsection, you'll find a multiple-choice **"Check for Understanding"** question. Complete the question and review the material if your answer is not correct!
 * After reading through the lesson content and correctly answering the "Check for Understanding" questions, complete the **Weekly Assignment**.
 
@@ -94,7 +94,7 @@ Follow the installation instructions for your operating system:
 
 3. **Install pip**
 
-    **Pip** is Python’s package installer, and it is included automatically with Python versions 3.4 and above. It allows you to easily install and manage Python libraries and packages from the Python Package Index (PyPI).
+    **Pip** is Python’s package installer, and it is included automatically with Python versions 3.4 and above. It allows you to install and manage Python libraries and packages from the Python Package Index (PyPI).
 
     #### Verify if pip is installed:
     To check if **pip** is installed, open a terminal or command prompt and type:
@@ -161,11 +161,11 @@ Follow the installation instructions for your operating system:
 
 ### If you are a JavaScript Developer
 
-You have a head start.  All the basic structures of programming (loops, conditional statements, variables, and so on) are in Python.  But, Python syntax is different.  You'll have to adjust to the differences.  You may want to read [this summary](https://www.freecodecamp.org/news/learn-python-for-javascript-developers-handbook/). (This is optional.)
+You may find Python familiar — the core structures (loops, conditionals, variables) are the same. But, Python syntax is different. You may want to read [this summary](https://www.freecodecamp.org/news/learn-python-for-javascript-developers-handbook/) of the core syntax differences.
 
 ### A Cheat Sheet
 
-Here is [a one page summary of the Python syntax](https://quickref.me/python.html).  You may want to have it on hand.
+Here is [a one page summary of the Python syntax](https://quickref.me/python.html). Bookmark this page for the next few lessons.
 
 ### Variables in Python
 
@@ -187,11 +187,11 @@ Here are some general rules for Python variable naming.
 - Lowercase: Use lowercase letters for variable names.
 - Underscores: Separate words in variable names with underscores (_).
 - Descriptive: Choose meaningful names that clearly indicate the variable's purpose.
-- Avoid single-character names: Except for simple loop counters (e.g., i, j, k).
+- Avoid single-character names: Except for single-letter loop counters (e.g., i, j, k)
 
 ### Data Types in Python
 
-**Data types** specify the kind of data is stored in a variable. Common data types include:
+**Data types** specify the kind of data a variable stores. Common data types include:
 
 * Integer (`int`): Whole numbers (e.g., 42, -3)
 * Float (`float`): Decimal numbers (e.g., 3.14, -0.5)
@@ -623,7 +623,7 @@ def greet():
     print("Hello, world!")
 ```
 
-To call a function, simply use its name followed by parentheses.
+To call a function, use its name followed by parentheses.
 
 ```python
 greet()  # Output: Hello, world!
@@ -747,7 +747,26 @@ mixed_function_2(1, 2, 3, a_value="override")
 
 In this case, a_value is a keyword argument, because it comes after the `*args`.  In the example (this is not always so) a_value has a default value.  The keyword is given explicitly here, instead of using `**kwargs`.  When the keyword is given explicitly, the value is not delivered in a dictionary.  It is accessed using the keyword as a variable name. 
 
-Functions are always declared with named positional arguments (if any) first, then the `*args` (if this is used), then the explicitly named keyword arguments (if any), and then in last place `**kwargs` (if this is used).  When a function with keyword arguments is called, the order in which the keyword arguments is given doesn't matter (except they should come after the positional arguments.) 
+Declare functions in this order:
+1. Positional arguments
+2. `*args`
+3. Explicitly named keyword arguments
+4. `**kwargs`
+
+When a function with keyword arguments is called, the order in which the keyword arguments is given doesn't matter (except they should come after the positional arguments.) For example:
+
+```python
+def print_travel_itinerary(destination, *activities, guide="Local Guide", **extra_expenses):
+    # 1. Named positional: destination
+    # 2. *args: activities
+    # 3. Named keyword: guide
+    # 4. **kwargs: extra_expenses
+    
+    print(f"Destination: {destination}")
+    print(f"Activities: {', '.join(activities)}")
+    print(f"Tour Guide: {guide}")
+    print(f"Extra Expenses: {extra_expenses}")
+```
 
 ### Variable Scope
 
@@ -800,7 +819,7 @@ Our supplemental video for this section overviews functions, arguments, and para
 
 **[Watch the video here](https://youtu.be/89cGQjB5R4M?feature=shared).**
 
-### AI Learing Prompt: Predict-Then-Check
+### AI Learning Prompt: Predict-Then-Check
 
 Study the following code without running it in your editor:
 
@@ -873,7 +892,7 @@ greet("Luis")
 
 ### Debugging with Print Statements
 
-Print statements are a simple way to check the values of variables and understand the flow of your program. This technique helps you see what’s happening at specific points in your code.
+Print statements are a useful way to check the values of variables and understand the flow of your program. This technique helps you see what’s happening at specific points in your code.
 
 ```python
 def multiply(a, b):
@@ -928,7 +947,7 @@ multiply(3, 5)
 
 ### For Further Investigation: Using the Debugger
 
-VSCode with the Python plugin provides a debugger.  You can set breakpoints, step in or over function calls, display or change the values of variables, and so on.  You will need to learn to use a debugger eventually, although it is not required for this course.  If you want to check this out, see [this link](https://code.visualstudio.com/docs/python/python-quick-start#_debug) for a description, and [here](https://www.youtube.com/watch?v=b4p-SBjHh28) is a video that shows the process.
+VSCode with the Python plugin provides a debugger.  You can set breakpoints, step in or over function calls, display or change the values of variables, and so on.  You will need to learn to use a debugger eventually, although it is not required for this course.  If you want to explore this, see [this link](https://code.visualstudio.com/docs/python/python-quick-start#_debug) for a description, and [here](https://www.youtube.com/watch?v=b4p-SBjHh28) is a video that shows the process.
 
 ### 🎬 Video 1.7: Basic Debugging
 
@@ -959,7 +978,7 @@ If you encounter a bug while practicing the code samples in this lesson, do not 
 
 ## 1.8 Error Handling
 
-Error handling in Python is managed using the `try`, `except`, `else`, and `finally` blocks. This structure allows developers to gracefully handle errors that may occur during runtime, ensuring that the program can either recover from an issue or fail gracefully with useful feedback.
+Python manages error handling using the `try`, `except`, `else`, and `finally` blocks. This structure allows developers to gracefully handle errors that may occur during runtime, ensuring that the program can either recover from an issue or fail gracefully with useful feedback.
 
 ### `try` and `except`
 
