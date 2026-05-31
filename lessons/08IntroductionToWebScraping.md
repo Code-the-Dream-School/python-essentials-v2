@@ -15,7 +15,7 @@
 
 **Why Do Web Scraping?**
 
-There is a lot of information on the Internet, as you know, but it is in web pages that are provided so that humans can read them.  If you want to automate the process of searching or archiving some of this information, you need to extract it into a structured format and store it separately, so that you can then do SQL searches or the like on what you save.
+There is a lot of information on the Internet, but it is in web pages that are provided so that humans can read them.  If you want to automate the process of searching or archiving some of this information, you need to extract it into a structured format and store it separately, so that you can then do SQL searches or the like on what you save.
 
 Here are some examples:
 
@@ -48,7 +48,7 @@ There are many others.
 
 ### For Further Reference
 
-A good online refernce to HTML is available at [W3Schools](https://www.w3schools.com/html/).
+A good online reference to HTML is available at [W3Schools](https://www.w3schools.com/html/).
 
 ### **Hands-On Activity:**
 
@@ -96,7 +96,7 @@ pip install webdriver-manager
 ### **Steps to Web Scraping:**
 1. Initialize Selenium and the appropriate driver.  We'll use the Chromium driver, which is the same one as is in Chrome and other browsers.
 2. Retrieve a web page.
-3. Extract the desired elements using CSS selectors.
+3. Extract the desired elements using CSS (Cascading Style Sheets) selectors.
 
 This is the initialization you'll need to do:
 
@@ -118,9 +118,9 @@ driver.get("https://en.wikipedia.org/wiki/Web_scraping")
 
 ### **Explanation: Why do we Need So Much Machinery?**
 
-This may seem a pretty heavy collection of stuff just to scrape a web page.  However, most web pages these days are dynamic.  They contain JavaScript, and after the page loads, the scripts run to populate the page.  So, we need an engine that will not only get the page, but also run the JavaScript, and the JavaScript may itself make Ajax or Fetch calls to get more data.  A lot happens to create the appearance of the page you see.
+This may seem a pretty heavy collection of setup just to scrape a web page.  However, most web pages these days are dynamic.  They contain JavaScript, and after the page loads, the scripts run to populate the page.  So, we need an engine that will not only get the page, but also run the JavaScript, and the JavaScript may itself make Ajax or Fetch calls to get more data.  A lot happens to create the appearance of the page you see.
 
-Try the code above in your Python interative shell.  You'll see something a little odd.  A window will flash up with the actual page we are trying to scrape.  This can be interesting or annoying, depending on which side of the bed you got up on.  You can configure your driver to run in 'headless' mode, without a window, when you create the driver:
+Try the code above in your Python interactive shell.  You'll see something a little odd.  A window will flash up with the actual page we are trying to scrape.  You may find this window helpful or distracting.  You can configure your driver to run in 'headless' mode, without a window, when you create the driver:
 
 ```python
 options = webdriver.ChromeOptions()
@@ -306,10 +306,10 @@ When scraping large numbers of web pages, managing requests responsibly is essen
     ```python
     from time import sleep
     try:
-        driver.get('https://acme.com/index.html')
+        driver.get('https://example.com/index.html')
         ... # extract data
         sleep(2) # wait 2 seconds
-        driver.get('https://acme.com/another.html')
+        driver.get('https://example.com/another.html')
     except Exception as e:
         print(f"An exception occurred: {type(e).__name__} {e}")
     finally:
@@ -349,7 +349,7 @@ with open('scraped_data.json', 'w') as json_file:
 
 Suppose you are scraping from multiple sites.  You may want to record different information from each site, and keep track of which site provided which information.  
 
-For example, you may scrape airline sites for destinations, prices, and departure times.  You could create three tables, one for airlines, which would record the airline name and URL, and then three others for destinations, prices, and departure_times.  There would be a many-to-many relationship between airlines and destinations, which might have where_we_fly as a join table.  There would be a one-to-many relationship between where_we_fly entries and departure_times, and a one-to-many relationship between departure_times and prices (for economy, business, and first class). This is a little more complicated, to be sure -- but think about your data model when you get ready to store web scraping data!
+For example, you may scrape airline sites for destinations, prices, and departure times.  You could create three tables, one for airlines, which would record the airline name and URL, and then three others for destinations, prices, and departure_times.  There would be a many-to-many relationship between airlines and destinations, which might have where_we_fly as a join table.  There would be a one-to-many relationship between where_we_fly entries and departure_times. Additionally, there would be a one-to-many relationship between departure_times and prices (for economy, business, and first class). This is a little more complicated, to be sure -- but think about your data model when you get ready to store web scraping data!
 
 ## **8.7 Frailty in Web Scraping**
 
@@ -361,11 +361,11 @@ Web scraping programs can be frail.  The authors of the websites that you are ac
 Now that you have learned about the Document Object Model (DOM) and why we use tools like Selenium, let’s reinforce your understanding:
 
 1. Open your preferred AI chatbot.
-2. Explain in your own words why we need "heavy machinery" like Selenium and WebDriver Manager to scrape modern websites instead of just downloading a static HTML file.
+2. Explain in your own words why we need "heavy machinery" like Selenium and WebDriver Manager to scrape modern websites instead of downloading a static HTML file.
 3. Mention the role of JavaScript in your explanation.
 4. Ask the AI to give you feedback on your explanation and tell you what you got right or what you should refine.
 
-> **Example prompt:** "I just learned about web scraping with Selenium. Here is my understanding of why we use a browser engine like Selenium instead of just simple requests: [your explanation]. Can you tell me what I got right and if I'm missing any key details about how dynamic pages work?"
+> **Example prompt:** "I just learned about web scraping with Selenium. Here is my understanding of why we use a browser engine like Selenium instead a basic HTTP request: [your explanation]. Can you tell me what I got right and if I'm missing any key details about how dynamic pages work?"
 
 ### AI Learning Prompt: Predict-then-Check
 
