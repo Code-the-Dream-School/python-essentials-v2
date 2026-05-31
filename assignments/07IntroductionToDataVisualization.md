@@ -1,7 +1,7 @@
 
 # **Assignment 7: Introduction to Data Visualization**
 
-This assignment is to be implemented in a Kaggle notebook, using a Kaggle dataset.  As usual, mark the section of code that implements each task with a markdown cell.
+Complete this assignment in a Kaggle notebook using a Kaggle dataset.  As usual, mark the section of code that implements each task with a markdown cell.
 
 ---
 
@@ -29,7 +29,7 @@ This assignment is to be implemented in a Kaggle notebook, using a Kaggle datase
 2. Add a column called "Health" to the resulting DataFrame.  The value of this should be 5 minus the `GenHlth` column.  It is usually more meaningful to have high values mean good and low values mean bad.
 3. Sort `health_by_age` by the index.  (You use the sort_index() method.)  The index for this DataFrame is "Age", because of the groupby().
 4. Use Matplotlib to create a line plot where the X axis is "Age" (the index) and the Y axis is "Health".  Add a meaningful title and axes labels.
-5. Show the plot. It's kind of a sad story.
+5. Show the plot.
 
 ## **Task 5: A Heat Map of All Columns**
 
@@ -59,7 +59,7 @@ Suppose you decide that the data you care about most is in the "Diabetes_012", "
 
 ## **Task 8: Add visualizations to your capstone project**
 
-Now it's time to use the visualization tools you have learned about in this lesson for you final project.  Use visualizations to help you gain insights about the data and then illustrate those insights in you project.  Add code blocks to create charts and markdown blocks to explain them and how they illustrate details about the data.
+Now it's time to use the visualization tools you have learned about in this lesson for your final project.  Use visualizations to help you gain insights about the data and then illustrate those insights in you project.  Add code blocks to create charts and markdown blocks to explain them and how they illustrate details about the data.
 
 ### **These are the rubrics for data visualization:**
 
@@ -76,7 +76,7 @@ Now it's time to use the visualization tools you have learned about in this less
     * [ ]  Demonstrates a clear understanding of the strengths and weaknesses of each chart type and selects them strategically.
     * [ ]  Provides insightful interpretations of the visualizations, connecting them to the data analysis and the problem domain.
 
-Once you have added visualizations, you Kaggle data pipeline project is complete.  You will submit a second Kaggle link this week to show your progress. You have until the last week of class to refine your data pipeline project.  Next week you will start on your second capstone project which involves web scraping, a sql database and interactive, web-based visualizations.
+Once you have added visualizations, your Kaggle data pipeline project is complete.  You will submit a second Kaggle link this week to show your progress. You have until the last week of class to refine your data pipeline project.  Next week you will start on your second capstone project which involves web scraping, a sql database and interactive, web-based visualizations.
 
 ### **Submit the Notebook for Your Assignment**  
 
