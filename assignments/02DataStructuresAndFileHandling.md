@@ -70,7 +70,7 @@ Remember to import the `csv` module for this task.
    - Add the list of rows (this is a list of lists) to the dict, using the key "rows".
    - The function should return the dict.
    - Add a line below the function that calls read_employees and stores the returned value in a global variable called employees. Then print out this value, to verify that the function works.
-   - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, just use the same approach as described above: catch the exception, print out the information, and exit the program.  One likely exception in this case is an error in the syntax of your code.
+   - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, use the same approach as described above: catch the exception, print out the information, and exit the program.  One likely exception in this case is an error in the syntax of your code.
 
 3. Run the test to see if you have this much right.
 
@@ -78,7 +78,8 @@ A word about what's going on when the test runs: The test file imports your assi
 
 ### **Task 3: Find the Column Index**
 
-1. Create a function called column_index.  The input is a string.  The function looks in employees["fields"] (an array of column headers) to find the index of the column header requested.  There won't be much to this function, because you just use the index() method of the list class, like so:
+1. Create a function called column_index.  The input is a string.  The function looks in employees["fields"] (an array of column headers) to find the index of the column header requested.  There won't be much to this function because you use the index() method of the list class:
+   
 ```python
 employees["fields"].index("first_name")
 ```
@@ -112,7 +113,7 @@ The index() method returns the index of the matching value from the list.
 def employee_match(row):
    return int(row[employee_id_column]) == employee_id
 ```
-This function is referencing the employee_id value that is passed to the employee_find function.  It can access that value because the employee_match function is inside the employee_find function.  Note that we need to do type conversion here, because the CSV reader just returns strings as the values in the roows.  This inner function returns True if there is a match.  We are using the employee_id_column global value you set in Task 3.
+This function is referencing the employee_id value that is passed to the employee_find function.  It can access that value because the employee_match function is inside the employee_find function.  Note that we need to do type conversion here, because the CSV reader just returns strings as the values in the rows.  This inner function returns True if there is a match.  We are using the employee_id_column global value you set in Task 3.
 
 3. Now, still within the employee_find function, call the filter() function.  This is another one of those Python free standing functions.  (It is not a method of the list class.)  You call filter() as follows:
 ```python
@@ -126,7 +127,7 @@ The filter() function needs to know how to filter, and the employee_match functi
 
 ### **Task 6: Find the Employee with a Lambda**
 
-The employee_match function is a silly one-liner.  Lambdas allow us to give the logic inline.
+The employee_match function is a short one-liner.  Lambdas allow us to give the logic inline.
 
 1. Create a function employee_find_2.  This function does exactly what employee_find does -- but it uses a lambda.
 ```
@@ -183,7 +184,7 @@ If you want to try something extra, look up the `zip()` function, which can be u
 
 ### **Task 10: Use the os Module**
 
-Sometimes the behavior of a program is to be modified without changing the program itself.  One way is to use environment variables.  Environment variables are also used to store secrets needed by the program, such as passwords.  Environment variables are accessed via the `os.getenv()` function.  Of course, there are many other functions in the os package.
+Sometimes the behavior of a program is to be modified without changing the program itself.  One way is to use environment variables.  Environment variables are also used to store secrets needed by the program, such as passwords.  You can access the environment via the `os.getenv()` function.  *Note: There are many other functions in the os package.*
 
 1. Within the terminal, enter the command `export THISVALUE=ABC`.
 
@@ -218,9 +219,9 @@ def set_secret(new_secret):
 
 ### **Task 12: Read minutes1.csv and minutes2.csv**
 
-The "story" behind the following list of tasks is as follows.  A club meets, and for each meeting, there is a chairperson.  The club keeps several notebooks that record who whas the chairperson on a given date.  Some of the information is in one notebook, some in the other.  The club now wants to combine this information, to get the list of chairpersons sorted by date.  But the information in the csv files contains duplicates and is in no particular order.  (Yeah, the story is lame, but it is similar to other data analysis tasks.)
+The "story" behind the following list of tasks is as follows.  A club meets, and for each meeting, there is a chairperson.  The club keeps several notebooks that record who was the chairperson on a given date.  Some of the information is in one notebook, some in the other.  The club now wants to combine this information, to get the list of chairpersons sorted by date.  But the information in the csv files contains duplicates and is in no particular order.  (The scenario is simplified, but it mirrors real data analysis tasks.)
 
-1. Create a function called `read_minutes`.  It takes no parameters.  It creates two dicts, minutes1 and minutes2, by reading `../csv/minutes1.csv` and `../csv/minutes2.csv`.  Each dict has `fields` and `rows`, just as the employees dict had.  However! As you create the list of rows for both minutes1 and minutes2, convert each row to a tuple.  The function should return both minutes1 and minutes2.  **Note** You can return several values from a Python function, as follows: `return v1, v2`.  Don't worry about duplicates yet.  They will be dealt with in later tasks.  Think about the DRY (Don't repeat Yourself principal).  You may want to create a helper function to avoid duplicating code.
+1. Create a function called `read_minutes`.  It takes no parameters.  It creates two dicts, minutes1 and minutes2, by reading `../csv/minutes1.csv` and `../csv/minutes2.csv`.  Each dict has `fields` and `rows`, just as the employees dict had.  However! As you create the list of rows for both minutes1 and minutes2, convert each row to a tuple.  The function should return both minutes1 and minutes2.  **Note** You can return several values from a Python function, as follows: `return v1, v2`.  Don't worry about duplicates yet.  They will be dealt with in later tasks.  Think about the DRY (Don't repeat Yourself principle).  You may want to create a helper function to avoid duplicating code.
 
 2. Call the function within your assignment2.py script.  Store the values from the values it returns in the global variables minutes1 and minutes2. **Note** When a function returns several values, you get them as follows: `v1, v2 = function()`. Print out those dicts, so that you can see what's stored.
 
