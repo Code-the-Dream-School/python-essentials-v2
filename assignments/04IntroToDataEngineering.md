@@ -49,7 +49,7 @@ Homework for this assignment is created within your `python_homework` folder.  C
    - Print the DataFrame to verify it loaded correctly and run the tests.
 
 3. **Combine DataFrames:**
-   - Combine the data from the JSON file into the DataFrame Loaded from the CSV file and save it in the variable `more_employees`.
+   - Combine the data from the JSON file into the DataFrame loaded from the CSV file and save it in the variable `more_employees`.
    - Print the combined Dataframe and run the tests.
 
 ### **Task 3: Data Inspection - Using Head, Tail, and Info Methods**
@@ -72,7 +72,7 @@ Homework for this assignment is created within your `python_homework` folder.  C
 
 1. Create a DataFrame from `dirty_data.csv` file and assign it to the variable `dirty_data`.
    - Print it and run the tests.
-   - Create a copy of the dirty data in the varialble `clean_data` (use the `copy()` method).  You will use data cleaning methods to update `clean_data`.
+   - Create a copy of the dirty data in the variable `clean_data` (use the `copy()` method).  You will use data cleaning methods to update `clean_data`.
 
 2. Remove any duplicate rows from the DataFrame
    - Print it and run the tests.
@@ -83,7 +83,7 @@ Homework for this assignment is created within your `python_homework` folder.  C
 4. Convert `Salary` to numeric and replace known placeholders (`unknown`, `n/a`) with NaN
    - print it and run the tests.
 
-5. Fill missing numeric values (use `fillna`).  Fill `Age` which the mean and `Salary` with the median
+5. Fill missing numeric values (use `fillna`).  Fill `Age` with the mean and `Salary` with the median
    - Print it and run the tests
 
 6. Convert `Hire Date` to `datetime`
