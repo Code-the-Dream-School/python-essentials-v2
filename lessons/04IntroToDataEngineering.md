@@ -12,10 +12,10 @@ Topics:
 
 ## 4.1 Intro to Pandas
 
-**Pandas** is a very powerful, open-source library for data analysis and manipulation in Python. It's widely used for handling and analyzing data structures, particularly in tabular format. With Pandas, you can work easily with structured data, perform data cleaning, and conduct complex transformations.  You can read more about pandas [here](https://pandas.pydata.org/docs/index.html).
+**Pandas** is a very powerful, open-source library for data analysis and manipulation in Python. It's widely used for handling and analyzing data structures, particularly in tabular format. With Pandas, you can work effectively with structured data, perform data cleaning, and conduct complex transformations.  You can read more about pandas [here](https://pandas.pydata.org/docs/index.html).
 
 ### Why Use Pandas? 
-Pandas provides data structures like **DataFrames** and **Series** that make data manipulation in Python simpler and faster. It's well-suited for tasks that involve:
+Pandas provides data structures like **DataFrames** and **Series** that make data manipulation in Python more readable and efficient. It's well-suited for tasks that involve:
 
   * Loading data from different file formats (CSV, Excel, SQL, etc.)
   * Cleaning and transforming messy data
@@ -51,7 +51,7 @@ The numpy library provides highly optimized datatypes and numerical operations f
 **You should run all of the following code examples within the Python interactive shell.**  Start VSCode from within your `python_homework` directory, start a terminal within VSCode, and enter the `python` command to start it. Then run the following code:
 
 ```python
-# Creating a simple Series
+# Creating a Series
 import pandas as pd
 
 data = [1, 3, 5, 7, 9]
@@ -146,7 +146,7 @@ DataFrames are like tables in a database or spreadsheet. To create a DataFrame f
 ```python
 # Creating a DataFrame from a dict
 data = {
-    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Name': ['Amara', 'Yulia', 'Carlos'],
     'Age': [24, 27, 22],
     'City': ['New York', 'San Francisco', 'Chicago']
 }
@@ -158,18 +158,18 @@ The output should be:
 
 ```markdown
       Name  Age           City
-0    Alice   24       New York
-1      Bob   27  San Francisco
-2  Charlie   22        Chicago
+0    Amara   24       New York
+1      Yulia   27  San Francisco
+2  Carlos   22        Chicago
 ```
 
 One can also create a dataframe from a list of dicts:
 
 ```python
-data_alice = {'Name': 'Alice', 'Age': 24, 'City': 'New York'}
-data_bob = {'Name': 'Bob', 'Age': 27, 'City': 'San Francisco'}
-data_charlie = {'Name': 'Charlie', 'Age': 22, 'City': 'Chicago'}
-df = pd.DataFrame([data_alice, data_bob, data_charlie])
+data_Amara = {'Name': 'Amara', 'Age': 24, 'City': 'New York'}
+data_Yulia = {'Name': 'Yulia', 'Age': 27, 'City': 'San Francisco'}
+data_Carlos = {'Name': 'Carlos', 'Age': 22, 'City': 'Chicago'}
+df = pd.DataFrame([data_Amara, data_Yulia, data_Carlos])
 print(df)
 # output: same as before
 ```
@@ -194,7 +194,7 @@ DataFrames include an index.  The index provides a label for each row.  Again, t
 ### Common Operations in Pandas
 
 #### Reading Data
-Pandas makes it easy to read data from files. For instance, to read data from a CSV file: 
+Pandas effectively lets you read data from files. For instance, to read data from a CSV file: 
 
 ```python
 # Read data from a CSV file
@@ -206,7 +206,7 @@ The `concat` method can be used to combine two DataFrames.
 
 ```python
 data = pd.DataFrame({
-    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Name': ['Amara', 'Yulia', 'Carlos'],
     'Age': [24, 27, 22],
     'City': ['New York', 'San Francisco', 'Chicago']
 })
@@ -225,7 +225,7 @@ You can select entries, rows and columns from a DataFrame in various ways.
 ```python
 # Select an entry by index label and column
 print(df.loc[1,'Name'])
-# Output: Bob
+# Output: Yulia
 
 # Select an entry by position
 print(df.iloc[1, 1])
@@ -245,7 +245,7 @@ print(df[['Name', 'City']])
 When you select columns in this way, you obtain views or references to one or more columns in the DataFrame.
 - Each reference points to a Series.  Each Series has the same index labels as the DataFrame itself.
 - You should regard these views as read/only.  If you try to change the values in one of these series, you might get a warning, and it might not change the value in the original DataFrame.
-- The following is a bad practice:
+- The following is not best practice:
   ```python
   df['Age'][1] = 35
   ```
@@ -291,7 +291,7 @@ Handling missing data and cleaning data is essential in data analysis.  These ar
 import pandas as pd
 
 data = {
-    "Name": ["Alice", "Bob", "Charlie"],
+    "Name": ["Amara", "Yulia", "Carlos"],
     "Height": ["5.5", "unknown", "5.9"],  # "unknown" is not numeric
     "Weight": ["60", "70", "NaN"]        # "NaN" is a missing placeholder
 }
@@ -318,7 +318,7 @@ import pandas as pd
 import numpy as np
 
 data = {
-    "Person": ["Alice", "Bob", "Charlie", "Dana", "Eve"],
+    "Person": ["Amara", "Yulia", "Carlos", "Dana", "Eve"],
     "Score": [10, np.nan, 20, None, 25],
     "City": ["New York", "Chicago", None, "Boston", "NaN"]
 }
@@ -447,7 +447,7 @@ print(f"\nNumber of invalid dates converted to NaT: {num_invalid_dates}")
 
 ### Saving DataFrames to CSV Files
 
-Pandas makes it easy to save DataFrames as CSV files, which is useful for sharing, storing, or exporting data for later use. You can use the to_csv() method to save your DataFrame to a CSV file
+Pandas provides clear tools to save DataFrames as CSV files, which is useful for sharing, storing, or exporting data for later use. You can use the to_csv() method to save your DataFrame to a CSV file
 ```python
 DataFrame.to_csv(filepath, sep=',', index=True, header=True, encoding=None)
 ```
@@ -463,7 +463,7 @@ import pandas as pd
 
 # Create a sample DataFrame
 data = {
-    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Name': ['Amara', 'Yulia', 'Carlos'],
     'Age': [26, 31, 36],
     'City': ['New York', 'Los Angeles', 'Chicago'],
     'Salary': [70000, 80000, 90000]
@@ -479,18 +479,18 @@ Output File (employees.csv):
 
 ```sql
 Name,Age,City,Salary
-Alice,26,New York,70000
-Bob,31,Los Angeles,80000
-Charlie,36,Chicago,90000
+Amara,26,New York,70000
+Yulia,31,Los Angeles,80000
+Carlos,36,Chicago,90000
 
 ```
 ### 4.1. Videos: Installing and Using Pandas
 
-In these two videos, we'll walk through installing and using Pandas in Python. This is an important step! If you're still feeling confused, contact a 1:1 mentor to walk through Pandas.
+In these two videos, we'll walk through installing and using Pandas in Python. Complete this step before moving on. If you're still feeling confused, contact a 1:1 mentor to walk through Pandas.
 
 **[Video: What is Pandas? Why and How to Use in Python](https://youtu.be/dcqPhpY7tWk?feature=shared).**
 
-*Note: The above video demonstrates using Pandas with Jupytr notebook. If you would like a look at using Pandas in VS Code, take time to look at the video below as well.*
+*Note: The above video demonstrates using Pandas with Jupyter notebook. If you would like a look at using Pandas in VS Code, take time to look at the video below as well.*
 
 **[Video: Installing Pandas in VSCode](https://youtu.be/4WZK0eovQIA?feature=shared).**
 
@@ -528,7 +528,7 @@ Now that you have been introduced to the core components of Pandas, let's clarif
 
 1. Open your preferred AI chatbot.
 2. Explain in your own words the difference between a Series and a DataFrame.
-3. Use a simple analogy—for example, how a Series is like a single column in a spreadsheet, while a DataFrame is the entire table.
+3. Use an analogy — for example, how a Series is like a single column in a spreadsheet, while a DataFrame is the entire table.
 4. Ask the AI to give you feedback on your explanation.
 
 **Example prompt:** "I am learning Pandas. Here is my understanding of the difference between a Series and a DataFrame: [your explanation]. Does this accurately describe their relationship and dimensions?"
@@ -537,11 +537,11 @@ Great work! With these basics, you can now start using Pandas for various data m
 
 ## 4.2 Loading Data in Pandas
 
-Pandas provides convenient methods for loading data from various sources, such as CSV and JSON files, as well as Python dictionaries. This makes it easy to get your data into a format where you can start analyzing it.
+Pandas provides convenient methods for loading data from various sources, such as CSV and JSON files, as well as Python dictionaries. This lets you get your data into a format where you can start analyzing it.
 
 ### Reading Data from a CSV File
 
-As you recall from Lesson 2, **CSV** (Comma-Separated Values) is one of the most common data formats, especially for tabular data. Pandas makes it simple to read and manipulate CSV files.
+As you recall from Lesson 2, **CSV** (Comma-Separated Values) is one of the most common data formats, especially for tabular data. Pandas provides tools to read and manipulate CSV files.
 
 #### Example: Reading a CSV File
 
@@ -581,20 +581,20 @@ df = pd.read_json('data.json')
 print(df.head())
 ```
 
-The JSON structure should be either a list of dictionaries (each representing a row) or a dictionary of lists (each representing a column). Here’s two examples of JSON data that can be read into a DataFrame:
+The JSON structure should be either a list of dictionaries (each representing a row) or a dictionary of lists (each representing a column). Here are two examples of JSON data that can be read into a DataFrame:
 
 ```json
 [
-    {"Name": "Alice", "Age": 24, "City": "New York"},
-    {"Name": "Bob", "Age": 27, "City": "San Francisco"},
-    {"Name": "Charlie", "Age": 22, "City": "Chicago"}
+    {"Name": "Amara", "Age": 24, "City": "New York"},
+    {"Name": "Yulia", "Age": 27, "City": "San Francisco"},
+    {"Name": "Carlos", "Age": 22, "City": "Chicago"}
 ]
 ```
 
 The same DataFrame can be read using this JSON structure.  It's a bit simpler since it doesn't repeat the column names.
 
 ```json
-{ "Name": ["Alice", "Bob", "Charlie"],
+{ "Name": ["Amara", "Yulia", "Carlos"],
   "Age": [25, 30, 35],
   "City": ["New York", "Los Angeles", "Chicago"]
 }
@@ -632,16 +632,16 @@ If the file contains:
 
 ```sql
 Name|Age|City
-Alice|30|New York
-Bob|25|Los Angeles
+Amara|30|New York
+Yulia|25|Los Angeles
 ```
 
 The output will be:
 
 ```markdown
     Name  Age         City
-0  Alice   30     New York
-1    Bob   25  Los Angeles
+0  Amara   30     New York
+1    Yulia   25  Los Angeles
 ```
 
 ### Example 2: Writing a CSV File with a Custom Separator
@@ -651,7 +651,7 @@ You can export a DataFrame using a custom delimiter instead of the default comma
 ```python
 # Create a sample DataFrame
 df = pd.DataFrame({
-    "Name": ["Alice", "Bob"],
+    "Name": ["Amara", "Yulia"],
     "Age": [30, 25],
     "City": ["New York", "Los Angeles"]
 })
@@ -664,8 +664,8 @@ The output file `output.tsv` will look like this:
 
 ```sql
 Name	Age	City
-Alice	30	New York
-Bob	25	Los Angeles
+Amara	30	New York
+Yulia	25	Los Angeles
 ```
 
 #### Why Use `sep`?
@@ -684,7 +684,7 @@ If you have a dictionary where keys represent column names and values represent 
 ```python
 # Create a dictionary
 data = {
-    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Name': ['Amara', 'Yulia', 'Carlos'],
     'Age': [24, 27, 22],
     'City': ['New York', 'San Francisco', 'Chicago']
 }
@@ -698,9 +698,9 @@ This will output:
 
 ```markdown
       Name  Age           City
-0    Alice   24       New York
-1      Bob   27  San Francisco
-2  Charlie   22        Chicago
+0    Amara   24       New York
+1      Yulia   27  San Francisco
+2  Carlos   22        Chicago
 ```
 
 ### Summary of Methods
@@ -740,7 +740,7 @@ This will output:
 
 </details>
 
-### 4.2 AI Prompt: Predict-then-Cheeck
+### 4.2 AI Prompt: Predict-then-Check
 Let’s test your understanding of how custom indexes work in Pandas. Remember that indexes are not the same as row numbers. Study this code without running it:
 
 ```python
@@ -777,7 +777,7 @@ import pandas as pd
 
 # Load some sample data
 df = pd.DataFrame({
-    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank'],
+    'Name': ['Amara', 'Yulia', 'Carlos', 'David', 'Eve', 'Frank'],
     'Age': [24, 27, 22, 32, 29, 41],
     'City': ['New York', 'San Francisco', 'Chicago', 'Los Angeles', 'Houston', 'Seattle']
 })
@@ -790,9 +790,9 @@ This will output:
 
 ```markdown
       Name  Age           City
-0    Alice   24       New York
-1      Bob   27  San Francisco
-2  Charlie   22        Chicago
+0    Amara   24       New York
+1      Yulia   27  San Francisco
+2  Carlos   22        Chicago
 ```
 
 #### Example: Using `tail()`
