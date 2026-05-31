@@ -15,7 +15,7 @@ In this assignment, you will practice key Python concepts including:
 
 ### **Setup**
 
-Your homework for this and some future assignments will use a special python homework repository, so that it can be submitted using git.  That repository is [here.](https://github.com/Code-the-Dream-School/python_homework)  Click on the link, and carefully **follow the instructions in the README**.  You will then have your own copy of the repository, connected to your GitHub account.  You create the program files for the homework in the root of that repository.  For each assignment, you create a separate git branch (e.g. `git checkout -b lesson1`).  When you have completed your assignment, you add and commit your changes in that branch, push it to your GitHub, and create a pull request for that branch from your lesson branch (as the compare) to main branch (as the base).  You provide a link to that pull request when you submit your homework.  Your instructor will review it, approving or requesting changes.  Once your instructor has approved the pull request, you can merge it so that your lesson work gets updated to the main branch.  The reason for this workflow is to mimic what's done in the industry of making features and fixes on separate branches before testing/checking it.  Once the code is tested and checked by a supervisor/review process, the code gets merged to a production branch (in this case your main branch) so the users will see updates.
+Your homework for this and some future assignments will use a special python homework repository, so that it you can submit using git.  That repository is [here.](https://github.com/Code-the-Dream-School/python_homework)  Click on the link, and carefully **follow the instructions in the README**.  You will then have your own copy of the repository, connected to your GitHub account.  You create the program files for the homework in the root of that repository.  For each assignment, you create a separate git branch (e.g. `git checkout -b lesson1`).  When you have completed your assignment, you add and commit your changes in that branch, push it to your GitHub, and create a pull request for that branch from your lesson branch (as the compare) to main branch (as the base).  You provide a link to that pull request when you submit your homework.  Your instructor will review it, approving or requesting changes.  Once your instructor has approved the pull request, you can merge it so that your lesson work gets updated to the main branch.  The reason for this workflow is to mimic what's done in the industry of making features and fixes on separate branches before testing/checking it.  Once the code is tested and checked by a supervisor/review process, the code merges into a production branch (in this case your main branch) so the users will see updates.
 
 ### **Step 1: Complete the Coding Tasks**  
 
@@ -61,7 +61,7 @@ Write a greet function.  It takes one argument, a name, and returns `Hello, Name
 - Write a calc function.  It takes three arguments.  The default value for the third argument is "multiply".  The first two arguments are values that are to be combined using the operation requested by the third argument, a string that is one of the following add, subtract, multiply, divide, modulo, int_divide (for integer division) and power.  The function returns the result.
 - Error handling: When the function is called, it could ask you to divide by 0. That will throw an exception: Which one?  You can find out by triggering the exception in your program or in the Python Interactive Shell.  Wrap the code within the calc function in a try block, and put in an except statement for this exception.  If the exception occurs, return the string "You can't divide by 0!".  
 - More error handling: When the function is called, the parameters that are passed might not work for the operation.  For example, you can't multiply two strings.  Find out which exception occurs, catch it, and return the string "You can't multiply those values!".
-- Here's a tip.  You have to do different things for add, multiply, divide and so on.  So you can do a conditional cascade, if/elif/elif/else.  That's perfectly valid.  But you might want to use the match-case Python statement instead.  Look it up!  It just improves code appearance.
+- Tip:  You have to do different things for add, multiply, divide and so on.  So you can do a conditional cascade, if/elif/elif/else.  That's perfectly valid.  But you might want to use the match-case Python statement instead.
 
 Again, as you complete each function, you run the test to see whether everything is correct.
 
@@ -75,26 +75,26 @@ Again, as you complete each function, you run the test to see whether everything
 
 ### **Task 5: Grading System, Using `*args`** 
 - Create a grade function.  It should collect an arbitrary number of parameters, compute the average, and return the grade.
-based on the following scale:  
+based on the following scale, popular in American schools:  
    - A: 90 and above  
    - B: 80-89  
    - C: 70-79  
    - D: 60-69  
    - F: Below 60  
-- When you use `*args` you get access to a variable named `args` in your function, which is a tuple, an ordered collection of values like a list.  You'll learn more about tuples and lists in the next lesson.  There are some helpful functions you can use at this point: `sum(args)`, `len(args)`, and so on.  One of the curiosities of Python is that these are not methods of any class.  They are just standalone functions.
-- Handle the error that occurs if the parameters are nonsense.  Return the string "Invalid data was provided." in this case.  (Typically, you don't handle every possible exception in your error handling, except if the values in the parameters comes from the end user.)
+- When you use `*args` you get access to a variable named `args` in your function, which is a tuple, an ordered collection of values like a list.  You'll learn more about tuples and lists in the next lesson.  There are some helpful functions you can use at this point: `sum(args)`, `len(args)`, and so on.  One of the curiosities of Python is that these are not methods of any class.  They are standalone functions.
+- Handle the error that occurs if the parameters are nonsense.  Return the string "Invalid data was provided." in this case.  (Typically, you don't handle every possible exception in your error handling, except if the values in the parameters come from the end user.)
 
 ---
 
 ### **Task 6: Use a For Loop with a Range**  
 - Create a function called repeat.  It takes two parameters, a string and a count, and returns a new string that is the old one repeated count times.
-- You can get the test to pass by just returning `string * count`.  That would produce the correct return value.  But, for this task, do it using a for loop and a range.
+- You could return string * count to pass the test — but for this task, use a for loop and a range.
 
 ---
 
 ### **Task 7: Student Scores, Using `**kwargs`**  
 
-- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "mean".  If it is "best", the name of the student with the higest score is returned.  If it is "mean", the average score is returned.
+- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "mean".  If it is "best", the name of the student with the highest score is returned.  If it is "mean", the average score is returned.
 - As you are using `**kwargs`, your function can access a variable named `kwargs`, which is a dict.  The next lesson explains about dicts.  What you need to know now is the following:
    - A dict is a collection of key value pairs.
    - You can iterate through the dict as follows:
@@ -110,10 +110,10 @@ based on the following scale:
 
 - Create a function called titleize.  It accepts one parameter, a string.  The function returns a new string, where the parameter string is capitalized as if it were a book title.
 - The rules for title capitalization are: (1) The first word is always capitalized. (2) The last word is always capitalized. (3) All the other words are capitalized, except little words.  For the purposes of this task, the little words are "a", "on", "an", "the", "of", "and", "is", and "in".
-- The following string methods may be helpful: split(), join(), and capitalize().  Look 'em up.
+- The following string methods may be helpful: split(), join(), and capitalize().
 - The split() method returns a list. You might store this in the `words` variable.  `words[-1]` gives the last element in the list.
 - The `in` comparison operator: You have seen `in` used in loops.  But it can also be used for comparisons, for example to check to see if a substring occurs in a string, or a value occurs in a list.
-- A new trick: As you loop through the words in the `words` list, it is helpful to have the index of the word for each iteration.  You can access that index using the enumerate() function:
+- Useful pattern: As you loop through the words in the `words` list, it is helpful to have the index of the word for each iteration.  You can access that index using the enumerate() function:
 ```python
 for i, word in enumerate(words):
 ```
