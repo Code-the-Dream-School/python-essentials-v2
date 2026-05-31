@@ -11,14 +11,16 @@
 3. Data Types & Datetime (`astype`, `to_numeric`, `to_datetime`)
 4. Validation (ranges / allowed values)
 5. Duplicates (`duplicated`, `drop_duplicates`)
-6. Outliers (simple rules; median/IQR concept)
+6. Outliers (simple rules; median concept)
 7. Text Standardization & Regex (`lower/strip`, `replace` vs `map`, `str.contains`/`str.extract`/`str.replace`, `filter(regex=...)`)
 8. Handling Inconsistent Data (normalize text; brief fuzzy-matching note)
 ---
 
 ## What is Data Cleaning?
 
-Garbage in → garbage out. Cleaning prepares messy, real-world data so analysis is trustworthy.
+A popular tech cliché is: "Garbage in → garbage out." This means that the quality of your analysis depends on the quality of your data. Unreliable inputs produce unreliable outputs. 
+
+Cleaning prepares messy, real-world data so analysis is trustworthy.
 
 - **Standardize:** consistent formats (dates, phones, casing).
 - **Handle missing values:** drop vs fill (mean/median/constant/ffill/bfill).
@@ -33,7 +35,7 @@ Optional: [3-min intro video](https://www.youtube.com/watch?v=WpX2F2BS3Qc)
 
 ### Overview
 
-Missing data is common in datasets and can significantly affect the outcome of analyses if not handled properly. In Pandas, there are methods to identify and handle missing data, either by removing rows or by filling in the missing values. Correctly managing missing data is crucial for ensuring accurate results.
+Missing data is common in datasets and can significantly affect the outcome of analyses if not handled properly. In Pandas, there are methods to identify and handle missing data, either by removing rows or by filling in the missing values. Correctly managing missing data leads to accurate results.
 
 ### Key Methods
 
@@ -55,7 +57,7 @@ Missing data is common in datasets and can significantly affect the outcome of a
 import pandas as pd
 
 # Sample DataFrame with missing values
-data = {'Name': ['Alice', 'Bob', None, 'David'],
+data = {'Name': ['Amara', 'Yulia', None, 'David'],
         'Age': [24, 27, 22, None],
         'Score': [85, None, 88, 76]}
 df = pd.DataFrame(data)
@@ -112,7 +114,7 @@ Get columns into the right types so everything else works (math, comparisons, jo
 import pandas as pd
 
 # Sample DataFrame with mixed data types
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
+data = {'Name': ['Amara', 'Yulia', 'Charlie'],
         'Age': ['24', '27', '22'],
         'JoinDate': ['2023-01-15', '2022-12-20', '2023-03-01']}
 df = pd.DataFrame(data)
@@ -176,7 +178,7 @@ Duplicate records can inflate metrics and skew results. Removing duplicates ensu
 import pandas as pd
 
 # Sample DataFrame with duplicates
-data = {'Name': ['Alice', 'Bob', 'Alice', 'David'],
+data = {'Name': ['Amara', 'Yulia', 'Amara', 'David'],
         'Age': [24, 27, 24, 32],
         'Score': [85, 92, 85, 76]}
 df = pd.DataFrame(data)
@@ -240,7 +242,7 @@ import pandas as pd
 
 # Sample DataFrame
 
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
+data = {'Name': ['Amara', 'Yulia', 'Charlie'],
         'Location': ['LA', 'LA', 'NY'],
         'JoinDate': ['2023-01-15', '2022-12-20', '2023-03-01']}
 df = pd.DataFrame(data)
@@ -281,7 +283,7 @@ Here is another case.  Suppose we have a list of people's phone numbers, but the
 
 ```python
 import pandas as pd
-data = {'Name': ['Tom', 'Dick', 'Harry', 'Mary'], 'Phone': [3212347890, '(212)555-8888', '752-9103','8659134568']}
+data = {'Name': ['Tomás', 'Priya', 'Taiwo', 'Mary'], 'Phone': [3212347890, '(212)555-8888', '752-9103','8659134568']}
 df = pd.DataFrame(data)
 df['Correct Phone'] = df['Phone'].astype(str)
 
@@ -307,7 +309,7 @@ In the code above, the 'Phone' column is preserved, in case there is useful info
 
 import pandas as pd
 
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
+data = {'Name': ['Amara', 'Yulia', 'Charlie'],
 	'Age': [20, 22, 43]}
 
 df = pd.DataFrame(data)

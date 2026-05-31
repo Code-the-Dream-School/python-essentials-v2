@@ -19,7 +19,7 @@ Until now we have been following principles of *functional programming*: writing
 > If you want to go a little deeper, there is a nice overview of OOP at [Real Python](https://realpython.com/python3-object-oriented-programming/). 
 
 ### Basic class definition
-Let’s look at a very simple example — a class that represents dogs:
+Let’s look at a very concrete example — a class that represents dogs:
 
 ```python
 class Dog:
@@ -53,10 +53,10 @@ In the above, we have:
 - Notice that we were able to modify `dog2`'s age -- there is nothing truly private about the data stored in an object's attributes. We will say more about this below. 
 
 #### What is `self`?
-Within a class definition, `self` refers to the current instance of the class — the specific object the method is being called on. It can be a little confusing because when *defining* a method it is always the first parameter, but you don’t actually pass it in as a parameter when invoking the method; Python does that automatically behind the scenes. For instance, above we have `dog1.call_dog()`, which doesn't include the `self` argument explicitly. 
+Within a class definition, `self` refers to the current instance of the class — the specific object the method is being called on. It can be a little confusing because when *defining* a method it is always the first parameter, but you don’t actually pass it in as a parameter when invoking the method. Instead, Python does that automatically behind the scenes. For instance, above we have `dog1.call_dog()`, which doesn't include the `self` argument explicitly. 
 
 ### Expanding the class: class attributes and class methods
-We can add more bells and whistles to our simple Dog class. For example, suppose we want to count how many dogs have been created. Instead of storing that information in each individual dog, we can store it once at the class level:
+We can add more features to our simple Dog class. For example, suppose we want to count how many dogs have been created. Instead of storing that information in each individual dog, we can store it once at the class level:
 
 ```python
 class Dog:
@@ -204,7 +204,7 @@ Another nice feature is that while `area` and `diameter` are calculated using me
 c.radius = 5
 print(c.area)
 ```
-You didn't have to re-assign anything: `area` (and `diamater`) are always recalculated based on the current radius. 
+You didn't have to re-assign anything: `area` (and `diameter`) are always recalculated based on the current radius. 
 
 `@property` and `@classmethod` are built-in Python decorators -- Python itself provides this functionality. Below, we will discuss how to write your own decorators. 
 
@@ -281,7 +281,7 @@ print_name = my_decorator(print_name)
 ```
 Decorators let you add behavior to a function without modifying its original code. You didn’t have to touch `print_name()` -- you just wrapped it.
 
-In this example the function is fairly trivial, however in the next section we can dig into some more useful examples. 
+In this example the function is intentionally minimal, however in the next section we can dig into some more useful examples. 
 
 ### Decorator that will work with any function
 
@@ -314,7 +314,7 @@ In more detail:
 - Inside the wrapper, we:
   - Record the start time
   - Call the original function (`func(*args, **kwargs)`)
-  - Record the end time and complute the elapsed time.
+  - Record the end time and compute the elapsed time.
   - Print the elapsed time.
 - Why did we use `*args` and `**kwargs`? Those let the decorator work with *any* function, no matter how many arguments it takes. `*args` captures positional arguments, while `**kwargs` captures keyword arguments. This flexibility makes the wrapper reusable for any function. Go ahead and try it for other functions.
   
@@ -364,7 +364,7 @@ Decorators are often used in another way.  They register a function that is to b
 )
 def update_graph(symbol):
 ```
-The `app.callback` method runs before `update_graph()` is ever called.  It records the fact that `update_graph()`, as wrappered by the `app.callback` wrapper function, is to be called whenever the stock dropdown changes.  You could do something like this, registering the functions to be wrapped, as follows:
+The `app.callback` method runs before `update_graph()` is ever called.  It records the fact that `update_graph()`, as wrapped by the `app.callback` wrapper function, is to be called whenever the stock dropdown changes.  You could do something like this, registering the functions to be wrapped, as follows:
 
 ```python
 callback_dict={}
@@ -391,7 +391,7 @@ print(callback_dict["for_hello"]()) # Will print "begin:Hello, World!:end"
 print(callback_dict["for_goodbye"]()) # Will print "begin:Goodbye, World!:end"
 ```
 
-Here, the decorated functions, in their wrappered form, get registered for callbacks in `callback_dict`.  This similar to what Dash does when you use the decorator `@app.callback`.
+Here, the decorated functions, in their wrapped form, get registered for callbacks in `callback_dict`.  This is similar to what Dash does when you use the decorator `@app.callback`.
 
 ### AI Learning Prompt: Predict-then-Check
 
@@ -462,7 +462,7 @@ for y in odd_squares_generator:
 
 ## **3.4 Python Closures**
 
-A Python closure is a way of wrappering information by returning a function that has access to that information.  This provides some protection for the stuff you wrapper.  For example:
+A Python closure is a way of wrapping information by returning a function that has access to that information.  This provides some protection for the stuff you wrapper.  For example:
 
 ```python
 def make_secret(secret):
@@ -481,7 +481,7 @@ game1("swordfish") # Prints you got it
 game2("magic") # Prints you got it
 ```
 
-Of course, the wrappered function could also store data, but you may need the `nonlocal` keyword.  This makes the variable still wrappered within the outer function, but accessible within the inner function:
+Of course, the wrapped function could also store data, but you may need the `nonlocal` keyword.  This makes the variable still wrapped within the outer function, but accessible within the inner function:
 ```python
 def make_secret(secret):
     bad_guesses = 0

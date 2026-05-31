@@ -49,7 +49,7 @@ You are using your own repository for both the lesson and the assignment. Do the
     pip install -r requirements.txt
     ```
 8. Do `VSCode .`.  Bring up VSCode command palette (Ctrl-Shift-P) and select Python: Select Interpreter.  Select the one with `.venv`.  Close any VSCode terminal sessions and start a new one.  You should see in the command prompt that `.venv` is active.
-9. On GitHub, create a new public repository called python-assignment11.  Do not create a README.md or .gitignore or license.  Copy the URL of the repository.  You can use either the HTTL or SSH URL, depending on your preference.  Set the remote for the repository, and push your code.
+9. On GitHub, create a new public repository called python-assignment11.  Do not create a README.md or .gitignore or license.  Copy the URL of the repository.  You can use either the HTTPS or SSH URL, depending on your preference.  Set the remote for the repository, and push your code.
     ```bash
     git remote add origin <url>
     git add -A
@@ -65,7 +65,7 @@ For the following code examples, you create programs in the `assignment11` folde
 ## **11.1 Plotting with Pandas**
 
 ### **Overview**
-Pandas simplifies data visualization by providing built-in plotting methods for DataFrames and Series. These plots are ideal for quick data exploration and basic visualizations.
+Pandas includes built-in plotting methods for DataFrames and Series. These plots are ideal for quick data exploration and basic visualizations.
 
 ### **Key Plot Types:**
 - **Line Plot:** Displays trends over time or continuous data.
@@ -125,7 +125,7 @@ fig.write_html("iris.html", auto_open=True)
 
 # Do not try fig.show()!  This sometimes works, but usually it just hangs.
 ```
-Try it out!  The interactive plot comes up in your browser, and you can hover over data points zoom, select, etc.  The HTML file (with lots of embedded JavaScript) can be used in other contexts.exit
+Try it out!  The interactive plot comes up in your browser, and you can hover over data points zoom, select, etc.  The HTML file (with lots of embedded JavaScript) can be used in other contexts.
 
 ### **Key Features of Plotly:**
 - **Interactivity:** Hover tooltips, zooming, and panning.
@@ -159,11 +159,11 @@ Topics:
 
 ## What is Streamlit?
 
-Streamlit is a Python library that makes it easy to create custom web apps for machine learning and data science. It turns data scripts into shareable web apps in minutes, not weeks.
+Streamlit is a Python library that lets you build custom web apps for machine learning and data science.
 
 ### Key Features
-* Simple Python-first syntax
-* Rich set of UI components
+* Python-first syntax
+* Rich set of UI (user interface) components
 * Easy integration with data science libraries
 * Quick deployment options
 
@@ -206,14 +206,14 @@ streamlit run app.py
 ```
 Open your browser to http://localhost:8501 to view your app.
 
-Note: Any time you change a value in one of the input components, go to the browser tab and refresh ,Streamlit  reruns the entire script from top to bottom using the updated values. This means your app always reflects the latest state .
+Note: Any time you change a value in one of the input components, go to the browser tab and refresh, Streamlit  reruns the entire script from top to bottom using the updated values. This means your app always reflects the latest state .
 You can refresh the tab manually, or use the “Always rerun” option in the top-right of the Streamlit page for instant updates as you code.
 
 ## Exercise 2: Data Input Components
 ```python
 # Text input
 st.header("Section 2")  # A new section to group interactive input components
-name = st.text_input("Enter your name", "John Doe")  # Simple text field with a default value
+name = st.text_input("Enter your name", "Amara Diallo")  # Simple text field with a default value
 description = st.text_area("Description", "Write something...")  # Multi-line text box for longer input
 
 # Numeric input
@@ -235,9 +235,9 @@ if st.button("Click me"):  # A button that runs code when clicked
 if st.checkbox("Show/Hide"):  # Checkbox to toggle something on/off
     st.write("Visible content")  # Displays this text only if the box is checked
 ```
-- you can again now refresh your tab in browser to see the updated output.
+- You can again refresh your tab in browser to see the updated output.
 
-Note:Unlike dropdowns or sliders (which always keep a selected value), buttons in Streamlit are "stateless" — they don’t hold their state after being clicked. Instead, Streamlit checks whether the button was pressed during that specific run of the script. That’s why we use an if statement with them.
+Note: Unlike dropdowns or sliders (which always keep a selected value), buttons in Streamlit are "stateless" — they don’t hold their state after being clicked. Instead, Streamlit checks whether the button was pressed during that specific run of the script. That’s why we use an if statement with them.
 
 Also, clicking a button triggers a full rerun of the script, just like other controls.
 
@@ -249,7 +249,7 @@ Streamlit renders output in the order the code runs — so the st.write() here a
 In this section, you’ll learn how to organize your app using columns, expanders, and a sidebar.
 
 Continue working in the same app.py file you created earlier. You can either:
--Append the new code at the bottom of the file
+- Append the new code at the bottom of the file
 
 
 
@@ -327,12 +327,13 @@ bar_chart = px.bar(df, x='Product', y=['Sales', 'Profit'], barmode='group')  # G
 st.plotly_chart(bar_chart)  # Render the chart in the app
 ```
 
-in your terminal execute
+in your terminal, execute:
+
 ```bash
 streamlit run dashboard_app.py
 ```
 
-Once you hvae completed the Streamlit lesson, add and commit the folder and files created.
+Once you have completed the Streamlit lesson, add and commit the folder and files created.
 
 ## Conclusion
  You now know how to:
@@ -345,7 +346,7 @@ Once you hvae completed the Streamlit lesson, add and commit the folder and file
 Streamlit is a way of creating a web based dashboard for data presentation.
 
 Advantages of Streamlit:
-- Pretty easy as compared with other methods like Dash, etc.
+- Requires less setup than comparable tools like Dash
 
 Disadvantages:
 - Not as widely used (though gaining popularity)

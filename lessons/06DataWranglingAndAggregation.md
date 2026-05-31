@@ -6,7 +6,7 @@
 
 
 ### **Topics:**
-1. Pandas Review (Optional): Recap of Series, DataFrames, and key methods from Lesson 3.
+1. Pandas Review (Optional): Recap of Series, DataFrames, and key methods from Lesson 4.
 2. Data Selection: Selecting subsets with `.loc[]`, `.iloc[]`, `.at[]`, and `.iat[]`; filtering rows by conditions; applying string methods.
 3. Data Aggregation: Grouping data with `groupby()`; applying functions like `sum()`, `mean()`, and `count()`; using `agg()` for multiple aggregations.
 4. Pivot Tables: Reshaping and summarizing datasets with `pd.pivot_table()` for multi-level and cross-tab reporting.
@@ -79,7 +79,7 @@ print(df.loc[[0,2]]) # This prints row 0 and row 2.  You specify a list of the r
 ```
 In each of the cases above, what is returned is a new DataFrame that is a subset of the old one.
 
-One can also specify a filter.  For example:
+You can also specify a filter.  For example:
 
 ```python
 print(df[df['Age'] > 24])
@@ -184,7 +184,7 @@ result1 = df.groupby('Category').agg({'Values': 'sum'})
 # or
 result2 = df.groupby('Category').agg({'Values': ['sum', 'mean', 'count']})
 ```
-If you print out result1 and result2, you'll see that they look different.  The result2 DataFrame has column headers with several rows, because 3 columns are needed for Values aggregation, one for some, one for mean, and one for count.  The column names in this case are tuples, such as `("Values","sum").
+If you print out result1 and result2, you'll see that they look different.  The result2 DataFrame has column headers with several rows, because 3 columns are needed for Values aggregation: one for sum, one for mean, and one for count.  The column names in this case are tuples, such as `("Values","sum").
 
 In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
 
@@ -214,7 +214,7 @@ data = [{'Employee': 'Jones', 'Product': 'Widget', 'Region': 'West', 'Revenue': 
 sales = pd.DataFrame(data)
 print(sales)
 ```
-Ok, all the information is here, but it is not organized as the CFO would like.  You have already learned one way to summarize the data, using groupby().  Another is to use pivot tables.  Here are three examples:
+All the information is here, but it is not organized as the CFO would like.  You have already learned one way to summarize the data, using groupby().  Another is to use pivot tables.  Here are three examples:
 
 ```python
 sales_pivot1 = pd.pivot_table(sales,index=['Product','Region'],values=['Revenue'],aggfunc='sum',fill_value=0)
@@ -258,7 +258,7 @@ The merged DataFrame has the columns from both DataFrames.  In this case the key
 
 Suppose that the two DataFrames also both have an 'Age' column.  You end up with an `Age_x` and an `Age_y` columns, where the renaming is done to prevent collision.  There are ways to choose which one you want to keep.
 
-This is an inner merge.  That means you get only the rows where the ID values match.  One could specify a `how` value of 'left', 'right', or 'outer'.  'left' means include all rows from the left DataFrame, along with matching rows from the right DataFrame.  'right' means the converse.  And 'outer' means include all rows, matching up the ones for which the 'ID' is the same.  When using 'left', 'right', or 'outer', you get `NaN` values in the columns to be added for rows that don't match up.
+This is an inner merge.  That means you get only the rows where the ID values match.  You could specify a `how` value of 'left', 'right', or 'outer'.  'left' means include all rows from the left DataFrame, along with matching rows from the right DataFrame.  'right' means the converse.  And 'outer' means include all rows, matching up the ones for which the 'ID' is the same.  When using 'left', 'right', or 'outer', you get `NaN` values in the columns to be added for rows that don't match up.
 ### Merging on Multiple Columns
 
 Sometimes you need to merge two DataFrames based on multiple columns. This is useful when you have composite keys or want to match on more than one condition.
@@ -315,7 +315,7 @@ Now that you have explored different ways to combine datasets, let's clarify you
 
 ## **6.6 Data Transformation**
 
-While one can do transformation of the DataFrame as a whole, for the moment we will focus on approaches that do it one column at a time.  You can add, replace, or delete a column of a DataFrame at any time.
+While you can do transformation of the DataFrame as a whole, for the moment we will focus on approaches that do it one column at a time.  You can add, replace, or delete a column of a DataFrame at any time.
 
 ```python
 joined_df['bogus']=['x','y','z','w'] # adds a column
@@ -361,12 +361,13 @@ per_employee_sales['Commission Percentage'] = [0.12, 0.09, 0.1]
 per_employee_sales['Commission'] = per_employee_sales['Revenue'] * per_employee_sales['Commission Percentage']
 print(per_employee_sales)
 ```
-Ok, so far so good.  But suppose the combination rules are a little more complicated.  Consider this case:
+Suppose the combination rules are more complicated than this example.  Consider this case:
+
 ```python
 per_employee_sales=sales.groupby('Employee').agg({'Revenue':'sum'})
 per_employee_sales['Commission Plan'] = ['A', 'A', 'B']
 ```
-Sales employees on commission plan A get $1000 for the first 10000 in revenue, and 5% for revenue over 10000.  Everyone else gets $1400 for the first 10000 in revenue, but 4% for revenue over 10000.  All employees get zip if they don't get at least 10000 in revenue. You use apply(), and you specify `axis=1` to request the entire row.  You pass a function to apply(), and the function is called once per row.  As follows:
+Sales employees on commission plan A get $1000 for the first 10000 in revenue, and 5% for revenue over 10000.  Everyone else gets $1400 for the first 10000 in revenue, but 4% for revenue over 10000.  All employees get nothing if they don't get at least 10000 in revenue. You use apply(), and you specify `axis=1` to request the entire row.  You pass a function to apply(), and the function is called once per row.  As follows:
 ```python
 def calculate_commission(row):
     if row['Revenue'] < 10000:
@@ -427,7 +428,7 @@ Handling categorical data involves encoding non-numeric values, which is especia
 
 ### **Why Handle Categorical Data?**
 - Many machine learning algorithms require numerical data, so we need some way to convert categories into numbers.
-- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically: with [one hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent: this is a very popular technique in machine learning. 
+- Proper encoding helps preserve the categorical structure in the data. There are different ways to represent categorical data numerically [One hot encoding](https://www.datacamp.com/tutorial/one-hot-encoding-python-tutorial) each category is represented in a binary fashion as present or absent. This is a very popular technique in machine learning. 
 - In pandas, one-hot-encoding is implemented with the `get_dummies()` function. 
 
 ### **Code Example:**
@@ -448,7 +449,7 @@ print(df_encoded)
 
 ### **Explanation:**
 - **Label Encoding** maps the `Color` column's categories to integer values.
-- **One-Hot Encoding** use the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
+- **One-Hot Encoding** uses the `get_dummies()` function to create binary columns for each unique value in the `Color` column. 
 
 
 ## 6.10 Feature Engineering (binning)

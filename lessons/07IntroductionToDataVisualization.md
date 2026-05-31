@@ -129,14 +129,14 @@ plt.show()
 ## **7.3 Introduction to Seaborn**
 
 ### **Overview**
-Seaborn is a powerful Python visualization library built on top of Matplotlib. It simplifies the creation of complex statistical plots and integrates well with Pandas DataFrames. Seaborn provides better default aesthetics for some plots, making them visually appealing with minimal effort.
+Seaborn is a powerful Python visualization library built on top of Matplotlib. It simplifies the creation of complex statistical plots and integrates well with Pandas DataFrames. Seaborn provides better default aesthetics for some plots, making them visually appealing with by default.
 
 ### **Key Plot Types:**
 1. **Heatmap:** Visualizes correlation or relationships in tabular data.
     As was discussed in an earlier lesson, there might be a correlation between variables in a dataset.  Correlations are typically expressed as a number between -1.0 and 1.0.  A strong positive correlation is a positive number that is above, say, 0.3.  For people, there is a positive correlation between height and weight, for example.  A strong negative correlation is a negative number that is less than, say, -0.3.  For gas powered cars, there is a negative correlation between engine displacement and miles per gallon.  Even small correlations may be statistically meaningful if you have enough accurate measurements.  The heat map presents the correlations as a grid, where the positive correlations might be redder and the negative correlations might be bluer.
 
 2. **Pair Plot:** Displays pairwise relationships between multiple variables.
-    One form of the pair plot is the scatter plot.  Each dot on the plot represents one observation.  If there is a good correlation between the paired values, the points may line up.  You can also give a color for each dot, depending on the value of yet another column.  In the case of vehicles, you might have vehicle weight plotted vs. miles per gallon, and then you might have the dots colored by horsepower.  For a given horsepower, the mpg vs. vehicle weight might line up, but then you'd have high horsepower cars that are off of this line in one direction, indicated by a particular color.  One can customise the plot in various ways, such as by showing countour lines instead of individual dots.
+    One form of the pair plot is the scatter plot.  Each dot on the plot represents one observation.  If there is a good correlation between the paired values, the points may line up.  You can also give a color for each dot, depending on the value of yet another column.  In the case of vehicles, you might have vehicle weight plotted vs. miles per gallon, and then you might have the dots colored by horsepower.  For a given horsepower, the mpg vs. vehicle weight might line up, but then you'd have high horsepower cars that are off of this line in one direction, indicated by a particular color.  You can customize the plot in various ways, such as by showing contour lines instead of individual dots.
 
 ### **When to Use:**
 - **Heatmap**: Ideal for visualizing **correlations** or **relationships** in matrix-style data, such as the correlation between different features in a dataset.
@@ -145,7 +145,7 @@ Seaborn is a powerful Python visualization library built on top of Matplotlib. I
 For the example below, you use the Titanic dataset.  This dataset is built into Seaborn, so you can do sns.load_dataset().  In more typical cases, you load CSV files using pandas.  The Titanic dataset has the following columns:
 
 - survived: True or False.
-- pclass: Passenger class, meaning what kind of ticket or accomodation the passenger had.
+- pclass: Passenger class, meaning what kind of ticket or accommodation the passenger had.
 - age
 - sibsp: How many siblings or spouses each passenger had on the ship.
 - parch: How many parents or children each passenger had on the ship.
@@ -158,7 +158,7 @@ For the example below, you use the Titanic dataset.  This dataset is built into 
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load Titanic dataset: This dataset is 
+# Load Titanic dataset
 titanic = sns.load_dataset("titanic")
 
 # Heat map of correlations
@@ -179,7 +179,8 @@ plt.show()
     Take a look at the heatmap, and assess which factors most important in affecting who survived.  Two factors made survival much less likely: Can you guess why?  One factor made survival more likely: Which one?
 
 - The **Pair Plot** provides pairwise relationships between 'age', 'fare', and 'adult_male', as colored by whether these passengers survived.
-    Some of these plots are not very useful.  Scatter plots where the variable on one of the axes only has two values are typically not very helpful, as you see.  The plots on the diagonal have a single variable plotted against itself, which doesn't seem too useful either, except that the default plot in this case is a "kde" plot, which shows the distribution of that single variable, as colored by who survived, and those plots do convey a story.
+
+    Some of these plots are not very useful.  Scatter plots where the variable on one of the axes only has two values are typically not very helpful, as you see.  The plots on the diagonal have a single variable plotted against itself, which doesn't seem too useful either, except that the default plot in this case is a "kde" plot. This shows the distribution of that single variable, as colored by who survived, and those plots *do* convey a story.
 
 ### AI Learning Prompt: Retrieval Practice
 
@@ -257,7 +258,7 @@ plt.show()
 ```
 
 ### **Key Techniques:**
-- **Subplots** allow the creation of multiple plots in a single figure for better comparison.
+- **Subplots** allow you to create multiple plots in a single figure for better comparison.
 - Seaborn’s **custom color palette** gives more control over the visual appearance.
 
 ---

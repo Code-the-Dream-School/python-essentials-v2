@@ -33,7 +33,7 @@ pip install pyreadline3
 4. Populating Tables with Data
 5. Writing SQL Queries
 6. Creating Entries with Foreign Keys
-7. More complicated queries, incuding JOINs
+7. More complicated queries, including JOINs
 8. The UPDATE Statement
 9. The Delete Statement
 10. SQL Query Practice
@@ -44,7 +44,7 @@ pip install pyreadline3
 
 ## **9.1 What SQL Is, and Why it is Used**
 
-SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheat.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite only supports TEXT, NUMERIC, INTEGER, REAL, or BLOB datatypes.  Other datatypes are supported in SQLite by mapping them to one of these four.  (Other SQL implementations support more.)  One can compare this to no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema can seem like a straitjacket, but it is really more a set of rails, organizing data into a structured form.
+SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheet.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite only supports TEXT, NUMERIC, INTEGER, REAL, or BLOB datatypes.  Other datatypes are supported in SQLite by mapping them to one of these four.  (Other SQL implementations support more.)  You can compare this to no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema may feel rigid at first, but it is really what keeps data organized and reliable.
 
 Read the following introduction: <https://www.theodinproject.com/lessons/databases-databases-and-sql>.  Or, if you know this stuff, jump to the bottom of that page and do the Knowledge Check.  Be sure that you understand the concepts of Primary Key and Foreign Key.
 
@@ -59,7 +59,7 @@ An association exists between tables if one table has a foreign key that points 
 3. A magazine publisher has magazines and subscribers.  Each subscriber may subscribe to several magazines, and each magazine may have many subscribers.  Now we have a problem.  
 We can't put a list of subscribers into a magazine record. Relational database records can't contain lists.  For a given magazine, we could create one record for each subscriber, but we'd be duplicating all the information that describes the magazine many times over.  Similarly, there is no way for the `subscribers` table to contain records for each magazine for each subscriber.  So, you need a table in the middle, sometimes called a **join table**.  In this case, the join table might be `subscriptions`.  Each subscription record has two foreign keys, one for the magazine and one for the subscriber.  This is a many-to many association.
 
-### AI Prompt: Retrieval PRactice
+### AI Prompt: Retrieval Practice
 
 Relational databases use associations to connect data. Let's practice explaining the most complex one:
 1. Open your AI chatbot.
@@ -81,7 +81,7 @@ A transaction is a write operation on an SQL database that guarantees consistenc
 
 The transaction maintains consistency.  When the read occurs, that entry is locked. (This depends on the isolation level and other stuff we won't get into now.)  That lock is important, as otherwise there could be another withdrawal from the account that happens after the read but before the update, and the account would go overdrawn.  Neither do you want the update that decreases the balance to complete while the update that increases the balance in the other account fails.  That would anger the user, and justifiably so.  With transactions, either both write operations succeed or neither succeeds.
 
-Relational databases' strength, by comparision with no-SQL databases, is the efficient handing of structured and interrelated data and transactional operations on that data.
+Relational databases' strength, by comparison with no-SQL databases, is the efficient handing of structured and interrelated data and transactional operations on that data.
 
 #### AI Prompt: Retrieval Practice
 
@@ -113,7 +113,7 @@ SQLite, by default, does not turn on the foreign key constraint, but in the exam
 
 ### **Overview**
 
-SQLite is a file-based database, meaning the database itself is stored in a file on disk. Python's `sqlite3` module allows easy interaction with SQLite databases.  It is built into Python, so there is nothing more to install.
+SQLite is a file-based database, meaning the database itself is stored in a file on disk. Python's `sqlite3` module is built into Python and handles SQLite interaction directly.
 
 ### **Creating a Database:**
 
@@ -233,10 +233,10 @@ with sqlite3.connect("../db/school.db") as conn:
     cursor = conn.cursor()
 
     # Insert sample data into tables
-    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Alice', 20, 'Computer Science')")
-    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Bob', 22, 'History')") 
-    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Charlie', 19, 'Biology')") 
-    cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Math 101', 'Dr. Smith')")
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Jasmine', 20, 'Computer Science')")
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Pratik', 22, 'History')") 
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Carlos', 19, 'Biology')") 
+    cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Math 101', 'Dr. Sanchez')")
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('English 101', 'Ms. Jones')") 
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Chemistry 101', 'Dr. Lee')") 
 
@@ -250,7 +250,7 @@ At this point, you should install the SQLite Viewer plugin for your VSCode.  Onc
 
 The INSERT statement can insert several rows in one statement.  You specify multiple sets of values for each of the columns, as follows (you don't need to add this to your program):
 ```python
-    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Alice', 20, 'Computer Science'), ('Bob', 22, 'History')")
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Jasmine', 20, 'Computer Science'), ('Pratik', 22, 'History')")
 ```
 
 Now, you'd like to insert into the Enrollments table as well -- but, each enrollment record has foreign keys, which are primary keys from the Students and Courses tables.  You didn't choose the primary keys above, so you don't know what they are.  You'll solve that problem below.
@@ -288,9 +288,9 @@ with sqlite3.connect("../db/school.db") as conn:
 
     # Insert sample data into tables
 
-    add_student(cursor, 'Alice', 20, 'Computer Science')  
-    add_student(cursor, 'Bob', 22, 'History')
-    add_student(cursor, 'Charlie', 19, 'Biology')
+    add_student(cursor, 'Jasmine', 20, 'Computer Science')  
+    add_student(cursor, 'Pratik', 22, 'History')
+    add_student(cursor, 'Carlos', 19, 'Biology')
     add_course(cursor, 'Math 101', 'Dr. Smith')
     add_course(cursor, 'English 101', 'Ms. Jones')
     add_course(cursor, 'Chemistry 101', 'Dr. Lee')
@@ -345,12 +345,12 @@ SELECT * FROM Students WHERE age = 22 AND major = 'History';
 Within Python, SQL SELECT statements are executed like the INSERT statements, but you also need to retrieve the results.  Add the following to your school_b.py program:
 
 ```python
-    cursor.execute("SELECT * FROM Students WHERE name = 'Alice'")
+    cursor.execute("SELECT * FROM Students WHERE name = 'Jasmine'")
     result = cursor.fetchall()
     for row in result:
         print(row)
 ```
-When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() creates an iterable connection of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Alice", and the first element in the tuple is the student_id.
+When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() creates an iterable connection of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Jasmine", and the first element in the tuple is the student_id.
 
 ## **9.6 Adding Entries with Foreign Keys**
 
@@ -384,11 +384,11 @@ def enroll_student(cursor, student, course):
 
     ... # And at the bottom of your "with" block
 
-    enroll_student(cursor, "Alice", "Math 101")
-    enroll_student(cursor, "Alice", "Chemistry 101")
-    enroll_student(cursor, "Bob", "Math 101")
-    enroll_student(cursor, "Bob", "English 101")
-    enroll_student(cursor, "Charlie", "English 101")
+    enroll_student(cursor, "Jasmine", "Math 101")
+    enroll_student(cursor, "Jasmine", "Chemistry 101")
+    enroll_student(cursor, "Pratik", "Math 101")
+    enroll_student(cursor, "Pratik", "English 101")
+    enroll_student(cursor, "Carlos", "English 101")
     conn.commit() # more writes, so we have to commit to make them final!
 ```
 
@@ -438,7 +438,7 @@ The statement creates a combined row.  For each Student record, the Enrollments 
 ```sql
 SELECT s.name, c.course_name FROM Students AS s JOIN Enrollments AS e ON s.student_id = e.student_id JOIN Courses AS c ON e.course_id = c.course_id;
 ```
-And, one can even leave out the `AS`:
+And, you can even leave out the `AS`:
 ```sql
 SELECT s.name, c.course_name FROM Students s JOIN Enrollments e ON s.student_id = e.student_id JOIN Courses c ON e.course_id = c.course_id;
 ```
@@ -447,7 +447,7 @@ Suppose you want to include customers that have done no orders.  You do a LEFT J
 ```sql
 SELECT c.customer_name, o.order_id FROM customers c LEFT JOIN orders o on c.customer_id = o.customer_id;
 ```
-If there are customers without orders, this statement will include them in the list, but the order_id column will be empty.  Similarly, one can do a RIGHT JOIN to show the orders without customers ... but there won't be any.  Why? Because the foreign key constraint is on, so you can't have an order record that doesn't belong to a customer.  You can also do a FULL JOIN to get both customers without orders and orders without a corresponding customer.
+If there are customers without orders, this statement will include them in the list, but the order_id column will be empty.  Similarly, you can do a RIGHT JOIN to show the orders without customers ... but there won't be any.  Why? Because the foreign key constraint is on, so you can't have an order record that doesn't belong to a customer.  You can also do a FULL JOIN to get both customers without orders and orders without a corresponding customer.
 
 Suppose we want to list all the students with the corresponding courses for which they are enrolled.  There is, in this case, a many-to-many association between students and courses -- but there is no foreign key in either table that points to the other table.  We need to use the Enrollments table as a join table, combining information from all three tables.  This is a compound join.  You may join three or more tables in this way.
 
@@ -463,7 +463,7 @@ JOIN Courses ON Enrollments.course_id = Courses.course_id;
 Let’s test your intuition on how JOINs combine data from different tables. Study this schema and query without running it: 
 
 **Tables:**
-• Students: (student_id: 1, name: 'Alice'), (student_id: 2, name: 'Bob').
+• Students: (student_id: 1, name: 'Jasmine'), (student_id: 2, name: 'Pratik').
 • Enrollments: (enrollment_id: 101, student_id: 1, course_id: 5). 
 
 Query:
@@ -475,11 +475,11 @@ LEFT JOIN Enrollments ON Students.student_id = Enrollments.student_id;
 ```
 
 Before running any code:
-1. Predict what the output will look like for Bob, specifically. (Hint: Does Bob have a matching record in the Enrollments table?,).
-2. Explain to an AI chatbot why you think Bob will (or will not) appear in the results and what will happen to his course_id column.
+1. Predict what the output will look like for Pratik, specifically. (Hint: Does Pratik have a matching record in the Enrollments table?,).
+2. Explain to an AI chatbot why you think Pratik will (or will not) appear in the results and what will happen to his course_id column.
 3. Ask: "Is my reasoning about how a LEFT JOIN handles records without matches correct?"
 
-> **Example prompt:** "Looking at this SQL query: [paste query]. I predict the output for Bob will be [your prediction] because [your reasoning about LEFT JOINs]. Am I correct? If not, what am I misunderstanding about how LEFT JOINs handle missing associations?"
+> **Example prompt:** "Looking at this SQL query: [paste query]. I predict the output for Pratik will be [your prediction] because [your reasoning about LEFT JOINs]. Am I correct? If not, what am I misunderstanding about how LEFT JOINs handle missing associations?"
 
 ### **Check for Understanding**
 
@@ -487,7 +487,7 @@ Before running any code:
 
 Answer:
 
-2. The enrollment_id doesn't correspond to anything in the Students table.  You have to use the foreign key, student_id, from the Enrollments table.  An ON cause typically combines a primary key (Students.student_id) with a foreign key (Enrollments.student_id).  By the way, the primary key doesn't have to have the same name as the foreign key.  If the primary key in the Students table were named `id`, you'd do `ON Students.id = Enrollments.student_id`.
+2. The enrollment_id doesn't correspond to anything in the Students table.  You have to use the foreign key, student_id, from the Enrollments table.  An ON clause typically combines a primary key (Students.student_id) with a foreign key (Enrollments.student_id).  By the way, the primary key doesn't have to have the same name as the foreign key.  If the primary key in the Students table were named `id`, you'd do `ON Students.id = Enrollments.student_id`.
 
 ### **Example Code:**
 
@@ -499,7 +499,7 @@ Of course, any of the SQL above can be executed from Python.
 The UPDATE SQL statement changes one or more existing rows.  You specify the rows you want to change with a WHERE clause, like you would use in a SELECT statement.
 
 ```sql
-UPDATE Students SET name="Charles", age=20 WHERE name="Charlie";
+UPDATE Students SET name="Charles", age=20 WHERE name="Carlos";
 ```
 Note that the UPDATE statement updates all rows that match the WHERE clause.  You can also apply math functions to the update, as follows:
 
@@ -531,7 +531,7 @@ Change the directory to the python_homework folder and run the `load_db.py` prog
 
 How does a data analyst use SQL?
 
-You have learned how to load a Pandas DataFrame from a CSV file.  A limitation of CSV files is that they are static.  Each reflects data as it was some time in the past, when the file was written.  Suppose you want to use Pandas to analyse the baseball standings.  These change from day to day -- but instead of a CSV file, one can have a relational database with this information that is updated continuously.  You'd want to load that information into Pandas.  Fortunately, this is very easy. 
+You have learned how to load a Pandas DataFrame from a CSV file.  A limitation of CSV files is that they are static.  Each reflects data as it was some time in the past, when the file was written.  Suppose you want to use Pandas to analyse the baseball standings.  These change from day to day -- but instead of a CSV file, you can have a relational database with this information that is updated continuously.  You'd want to load that information into Pandas.
 
 ```python
 import pandas as pd
@@ -543,7 +543,7 @@ with sqlite3.connect("../db/lesson.db") as conn:
     df = pd.read_sql_query(sql_statement, conn)
     print(df)
 ```
-This loads a dataframe from the results of a SELECT statement.  You then have access to all the statistical power of pandas.  In this case, we get a dataframe that lists all the customer names, all the orders, and the names of all the product that were ordered.  Note that there is a many-to-many association between orders and products, in that an order may have many products, but there may be many orders for a given product. The line_items table acts as a join table for orders and products.
+This loads a dataframe from the results of a SELECT statement.  You then have access to all the statistical power of pandas.  In this case, we get a dataframe that lists all the customer names, all the orders, and the names of all the products that were ordered.  Note that there is a many-to-many association between orders and products, in that an order may have many products, but there may be many orders for a given product. The line_items table acts as a join table for orders and products.
 
 
 ## **9.12 Optional: More Practice**

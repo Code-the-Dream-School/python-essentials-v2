@@ -38,13 +38,13 @@ You are going to find where in the HTML page the data you want is located.
 
 2. Open your browser developer tools to show the HTML elements.  For Chrome, this is `shift-ctrl-J`.
 
-3. Find the HTML element for a single entry in the search results list.  This is a little tricky.  When you select an element in the Chrome developer tools, that part of the web page is highlighted.  But, that typically only gets you to the main `div`.  There is a little arrow next to that div in the developer tools element window, and you click on that to open it up to show the child elements.  Then, you select the element that corresponds to the search results area.  Continue in this way, opening up divs or other containers and selecting the one that highlights the area you want.  Eventually, you'll get to the first search result.  Hint: You are looking for an `li` element, because this is an element in an unordered list.  Note the values for the class attribute of this entry.  You'll want to save these in some temporary file, as your program will need them.
+3. Find the HTML element for a single entry in the search results list.  This takes a few steps.  When you select an element in the Chrome developer tools, that part of the web page is highlighted.  But, that typically only gets you to the main `div`.  There is a little arrow next to that div in the developer tools element window, and you click on that to open it up to show the child elements.  Then, you select the element that corresponds to the search results area.  Continue in this way, opening up divs or other containers and selecting the one that highlights the area you want.  Eventually, you'll get to the first search result.  Hint: You are looking for an `li` element, because this is an element in an unordered list.  Note the values for the class attribute of this entry.  You'll want to save these in some temporary file, as your program will need them.
 
-3. Within that element, find the element that stores the title.  Note the tag type and the class value.  Your program will need this value too, so save it too.
+4. Within that element, find the element that stores the title.  Note the tag type and the class value.  Your program will need this value too, so save it too.
 
-4. Within the search results `li` element, find the element that stores the author.  Hint: This is a link.  Note the class value and save it.  Some books do have multiple authors, so you'll have to handle that case.
+5. Within the search results `li` element, find the element that stores the author.  Hint: This is a link.  Note the class value and save it.  Some books do have multiple authors, so you'll have to handle that case.
 
-5. Within the search results `li` element, find the element that stores the format of the book and the year it was published.  Note the class value and save it.  Now in this case, the class might not be enough to find the part of the `li` element you want.  So look at the `div` element that contains the format and year.  You want to note that class value too.
+6. Within the search results `li` element, find the element that stores the format of the book and the year it was published.  Note the class value and save it.  Now in this case, the class might not be enough to find the part of the `li` element you want.  So look at the `div` element that contains the format and year.  You want to note that class value too.
 
 ### **Task 3: Write a Program to Extract this Data**
 
@@ -98,7 +98,7 @@ Extract a web page section and store the information.
 
 4. Print out the list to make sure you have the right data.  Then, add code to the program to write it to a file called `owasp_top_10.csv`.  Verify that this file appears correct.
 
-5. Create a file, `challenges.txt`, also within your lesson9 directory.  In this file, describe any challenges you faced in completing this assignment and how you resolved them.
+5. Create a file, `challenges.txt`, also within your assignment 8 directory.  In this file, describe any challenges you faced in completing this assignment and how you resolved them.
 
 ---
 
@@ -118,17 +118,17 @@ Extract a web page section and store the information.
 
 ### **Task 7: Start your web scraping capstone project**
 
-Now you're ready to get started on your second capstone project.  In this project you will use web scraping to create your dataset, save it in a sqlite database and then create interactive, web-based visualizations to find and illustrate insights gained from the scraped data.  We recommend using the [Weather Around The World](https://www.timeanddate.com/weather/) web site, however you can use another site with CIL approval if there's a different topic you would like to explore.  Bear in mind that web scraping friendliness varies significantly and also depends on how often the structure and content changes.
+Now you're ready to get started on your second capstone project.  In this project, you will use web scraping to create your dataset, save it in a sqlite database and then create interactive, web-based visualizations to find and illustrate insights gained from the scraped data.  We recommend using the [Weather Around The World](https://www.timeanddate.com/weather/) web site, however you can use another site with CIL approval if there's a different topic you would like to explore.  Note that web scraping friendliness varies significantly and also depends on how often the structure and content changes.
 
 For this capstone projectyou will create **four programs** that retrieve data from the **Weather Around The World** website (or another approved site) and display the results in an interactive dashboard. The project will involve **Selenium** for web scraping, data cleaning, transforming the data into a structured format, storing it in a SQLite database, querying it via command line, and presenting it using **Streamlit** for interactive visualizations.
 
 This week, you will scrape data from the web site, clean it and save it to a csv file.
 
-#### **Set up capstone project github repository**
+#### **Set up capstone project GitHub repository**
 
 You will create a new, separate git hub repository for your web scraping capstone project, ourside of all you other repos.  You can call it anything you want.  
 
-1. Create a new empty repository in your github account.  Please include a README which you will use to explain how to set up and run the project.
+1. Create a new empty repository in your GitHub account.  Please include a README which you will use to explain how to set up and run the project.
 2. Clone the repo to your local computer
 
 #### **Create your web scraping code**

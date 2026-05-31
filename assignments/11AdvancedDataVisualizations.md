@@ -18,7 +18,7 @@ This assignment is to be created in the `assignment11` folder of your `python-as
 ---
 
 ## **Task 2: A Line Plot with Pandas**
-1. Create a file called cumulative.py.  The boss wants to see how money is rolling in.  You use SQL to access `../db/lesson.db` again.  You create a DataFrame with the order_id and the total_price for each order.  This requires joining several tables, GROUP BY, SUM, etc.
+1. Create a file called cumulative.py.  This plot shows cumulative revenue over time.  You use SQL to access `../db/lesson.db` again.  You create a DataFrame with the order_id and the total_price for each order.  This requires joining several tables, GROUP BY, SUM, etc.
 2. Add a "cumulative" column to the DataFrame.  This is an interesting use of apply():
    ```python
    def cumulative(row):
@@ -27,7 +27,7 @@ This assignment is to be created in the `assignment11` folder of your `python-as
 
    df['cumulative'] = df.apply(cumulative, axis=1)
    ```
-   Because axis=1, apply() calls the cumulative function once per row.  Do you see why this gives cumulative revenue?  One can instead use cumsum() for the cumulative sum:
+   Because axis=1, apply() calls the cumulative function once per row.  Do you see why this gives cumulative revenue?  You can instead use cumsum() for the cumulative sum:
    ```python
    df['cumulative'] = df['total_price'].cumsum()
    ```
@@ -66,7 +66,7 @@ Add and commit all of the files created for the assignment to the `assignment11`
 
 ## **Task 6: Streamlit dashboard for your web scraping capstone project**
 
-To complete your web scaping capstone project, you will apply the **Streamlit** lesson to create a visualization dashboard.
+To complete your web scraping capstone project, you will apply the **Streamlit** lesson to create a visualization dashboard.
 
 ## Overview 
 You will **import the database** which was created last week, **build a dashboard**, **visualize insights**, and **deploy your app** to **Streamlit Community Cloud**.
@@ -200,7 +200,7 @@ You can record your presentation in any of these three ways:
  
  ![Upload videos modal](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.35%E2%80%AFPM.png?raw=true)
 
-<h4>4. The fle title will be the default video title.  You can change this to include your name and "Python Essentials Final Projects Presentation"</h4>
+<h4>4. The file title will be the default video title.  You can change this to include your name and "Python Essentials Final Projects Presentation"</h4>
 
 ![Edit Video Details title](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.02.17%E2%80%AFPM.png?raw=true)
 
@@ -345,6 +345,4 @@ You can record your presentation in any of these three ways:
 Use this [link for the final project submission form](https://airtable.com/appoSRJMlXH9KvE6w/shrthD4fozy4UI21I?prefill_Lessons=Python%20100%20v1:%20Lesson%2015%20-%20Project%20Completion%20and%20Presentations) for your Kaggle, Web scraping, and presentation video.
 
 What happens next?
-Once you've submitted your finals and your video, your reviewer will check your work on your final projects and either declare them needing revisions or being successful, as they have with all your other assignments.  Watch you email for those results.  
-
-To view your and your classmates' final project presentations, you can visit your class gallery here: [Jamaican Boa Python Essentails Class - Video Demo Gallery](https://airtable.com/appoSRJMlXH9KvE6w/shrqml5HWXby1FzEz/tblTvxLLUlqtgtfbq)
+Once you've submitted your finals and your video, your reviewer will check your work on your final projects and either declare them needing revisions or being successful, as they have with all your other assignments.  Watch your email for those results.
