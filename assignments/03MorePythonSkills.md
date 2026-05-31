@@ -20,7 +20,8 @@ You create the code for this assignment in your python_homework/assignment3 fold
     keyword parameters: <a dict of the keyword parameters, or "none" if none are passed>
     return: <the return value>
     ```
-    Here's a cookbook on logging:
+    Here's a setup example on logging:
+   
     ```python
     # one time setup
     import logging
@@ -31,10 +32,10 @@ You create the code for this assignment in your python_homework/assignment3 fold
     # To write a log record:
     logger.log(logging.INFO, "this string would be logged")
     ```
-3. Declare a function that takes no parameters and returns nothing.  Maybe it just prints "Hello, World!".  Decorate this function with your decorator.
-4. Declare a function that takes a variable number of positional arguments and returns `True`.  Decorate this function with your decorator.
-5. Declare a function that takes no positional arguments and a variable number of keyword arguments, and that returns `logger_decorator`.  Decorate this function with your decorator.
-6. Within the mainline code, call each of these three functions, passing parameters for the functions that take positional or keyword arguments.  Run the program, and verify that the log file contains the information you want.
+4. Declare a function that takes no parameters and returns nothing.  For example, it could print "Hello, World!".  Decorate this function with your decorator.
+5. Declare a function that takes a variable number of positional arguments and returns `True`.  Decorate this function with your decorator.
+6. Declare a function that takes no positional arguments and a variable number of keyword arguments, and that returns `logger_decorator`.  Decorate this function with your decorator.
+7. Within the mainline code, call each of these three functions, passing parameters for the functions that take positional or keyword arguments.  Run the program, and verify that the log file contains the information you want.
 
 ---
 
@@ -87,11 +88,11 @@ You create the code for this assignment in your python_homework/assignment3 fold
 
 1. Within the assignment3 folder, create a file called `tictactoe.py`.
 2. Within this file, declare a class called TictactoeException.  This should inherit from the Exception class.  Add an `__init__` method that stores an instance variable called `message` and then calls the `__init__` method of the superclass.  This is a common way of creating a new type of exception.
-3. Declare also a class called Board.  This should have an `__init__` function that only has the `self` argument.  It creates a list of lists, 3x3, all git containing " " as a value.  This is stored in the variable self.board_array.  Create instance variables self.turn, which is initialized to "X".  The Board class should have a class variable called valid_moves, with the value:
+3. Declare also a class called Board.  This should have an `__init__` function that only has the `self` argument.  It creates a list of lists, 3x3, all containing " " as a value.  This is stored in the variable self.board_array.  Create instance variables self.turn, which is initialized to "X".  The Board class should have a class variable called valid_moves, with the value:
 ```python
    valid_moves=["upper left", "upper center", "upper right", "middle left", "center", "middle right", "lower left", "lower center", "lower right"]
 ```
-4. Add a `__str__()` method.  This converts the board into a displayable string.  You want it to show the current state of the game. The rows to be displayed are separated by newlines ("\n") and you also want some "|" amd "-" characters.  Once you have created this method, you can display the board by doing a `print(board)`.
+4. Add a `__str__()` method.  This converts the board into a displayable string.  You want it to show the current state of the game. The rows to be displayed are separated by newlines ("\n") and you also want some "|" and "-" characters.  Once you have created this method, you can display the board by doing a `print(board)`.
 4. Add a move() method.  This has two arguments, `self` and `move_string`.  The following strings are valid in TicTacToe: "upper left", "upper center", "upper right", "middle left", "center", "middle right", "lower left", "lower center", and "lower right".  When a string is passed, the move() method will check if it is one of these, and if not it will raise a TictactoeException with the message "That's not a valid move.".  Then the move() method will check to see if the space is taken.  If so, it will raise an exception with the message "That spot is taken."  If neither is the case, the move is valid, the corresponding entry in board_array is updated with X or O, and the turn value is changed from X to O or from O to X.  It also updates last_move, which might make it easier to check for a win.
 5. Add a whats_next() method.  This will see if the game is over.  If there are 3 X's or 3 O's in a row, it returns a tuple, where the first value is True and the second value is either "X has won" or "O has won".  If the board is full but no one has won, it returns a tuple where the first value is True and the second value is "Cat's Game".  Otherwise, it returns a tuple where the first value is False and the second value is either "X's turn" or "O's turn".
 6. Implement the game within the mainline code of `tictactoe.py`.  At the start of the game, an instance of the board class is created, and then the methods of the board class are used to progress through the game.  Use the `input()` function to prompt for each move, indicating whose turn it is.  Note that you need to call board.move() within a try block, with an except block for TictactoeException.  Give appropriate information to the user.
@@ -169,7 +170,7 @@ On assembling this program, the assignment author found that it was too time con
 ---
 
 
-### Submit Your Assignment on GitHub**  
+### **Submit Your Assignment on GitHub**  
 
 📌 **Follow these steps to submit your work:**  
 
