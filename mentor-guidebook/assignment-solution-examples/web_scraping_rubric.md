@@ -1,5 +1,7 @@
 ## Rubric 2: Web Scraping Project
 
+* **Overall Goals**
+
     * [ ] Uses appropriate libraries (Selenium) to retrieve data from the web
     * [ ] Handles common scraping challenges like missing tags, pagination, and user-agent headers
     * [ ] Saves raw data in a structured format such as .csv or .json
