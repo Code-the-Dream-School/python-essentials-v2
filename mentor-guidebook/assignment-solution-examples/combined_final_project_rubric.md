@@ -1,4 +1,4 @@
-# Week 11 Grading Rubric
+# Combined Final Project Grading Rubrics (Week 11)
 
 ## Rubric 1: Tasks 1-5
 
