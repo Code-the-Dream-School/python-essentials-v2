@@ -164,6 +164,10 @@ streamlit run app.py
 
 **Opens at:** `http://localhost:8501`
 
+---
+
+## What Is Streamlit? (Cont.)
+
 **Why Streamlit?**
 - Write Python → get a web app
 - No HTML, CSS, or JavaScript needed
@@ -241,6 +245,8 @@ with col2:
 st.sidebar.title("Filters")
 product = st.sidebar.selectbox("Product", df["Product"])
 ```
+---
+## Streamlit Layout (Cont.)
 
 **Expander — collapsible sections:**
 ```python
@@ -300,10 +306,10 @@ df = pd.DataFrame({
 
 st.title("Product Dashboard")
 ```
+---
 
+## Step 1 (Cont.)
 Run it: `streamlit run dashboard_app.py`
-
-<!-- Mentor note: Build this live if possible. Each step adds a new feature. Students should follow along in their own terminals. -->
 
 ---
 
@@ -319,6 +325,8 @@ selected = st.sidebar.selectbox("Select Product", df["Product"])
 # Filter the data
 filtered = df[df["Product"] == selected]
 ```
+
+---
 
 **Step 3:** Show metrics for the selected product:
 
@@ -351,6 +359,8 @@ st.plotly_chart(fig)
 with st.expander("View Raw Data"):
     st.dataframe(df)
 ```
+
+---
 
 **That's a complete dashboard!**
 - Sidebar filter for product selection
