@@ -76,7 +76,7 @@ Now it's time to use the visualization tools you have learned about in this less
     * [ ]  Demonstrates a clear understanding of the strengths and weaknesses of each chart type and selects them strategically.
     * [ ]  Provides insightful interpretations of the visualizations, connecting them to the data analysis and the problem domain.
 
-Once you have added visualizations, your Kaggle data pipeline project is complete.  You will submit a second Kaggle link this week to show your progress. You have until the last week of class to refine your data pipeline project.  Next week you will start on your second capstone project which involves web scraping, a sql database and interactive, web-based visualizations.
+Once you have added visualizations, your Kaggle data pipeline project is complete.  You will submit a Kaggle link this week to show your progress.  **You have until the end of next week (week 8) to finalize and submit your Kaggle data pipeline project — this is its final deadline.**  Next week you will also start your second capstone project, which involves web scraping, a SQL database, and interactive, web-based visualizations.  That web scraping capstone becomes your main focus for the rest of the course, so wrapping up the Kaggle project next week keeps the two from competing at the end of the term.
 
 ### **Submit the Notebook for Your Assignment**  
 
