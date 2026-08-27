@@ -205,6 +205,86 @@ This week, you will submit your pull request to show progress on webscraping and
 ## **Submit Your GitHub Links**
 - Get a link to your assignment pull request and paste the **URL** into the first submission field on the **assignment submission form**.
 - Get a link to you capstone project pull request and paste **URL** into the second submission field on the **assignment submission form**.
+- Paste the public link to your **finalized Kaggle data pipeline capstone** into the Kaggle submission field on the **assignment submission form** (see the section below).
+
+---
+
+## **Finalize and Submit Your Kaggle Data Pipeline Capstone**
+
+This is the **final deadline** for your first capstone project — the Kaggle data pipeline you have been building since week 5.  You completed the core of it in week 7 by adding your visualizations, so this week is about polishing and submitting it, not new building.  Getting it in now means the rest of the course is dedicated to your web scraping capstone, so the two projects don't compete at the end of the term.
+
+Before you submit, check your Kaggle notebook against the full rubric:
+
+<details>
+<summary>Kaggle Data Pipeline Capstone Rubric</summary>
+
+## Kaggle Project Rubric
+
+* **General Code Quality**
+
+    * [ ]  Code demonstrates a strong understanding of Python basics.
+    * [ ]  Code is well organized and documented with comments.
+    * [ ]  Functions are used to structure and organize the code.
+
+* **File Handling and Data Loading**
+
+    * [ ]  Data is loaded from appropriate file formats (CSV, JSON, etc.) using Pandas.
+    * [ ]  File paths and loading procedures are clearly defined and handled robustly.
+    * [ ]  Demonstrates effective use of Pandas `read_csv()`, `read_json()`, or similar functions.
+    * [ ]  Uses `head()`, `tail()`, and `info()` effectively to preview and inspect the data.
+
+* **Data Wrangling and Transformation**
+
+    * [ ]  Demonstrates proficiency in using Pandas for data selection, filtering, and transformation.
+    * [ ]  Implements advanced data manipulation techniques, including indexing, slicing, and data type conversion.
+    * [ ]  Handles missing data effectively using `dropna()` or `fillna()` with appropriate strategies.
+    * [ ]  Identifies and removes duplicate records if necessary using Pandas.
+    * [ ]  Code is efficient, well-documented, and follows Pandas best practices.
+    * [ ]  At least two extracted features
+
+* **Data Aggregation**
+
+    * [ ]  Uses Pandas `groupby()` function effectively to aggregate data and gain insights.
+    * [ ]  Applies a variety of aggregation functions (e.g., `sum()`, `mean()`, `count()`, `min()`, `max()`) to analyze grouped data.
+    * [ ]  Clearly presents and interprets the results of data aggregation.
+    * [ ]  At least 2 aggregations
+
+* **Visualization Quality**
+
+    * [ ]  Creates multiple (3+) high-quality, informative, and visually appealing visualizations using appropriate libraries (e.g., Matplotlib, Seaborn, Plotly).
+    * [ ]  Visualizations are clear, concise, and easy to understand, with appropriate titles, labels, legends, and color schemes.
+    * [ ]  Demonstrates strong understanding of design principles.
+    * [ ]  Provides clear explanations of the insights conveyed by each visualization.
+
+* **Chart Types and Interpretation**
+
+    * [ ]  Uses a diverse range of chart types (e.g., scatter plots, bar charts, histograms, box plots, heatmaps) to provide a comprehensive view of the data.
+    * [ ]  Demonstrates a clear understanding of the strengths and weaknesses of each chart type and selects them strategically.
+    * [ ]  Provides insightful interpretations of the visualizations, connecting them to the data analysis and the problem domain.
+
+* **Dataset and Feature Understanding**
+
+    * [ ]  Uses a dataset that is appropriate for the analysis.
+    * [ ]  Demonstrates a clear understanding of the dataset's characteristics, limitations, and potential biases.
+    * [ ]  Selects and uses a sufficient number of relevant features to support a meaningful analysis.
+
+* **Conclusions and Insights**
+
+    * [ ]  Provides a clear, concise, and insightful summary of the project's key findings and conclusions.
+    * [ ]  Connects the findings to the original problem or question and discusses their implications.
+    * [ ]  Identifies potential limitations of the analysis.
+    * [ ]  Demonstrates a strong understanding of the data's story and effectively communicates it.
+    * [ ]  At least 3 conclusions supported by charts and text.
+
+* **Reproducibility**
+
+    * [ ]  Provides a well-organized and clearly documented notebook or script that allows others to easily reproduce the entire analysis.
+    * [ ]  All dependencies are clearly specified.
+
+</details>
+<br>
+
+**To submit:** on the upper right of the Kaggle page, click **Save Version** and save (a quick save is fine).  Then click **Share**, choose **Public**, make sure **Allow Comments** is on, and copy the public URL.  Paste that URL into the Kaggle submission field on this week's **assignment submission form**.
 
 ---
 
