@@ -102,20 +102,6 @@ Extract a web page section and store the information.
 
 ---
 
-### **Submit Your Assignment on GitHub**  
-
-#### **1️⃣ Add, Commit, and Push Your Changes**  
-- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment8` branch.
-- Push that branch to GitHub. 
-
-#### **2️⃣ Create a Pull Request**  
-- Log on to your GitHub account.
-- Open your `python_homework` repository.
-- Select your `assignment8` branch.  It should be one or several commits ahead of your main branch.
-- Create a pull request.
-
----
-
 ### **Task 7: Start your web scraping capstone project**
 
 Now you're ready to get started on your second capstone project.  In this project, you will use web scraping to create your dataset, save it in a sqlite database and then create interactive, web-based visualizations to find and illustrate insights gained from the scraped data.  We recommend using the [Weather Around The World](https://www.timeanddate.com/weather/) web site, however you can use another site with CIL approval if there's a different topic you would like to explore.  Note that web scraping friendliness varies significantly and also depends on how often the structure and content changes.
@@ -203,8 +189,14 @@ This week, you will submit your pull request to show progress on webscraping and
 📌 **Follow these steps to submit your work:**  
 
 ## **Submit Your GitHub Links**
-- Get a link to your assignment pull request and paste the **URL** into the first submission field on the **assignment submission form**.
-- Get a link to you capstone project pull request and paste **URL** into the second submission field on the **assignment submission form**.
+
+First, commit and push your work and open your pull requests:
+- **Main assignment:** within your `python_homework` folder, `git add` and `git commit` the files you created on the `assignment8` branch, push the branch to GitHub, and open a pull request into `main`.
+- **Web scraping capstone:** push your capstone branch and open a pull request in that separate repository.
+
+Then submit your links:
+- Paste your assignment pull request **URL** into the first submission field on the **assignment submission form**.
+- Paste your capstone project pull request **URL** into the second submission field on the **assignment submission form**.
 - Paste the public link to your **finalized Kaggle data pipeline capstone** into the Kaggle submission field on the **assignment submission form** (see the section below).
 
 ---
@@ -311,7 +303,7 @@ This assignment scrapes **live web sites** with Selenium and has **no automated 
 - **Task 6 — `owasp_top_10.py` and `owasp_top_10.csv`** — Uses Selenium with **XPath** (`By.XPATH`) to collect the 10 vulnerability titles and their `href` links from the OWASP Top Ten page, accumulates them as dicts in a list, prints the list, and writes `owasp_top_10.csv` (title + link). `Use exactly as written (later tasks depend on these names)` for the filenames and the use of XPath. `Example — adapt to your own layout` for the exact XPath and the scraped titles/links.
 - **Task 6 — `challenges.txt`** — A short, honest reflection on difficulties and how they were resolved. Any genuine reflection passes; empty/missing fails. `Use exactly as written (later tasks depend on these names)` for the filename.
 - **Submission (assignment)** — Work on an `assignment8` branch, submitted as a PR into `main`, each task's code marked with a comment (e.g. `# Task 3`). `Example — adapt to your own layout`: file placement inside `assignment8/` cannot be verified by the reviewer — do not fail on it.
-- **Task 7 — Web-scraping capstone (this week's scope only)** — A **new, standalone** GitHub repo (not inside `python_homework`) with a README, cloned locally, plus a branch and PR. This week's required scope is **only**: Selenium scraping of the chosen site with raw data saved to a **CSV**, raw data loaded into a pandas DataFrame and cleaned (missing/duplicate/malformed), and a README describing setup. `Example — adapt to your own layout` for the site choice (Weather Around The World or a CIL-approved alternative) and all layout/selectors. **Do NOT grade the full capstone rubric (SQLite, 3+ Streamlit visualizations, dashboard) this week** — those are later-week deliverables. Submitted as a separate PR link, which the `assignment8` reviewer may not be able to see.
+- **Task 7 — Web-scraping capstone (this week's scope only)** — A **new, standalone** GitHub repo (not inside `python_homework`) with a README, cloned locally, plus a branch and PR. This week's required scope is **only**: Selenium scraping of the chosen site with raw data saved to a **CSV**, raw data loaded into a pandas DataFrame and cleaned (missing/duplicate/malformed), and a README describing setup. `Example — adapt to your own layout` for the site choice (Weather Around The World or a CIL-approved alternative) and all layout/selectors. **Do NOT grade the full capstone rubric (SQLite, 3+ Streamlit visualizations, dashboard) this week** — those are later-week deliverables. Submitted as a separate PR link in the second submission field, so review it via that link (not the `assignment8` PR).
 - **Kaggle data-pipeline capstone (final submission)** — The **final deadline** for the first capstone (built since week 5, core completed week 7) — this week is polishing and submitting, not new building. Deliverable is the finalized public Kaggle notebook link, submitted in its own field. Do not grade it as part of the `assignment8` code.
 
 ### Optional Deliverables/Tasks
