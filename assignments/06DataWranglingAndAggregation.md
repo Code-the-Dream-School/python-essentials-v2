@@ -17,8 +17,11 @@ You will use [Kaggle](https://kaggle.com) again for this week's assignment.  Cre
 2. **Create DataFrames `df1`, `df2`, and `df3` using the provided sample data(feel free to change the values):**
    - `df1` contains names, ages, and salaries of five employees.
    - `df2` contains names, ages, and salaries of five other employees.
+   - `df3` contains names, ages, and favorite colors of five people.
    - Display each DataFrame.
-   
+
+**Example — the sample values are adaptable (feel free to change them), but use the DataFrame names (`df1`, `df2`, `df3`) and the column names (`Name`, `Age`, `Salary`, `Favorite Color`) exactly as shown, because later tasks depend on them.**
+
 ```
 data1 = {
     'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
@@ -61,7 +64,7 @@ Again, you create a markdown cell to describe this task, and a code cell contain
 
 2. Resolve the file you need to read, by running the first cell in your notebook. Then read the file into a DataFrame called `ecommerce`.  Print out the first 5 rows, so that you know what the data looks like.
 
-3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.
+3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.  Note: `str.replace('$', '')` by itself will not remove it as expected; add `regex=False` (as in `str.replace('$', '', regex=False)`) so the dollar sign is treated as ordinary text.
 
 4. Create a "buying_patterns" pivot table from the data.  The index should be the 'Purchase_Category'.  The columns should be 'Gender' and 'Income_Level'.  The value you sum should be 'Purchase_Amount'.  Print out the resulting DataFrame.
 
@@ -83,13 +86,14 @@ Again, you create a markdown cell to describe this task, and a code cell contain
    - Use the suffixes `_left` and `_right` to differentiate columns from each DataFrame. (You specify `suffixes=['_left','_right']` on the call to merge.)
    - Display the result with print(). When you do, you will see some warning messages that contain words like "Runtime Warning: invalid value encountered ...".  This is because of the NaN values in the frame.  You could suppress these warnings by 
       ```python
-      np.warnings.filterwarnings('ignore')
+      import warnings
+      warnings.filterwarnings('ignore')
       ```
       But, don't do this yet.  You might see some other warnings if you make a mistake, and you don't want to miss them. Ignore these particular warnings for now.
    - We see that the 'Salary' column has `NaN` values.  Transform this column to replace `NaN` with the starting salary of 15000.  Hint: fillna() can be used on a Series.
    - Also, transform the 'Favorite Color' column to replace `NaN` values with 'yellow'.
    - Display the result.
-   - We have `NaN` for some of the entries in the 'Age_left' column.  For other rows, the `NaN` value is in the 'Age_right' column.  We want to create a new `Age` column, using the values from 'Age_left' if they are not `NaN`, and from 'Age_right' otherwise.  We'll use np.where().  As this is a new technique, the answer is as follows:
+   - We have `NaN` for some of the entries in the 'Age_left' column.  For other rows, the `NaN` value is in the 'Age_right' column.  We want to create a new `Age` column, using the values from 'Age_left' if they are not `NaN`, and from 'Age_right' otherwise.  We'll use np.where().  As this is a new technique, the answer is given below — use it exactly as written:
        ```python
        df_1_3_merged['Age'] = np.where(df_1_3_merged['Age_left'].notna(),df_1_3_merged['Age_left'], df_1_3_merged['Age_right'])
        # This works like a ternary expression.  If the expression passed to np.where is True, you get the left value, otherwise the right value.
@@ -137,10 +141,10 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
         for filename in filenames:
             print(os.path.join(dirname, filename))
     ```
-   Click on this cell to make it active, and run the cell.  This will list, among others, the path `/kaggle/input/datasets/martj42/international-football-results-from-1872-to-2017/results.csv`.  This is the one you want.  Read it into a DataFrame called football_results.
+   Click on this cell to make it active, and run the cell.  This will list several paths, including one ending in `.../results.csv` (for example `/kaggle/input/datasets/martj42/international-football-results-from-1872-to-2017/results.csv`).  That `results.csv` is the one you want — use whichever exact path `os.walk` prints for you.  Read it into a DataFrame called football_results.
 
 - Print the first 5 lines of this file.
-- All the entries have a home team and an away team.  This structure is awkward for our purposes because we want results for each team whether they were home or away.  So, we'll create a new DataFrame that organizes the in that way.  First, create a DataFrame called results_1.  You select the following columns from football_results: 'home_team','away_team','home_score','away_score',  and 'date'.  Print out the first 5 lines.
+- All the entries have a home team and an away team.  This structure is awkward for our purposes because we want results for each team whether they were home or away.  So, we'll create a new DataFrame that organizes the data in that way.  First, create a DataFrame called results_1.  You select the following columns from football_results: 'home_team','away_team','home_score','away_score',  and 'date'.  Print out the first 5 lines.
 - Next, create a DataFrame called results_2 from results_1.  You rename the column for 'home_team' to 'team', for 'away_team' to 'opponent', for 'home_score' to 'points_for', and for 'away_score' to 'points_against'.  Do not use `inplace=True`.  This dataset gives all the entries for the home teams.  Print out the first 5 lines.
 - Next, create a DataFrame called results_3 from results_1.  This also renames the columns, but now the rename is: 'away_team' becomes 'team', 'home_team' becomes 'opponent', 'away_score' becomes 'points_for', and 'home_score' becomes 'points_against'.  This dataset gives all the entries for the away teams.  Print out the first 5 lines.
 - Concatenate the results, resetting the index.  Store the result in football_results.  Print out the first 5 lines.  Now we have all the entries per team.
@@ -149,9 +153,9 @@ Kaggle has some nice datasets you can use in exercises.  These are `csv` files. 
 
 ### **Task 12: More Data Wrangling for Football Results**
 
-This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "in_place=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
+This time, you'll have to figure out the steps.  Starting with the football_results DataFrame you created in Task 11, print out the most recent 10 games for Tunisia.  Remember to sort these so that you get the right games.  Avoid use of "inplace=True", as you may get annoying warnings.  It is often better to create a new DataFrame and store the result.
 
-### **Task 13: — Continue Your Final Project (Week 6 Progress)**
+### **Task 13: Continue Your Final Project (Week 6 Progress)**
 
 This week, you will build on the final project started in Assignment 5.  
 Now that your dataset is cleaned, begin exploring and transforming it using the techniques from this week’s lesson.
@@ -176,15 +180,15 @@ For this week's progress, complete the following in **the same Kaggle notebook**
    - Why you chose these operations,
    - What insights the aggregations provided.
 
-#### **Rubric Areas Addressed This Week**
+#### **This Week's Focus Areas**
 
-This week’s work on your capstone should focus on the following rubric areas:
+This week’s work on your capstone should focus on (and can be self-checked against) the following areas:
 
 - **Data Wrangling** (filtering, selection, string transforms)  
 - **Data Aggregation** (`groupby`, summary metrics)  
 - **Feature Engineering** (new columns, transformations, binning)
 
-##### **Specific rubric details**
+##### **Details to review**
 
 * **Data Wrangling and Transformation**
 
@@ -217,3 +221,32 @@ This week’s work on your capstone should focus on the following rubric areas:
 - Paste the URL for your capstone project notebook into the second field in the **assignment submission form**.
 
 ---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+This lesson is done entirely in **Kaggle notebooks**, not the `python_homework` repo — there is **no PyTest file**. Grade by reading the notebook cells and confirming the shown output matches each task. The student submits **two public Kaggle links**: the assignment notebook (`CTD_Assignment_6`, Tasks 1–12) and their **capstone notebook** (Task 13). Look at the capstone link for Task 13. **Be lenient about:** Kaggle input file paths (the reviewer cannot see them — never fail a differing path), the sample-data values the student was told they may change, exact row/aggregate values from live datasets (verify structure, not numbers), and markdown wording.
+
+### Required Deliverables/Tasks
+
+- **Notebook structure** — A Kaggle notebook `CTD_Assignment_6`, each task introduced by a markdown cell with code in run code cells. Do not fail differing markdown text or cell counts.
+- **Task 1 — Data Selection** — Build `df1`, `df2`, `df3`; from `df1` select the `Name` column, select `Name` + `Salary` (double brackets), and slice the first three rows with `iloc`. `Use exactly as written (later tasks depend on these names)` for DataFrame names `df1`/`df2`/`df3` and columns `Name`, `Age`, `Salary`, `Favorite Color`. `Example — adapt to your own layout` for the literal cell values (students were told they may change them) — judge the operations, not the numbers.
+- **Task 2 — Data Aggregation** — Group `df1` by `Age` and aggregate `Salary` by mean, sum, and count; display it.
+- **Task 3 — Pivot Tables (Ecommerce dataset)** — Read the "Ecommerce Consumer Behavior" data (Salahuddin Ahmed) into `ecommerce`; convert `Purchase_Amount` from a `$`-string to float **before** summing (use `str.replace('$', '', regex=False)`); build `buying_patterns` (index `Purchase_Category`, columns `Gender` and `Income_Level`, sum of `Purchase_Amount`) and `demographics` (two-level index `Income_Level`+`Education_Level`, columns `Marital_Status`, **count** of `Customer_ID`); print both. `Example — adapt to your own layout` for the input path; verify structure, not exact numbers.
+- **Task 4 — apply() (Job Recommendations dataset)** — Read the "AI-Powered Job Recommendations" data (Samay Ashar) into `jobs`; use `apply(..., axis=1)` to add a `Check These Out` column = `"Yes"` when the job is entry level, salary ≥ 70000, and requires both SQL and Python, else `"No"`; build `my_jobs` = the `Yes` rows; print heads. `Use exactly as written (later tasks depend on these names)` for the column name `Check These Out`, the values `"Yes"`/`"No"`, and the names `jobs`/`my_jobs`. `Example — adapt to your own layout` for the source column names (student reads `head(10)` and matches) and the file path.
+- **Task 5 — Merging and Joining** — Part 1: outer-merge `df1` and `df3` on `Name` with `suffixes=['_left','_right']` into `df_1_3_merged`; `fillna` `Salary`→15000 and `Favorite Color`→`'yellow'`; build `Age` with `np.where` on `Age_left`/`Age_right`; drop `Age_left`/`Age_right`; display. Part 2: set `Name` as index on `df1_b`/`df3_b` and outer-`join` with explicit `lsuffix`/`rsuffix` (no `inplace=True`). `Use exactly as written (later tasks depend on these names)` for `df_1_3_merged`, the `_left`/`_right` suffixes, and the resulting `Age`/`Salary`/`Favorite Color` columns. The `np.where` snippet is `Use exactly as written`.
+- **Task 6 — Filtering** — Display rows of `df1` where `Age > 30`.
+- **Task 7 — Sorting** — Sort `df1` by `Salary` descending (`ascending=False`); display.
+- **Task 8 — Renaming** — Rename `Age`→`Employee Age`, `Salary`→`Employee Salary` **without** `inplace=True` (so original `df1` survives for Task 9); display.
+- **Task 9 — Transformation** — Increase every `df1` salary by 10%; display. Vectorized `*1.1` or `apply`/lambda both fine.
+- **Task 10 — Concatenating** — Concat `df1` and `df2` with `ignore_index=True`; display (10 rows, index 0–9).
+- **Task 11 — Football data wrangling** — Read `results.csv` ("international football results", Mart Jürisoo) into `football_results`; build `results_1` (`home_team`, `away_team`, `home_score`, `away_score`, `date`); build `results_2` (home perspective) and `results_3` (away perspective) via the swapping renames; concat with `ignore_index=True` and **reassign** to `football_results`; `groupby('team')['points_against'].mean()` into `points_against`; sort descending and print top 10. `Use exactly as written (later tasks depend on these names)` for `football_results`, `points_against`, and the renamed columns `team`/`opponent`/`points_for`/`points_against` (Task 12 depends on them). `Example — adapt to your own layout` for the exact `/kaggle/input/...` path (use whatever `os.walk` prints) and the worst-defense teams (vary with the live dataset).
+- **Task 12 — Recent Tunisia games** — From the reshaped `football_results`, filter to `team == 'Tunisia'`, sort by `date` descending, print the most recent 10 (store in a new DataFrame; avoid `inplace=True`). Sorting is required.
+- **Task 13 — Continue the Final Project (capstone)** — **Required this week**, but the work lives in the student's **capstone notebook (second submitted link)**, not the assignment notebook — grade it there. In their own cleaned dataset: (a) wrangling — filtering with `loc`/boolean masks, column selection, at least one string operation; (b) at least **two** `groupby` aggregations with results shown; (c) at least **two** engineered features via `apply()`/`map()`/arithmetic/`pd.cut()`; (d) a markdown cell explaining what was transformed and what the aggregations revealed. `Example — adapt to your own layout` — this is on the student's own dataset; do not expect the lesson's sample DataFrames, columns, or values. Cumulative: this **adds to** the Assignment 5 cleaning work in the same notebook — do not fault the student for prior-week code being present.
+- **Submission** — Assignment notebook saved (Save Version) and shared Public with comments on; the assignment URL and capstone URL pasted into the two submission-form fields. Do not fail on submission mechanics the reviewer cannot see.
+
+### Optional Deliverables/Tasks
+
+**None.** This assignment contains no optional, stretch, bonus, or advanced work — every task is required. (Task 13 is cumulative capstone progress but is required this week, so it is listed under Required.)
+
+</details>

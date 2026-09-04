@@ -1,4 +1,6 @@
-## Rubric 3: Kaggle Project
+> **When to use this rubric:** The Kaggle Data Pipeline capstone is now finalized and submitted at the **end of week 8** (it was previously a final-week deliverable). Use this rubric when reviewing **week-8** submissions. It is no longer part of the week-11 review.
+
+## Kaggle Project (finalized week 8)
 
 * **General Code Quality**
 

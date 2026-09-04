@@ -26,7 +26,7 @@ Since Python uses indentation to define blocks of code, it is often necessary to
    - In a loop, prompt the user for a line of input.  The first prompt should say, "What happened today? ".  All subsequent prompts should say "What else? "
    - As each line is received, write it to `diary.txt`, with a newline (`\n`) at the end.
    - When the special line "done for now" is received, write that to `diary.txt`.  Then close the file and exit the program (you just exit the loop).
-   - Wrap all of this in a try block. If an exception occurs, catch the exception and print out "An exception occurred." followed by the name of the exception itself. Now, normally, you catch specific types of exceptions, and handle each according to program logic.  In this case, you can catch any non-fatal exceptions via an except for `Exception`, and then display the information from the exception and exit the program.  The `traceback` module provides a way to include function traceback information in your error message, which will make it easier to find the error.  You can use the following code to handle exceptions using the traceback module.
+   - Wrap all of this in a try block. If an exception occurs, catch the exception and print out "An exception occurred." followed by the name of the exception itself. Now, normally, you catch specific types of exceptions, and handle each according to program logic.  In this case, you can catch any non-fatal exceptions via an except for `Exception`, and then display the information from the exception and exit the program.  The `traceback` module provides a way to include function traceback information in your error message, which will make it easier to find the error.  You can use the following code to handle exceptions using the traceback module. Example — you may copy this exception-handling code as written (`diary.py` is not checked by the tests).
    ```python
    import traceback
 
@@ -61,7 +61,7 @@ This will give errors to report what you need to fix.  You run it repeatedly as 
 
 Remember to import the `csv` module for this task.
 
-2. Create a function called read_employees that has no arguments, and do the following within it. 
+1. Create a function called read_employees that has no arguments, and do the following within it. 
    - Declare an empty dict.  You'll add the key/value pairs to that.  Declare also an empty list to store the rows.
    - You next read a csv file. Use a try block and a with statement, so that your code is robust and so that the file gets closed.
    - Read `../csv/employees.csv` using csv.reader().  (This csv file is used in a later lesson to populate a database.)
@@ -72,13 +72,13 @@ Remember to import the `csv` module for this task.
    - Add a line below the function that calls read_employees and stores the returned value in a global variable called employees. Then print out this value, to verify that the function works.
    - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, use the same approach as described above: catch the exception, print out the information, and exit the program.  One likely exception in this case is an error in the syntax of your code.
 
-3. Run the test to see if you have this much right.
+2. Run the test to see if you have this much right.
 
 A word about what's going on when the test runs: The test file imports your assignment2.py module.  When the import statement occurs, all the program statements in your module that are outside of functions do run.  That means the statement which sets your employees global variable is run.  As a result, the assignment2-test.py can reference this global variable too -- and it does.  If you forget to set this variable in your program, the test reports an error.
 
 ### **Task 3: Find the Column Index**
 
-1. Create a function called column_index.  The input is a string.  The function looks in employees["fields"] (an array of column headers) to find the index of the column header requested.  There won't be much to this function because you use the index() method of the list class:
+1. Create a function called column_index.  The input is a string.  The function looks in employees["fields"] (an array of column headers) to find the index of the column header requested.  There won't be much to this function because you use the index() method of the list class. Example — this only shows how index() works; your column_index function must look up whichever column name it is passed, not the literal "first_name":
    
 ```python
 employees["fields"].index("first_name")
@@ -108,7 +108,7 @@ The index() method returns the index of the matching value from the list.
 
 1. Create a function called employee_find.  This is passed one argument, an integer.  Just call it employee_id in your function declaration. We want it to return the rows with the matching employee_id.  There should only be one, but sometimes a CSV file has bad data.
 
-2. We could do this with a loop.  But we are going to use the filter() function.  Inside the employee_find function (yes, you do declare functions inside functions sometimes), create the following employee_match function:
+2. We could do this with a loop.  But we are going to use the filter() function.  Inside the employee_find function (yes, you do declare functions inside functions sometimes), create the following employee_match function. Use exactly as written — the tests depend on these function and variable names.
 ```python
 def employee_match(row):
    return int(row[employee_id_column]) == employee_id
@@ -129,7 +129,7 @@ The filter() function needs to know how to filter, and the employee_match functi
 
 The employee_match function is a short one-liner.  Lambdas allow us to give the logic inline.
 
-1. Create a function employee_find_2.  This function does exactly what employee_find does -- but it uses a lambda.
+1. Create a function employee_find_2.  This function does exactly what employee_find does -- but it uses a lambda. Use exactly as written — the tests depend on these function and variable names.
 ```
 def employee_find_2(employee_id):
    matches = list(filter(lambda row : int(row[employee_id_column]) == employee_id , employees["rows"]))
@@ -168,7 +168,7 @@ We want to call the sort() method on the rows.  However, we need to tell it whic
 
 4. Get the test working.
 
-If you want to try something extra, look up the `zip()` function, which can be used to simplify the code for this problem.
+**(Optional)** If you want to try something extra, look up the `zip()` function, which can be used to simplify the code for this problem. Using `zip()` is optional — Task 8 is complete without it.
 
 ### **Task 9: A dict of dicts, for All Employees**
 
@@ -196,7 +196,7 @@ Sometimes the behavior of a program is to be modified without changing the progr
 
 ### **Task 11: Creating Your Own Module**
 
-1. In the same folder, create a file called custom_module.py, with the following contents:
+1. In the same folder, create a file called custom_module.py, with the following contents. Use these exactly as written — assignment2.py and the test depend on the name set_secret and the starting value:
 
 ```python
 secret = "shazam!"
@@ -229,7 +229,7 @@ The "story" behind the following list of tasks is as follows.  A club meets, and
 
 ### **Task 13: Create minutes_set**
 
-1. Create a function called `create_minutes_set`.  It takes no parameters. It creates two sets from the rows of minutes1 and minutes2 dicts.  (This is just type conversion.  However, to make it work, each row has to be hashable!  Sets only support hashable elements.  Lists aren't hashable, so that is why you stored the rows as tuples in Task 10.)  Combine the members of both sets into one single set.  (This operation is called a union.)  The function returns the resulting set.
+1. Create a function called `create_minutes_set`.  It takes no parameters. It creates two sets from the rows of minutes1 and minutes2 dicts.  (This is just type conversion.  However, to make it work, each row has to be hashable!  Sets only support hashable elements.  Lists aren't hashable, so that is why you stored the rows as tuples in Task 12.)  Combine the members of both sets into one single set.  (This operation is called a union.)  The function returns the resulting set.
 
 2. Call the function within your assignment2.py script.  Store the value returned in the global variable minutes_set.
 
@@ -243,7 +243,7 @@ The "story" behind the following list of tasks is as follows.  A club meets, and
    - Create a list from the minutes_set.  This is just type conversion.
    - Use the `map()` function to convert each element of the list.  At present, each element is a list of strings, where the first element of that list is the name of the recorder and the second element is the date when they recorded.
    - The map() should covert each of these into a tuple.  The first element of the tuple is the name (unchanged).  The second element of the tuple is the date string converted to a datetime object.
-   - You convert the date strings into datetime objects using `datetime.strptime(string, "%B %d, %Y")`.
+   - You convert the date strings into datetime objects using `datetime.strptime(string, "%B %d, %Y")`. Use the format string "%B %d, %Y" exactly as written — it matches the date format stored in the CSV files.
    - So, you could use the following lambda:
    `lambda x: (x[0], datetime.strptime(x[1], "%B %d, %Y"))`
    - The function should return the resulting list.
@@ -303,4 +303,39 @@ The "story" behind the following list of tasks is as follows.  A club meets, and
 #### **3️⃣ Submit Your GitHub Link**  
 - Your browser now has the link to your pull request.  Copy that link. 
 - Paste the URL into the **assignment submission form**.  
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+Work is on an `assignment2` branch of `python_homework`, submitted as a PR into `main`. Files live in `assignment2/`: `diary.py`, `assignment2.py`, `custom_module.py`. Tasks are marked with `# Task N` comments. Tasks 2–15 are checked by `assignment2-test.py` (run from inside the `assignment2` folder); Task 1 is read by eye. Generated files `diary.txt` and `minutes.csv` will also appear in the PR — expected, not stray. Grade the resource-path strings as they appear in the code — do not fail because the filesystem can't be seen.
+
+- **Task 1 — `diary.py`** — Appends each line of user input to `diary.txt` inside a `with open("diary.txt", "a")` block wrapped in `try`/`except Exception`. First prompt is `"What happened today? "`, later prompts are `"What else? "`, and the line `"done for now"` is written and then exits the loop. `Use exactly as written (later tasks depend on these names)` for the prompt strings, the sentinel `"done for now"`, and the file name `diary.txt`. The traceback/exception block is `Example — adapt to your own layout` (may be copied as-is; `diary.py` is not test-checked, so do not fail on formatting details).
+- **Task 2 — `read_employees()`** — Returns a dict with key `"fields"` (header row) and key `"rows"` (list of the remaining rows); a module-level line stores it in a global `employees`. `Use exactly as written (later tasks depend on these names)` for the keys `"fields"`/`"rows"`, the global name `employees`, and the resource path `../csv/employees.csv`.
+- **Task 3 — `column_index(name)`** — Returns `employees["fields"].index(name)`; a module-level call stores `column_index("employee_id")` in global `employee_id_column`. The `.index("first_name")` snippet is `Example — adapt to your own layout` (illustration only; the function must use its parameter, not the literal `"first_name"`).
+- **Task 4 — `first_name(row_number)`** — Returns the first-name value for that row, obtaining the column via `column_index` (not a hard-coded number).
+- **Task 5 — `employee_find(employee_id)`** — Defines an inner `employee_match(row)` and returns `list(filter(employee_match, employees["rows"]))`. `Use exactly as written (later tasks depend on these names)`.
+- **Task 6 — `employee_find_2(employee_id)`** — Same result as Task 5 using an inline `lambda` with `filter`. `Use exactly as written (later tasks depend on these names)`.
+- **Task 7 — `sort_by_last_name()`** — Sorts `employees["rows"]` in place by the `last_name` column via `.sort(key=lambda …)` and returns the sorted rows.
+- **Task 8 — `employee_dict(row)`** — Returns a dict mapping column headers to that row's values, **skipping `employee_id`**.
+- **Task 9 — `all_employees_dict()`** — Returns a dict of dicts keyed by each row's `employee_id`, values produced by `employee_dict`.
+- **Task 10 — `get_this_value()`** — Returns `os.getenv("THISVALUE")`. `Use exactly as written (later tasks depend on these names)` for `"THISVALUE"`. Note: passes only when the env var is set in the test session — do not fail correct code for an unset variable.
+- **Task 11 — `custom_module.py` + `set_that_secret(new_secret)`** — `custom_module.py` contains `secret = "shazam!"` and `set_secret(new_secret)`; `assignment2.py` imports it and `set_that_secret` calls `custom_module.set_secret(new_secret)`. `Use exactly as written (later tasks depend on these names)` for the file contents and `set_secret`. The specific string passed when calling `set_that_secret` in the driver code is `Example — adapt to your own layout` ("a new string of your choice").
+- **Task 12 — `read_minutes()`** — Returns two dicts (`minutes1`, `minutes2`), each with `"fields"` and `"rows"`, with **rows stored as tuples**; module-level `minutes1, minutes2 = read_minutes()`. `Use exactly as written (later tasks depend on these names)` for `../csv/minutes1.csv` and `../csv/minutes2.csv`. A DRY helper is encouraged but not required.
+- **Task 13 — `create_minutes_set()`** — Builds a set from each dict's rows and returns their union; stored in global `minutes_set`.
+- **Task 14 — `create_minutes_list()`** — Converts the set to a list and `map`s each element to `(name, datetime)` using `datetime.strptime(x[1], "%B %d, %Y")`; stored in global `minutes_list`. `Use exactly as written (later tasks depend on these names)` for the format string `"%B %d, %Y"`.
+- **Task 15 — `write_sorted_list()`** — Sorts `minutes_list` by datetime ascending, `map`s each tuple's date back to a string via `strftime(…, "%B %d, %Y")`, and writes `./minutes.csv` with a `csv.writer` — first row = `minutes1["fields"]`, then the sorted rows; returns the converted list. `Use exactly as written (later tasks depend on these names)` for `"%B %d, %Y"` and the output name `minutes.csv`.
+- **Submission** — The `assignment2` branch is pushed to GitHub, a pull request into `main` is opened, and the PR link is submitted.
+
+### Optional Deliverables/Tasks
+
+Do not fail a student for omitting anything below.
+
+- **Task 8 — `zip()` exploration** — Marked "if you want to try something extra." Using `zip()` to simplify `employee_dict` is optional; Task 8 is complete without it. `Example — adapt to your own layout`.
+- **Check for Understanding (4 written questions)** — A self-reflection self-check; the assignment prints model answers directly beneath the questions and PyTest does not test it. Do not fail a submission for not including written answers.
+
+</details>
 

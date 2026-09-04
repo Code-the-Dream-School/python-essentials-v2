@@ -425,8 +425,9 @@ with open("scraped_links.json", "w") as f:
 | 5 | Analyze Wikipedia's `robots.txt` |
 | 6 | Scrape OWASP Top 10 vulnerabilities (uses XPath) |
 | 7 | **Start your web scraping capstone project!** |
+| — | **Finalize and submit your Kaggle capstone (final deadline)** |
 
-<!-- Mentor note: The Durham Library scraping (Tasks 2-4) is the main assignment. Task 6 (OWASP) is a second scraping exercise that requires XPath. Task 7 starts the second capstone project — a web scraping + SQL + Streamlit dashboard. -->
+<!-- Mentor note: The Durham Library scraping (Tasks 2-4) is the main assignment. Task 6 (OWASP) is a second scraping exercise that requires XPath. Task 7 starts the second capstone project — a web scraping + SQL + Streamlit dashboard. This week is also the FINAL deadline for the Kaggle data pipeline capstone (it was feature-complete back in week 7), so students submit it now rather than in the final week. It's a submission, not new building — watch for students who fell behind and may need to catch up on it. -->
 
 ---
 
