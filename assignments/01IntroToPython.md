@@ -160,3 +160,30 @@ secret[1] = "_"
 
 ## **🎉 Well Done!**  
 Great job completing Lesson 1! You're building a strong foundation in Python. 🚀  
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+All work is in `assignment1/assignment1.py`, on a branch submitted as a pull request into `main`. Grade against the requirements stated below, not by running the tests (the reviewer cannot run PyTest). Each task should be comment-labeled (e.g. `# Task 1`), but do not fail a student only for missing comment labels.
+
+- **Setup / submission** — code in `assignment1/assignment1.py`; PR from the student's branch into `main`. `Example — adapt to your own layout`: the working folder, and the branch name (`assignment1` or `lesson1` are both acceptable), must NOT be failed for differing.
+- **Task 1: `hello`** — no arguments, **returns** (not prints) `Hello!`. `Use exactly as written`: function name `hello` and the returned string `Hello!`.
+- **Task 2: `greet`** — takes a name, returns a formatted string of the form `Hello, <name>!`. `Use exactly as written`: function name `greet`, and the literal text/punctuation `Hello, ` + name + `!`. The word "Name" in the assignment is a placeholder — do NOT require the literal string `Hello, Name!`; the name comes from the argument.
+- **Task 3: `calc`** — three arguments, third defaults to `"multiply"`; supports `add`, `subtract`, `multiply`, `divide`, `modulo`, `int_divide`, `power` and returns the result. On divide-by-zero returns `You can't divide by 0!`; on bad operand types returns `You can't multiply those values!`. `Use exactly as written`: function name `calc`, the operation keyword strings, and both error-message strings. Do NOT fail on which exception class the student catches — grade on the returned strings and behavior.
+- **Task 4: `data_type_conversion`** — takes a value and a type name (`float`, `str`, or `int`); returns the converted value. On a bad conversion returns `You can't convert {value} into a {type}.` with the actual value and type substituted in. `Use exactly as written`: function name, the type-name strings, and the error-message format (with substitution). Do NOT fail on which exception class is caught.
+- **Task 5: `grade`** — collects an arbitrary number of scores via `*args`, averages them, returns a letter grade: A (≥90), B (80–89), C (70–79), D (60–69), F (below 60). On invalid input returns `Invalid data was provided.` `Use exactly as written`: function name `grade`, the letter grades, and the error-message string.
+- **Task 6: `repeat`** — takes a string and a count, returns the string repeated `count` times, built with a `for` loop and `range` (not `string * count`). `Use exactly as written`: function name `repeat`. Grade the output; the for-loop/range approach is the stated requirement.
+- **Task 7: `student_scores`** — one positional argument (`"best"` or `"mean"`) plus student=score keyword arguments via `**kwargs`. `"best"` returns the name of the highest-scoring student; `"mean"` returns the average score. `Use exactly as written`: function name `student_scores` and the `"best"`/`"mean"` keywords.
+- **Task 8: `titleize`** — takes a string, returns it capitalized as a book title: first and last words always capitalized; the "little words" (`a`, `on`, `an`, `the`, `of`, `and`, `is`, `in`) stay lowercase in the middle. `Use exactly as written`: function name `titleize` and the little-words list.
+- **Task 9: `hangman`** — takes `secret` and `guess` strings; returns the secret with every letter not present in `guess` replaced by `_`, others left in place (e.g. secret `alphabet`, guess `ab` → `a___ab__`). `Use exactly as written`: function name `hangman` and the underscore substitution behavior.
+- **Task 10: `pig_latin`** — takes a lowercase, punctuation-free English string; returns Pig Latin: vowel-start word → add `ay`; consonant-start → move leading consonant(s) to the end, then add `ay`; `qu` moves as a unit. `Use exactly as written`: function name `pig_latin` and the stated rules.
+
+### Optional Deliverables/Tasks
+
+**None.** This assignment has no optional, stretch, or bonus work — all 10 tasks are required.
+
+</details>
