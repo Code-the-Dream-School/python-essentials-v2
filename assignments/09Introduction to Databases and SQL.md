@@ -66,7 +66,7 @@ As we'll learn in the next lesson, the ordering, grouping, count, and sum operat
 ## **Task 6: Web Scraping Capstone project**
 For the web scraping capstone project, you will save your cleaned and transformed data into a **SQLite** database.  Since there are two weeks of database lessons, you have this week and next to complete the database portion of the project.  This is an opportunity to catch up on the data cleaning and transformation parts of the project.  You have learned about importing **CSV** this week, so you have the tools you need to get started.  Import each of the **CSV** files into a separate table in a **SQLite** database. You can also use database tools to do some of the data transformation if you choose to.
 
-### **These are the relevant rubrics for this week and next**
+### **This week's focus areas (this week and next)**
 #### **Data Cleaning & Transformation**
 - Loads raw data into a **Pandas DataFrame**.
 - Cleans missing, duplicate, or malformed entries effectively.
