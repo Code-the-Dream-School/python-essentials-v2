@@ -1,10 +1,10 @@
 # **Lesson 03: More Python Skills**
 
-**Assignment 3 Objective**
+## **Assignment 3 Objective**
 
 In this assignment, you will get practice in using decorators, list comprehensions, closures, and custom classes.
 
-**Assignment Instructions**
+## **Assignment Instructions**
 
 You create the code for this assignment in your python_homework/assignment3 folder.  Be sure to create an `assignment3` git branch before you start.  As usual, mark the code that completes each task with a comment line.
 
