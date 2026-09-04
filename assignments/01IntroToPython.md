@@ -1,165 +1,308 @@
-# **Lesson 1 Assignment: Intro to Python**
-### Python Operators, Control Flow, and Calculator Implementation
+## Lesson 2 Assignment: Data Structures and File Handling
 
-## **Objective and Overview**  
-In this assignment, you will practice key Python concepts including:    
-✅ Declaring functions  
-✅ Formatted Strings  
-✅ Type Conversion  
-✅ Error Handling  
-✅ For Loops with Ranges  
-✅ Use of *args and **kwargs in Function Declarations  
-✅ String Manipulation   
-
-## **Instructions**
-
-### **Setup**
-
-Your homework for this and some future assignments will use a special python homework repository, so that it you can submit using git.  That repository is [here.](https://github.com/Code-the-Dream-School/python_homework)  Click on the link, and carefully **follow the instructions in the README**.  You will then have your own copy of the repository, connected to your GitHub account.  You create the program files for the homework in the root of that repository.  For each assignment, you create a separate git branch (e.g. `git checkout -b assignment1`).  When you have completed your assignment, you add and commit your changes in that branch, push it to your GitHub, and create a pull request for that branch from your lesson branch (as the compare) to main branch (as the base).  You provide a link to that pull request when you submit your homework.  Your instructor will review it, approving or requesting changes.  Once your instructor has approved the pull request, you can merge it so that your lesson work gets updated to the main branch.  The reason for this workflow is to mimic what's done in the industry of making features and fixes on separate branches before testing/checking it.  Once the code is tested and checked by a supervisor/review process, the code merges into a production branch (in this case your main branch) so the users will see updates.
+**Objective:** In this assignment, you practice the use of the input() function.  You also practice file operations.  You use several methods of the list class, and you construct dictionaries from the contents of a CSV file.
 
 ### **Step 1: Complete the Coding Tasks**  
 
-At the outset, you create python `.py` files.  In some future lessons, you will create Jupyter notebooks. Homework for this assignment is created within your `python_homework` folder.  Be sure to create an `assignment1` git branch.  Then, write Python code to complete the following tasks.  As you do, put in **comment lines to mark your code for Task 1, Task 2, and so on.** That will help your reviewer.
-
-This assignment uses a Python tool for automated testing, called PyTest.  You installed it when you set up the python_homework folder.  You'll code a series of functions.  PyTest will validate whether your code is correct.  To run the test:  
-
-- Change to the python_homework/assignment1 folder.
-- Type `code .` to bring up VSCode for this folder. 
-- Start a git bash terminal session within VSCode and enter the command (you can make git bash the default using ctl-shift-p and setting the `Terminal: Select Default Profile`)
-
-```bash
-pytest -v -x assignment1-test.py # can use just -x, adding -v lists the passing tests
-```
-
-PyTest attempts to perform the tests, and as you haven't written the code yet, it quickly ends with an error -- in this case, because you haven't created the hello function.  You follow this pattern: 
-
-- Add your code to the `./assignment1/assignment1.py file` which is provided (but it's empty.)
-- Write each function according to the instructions below.
-- Put a print() statement in the mainline of your code (not inside the function), and call the function from within the print() statement to see if it works.  You can run the file by typing `python assignment1.py`.
-- Then run the test using the command above.  
-- If it reports errors, change your code to fix them.  
-
-Once the first test passes, you'll get an error for the second test, so you go on to write the second function, and so on until all 10 tests complete successfully.  You should have a look at assignment1-test.py to see how it works and what it tests for.  Keep going until all tests pass.
-
-There are a number of new Python capabilities introduced during this assignment, beyond what is in the lesson, but they are explained below, so that you can learn and practice at the same time.
+Homework for this assignment is created within your `python_homework` folder.  Be sure to create an `assignment2` branch.  Then, write Python code to complete the following tasks.  As you do, remember to put in **comment lines to mark your code for Task 1, Task 2, and so on.**
 
 **Help is Available**
 
-We have covered quite a bit.  If you get stuck, 1:1 mentors are available to answer your questions.  Appointments are available in the [1:1 Mentor Table](https://airtable.com/appoSRJMlXH9KvE6w/shrQinGb1phZYwdiL)
+You may find these tasks a little challenging.  If you get stuck, 1:1 mentors are available to answer your questions.  Appointments are available in the [1:1 Mentor Table](https://airtable.com/appoSRJMlXH9KvE6w/shrQinGb1phZYwdiL)
+
+On Windows, if you find that the prompt in git bash is unexpected, you can fix it by running ``cd \`pwd``.
+
+Since Python uses indentation to define blocks of code, it is often necessary to indent or outdent a whole block of code.  You can do this in vscode by selecting the code and then typing `ctl-]` to indent or `ctl-[` to outdent.
+
 
 ---
 
-### **Task 1: Hello**
+### **Task 1: Diary**
 
-Write a hello function that takes no arguments and returns `Hello!`.  Now, what matters here is what the function *returns*.  You can print() whatever you want for debugging purposes, but the tests ignore that, and only check the return value.
+1. Change to the `assignment2` folder of your `python_homework` folder.  You create your programs for the assignment in this folder.
 
-### **Task 2: Greet with a Formatted String**
-
-Write a greet function.  It takes one argument, a name, and returns `Hello, Name!`.  Use a formatted string.  Note that you have to return exactly the right string or the test fails -- but PyTest tells you what didn't match.
-
-### **Task 3: Calculator**  
-- Write a calc function.  It takes three arguments.  The default value for the third argument is "multiply".  The first two arguments are values that are to be combined using the operation requested by the third argument, a string that is one of the following add, subtract, multiply, divide, modulo, int_divide (for integer division) and power.  The function returns the result.
-- Error handling: When the function is called, it could ask you to divide by 0. That will throw an exception: Which one?  You can find out by triggering the exception in your program or in the Python Interactive Shell.  Wrap the code within the calc function in a try block, and put in an except statement for this exception.  If the exception occurs, return the string "You can't divide by 0!".  
-- More error handling: When the function is called, the parameters that are passed might not work for the operation.  For example, you can't multiply two strings.  Find out which exception occurs, catch it, and return the string "You can't multiply those values!".
-- Tip:  You have to do different things for add, multiply, divide and so on.  So you can do a conditional cascade, if/elif/elif/else.  That's perfectly valid.  But you might want to use the match-case Python statement instead.
-
-Again, as you complete each function, you run the test to see whether everything is correct.
-
----
-
-### **Task 4: Data Type Conversion** 
-- Create a function called data_type_conversion.  It takes two parameters, the value and the name of the data type requested, one of float, str, or int.  Return the converted value.
-- Error handling: The function might be called with a bad parameter.  For example, the caller might try to convert the string "nonsense" to a float.  Catch the error that occurs in this case.  If this error occurs, return the string `You can't convert {value} into a {type}.`, except you use the value and data type that are passed as parameters -- so again you use a formatted string.
-
----
-
-### **Task 5: Grading System, Using `*args`** 
-- Create a grade function.  It should collect an arbitrary number of parameters, compute the average, and return the grade.
-based on the following scale, popular in American schools:  
-   - A: 90 and above  
-   - B: 80-89  
-   - C: 70-79  
-   - D: 60-69  
-   - F: Below 60  
-- When you use `*args` you get access to a variable named `args` in your function, which is a tuple, an ordered collection of values like a list.  You'll learn more about tuples and lists in the next lesson.  There are some helpful functions you can use at this point: `sum(args)`, `len(args)`, and so on.  One of the curiosities of Python is that these are not methods of any class.  They are standalone functions.
-- Handle the error that occurs if the parameters are nonsense.  Return the string "Invalid data was provided." in this case.  (Typically, you don't handle every possible exception in your error handling, except if the values in the parameters come from the end user.)
-
----
-
-### **Task 6: Use a For Loop with a Range**  
-- Create a function called repeat.  It takes two parameters, a string and a count, and returns a new string that is the old one repeated count times.
-- You could return string * count to pass the test — but for this task, use a for loop and a range.
-
----
-
-### **Task 7: Student Scores, Using `**kwargs`**  
-
-- Create a function called student_scores.  It takes one positional parameter and an arbitrary number of keyword parameters.  The positional parameter is either "best" or "mean".  If it is "best", the name of the student with the highest score is returned.  If it is "mean", the average score is returned.
-- As you are using `**kwargs`, your function can access a variable named `kwargs`, which is a dict.  The next lesson explains about dicts.  What you need to know now is the following:
-   - A dict is a collection of key value pairs.
-   - You can iterate through the dict as follows:
+2. Create a program called `diary.py`. Add code to do the following:
+   - Open a file called `diary.txt` for appending.
+   - In a loop, prompt the user for a line of input.  The first prompt should say, "What happened today? ".  All subsequent prompts should say "What else? "
+   - As each line is received, write it to `diary.txt`, with a newline (`\n`) at the end.
+   - When the special line "done for now" is received, write that to `diary.txt`.  Then close the file and exit the program (you just exit the loop).
+   - Wrap all of this in a try block. If an exception occurs, catch the exception and print out "An exception occurred." followed by the name of the exception itself. Now, normally, you catch specific types of exceptions, and handle each according to program logic.  In this case, you can catch any non-fatal exceptions via an except for `Exception`, and then display the information from the exception and exit the program.  The `traceback` module provides a way to include function traceback information in your error message, which will make it easier to find the error.  You can use the following code to handle exceptions using the traceback module. Example — you may copy this exception-handling code as written (`diary.py` is not checked by the tests).
    ```python
-   for key, value in kwargs.items():
+   import traceback
+
+   ...
+
+   except Exception as e:
+      trace_back = traceback.extract_tb(e.__traceback__)
+      stack_trace = list()
+      for trace in trace_back:
+         stack_trace.append(f'File : {trace[0]} , Line : {trace[1]}, Func.Name : {trace[2]}, Message : {trace[3]}')
+      print(f"Exception type: {type(e).__name__}")
+      message = str(e)
+      if message:
+         print(f"Exception message: {message}")
+      print(f"Stack trace: {stack_trace}")
    ```
-   - You can also get `kwargs.keys()` and `kwargs.values()`.
-- The arbitrary list of keyword arguments uses the names of students as the keywords and their test score as the value for each.
+   - Open the file using a `with` statement (inside the try block), and rely on that statement to handle the file close.
+   - The input statement should be inside the loop inside the `with` block.
 
----
+3. Test the program.
+   - Run it a couple of times to create diary entries. (`python diary.py`)
+   - Have a look at `diary.txt` to make sure it appears correct.  **Warning:** `diary.txt` will end up in GitHub when you submit your homework, so don't put in anything personal.
+   - Trigger an exception while running the program:  When it prompts you for input, press Ctrl-D.  You may need to type Ctrl-C and newline to trigger an exception if Ctrl-D doesn't work.  Check to see that the exception is handled. 
 
-### **Task 8: Titleize, with String and List Operations**
+### **Task 2: Read a CSV File**
 
-- Create a function called titleize.  It accepts one parameter, a string.  The function returns a new string, where the parameter string is capitalized as if it were a book title.
-- The rules for title capitalization are: (1) The first word is always capitalized. (2) The last word is always capitalized. (3) All the other words are capitalized, except little words.  For the purposes of this task, the little words are "a", "on", "an", "the", "of", "and", "is", and "in".
-- The following string methods may be helpful: split(), join(), and capitalize().
-- The split() method returns a list. You might store this in the `words` variable.  `words[-1]` gives the last element in the list.
-- The `in` comparison operator: You have seen `in` used in loops.  But it can also be used for comparisons, for example to check to see if a substring occurs in a string, or a value occurs in a list.
-- Useful pattern: As you loop through the words in the `words` list, it is helpful to have the index of the word for each iteration.  You can access that index using the enumerate() function:
+This task, and the others that follow below, use the same pattern as for assignment1. This pattern is known as Test Driven Development (TDD).  It is a good practice which is often used in software industry.  You will need to create assignment2.py for the rest of the tasks.  Then type the following command:
+```bash
+pytest -v -x assignment2-test.py
+```
+This will give errors to report what you need to fix.  You run it repeatedly as you create the following functions, until all functions are working correctly.
+
+Remember to import the `csv` module for this task.
+
+1. Create a function called read_employees that has no arguments, and do the following within it. 
+   - Declare an empty dict.  You'll add the key/value pairs to that.  Declare also an empty list to store the rows.
+   - You next read a csv file. Use a try block and a with statement, so that your code is robust and so that the file gets closed.
+   - Read `../csv/employees.csv` using csv.reader().  (This csv file is used in a later lesson to populate a database.)
+   - As you loop through the rows, store the first row in the dict using the key "fields".  These are the column headers.
+   - Add all the other rows (not the first) to your rows list.
+   - Add the list of rows (this is a list of lists) to the dict, using the key "rows".
+   - The function should return the dict.
+   - Add a line below the function that calls read_employees and stores the returned value in a global variable called employees. Then print out this value, to verify that the function works.
+   - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, use the same approach as described above: catch the exception, print out the information, and exit the program.  One likely exception in this case is an error in the syntax of your code.
+
+2. Run the test to see if you have this much right.
+
+A word about what's going on when the test runs: The test file imports your assignment2.py module.  When the import statement occurs, all the program statements in your module that are outside of functions do run.  That means the statement which sets your employees global variable is run.  As a result, the assignment2-test.py can reference this global variable too -- and it does.  If you forget to set this variable in your program, the test reports an error.
+
+### **Task 3: Find the Column Index**
+
+1. Create a function called column_index.  The input is a string.  The function looks in employees["fields"] (an array of column headers) to find the index of the column header requested.  There won't be much to this function because you use the index() method of the list class. Example — this only shows how index() works; your column_index function must look up whichever column name it is passed, not the literal "first_name":
+   
 ```python
-for i, word in enumerate(words):
+employees["fields"].index("first_name")
+```
+The index() method returns the index of the matching value from the list.
+
+2. The column_index function should return this index.
+
+3. Run the test again to see if the test passes.
+
+4. Call the column_index function in your program, passing the parameter "employee_id".  Store the column you get back in a variable called employee_id_column.  This global value is used for subsequent steps.
+
+### **Task 4: Find the Employee First Name**
+
+1. Create a function called first_name.  It takes one argument, the row number.  The function should retrieve the value of first_name from a row as stored in the employees dict.
+
+2. You should first call your column_index function to find out what column index you want.
+
+3. Then you go to the requested row as stored in the employees dict, and get the value at that index in the row.
+
+4. Return the value.
+
+5. Try the test again.
+
+
+### **Task 5: Find the Employee: a Function in a Function**
+
+1. Create a function called employee_find.  This is passed one argument, an integer.  Just call it employee_id in your function declaration. We want it to return the rows with the matching employee_id.  There should only be one, but sometimes a CSV file has bad data.
+
+2. We could do this with a loop.  But we are going to use the filter() function.  Inside the employee_find function (yes, you do declare functions inside functions sometimes), create the following employee_match function. Use exactly as written — the tests depend on these function and variable names.
+```python
+def employee_match(row):
+   return int(row[employee_id_column]) == employee_id
+```
+This function is referencing the employee_id value that is passed to the employee_find function.  It can access that value because the employee_match function is inside the employee_find function.  Note that we need to do type conversion here, because the CSV reader just returns strings as the values in the rows.  This inner function returns True if there is a match.  We are using the employee_id_column global value you set in Task 3.
+
+3. Now, still within the employee_find function, call the filter() function.  This is another one of those Python free standing functions.  (It is not a method of the list class.)  You call filter() as follows:
+```python
+matches=list(filter(employee_match, employees["rows"]))
+```
+The filter() function needs to know how to filter, and the employee_match function provides that information.  The filter() function calls employee_match once per row, saying, Do we want this one?  When the filter function completes, we need to do type conversion to convert the result to a list.
+
+4. The employee_find function then returns the matches.
+
+5. Run the test and see if you got it right.
+
+### **Task 6: Find the Employee with a Lambda**
+
+The employee_match function is a short one-liner.  Lambdas allow us to give the logic inline.
+
+1. Create a function employee_find_2.  This function does exactly what employee_find does -- but it uses a lambda. Use exactly as written — the tests depend on these function and variable names.
+```
+def employee_find_2(employee_id):
+   matches = list(filter(lambda row : int(row[employee_id_column]) == employee_id , employees["rows"]))
+   return matches
 ```
 
----
+Note that there is no return statement in the lambda.  There is the parameter passed to the lambda (a row), followed by a colon, followed by the expression that gives the result.
 
-### **Task 9: Hangman, with more String Operations**
+2. Run the test to make sure things still work.
 
-- Create a function hangman.  It takes two parameters, both strings, the secret and the guess.
-- The secret is some word that the caller doesn't know.  So the caller guesses various letters, which are the ones in the guess string.
-- A string is returned.  Each letter in the returned string corresponds to a letter in the secret, except any letters that are not in the guess string are replaced with an underscore.  The others are returned in place.  Not everyone has played this kid's game, but it's common in the US.
-- Example: Suppose the secret is "alphabet" and the guess is "ab".  The returned string would be "a___ab__".
-- Note that Python strings are immutable.  That means that the following code would give an error:
+
+### **Task 7: Sort the Rows by last_name Using a Lambda**
+
+We want to call the sort() method on the rows.  However, we need to tell it which column to use for the sort.
+
+1. Create a function sort_by_last_name.  It takes no parameters.  You sort the rows you have stored in the dict.
+
+2. Within the function, you call employees["rows"].sort().  This sorts the list of rows in place. But, you need pass to the list.sort() method a keyword argument called key (so you pass a parameter with `key=` when you call it).  You set that keyword parameter equal to a lambda.  The lambda is passed the row, and the expression after the colon gives the value from the row to be used in the sort.  You might want to use your column_index function for last_name so you know which value from the row should be given in the lambda expression.  Remember that the `sort()` method sorts the list in place and does not return the sorted list.
+
+3. The sort_by_last_name function returns the sorted list of rows.
+
+4. Run the test until this works.
+
+5. Call the function in your program, and then print out the employees dict, to see it in sorted form.
+
+### **Task 8: Create a dict for an Employee**
+
+1. Create a function called employee_dict.  It is passed a row from the employees dict (not a row number).  It returns a dict.
+   - The keys in the dict are the column headers from employees["fields"].
+   - The values in the dict are the corresponding values from the row.
+   - Do not include the employee_id in the dict.  You skip that field for now.
+
+2. Return the resulting dict for the employee.
+
+3. Add a line to your program that calls this function and prints the result.  Use a row from the rows stored in the employees dict to pass to the function for this test.
+
+4. Get the test working.
+
+**(Optional)** If you want to try something extra, look up the `zip()` function, which can be used to simplify the code for this problem. Using `zip()` is optional — Task 8 is complete without it.
+
+### **Task 9: A dict of dicts, for All Employees**
+
+1. Create a function called all_employees_dict.
+   - The keys in the dict are the employee_id values from the rows in the employees dict.
+   - For each key, the value is the employee dict created for that row.  (Use the employee_dict function you created in task 8.)
+
+2. The function should return the resulting dict of dicts.
+
+3. Add a line to your program that calls this function and prints the result.
+
+4. Get the test working.
+
+### **Task 10: Use the os Module**
+
+Sometimes the behavior of a program is to be modified without changing the program itself.  One way is to use environment variables.  Environment variables are also used to store secrets needed by the program, such as passwords.  You can access the environment via the `os.getenv()` function.  *Note: There are many other functions in the os package.*
+
+1. Within the terminal, enter the command `export THISVALUE=ABC`.
+
+2. Add a line to `assignment2.py` to import the os module.
+
+3. Create a function get_this_value().  This function takes no parameters and returns the value of the environment variable `THISVALUE`.
+
+4. Get the test working.  (Note that each time you want this test to pass, you have to have the `THISVALUE` environment variable set in your terminal session.)
+
+### **Task 11: Creating Your Own Module**
+
+1. In the same folder, create a file called custom_module.py, with the following contents. Use these exactly as written — assignment2.py and the test depend on the name set_secret and the starting value:
+
 ```python
-secret = "alphabet"
-secret[1] = "_"
+secret = "shazam!"
+
+def set_secret(new_secret):
+   global secret
+   secret = new_secret
 ```
-- On the other hand, you can concatenate strings with the `+` operator.
 
----
+2. Add the line `import custom_module` to assignment2.py.
 
-### **Task 10: Pig Latin, Another String Manipulation Exercise**
+3. Create a function called set_that_secret.  It should accept one parameter, which is the new secret to be set.  It should call custom_module.set_secret(), passing the parameter, so as to set the secret in custom_module.
 
-- Pig Latin is a kid's trick language.  Each word is modified according to the following rules.  (1) If the string starts with a vowel (aeiou), "ay" is tacked onto the end. (2) If the string starts with one or several consonants, they are moved to the end and "ay" is tacked on after them. (3) "qu" is a special case, as both of them get moved to the end of the word, as if they were one consonant letter.
-- Create a function called pig_latin.  It takes an English string or sentence and converts it to Pig Latin, returning the result.  We will assume that there is no punctuation and that everything is lower case.
+4. Add a line to your program to call set_that_secret, passing the new string of your choice.
+
+5. In another line, print out custom_module.secret.  Verify that it has the value you expect.
+
+6. Run the test until the next part passes.
+
+
+### **Task 12: Read minutes1.csv and minutes2.csv**
+
+The "story" behind the following list of tasks is as follows.  A club meets, and for each meeting, there is a chairperson.  The club keeps several notebooks that record who was the chairperson on a given date.  Some of the information is in one notebook, some in the other.  The club now wants to combine this information, to get the list of chairpersons sorted by date.  But the information in the csv files contains duplicates and is in no particular order.  (The scenario is simplified, but it mirrors real data analysis tasks.)
+
+1. Create a function called `read_minutes`.  It takes no parameters.  It creates two dicts, minutes1 and minutes2, by reading `../csv/minutes1.csv` and `../csv/minutes2.csv`.  Each dict has `fields` and `rows`, just as the employees dict had.  However! As you create the list of rows for both minutes1 and minutes2, convert each row to a tuple.  The function should return both minutes1 and minutes2.  **Note** You can return several values from a Python function, as follows: `return v1, v2`.  Don't worry about duplicates yet.  They will be dealt with in later tasks.  Think about the DRY (Don't repeat Yourself principle).  You may want to create a helper function to avoid duplicating code.
+
+2. Call the function within your assignment2.py script.  Store the values from the values it returns in the global variables minutes1 and minutes2. **Note** When a function returns several values, you get them as follows: `v1, v2 = function()`. Print out those dicts, so that you can see what's stored.
+
+3. Run the test until this part passes.
+
+### **Task 13: Create minutes_set**
+
+1. Create a function called `create_minutes_set`.  It takes no parameters. It creates two sets from the rows of minutes1 and minutes2 dicts.  (This is just type conversion.  However, to make it work, each row has to be hashable!  Sets only support hashable elements.  Lists aren't hashable, so that is why you stored the rows as tuples in Task 12.)  Combine the members of both sets into one single set.  (This operation is called a union.)  The function returns the resulting set.
+
+2. Call the function within your assignment2.py script.  Store the value returned in the global variable minutes_set.
+
+3. Run the test until the next part passes.
+
+### **Task 14: Convert to datetime**
+
+1. Add a statement, `from datetime import datetime`, to your program.  The datetime module has some nice capabilities for converting strings to dates.  You can look them up: strptime() and strftime().
+
+2. Create a function called create_minutes_list.  It takes no parameters, and does the following:
+   - Create a list from the minutes_set.  This is just type conversion.
+   - Use the `map()` function to convert each element of the list.  At present, each element is a list of strings, where the first element of that list is the name of the recorder and the second element is the date when they recorded.
+   - The map() should covert each of these into a tuple.  The first element of the tuple is the name (unchanged).  The second element of the tuple is the date string converted to a datetime object.
+   - You convert the date strings into datetime objects using `datetime.strptime(string, "%B %d, %Y")`. Use the format string "%B %d, %Y" exactly as written — it matches the date format stored in the CSV files.
+   - So, you could use the following lambda:
+   `lambda x: (x[0], datetime.strptime(x[1], "%B %d, %Y"))`
+   - The function should return the resulting list.
+
+3. Call the function from within your program.  Store the return value in the minutes_list global.  Print it out, so you can see what it looks like.
+
+4. Run the test until the next part passes.
+
+### **Task 15: Write Out Sorted List**
+
+1. Create a function called write_sorted_list.  It takes no parameters.  It should do the following:
+   - Sort minutes_list in ascending order of datetime.
+   - Call map again to convert the list.  In this case, for each tuple, you create a new tuple.  The first element of the tuple is the name (unchanged).  The second element of the tuple is the datetime converted back to a string, using `datetime.strftime(date, "%B %d, %Y")`
+   - Open a file called `./minutes.csv`.  Use a csv.writer to write out the resulting sorted data.  The first row you write should be the value of `fields` the from minutes1 dict.  The subsequent rows should be the elements from minutes_list.
+   - The function should return the converted list.
+
+2. Call this function from within your program.  Then check that the file is created, and that it contains appropriate content.
+
+3. Run the test again until the next test has passed.
+
+### Check for Understanding
+
+1. You created the minutes_set from several lists.  You then created a list from the set.  What's the point of the set, if you're going to end up with a list?
+
+2. Why did you subsequently need to create the list called minutes_list?  Couldn't you just keep working with the set?
+
+3. Why did you need to convert the date strings to datetime objects?
+
+4. Why did you convert them back to strings before writing out the CSV?
+
+
+### Answers
+
+1. The original lists had duplicates.  A set has only unique values, so by converting to a set, you get rid of duplicates.
+
+2. You need to call the map() function and sort() method.  Set objects don't support these, and in fact, the entries in a set are not in any particular order.  So, for these steps, you need lists.
+
+3. You needed to convert the date strings to datetime objects.  Otherwise, they'd just be sorted in alphabetical order, and "April 1, 2023" would come before "September 2, 1980".  You could have done this conversion in the lambda for `key=` in the sort() of the list, but that approach would make that lambda a little complicated.
+
+4. When a datetime object is printed, its appearance is not as friendly as the original date string, so you converted it back.
+
 
 ### **Step 2: Submit Your Assignment on GitHub**  
 
 **Follow these steps to submit your work:**  
 
 #### **1️⃣ Add, Commit, and Push Your Changes**  
-- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment1` branch.
+- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment2` branch.
 - Push that branch to GitHub. 
 
 #### **2️⃣ Create a Pull Request**  
 - Log on to your GitHub account.
 - Open your `python_homework` repository.
-- Select your `assignment1` branch.  It should be one or several commits ahead of your main branch.
+- Select your `assignment2` branch.  It should be one or several commits ahead of your main branch.
 - Create a pull request.
 
 #### **3️⃣ Submit Your GitHub Link**  
 - Your browser now has the link to your pull request.  Copy that link. 
 - Paste the URL into the **assignment submission form**.  
-
-## **🎉 Well Done!**  
-Great job completing Lesson 1! You're building a strong foundation in Python. 🚀  
 
 ---
 
@@ -168,22 +311,31 @@ Great job completing Lesson 1! You're building a strong foundation in Python. �
 
 ### Required Deliverables/Tasks
 
-All work is in `assignment1/assignment1.py`, on a branch submitted as a pull request into `main`. Grade against the requirements stated below, not by running the tests (the reviewer cannot run PyTest). Each task should be comment-labeled (e.g. `# Task 1`), but do not fail a student only for missing comment labels.
+Work is on an `assignment2` branch of `python_homework`, submitted as a PR into `main`. Files live in `assignment2/`: `diary.py`, `assignment2.py`, `custom_module.py`. Tasks are marked with `# Task N` comments. Tasks 2–15 are checked by `assignment2-test.py` (run from inside the `assignment2` folder); Task 1 is read by eye. Generated files `diary.txt` and `minutes.csv` will also appear in the PR — expected, not stray. Grade the resource-path strings as they appear in the code — do not fail because the filesystem can't be seen.
 
-- **Setup / submission** — code in `assignment1/assignment1.py`; PR from the student's branch into `main`. `Example — adapt to your own layout`: the working folder must NOT be failed for differing. The branch should be named `assignment1`, but do not fail for a differing branch name — the reviewer cannot verify it.
-- **Task 1: `hello`** — no arguments, **returns** (not prints) `Hello!`. `Use exactly as written`: function name `hello` and the returned string `Hello!`.
-- **Task 2: `greet`** — takes a name, returns a formatted string of the form `Hello, <name>!`. `Use exactly as written`: function name `greet`, and the literal text/punctuation `Hello, ` + name + `!`. The word "Name" in the assignment is a placeholder — do NOT require the literal string `Hello, Name!`; the name comes from the argument.
-- **Task 3: `calc`** — three arguments, third defaults to `"multiply"`; supports `add`, `subtract`, `multiply`, `divide`, `modulo`, `int_divide`, `power` and returns the result. On divide-by-zero returns `You can't divide by 0!`; on bad operand types returns `You can't multiply those values!`. `Use exactly as written`: function name `calc`, the operation keyword strings, and both error-message strings. Do NOT fail on which exception class the student catches — grade on the returned strings and behavior.
-- **Task 4: `data_type_conversion`** — takes a value and a type name (`float`, `str`, or `int`); returns the converted value. On a bad conversion returns `You can't convert {value} into a {type}.` with the actual value and type substituted in. `Use exactly as written`: function name, the type-name strings, and the error-message format (with substitution). Do NOT fail on which exception class is caught.
-- **Task 5: `grade`** — collects an arbitrary number of scores via `*args`, averages them, returns a letter grade: A (≥90), B (80–89), C (70–79), D (60–69), F (below 60). On invalid input returns `Invalid data was provided.` `Use exactly as written`: function name `grade`, the letter grades, and the error-message string.
-- **Task 6: `repeat`** — takes a string and a count, returns the string repeated `count` times, built with a `for` loop and `range` (not `string * count`). `Use exactly as written`: function name `repeat`. Grade the output; the for-loop/range approach is the stated requirement.
-- **Task 7: `student_scores`** — one positional argument (`"best"` or `"mean"`) plus student=score keyword arguments via `**kwargs`. `"best"` returns the name of the highest-scoring student; `"mean"` returns the average score. `Use exactly as written`: function name `student_scores` and the `"best"`/`"mean"` keywords.
-- **Task 8: `titleize`** — takes a string, returns it capitalized as a book title: first and last words always capitalized; the "little words" (`a`, `on`, `an`, `the`, `of`, `and`, `is`, `in`) stay lowercase in the middle. `Use exactly as written`: function name `titleize` and the little-words list.
-- **Task 9: `hangman`** — takes `secret` and `guess` strings; returns the secret with every letter not present in `guess` replaced by `_`, others left in place (e.g. secret `alphabet`, guess `ab` → `a___ab__`). `Use exactly as written`: function name `hangman` and the underscore substitution behavior.
-- **Task 10: `pig_latin`** — takes a lowercase, punctuation-free English string; returns Pig Latin: vowel-start word → add `ay`; consonant-start → move leading consonant(s) to the end, then add `ay`; `qu` moves as a unit. `Use exactly as written`: function name `pig_latin` and the stated rules.
+- **Task 1 — `diary.py`** — Appends each line of user input to `diary.txt` inside a `with open("diary.txt", "a")` block wrapped in `try`/`except Exception`. First prompt is `"What happened today? "`, later prompts are `"What else? "`, and the line `"done for now"` is written and then exits the loop. `Use exactly as written (later tasks depend on these names)` for the prompt strings, the sentinel `"done for now"`, and the file name `diary.txt`. The traceback/exception block is `Example — adapt to your own layout` (may be copied as-is; `diary.py` is not test-checked, so do not fail on formatting details).
+- **Task 2 — `read_employees()`** — Returns a dict with key `"fields"` (header row) and key `"rows"` (list of the remaining rows); a module-level line stores it in a global `employees`. `Use exactly as written (later tasks depend on these names)` for the keys `"fields"`/`"rows"`, the global name `employees`, and the resource path `../csv/employees.csv`.
+- **Task 3 — `column_index(name)`** — Returns `employees["fields"].index(name)`; a module-level call stores `column_index("employee_id")` in global `employee_id_column`. The `.index("first_name")` snippet is `Example — adapt to your own layout` (illustration only; the function must use its parameter, not the literal `"first_name"`).
+- **Task 4 — `first_name(row_number)`** — Returns the first-name value for that row, obtaining the column via `column_index` (not a hard-coded number).
+- **Task 5 — `employee_find(employee_id)`** — Defines an inner `employee_match(row)` and returns `list(filter(employee_match, employees["rows"]))`. `Use exactly as written (later tasks depend on these names)`.
+- **Task 6 — `employee_find_2(employee_id)`** — Same result as Task 5 using an inline `lambda` with `filter`. `Use exactly as written (later tasks depend on these names)`.
+- **Task 7 — `sort_by_last_name()`** — Sorts `employees["rows"]` in place by the `last_name` column via `.sort(key=lambda …)` and returns the sorted rows.
+- **Task 8 — `employee_dict(row)`** — Returns a dict mapping column headers to that row's values, **skipping `employee_id`**.
+- **Task 9 — `all_employees_dict()`** — Returns a dict of dicts keyed by each row's `employee_id`, values produced by `employee_dict`.
+- **Task 10 — `get_this_value()`** — Returns `os.getenv("THISVALUE")`. `Use exactly as written (later tasks depend on these names)` for `"THISVALUE"`. Note: passes only when the env var is set in the test session — do not fail correct code for an unset variable.
+- **Task 11 — `custom_module.py` + `set_that_secret(new_secret)`** — `custom_module.py` contains `secret = "shazam!"` and `set_secret(new_secret)`; `assignment2.py` imports it and `set_that_secret` calls `custom_module.set_secret(new_secret)`. `Use exactly as written (later tasks depend on these names)` for the file contents and `set_secret`. The specific string passed when calling `set_that_secret` in the driver code is `Example — adapt to your own layout` ("a new string of your choice").
+- **Task 12 — `read_minutes()`** — Returns two dicts (`minutes1`, `minutes2`), each with `"fields"` and `"rows"`, with **rows stored as tuples**; module-level `minutes1, minutes2 = read_minutes()`. `Use exactly as written (later tasks depend on these names)` for `../csv/minutes1.csv` and `../csv/minutes2.csv`. A DRY helper is encouraged but not required.
+- **Task 13 — `create_minutes_set()`** — Builds a set from each dict's rows and returns their union; stored in global `minutes_set`.
+- **Task 14 — `create_minutes_list()`** — Converts the set to a list and `map`s each element to `(name, datetime)` using `datetime.strptime(x[1], "%B %d, %Y")`; stored in global `minutes_list`. `Use exactly as written (later tasks depend on these names)` for the format string `"%B %d, %Y"`.
+- **Task 15 — `write_sorted_list()`** — Sorts `minutes_list` by datetime ascending, `map`s each tuple's date back to a string via `strftime(…, "%B %d, %Y")`, and writes `./minutes.csv` with a `csv.writer` — first row = `minutes1["fields"]`, then the sorted rows; returns the converted list. `Use exactly as written (later tasks depend on these names)` for `"%B %d, %Y"` and the output name `minutes.csv`.
+- **Submission** — The `assignment2` branch is pushed to GitHub, a pull request into `main` is opened, and the PR link is submitted.
 
 ### Optional Deliverables/Tasks
 
-**None.** This assignment has no optional, stretch, or bonus work — all 10 tasks are required.
+Do not fail a student for omitting anything below.
+
+- **Task 8 — `zip()` exploration** — Marked "if you want to try something extra." Using `zip()` to simplify `employee_dict` is optional; Task 8 is complete without it. `Example — adapt to your own layout`.
+- **Check for Understanding (4 written questions)** — A self-reflection self-check; the assignment prints model answers directly beneath the questions and PyTest does not test it. Do not fail a submission for not including written answers.
 
 </details>
+
