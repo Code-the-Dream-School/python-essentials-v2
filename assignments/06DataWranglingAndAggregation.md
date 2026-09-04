@@ -64,7 +64,7 @@ Again, you create a markdown cell to describe this task, and a code cell contain
 
 2. Resolve the file you need to read, by running the first cell in your notebook. Then read the file into a DataFrame called `ecommerce`.  Print out the first 5 rows, so that you know what the data looks like.
 
-3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.  Note: when you use `str.replace()` to remove the `$`, pass `regex=False` so the `$` is treated as a literal character.
+3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.  Note: `str.replace('$', '')` by itself will not remove it as expected; add `regex=False` (as in `str.replace('$', '', regex=False)`) so the dollar sign is treated as ordinary text.
 
 4. Create a "buying_patterns" pivot table from the data.  The index should be the 'Purchase_Category'.  The columns should be 'Gender' and 'Income_Level'.  The value you sum should be 'Purchase_Amount'.  Print out the resulting DataFrame.
 
@@ -180,15 +180,15 @@ For this week's progress, complete the following in **the same Kaggle notebook**
    - Why you chose these operations,
    - What insights the aggregations provided.
 
-#### **Rubric Areas Addressed This Week**
+#### **This Week's Focus Areas**
 
-This week’s work on your capstone should focus on the following rubric areas:
+This week’s work on your capstone should focus on (and can be self-checked against) the following areas:
 
 - **Data Wrangling** (filtering, selection, string transforms)  
 - **Data Aggregation** (`groupby`, summary metrics)  
 - **Feature Engineering** (new columns, transformations, binning)
 
-##### **Specific rubric details**
+##### **Details to review**
 
 * **Data Wrangling and Transformation**
 
