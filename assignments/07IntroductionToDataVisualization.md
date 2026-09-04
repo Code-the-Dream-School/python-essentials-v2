@@ -61,7 +61,7 @@ Suppose you decide that the data you care about most is in the "Diabetes_012", "
 
 Now it's time to use the visualization tools you have learned about in this lesson for your final project.  Use visualizations to help you gain insights about the data and then illustrate those insights in you project.  Add code blocks to create charts and markdown blocks to explain them and how they illustrate details about the data. This adds to the capstone project you have already built in earlier weeks — keep your existing work and build on it.
 
-### **These are the rubrics for data visualization:**
+### **This week's focus areas for data visualization:**
 
 **Visualization Quality**
 
