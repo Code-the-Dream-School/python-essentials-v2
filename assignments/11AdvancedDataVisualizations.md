@@ -12,7 +12,7 @@ As always, reach out to a mentor if you need help this week. You're almost there
 
 This task is **optional**. Plotly is introduced in this week's lesson, and a quick exercise with it is a nice primer for the interactive dashboard work — but skip it if you'd rather go straight to your capstone. You can do this in a Kaggle notebook or a single local script; no separate repository or pull request is required.
 
-1. Load the Plotly wind dataset, via the following:
+1. Load the Plotly wind dataset, via the following (use exactly as written — this is the dataset-loading boilerplate):
    ```python
    import plotly.express as px
    import plotly.data as pldata
@@ -29,31 +29,31 @@ This task is **optional**. Plotly is introduced in this week's lesson, and a qui
 
 To complete your web scraping capstone project, you will apply this week's **Streamlit** lesson to create a visualization dashboard on top of the database you built in weeks 9 and 10.
 
-## Overview
+### Overview
 You will **import the database** you created earlier in the course, **build a dashboard**, **visualize insights**, and (optionally) **deploy your app** to **Streamlit Community Cloud**.
 
-### **Visualization and dashboard rubrics**
+### **This week's focus areas**
 #### **Data Visualization**
-- Includes at least three visualizations using **Streamlit**.
+- Includes at least three visualizations using **Plotly, Streamlit, or Dash**.
 - Visuals are relevant, well-labeled, and support the data story.
 - User interactions such as dropdowns or sliders are implemented.
 - Visualizations respond correctly to user input or filters.
 
 #### **Dashboard / App Functionality**
-- Built with **Streamlit** to display data and insights.
+- Built with **Streamlit** or **Dash** to display data and insights.
 - Features clean layout and responsive components.
 - Allows users to explore different aspects of the data.
 - Provides clear titles, instructions, and descriptions for user guidance.
 
-## **Project Setup**
+### **Project Setup**
 
 Review Streamlit in **Lesson 11**.  You will set up a new dashboard in your capstone project repository, reading from the SQLite database you created in the database weeks.
 
-## **Deploy Your App (Optional)**
+### **Deploy Your App (Optional)**
 
 Deployment to Streamlit Community Cloud is **optional** this term. A dashboard that runs correctly on your local machine with `streamlit run` fully meets the requirements — if you run out of time, a working local app is enough. If you'd like to deploy it so others can see it live, follow these steps:
 
-1. Push the code to your **Capstone project GitHub repository**:
+1. Push the code to your **Capstone project GitHub repository**.
 2. Deploy to **Streamlit Community Cloud**:
    - Visit [Streamlit Cloud](https://streamlit.io/cloud) and log in with your Streamlit account. If you don't have an account, create one using your email or GitHub credentials.
 
@@ -189,7 +189,7 @@ If you record a presentation, include the YouTube link to it in your Assignment 
 <summary>Web Scraping Capstone Rubric</summary>
 * **Web Scraping**
 
-    * [ ] Uses appropriate libraries (Selenium) to retrieve data from the web
+    * [ ] Uses appropriate libraries (e.g., Selenium) to retrieve data from the web
     * [ ] Handles common scraping challenges like missing tags, pagination, and user-agent headers
     * [ ] Saves raw data in a structured format such as .csv or .json
     * [ ] Avoids scraping duplication or redundant requests
@@ -229,3 +229,27 @@ Use this [link for the final project submission form](https://airtable.com/appoS
 
 What happens next?
 Once you've submitted your final capstone (and your optional video), your reviewer will check your work and either declare it needing revisions or being successful, as they have with all your other assignments.  Watch your email for those results.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+This is the final-week capstone submission. The **new required work this week is the Streamlit dashboard**; the scraping and cleaning were built in prior weeks and are carried into the final submission — **do not fail this week's submission for not containing brand-new scraping or cleaning code.** There are no automated tests. Grade by reading the dashboard code and confirming it runs. **Be lenient about:** the database path/filename, the app filename (e.g. `streamlit_app.py`), and all directory structure — the reviewer cannot see the filesystem.
+
+### Required Deliverables/Tasks
+
+- **Streamlit dashboard (this week's new required deliverable)** — A Streamlit app, added to the student's existing web-scraping capstone repo, that reads from the SQLite database they built in weeks 9–10. It must include **at least three visualizations**, **at least one interactive control** (dropdown, slider, or filter) that the visualizations respond to, and **clear titles, labels, and instructions** in a clean layout. It must run locally with `streamlit run`. `Example — adapt to your own layout` for the database path/name and the app filename — do not fail on a differing path or name. Visualization library: the official rubric allows **Plotly, Streamlit, or Dash** — do NOT fail a student for using Plotly or Dash charts inside the app.
+- **Web-scraping capstone repo, finalized** — The repo contains the prior-week scraping code, raw data saved in a structured format (`.csv`/`.json`), and data cleaning/transformation, now joined by the dashboard. The scraping library "Selenium" is named only as an example → do NOT fail a valid alternative such as BeautifulSoup, requests, or Scrapy. `Example — adapt to your own layout` for all paths and directory structure.
+- **`README.md`** — Includes a project summary, setup steps, and a screenshot of the dashboard.
+- **Submission** — Commit and push the dashboard work, open a **pull request** in the capstone repo, and paste the repo/PR URL into the final project submission form. `Use exactly as written` for the filename `service_urls.txt` **only if** the student deployed (see Optional).
+
+### Optional Deliverables/Tasks
+
+**Do not fail a student for omitting any of these.**
+
+- **Plotly warm-up (Optional, ungraded)** — Marked "(Optional)" and "This task is optional." Per the course rubric this warm-up is **ungraded — do not grade or fail it at all.** If attempted: load the Plotly wind dataset, convert the `strength` column to float, build an interactive scatter (strength vs. frequency, colored by direction), and save/load an HTML file. The dataset-load snippet is `Use exactly as written` (boilerplate); the filename `wind.html` is `Example — adapt to your own layout`.
+- **Deploy to Streamlit Community Cloud (Optional)** — Marked "(Optional)"; a dashboard that runs locally with `streamlit run` fully meets the requirements. Do NOT fail a project that is not deployed. If deployed, the student adds their app URL to a file named `service_urls.txt` at the top level of the capstone repo — `Use exactly as written` for that filename, but only when deployment was attempted.
+- **Presentation video (Optional, not graded)** — Marked "optional this term" and "not graded." If recorded, the YouTube link goes in the submission form. Do NOT fail for its absence.
+
+</details>
