@@ -430,9 +430,9 @@ Your **Kaggle Data Pipeline** capstone should now include:
 - Wrangling, aggregation, and features (Lesson 6)
 - **3+ visualizations with explanations** (this week!)
 
-> After this week, your first capstone project is feature-complete. You can keep refining it until the end of the course.
+> After this week, your first capstone project is feature-complete. You have until the end of **week 8** to polish and submit it — that's its final deadline.
 
-<!-- Mentor note: This is a milestone — after this assignment, the Kaggle data pipeline capstone is essentially complete. Next week starts the second half of the course (web scraping, SQL, Streamlit). Celebrate the progress! -->
+<!-- Mentor note: This is a milestone — after this assignment, the Kaggle data pipeline capstone is essentially complete. Its FINAL deadline is now the end of week 8 (not the final week), so students submit it just as they begin the web scraping capstone. This keeps the two capstones from colliding at the end of the term. Next week starts the second half of the course (web scraping, SQL, Streamlit). Celebrate the progress! -->
 
 ---
 

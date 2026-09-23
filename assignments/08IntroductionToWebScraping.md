@@ -26,7 +26,7 @@ This lesson introduces web scraping concepts and practices, including:
 
 In this assignment, you collect data from the Durham County Library site.  As always, when you do web scraping, you need to review the policy described in robots.txt, to ensure that you comply.
 
-1. Open [https://durhamcountylibrary.org/robots.txt]
+1. Open <https://durhamcountylibrary.org/robots.txt>
 
 2. Verify that the following steps are not in breach of policy.
 
@@ -34,7 +34,7 @@ In this assignment, you collect data from the Durham County Library site.  As al
 
 You are going to find where in the HTML page the data you want is located.
 
-1. Open [https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart]
+1. Open <https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart>
 
 2. Open your browser developer tools to show the HTML elements.  For Chrome, this is `shift-ctrl-J`.
 
@@ -48,21 +48,21 @@ You are going to find where in the HTML page the data you want is located.
 
 ### **Task 3: Write a Program to Extract this Data**
 
-1. `get_books.py`. The program should import from selenium and webdriver_manager, as shown in your lesson.  You also need pandas and json.
+1. `get_books.py`. The program should import from selenium and webdriver_manager.  You also need pandas and json.
 
 2. Add code to load the web page given in task 2.
 
 3. Find all the `li` elements in that page for the search list results.  You use the class values you stored in task 2 step 3.  Also use the tag name when you do the find, to make sure you get the right elements.
 
-5. Within your program, create an empty list called `results`.  You are going to add `dict` values to this list, one for each search result.
+4. Within your program, create an empty list called `results`.  You are going to add `dict` values to this list, one for each search result.
 
-6. Main loop: You iterate through the list of `li` entries.  For each, you find the entry that contains title of the book, and get the text for that entry.  Then you find the entries that contain the authors of the book, and get the text for each.  If you find more than one author, you want to join the author names with a semicolon `;` between each.  Then you find the `div` that contains the format and the year, and then you find the `span` entry within it that contains this information.  You get that text too.  You now have three pieces of text.  Create a `dict` that stores these values, with the keys being `Title`, `Author`, and `Format-Year`.  Then append that `dict` to your `results` list.
+5. Main loop: You iterate through the list of `li` entries.  For each, you find the entry that contains title of the book, and get the text for that entry.  Then you find the entries that contain the authors of the book, and get the text for each.  If you find more than one author, you want to join the author names with a semicolon `;` between each.  Then you find the `div` that contains the format and the year, and then you find the `span` entry within it that contains this information.  You get that text too.  You now have three pieces of text.  Create a `dict` that stores these values, with the keys being `Title`, `Author`, and `Format-Year`.  Then append that `dict` to your `results` list.
 
-7. Create a DataFrame from this list of dicts.  Print the DataFrame.
+6. Create a DataFrame from this list of dicts.  Print the DataFrame.
 
 **Hint** You can put little print statements in at each step, to see if that part works.  For example, when you find all the `li` entries, you could print out the length of the list.  Then, you could just implement the part of the main loop that finds the Title, and just print out that title.  In this way, you can get the program done incrementally.
 
-**For Further Thought**  You are getting the search results from the first page of the search results list.  How would you get all the search results from all the pages?  How can you make the program do this regardless of how many pages you might have?  **Optional:** Change your program to page through the search results so as to get all of the results.  However! You need to make sure your program pauses between pages.  Fast screen scraping, where many requests are sent in short order, is an abuse of the privilege.
+**For Further Thought (Optional)**  You are getting the search results from the first page of the search results list.  How would you get all the search results from all the pages?  How can you make the program do this regardless of how many pages you might have?  **Optional:** Change your program to page through the search results so as to get all of the results.  However! You need to make sure your program pauses between pages.  Fast screen scraping, where many requests are sent in short order, is an abuse of the privilege.
 
 ### **Task 4: Write out the Data**
 Modify your program to do the following:
@@ -80,7 +80,7 @@ Understand the importance of ethical web scraping and `robots.txt` files.
 2. Analyze the file and answer the following questions.  Put your answers in a file called `ethical_scraping.txt` in your python_homework/assignment8 directory
    - Which sections of the website are restricted for crawling?
    - Are there specific rules for certain user agents?
-3. Reflect on why websites use `robots.txt` and write 2–3 sentences explaining its purpose and how it promotes ethical scraping.  Put these in `ethical_scraping.txt` in your python_homework directory.
+3. Reflect on why websites use `robots.txt` and write 2–3 sentences explaining its purpose and how it promotes ethical scraping.  Put these in `ethical_scraping.txt` in your python_homework/assignment8 directory.
 
 
 ---
@@ -90,11 +90,11 @@ Understand the importance of ethical web scraping and `robots.txt` files.
 **Goal**:  
 Extract a web page section and store the information.
 
-1. Use your browser developer tools to view this page: [https://owasp.org/www-project-top-ten/].  You are going to extract the top 10 security risks reported there.  Figure out how you will find them.
+1. Use your browser developer tools to view this page: <https://owasp.org/www-project-top-ten/>.  You are going to extract the top 10 security risks reported there.  Figure out how you will find them.
 
 2. Within your python_homework/assignment8 directory, write a script called `owasp_top_10.py`.  Use selenium to read this page.
 
-3. Find each of the top 10 vulnerabilities.  Hint: You will need XPath.  For each of the top 10 vulnerabilites, keep the vulnerability title and the href link in a dict.  Accumulate these dict objects in a list.
+3. Find each of the top 10 vulnerabilities.  Hint: You will need XPath.  For each of the top 10 vulnerabilities, keep the vulnerability title and the href link in a dict.  Accumulate these dict objects in a list.
 
 4. Print out the list to make sure you have the right data.  Then, add code to the program to write it to a file called `owasp_top_10.csv`.  Verify that this file appears correct.
 
@@ -102,31 +102,17 @@ Extract a web page section and store the information.
 
 ---
 
-### Submit Your Assignment on GitHub**  
-
-#### **1️⃣ Add, Commit, and Push Your Changes**  
-- Within your python_homework folder, do a git add and a git commit for the files you have created, so that they are added to the `assignment8` branch.
-- Push that branch to GitHub. 
-
-#### **2️⃣ Create a Pull Request**  
-- Log on to your GitHub account.
-- Open your `python_homework` repository.
-- Select your `assignment8` branch.  It should be one or several commits ahead of your main branch.
-- Create a pull request.
-
----
-
 ### **Task 7: Start your web scraping capstone project**
 
 Now you're ready to get started on your second capstone project.  In this project, you will use web scraping to create your dataset, save it in a sqlite database and then create interactive, web-based visualizations to find and illustrate insights gained from the scraped data.  We recommend using the [Weather Around The World](https://www.timeanddate.com/weather/) web site, however you can use another site with CIL approval if there's a different topic you would like to explore.  Note that web scraping friendliness varies significantly and also depends on how often the structure and content changes.
 
-For this capstone projectyou will create **four programs** that retrieve data from the **Weather Around The World** website (or another approved site) and display the results in an interactive dashboard. The project will involve **Selenium** for web scraping, data cleaning, transforming the data into a structured format, storing it in a SQLite database, querying it via command line, and presenting it using **Streamlit** for interactive visualizations.
+For this capstone project, you will create **four programs** that retrieve data from the **Weather Around The World** website (or another approved site) and display the results in an interactive dashboard. The project will involve **Selenium** for web scraping, data cleaning, transforming the data into a structured format, storing it in a SQLite database, querying it via command line, and presenting it using **Streamlit** for interactive visualizations.
 
 This week, you will scrape data from the web site, clean it and save it to a csv file.
 
 #### **Set up capstone project GitHub repository**
 
-You will create a new, separate git hub repository for your web scraping capstone project, ourside of all you other repos.  You can call it anything you want.  
+You will create a new, separate GitHub repository for your web scraping capstone project, outside of all your other repos.  You can call it anything you want.  
 
 1. Create a new empty repository in your GitHub account.  Please include a README which you will use to explain how to set up and run the project.
 2. Clone the repo to your local computer
@@ -203,8 +189,94 @@ This week, you will submit your pull request to show progress on webscraping and
 📌 **Follow these steps to submit your work:**  
 
 ## **Submit Your GitHub Links**
-- Get a link to your assignment pull request and paste the **URL** into the first submission field on the **assignment submission form**.
-- Get a link to you capstone project pull request and paste **URL** into the second submission field on the **assignment submission form**.
+
+First, commit and push your work and open your pull requests:
+- **Main assignment:** within your `python_homework` folder, `git add` and `git commit` the files you created on the `assignment8` branch, push the branch to GitHub, and open a pull request into `main`.
+- **Web scraping capstone:** push your capstone branch and open a pull request in that separate repository.
+
+Then submit your links:
+- Paste your assignment pull request **URL** into the first submission field on the **assignment submission form**.
+- Paste your capstone project pull request **URL** into the second submission field on the **assignment submission form**.
+- Paste the public link to your **finalized Kaggle data pipeline capstone** into the Kaggle submission field on the **assignment submission form** (see the section below).
+
+---
+
+## **Finalize and Submit Your Kaggle Data Pipeline Capstone**
+
+This is the **final deadline** for your first capstone project — the Kaggle data pipeline you have been building since week 5.  You completed the core of it in week 7 by adding your visualizations, so this week is about polishing and submitting it, not new building.  Getting it in now means the rest of the course is dedicated to your web scraping capstone, so the two projects don't compete at the end of the term.
+
+Before you submit, check your Kaggle notebook against the full rubric:
+
+<details>
+<summary>Kaggle Data Pipeline Capstone Rubric</summary>
+
+## Kaggle Project Rubric
+
+* **General Code Quality**
+
+    * [ ]  Code demonstrates a strong understanding of Python basics.
+    * [ ]  Code is well organized and documented with comments.
+    * [ ]  Functions are used to structure and organize the code.
+
+* **File Handling and Data Loading**
+
+    * [ ]  Data is loaded from appropriate file formats (CSV, JSON, etc.) using Pandas.
+    * [ ]  File paths and loading procedures are clearly defined and handled robustly.
+    * [ ]  Demonstrates effective use of Pandas `read_csv()`, `read_json()`, or similar functions.
+    * [ ]  Uses `head()`, `tail()`, and `info()` effectively to preview and inspect the data.
+
+* **Data Wrangling and Transformation**
+
+    * [ ]  Demonstrates proficiency in using Pandas for data selection, filtering, and transformation.
+    * [ ]  Implements advanced data manipulation techniques, including indexing, slicing, and data type conversion.
+    * [ ]  Handles missing data effectively using `dropna()` or `fillna()` with appropriate strategies.
+    * [ ]  Identifies and removes duplicate records if necessary using Pandas.
+    * [ ]  Code is efficient, well-documented, and follows Pandas best practices.
+    * [ ]  At least two extracted features
+
+* **Data Aggregation**
+
+    * [ ]  Uses Pandas `groupby()` function effectively to aggregate data and gain insights.
+    * [ ]  Applies a variety of aggregation functions (e.g., `sum()`, `mean()`, `count()`, `min()`, `max()`) to analyze grouped data.
+    * [ ]  Clearly presents and interprets the results of data aggregation.
+    * [ ]  At least 2 aggregations
+
+* **Visualization Quality**
+
+    * [ ]  Creates multiple (3+) high-quality, informative, and visually appealing visualizations using appropriate libraries (e.g., Matplotlib, Seaborn, Plotly).
+    * [ ]  Visualizations are clear, concise, and easy to understand, with appropriate titles, labels, legends, and color schemes.
+    * [ ]  Demonstrates strong understanding of design principles.
+    * [ ]  Provides clear explanations of the insights conveyed by each visualization.
+
+* **Chart Types and Interpretation**
+
+    * [ ]  Uses a diverse range of chart types (e.g., scatter plots, bar charts, histograms, box plots, heatmaps) to provide a comprehensive view of the data.
+    * [ ]  Demonstrates a clear understanding of the strengths and weaknesses of each chart type and selects them strategically.
+    * [ ]  Provides insightful interpretations of the visualizations, connecting them to the data analysis and the problem domain.
+
+* **Dataset and Feature Understanding**
+
+    * [ ]  Uses a dataset that is appropriate for the analysis.
+    * [ ]  Demonstrates a clear understanding of the dataset's characteristics, limitations, and potential biases.
+    * [ ]  Selects and uses a sufficient number of relevant features to support a meaningful analysis.
+
+* **Conclusions and Insights**
+
+    * [ ]  Provides a clear, concise, and insightful summary of the project's key findings and conclusions.
+    * [ ]  Connects the findings to the original problem or question and discusses their implications.
+    * [ ]  Identifies potential limitations of the analysis.
+    * [ ]  Demonstrates a strong understanding of the data's story and effectively communicates it.
+    * [ ]  At least 3 conclusions supported by charts and text.
+
+* **Reproducibility**
+
+    * [ ]  Provides a well-organized and clearly documented notebook or script that allows others to easily reproduce the entire analysis.
+    * [ ]  All dependencies are clearly specified.
+
+</details>
+<br>
+
+**To submit:** on the upper right of the Kaggle page, click **Save Version** and save (a quick save is fine).  Then click **Share**, choose **Public**, make sure **Allow Comments** is on, and copy the public URL.  Paste that URL into the Kaggle submission field on this week's **assignment submission form**.
 
 ---
 
@@ -215,3 +287,27 @@ This week, you will submit your pull request to show progress on webscraping and
 - [OWASP robots.txt](https://owasp.org/robots.txt)
 
 ---  
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+This assignment scrapes **live web sites** with Selenium and has **no automated tests**. Grade the **method**, not exact output. The exact scraped values (titles, authors, years, vulnerability names/links) and the exact CSS class names / XPath selectors **change over time** — `Example — adapt to your own layout`: do NOT fail a submission because its selectors or scraped values differ from any reference. The reviewer also cannot see the student's filesystem — do NOT fail a student because you cannot confirm a file sits in a particular folder. Tasks 1–6 are submitted as an `assignment8` branch PR into `main` in `python_homework`; Task 7 and the Kaggle finalization are **separate repos/notebooks** submitted via their own links (see the last two Required items).
+
+### Required Deliverables/Tasks
+
+- **Task 1 — robots.txt review (Durham County Library)** — A compliance check; no file deliverable. Done = the student shows they read `durhamcountylibrary.org/robots.txt` and understood it lists `Disallow`ed paths. Do not require an exact quote (live file).
+- **Task 2 — DOM/selector notes** — Notes (in a student-chosen temporary file) identifying the repeating result `li` and sensible selectors for Title, Author, and Format-Year (including the containing `div`). Feeds Task 3; judge whether the right *kind* of element was found, not the literal class string.
+- **Task 3 — `get_books.py`** — Loads the Durham library search page, finds all result `li` elements, and for each builds a `dict` appended to a list named `results`, then builds and prints a pandas DataFrame. Dict keys are `Title`, `Author`, `Format-Year`; multiple authors joined with a semicolon `;`. `Use exactly as written (later tasks depend on these names)` for the dict keys, the `results` list, and the `;` join. Must import from `selenium` and `webdriver_manager` (and `pandas`; `json` is used in Task 4). `Example — adapt to your own layout` for the CSS/class selectors and the scraped values.
+- **Task 4 — `get_books.csv` and `get_books.json`** — `get_books.py` writes the DataFrame to `get_books.csv` (header + one row per book) and the `results` list to `get_books.json` as valid JSON (list of objects). `Use exactly as written (later tasks depend on these names)` for the filenames. An index column from `to_csv` is a minor nit, not a failure; `df.to_json(...)` is an acceptable alternative to `json.dump`.
+- **Task 5 — `ethical_scraping.txt`** — Reads Wikipedia's `robots.txt` and answers: which sections are restricted (some `Disallow`ed paths named), whether there are user-agent-specific rules (yes), plus 2–3 sentences on why sites use `robots.txt`. `Use exactly as written (later tasks depend on these names)` for the filename. Subjective otherwise; do not require exact paths (live file). All Task 5 files go in `assignment8/`.
+- **Task 6 — `owasp_top_10.py` and `owasp_top_10.csv`** — Uses Selenium with **XPath** (`By.XPATH`) to collect the 10 vulnerability titles and their `href` links from the OWASP Top Ten page, accumulates them as dicts in a list, prints the list, and writes `owasp_top_10.csv` (title + link). `Use exactly as written (later tasks depend on these names)` for the filenames and the use of XPath. `Example — adapt to your own layout` for the exact XPath and the scraped titles/links.
+- **Task 6 — `challenges.txt`** — A short, honest reflection on difficulties and how they were resolved. Any genuine reflection passes; empty/missing fails. `Use exactly as written (later tasks depend on these names)` for the filename.
+- **Submission (assignment)** — Work on an `assignment8` branch, submitted as a PR into `main`, each task's code marked with a comment (e.g. `# Task 3`). `Example — adapt to your own layout`: file placement inside `assignment8/` cannot be verified by the reviewer — do not fail on it.
+- **Task 7 — Web-scraping capstone (this week's scope only)** — A **new, standalone** GitHub repo (not inside `python_homework`) with a README, cloned locally, plus a branch and PR. This week's required scope is **only**: Selenium scraping of the chosen site with raw data saved to a **CSV**, raw data loaded into a pandas DataFrame and cleaned (missing/duplicate/malformed), and a README describing setup. `Example — adapt to your own layout` for the site choice (Weather Around The World or a CIL-approved alternative) and all layout/selectors. **Do NOT grade the full capstone rubric (SQLite, 3+ Streamlit visualizations, dashboard) this week** — those are later-week deliverables. Submitted as a separate PR link in the second submission field, so review it via that link (not the `assignment8` PR).
+- **Kaggle data-pipeline capstone (final submission)** — The **final deadline** for the first capstone (built since week 5, core completed week 7) — this week is polishing and submitting, not new building. Deliverable is the finalized public Kaggle notebook link, submitted in its own field. Do not grade it as part of the `assignment8` code.
+
+### Optional Deliverables/Tasks
+
+- **Task 3 — "For Further Thought" pagination** — Marked **Optional** in the text. Paging through all search-result pages to collect every result. **Do not fail a student for omitting this.** If a student attempted it, confirm they added a pause between page requests (e.g. `time.sleep`) — scraping without a delay is the abuse the lesson warns against. `Example — adapt to your own layout` for any pagination approach and pacing value.
+
+</details>

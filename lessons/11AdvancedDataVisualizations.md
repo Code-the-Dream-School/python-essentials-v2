@@ -2,7 +2,7 @@
 # **Lesson 11 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
-**Learning objective:** Students will learn to build advanced, interactive visualizations and simple, deployable dashboards with Streamlit alongside Pandas and Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and turning analyses into lightweight web apps for real-time exploration (with Streamlit components like widgets, layout, and state). To prepare for the final project, students will complete this lesson and assignment in a personal GitHub repository rather than in `python_homework`.
+**Learning objective:** Students will learn to build advanced, interactive visualizations and simple, deployable dashboards with Streamlit alongside Pandas and Plotly. They will practice visualizing data from DataFrames, creating interactive charts, and turning analyses into lightweight web apps for real-time exploration (with Streamlit components like widgets, layout, and state). To prepare for the final project, students will practice this lesson's code examples in a personal GitHub repository rather than in `python_homework`, building the Streamlit skills they will apply in their web scraping capstone dashboard.
 
 ### **Topics:**
 1. Plotting with Pandas: Visualizing data directly from DataFrames.
@@ -15,7 +15,7 @@ For your final project, you will create a dashboard using Streamlit. Check out t
 
 ### **Setup**
 
-You are using your own repository for both the lesson and the assignment. Do the Streamlit portions in the same repository (e.g., in a streamlit/ folder).
+You are using your own repository to practice this lesson's examples. Do the Streamlit portions in the same repository (e.g., in a streamlit/ folder). Note: your graded final project — the web scraping capstone dashboard — lives in its own separate capstone repository, described in this week's assignment. This `python-assignment11` repository is just a practice sandbox for the lesson exercises below and is not itself a graded submission.
 
 1. Create a folder called  `python-assignment11`.  This should **not** be inside of the `python_homework` folder.  Change to this directory.
 2. Do a `git init`.
@@ -56,9 +56,9 @@ You are using your own repository for both the lesson and the assignment. Do the
     git commit -m "first commit"
     git push origin main
     ```
-10. Create an `assignment11` git branch. Create a folder called `assignment11`.  This is for the exercises prior to the assignment and will also be used for the assignment.
+10. Create an `assignment11` git branch. Create a folder called `assignment11`.  This is for practicing this lesson's code exercises.
 
-For the following code examples, you create programs in the `assignment11` folder.  Some of this code won't run correctly within the Python interactive shell.  As you do the lesson and assignment, periodically add and commit your changes and push the `assignment11` branch to GitHub.  This is to practice the procedures of a development shop.  When you use these procedures, you can be confident that you won't break something and have to start over.  You can just switch back to the last commit if something breaks.
+For the following code examples, you create programs in the `assignment11` folder.  Some of this code won't run correctly within the Python interactive shell.  As you work through this lesson's exercises, periodically add and commit your changes and push the `assignment11` branch to GitHub.  This is to practice the procedures of a development shop.  When you use these procedures, you can be confident that you won't break something and have to start over.  You can just switch back to the last commit if something breaks.
 
 ---
 
@@ -407,6 +407,6 @@ For more details, explore the [Plotly Documentation](https://plotly.com/python/)
 
 ## **Final week of class**
 
-This is the final week of class.  There are assignments related to this week's lesson and you will also use **Streamlit** to create a dashboard for your web scraping capstone project.  Details about final project submission are included in the assignment section this week.
+This is the final week of class.  Your main deliverable is the **Streamlit** dashboard for your web scraping capstone project, built on the data you scraped and stored in a SQLite database over the past several weeks.  The assignment also includes a short, optional Plotly warm-up.  Details about final project submission are included in the assignment section this week.
 
 

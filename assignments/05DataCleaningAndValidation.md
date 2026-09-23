@@ -27,7 +27,7 @@ With a little setup, you can create Jupyter notebooks in VSCode, and submit them
    - The DataFrame contains columns for 'Name', 'Age', 'Salary', 'Join Date', and 'City', with some missing values.
    - Print the original DataFrame.
   
-Here's a summary of what the DataFrame looks like to help you get started (but don't use this code):
+Here's a summary of what the DataFrame looks like to help you get started (Example only — do not use this code; load the real data from the Kaggle input instead):
 
 ```python
 data = {
@@ -101,17 +101,17 @@ For this task, we'll use fixed thresholds instead of a statistical method.
    - Replace variations like 'NYC' with 'New York' and 'LA' with 'Los Angeles'.
    - Print the updated DataFrame.
 
-**Task 6 — Encoding Categorical Variables**
+### **Task 6: Encoding Categorical Variables**
 
-1. Create a new DataFrame with a `Color` column = `['Red','Blue','Green','Blue']`.
+1. Create a new DataFrame called `df_color` with a `Color` column = `['Red','Blue','Green','Blue']`.
 2. Apply:
 ```python
-   df["Color_Label"] = df["Color"].map({"Red":1,"Blue":2,"Green":3})
-   df_encoded = pd.get_dummies(df["Color"], prefix="Color")
+   df_color["Color_Label"] = df_color["Color"].map({"Red":1,"Blue":2,"Green":3})
+   df_encoded = pd.get_dummies(df_color["Color"], prefix="Color")
 ```
 3. Display results.
 
-**Task 7 — Consolidating Messy Files (Mini Project)**
+### **Task 7: Consolidating Messy Files (Mini Project)**
 
 1. Add input dataset "Code The Dream Assignment 6" → contains 4 CSV files (400 rows each).
 2. Load all 4 into DataFrames and concatenate → `df_all` (~1600 rows).
@@ -154,9 +154,9 @@ For this task, we'll use fixed thresholds instead of a statistical method.
 
 ---
 
-**Task 8 — Regular Expressions for Validation**
+### **Task 8: Regular Expressions for Validation**
 
-Run these examples to see more examples of how regexes can be used.
+Run these examples to see more examples of how regexes can be used. You do not need to modify them — running each one and showing its output is all this task requires.
 
 1. Extract Log Info:
 ```python
@@ -205,7 +205,7 @@ Run these examples to see more examples of how regexes can be used.
 
 ---
 
-**Task 9 — Reflection & Validation**
+### **Task 9: Reflection & Validation**
 
 Create a markdown cell summarizing:
 * Most common data issues found
@@ -216,6 +216,8 @@ Create a markdown cell summarizing:
 ### **Task 10: Start Your Final Project**
 
 Now that you have worked with pandas and gotten started with data cleaning and aggregation, it's time to start your final project.  Throughout the course, you'll apply the techniques you have learned incrementally to your project.  For this week, you will create a Kaggle notebook for you data pipeline final project.  The notebook name is up to you but you might use something like **CTD Python Data Pipeline**.
+
+**Note:** The capstone is built up over several weeks. For this week, only the "getting started" work described under *This week's capstone project goals* (below the details) is required. The project details and grading rubric shown below apply to the **finished** capstone, not this week's submission.
 
 <details>
 <summary>Here are the details on the Kaggle Data Pipeline Capstone Project</summary>
@@ -243,7 +245,7 @@ Document the data cleaning performed in a Markdown block
 
 Create at least three additional columns which can be used to derive insights from the data.  For example:
 
-* Columns for just ``year`` and ``month`
+* Columns for just ``year`` and ``month``
 * Derive ``Gross Margin`` from ``Profit`` and ``Sales``
 * Discretize discounts into buckets such as ``none``, ``low``, ``medium``, ``high``
 
@@ -271,7 +273,7 @@ Load the data into a ``DataFrame``.  Evaluate data quality, looking for issues s
 * Convert dates to ``datetime``, year vs date consistency
 * Handle null values if necessary
 * Numeric conversion e.g. ``revenue`` to ``float``
-* Expand/convert ``json`` formated columns, e'g' ``genres``, ``keywords``, ``production companies``
+* Expand/convert ``json`` formatted columns, e.g. ``genres``, ``keywords``, ``production companies``
 * This is an explanation of the [format](https://www.kaggle.com/code/sohier/tmdb-format-introduction)
 
 Document the data cleaning performed in a Markdown block
@@ -465,3 +467,36 @@ Submit the current version of your capstone notebook using the second link field
 - Paste the URL into the **assignment submission form**.  
 
 ---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+This assignment is a **Kaggle Jupyter notebook** named `CTD_Assignment_5`, submitted as a public Kaggle share link (comments on) — not a python_homework branch/PR. There is no PyTest; grade by reading the notebook (ideally "Run All" on the shared link). Each task should be introduced by a markdown cell. **Be lenient about:** Kaggle input file paths (`/kaggle/input/...` — the reviewer cannot see them), all row counts (approximate; depend on dataset version — check `info()` output, not a memorized number), and variable names (students legitimately vary). Cells share state, so `df`, `df1`, `df2`, `df3`, `df_all` flow from earlier tasks into later ones.
+
+### Required Deliverables/Tasks
+
+- **Setup** — A Kaggle notebook `CTD_Assignment_5`; datasets added via Kaggle "Add Input" using the given search terms; a public share link with comments enabled. `Example — adapt to your own layout` for the resolved input paths — do NOT fail on the path string.
+- **Task 1 — Handling Missing Data** — Read the "code the dream lesson 5" CSV into `df`. Create `df1 = df.dropna()` and call `info()` on both (don't `print(info())` — it returns `None`). Then `fillna` on `df`: `Name`→`'Unknown'`, `Age`→**mean**, `Salary`→**median**, `Join Date`→`'2020-01-01'`. Then `df2 = df.dropna().reset_index(drop=True)` and `df2['Age'] = df2['Age'].astype(int)`. `Use exactly as written (later tasks depend on these names)` for the fill strategies (mean for Age, median for Salary — a common mistake is swapping them) and the literals `'Unknown'` / `'2020-01-01'`. The `data = {...}` block is `Example — adapt to your own layout` (the assignment says "don't use this code"; real data comes from Kaggle).
+- **Task 2 — Data Transformation** — Read the "Code The Dream Eclipses" CSV into `df3` with `sep="|"`, inspect with `info()`/`head()`, then `pd.to_datetime(df3['Date'], errors='coerce')`. `Use exactly as written (later tasks depend on these names)` for `sep="|"` and `errors='coerce'`. Showing the initial failing `to_datetime` call first is optional (may be commented out or just described).
+- **Task 3 — Validating Data Ranges** — Set ages `< 18` or `> 65` to `np.nan`, then fill with the **median**. `Use exactly as written`: `np.nan`, not the string `'NaN'`. Any correct boolean-mask approach (`.loc`, `.where`, `.mask`) is fine.
+- **Task 4 — Duplicates & Outliers** — Part 1 (on `df3`): `duplicate_series = df3.duplicated()`, show `df3[duplicate_series == True].head(10)` and `duplicate_series.value_counts()`, then `drop_duplicates()`. Part 2 (on `df2`): replace ages `> 100` or `< 0` with the **median**. There may be no outliers left after Task 3 — that's expected; the skill is writing the replacement correctly, not getting a hit.
+- **Task 5 — Standardizing Data** — `Name` → `.str.lower().str.strip()`; then unify `City` variants (`NYC`→`New York`, `LA`→`Los Angeles`). Which variants exist depends on the dataset — accept any reasonable mapping that consolidates the obvious duplicates. The `groupby('City')` is a diagnostic step.
+- **Task 6 — Encoding Categorical Variables** — A new DataFrame (`df_color`) with a `Color` column `['Red','Blue','Green','Blue']`; an ordinal column via `.map({'Red':1,'Blue':2,'Green':3})` and one-hot columns via `pd.get_dummies(..., prefix="Color")`. Dummy columns as `True`/`False` (boolean) are correct, not a bug. `Example — adapt to your own layout` for the variable name — any new DataFrame is fine.
+- **Task 7 — Consolidating Messy Files (Mini Project)** — Load the 4 "Code The Dream Assignment 6" CSVs and `concat(..., ignore_index=True)` into `df_all` (~1600 rows); install/import `thefuzz`; fuzzy-fix **both** `Name` and `Address`; mode-fix `Zip` and `Phone` with `groupby([...]).transform(fix_anomaly)`; `drop_duplicates()` → **≈400** unique records. Counts are approximate — do not fail on small differences. A helper for the two fuzzy fixes is the DRY win, but two copied blocks pass too.
+- **Task 8 — Regular Expressions** — Run the four worked examples and show their output. `Example — adapt to your own layout`: these are demonstrations; running them and showing output is all that's required — do NOT fail for not modifying them.
+- **Task 9 — Reflection & Validation** *(subjective)* — A markdown cell covering the three prompts (most common issues, techniques that worked best, how to automate). A strong answer names specific issues seen in this notebook and ties each to its technique. Do not fail for writing style.
+- **Task 10 — Start Your Final Project** *(subjective)* — A **separate** Kaggle notebook (e.g. `CTD Python Data Pipeline`), one of the four datasets chosen (or a CIL-approved alternative), data loaded with the correct delimiter, an initial `head()`/`info()` look, and **some** cleaning documented in markdown cells. Submitted as a **second** Kaggle link. **Do NOT grade against the full capstone rubric this week** — only a documented start is required; feature engineering, aggregation, and 3+ visualizations come in later weeks.
+
+### Optional Deliverables/Tasks
+
+Do not fail a student for omitting any of these.
+
+- **Full capstone deliverables** — The embedded project details and grading rubric (feature engineering, 3 aggregations, 3+ visualizations, conclusions, reproducibility) describe the **finished** multi-week capstone. They are **not** part of this week's submission.
+- **Alternative capstone dataset** — Proposing a non-listed dataset (with CIL approval) is explicitly optional.
+- **Markdown formatting directives** — Task 1 says using `## ` headings/formatting is encouraged but "you do not have to."
+- **Variable persistence / Session Options** — The Task 1 note about turning on variable persistence is a convenience, not a graded deliverable.
+- **The initial failing `pd.to_datetime()` call (Task 2)** — Showing the pre-`coerce` error is illustrative; it may be commented out or described.
+
+*Process steps that are not graded code:* creating a Kaggle account, and the "Run All" / session-timeout mechanics.
+
+</details>

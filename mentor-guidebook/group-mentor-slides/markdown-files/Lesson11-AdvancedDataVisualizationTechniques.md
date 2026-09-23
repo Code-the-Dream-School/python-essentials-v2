@@ -114,7 +114,7 @@ plt.show()
 
 > Pandas plotting is great for quick exploration. For polish, use Plotly or Seaborn.
 
-<!-- Mentor note: Assignment Task 1 uses Pandas plotting to create a bar chart from SQL data (employee revenue). Task 2 creates a line plot of cumulative revenue. These are quick — the main focus should be Streamlit. -->
+<!-- Mentor note: Pandas plotting is background knowledge this week — it's no longer a required assignment task. The assignment's only focus is the Streamlit capstone dashboard, with an optional Plotly warm-up. Keep this section brief. -->
 
 ---
 
@@ -405,9 +405,9 @@ st.plotly_chart(px.bar(filtered, ...))        # Step 5
 
 ---
 
-## Deploying to Streamlit Cloud
+## Deploying to Streamlit Cloud (Optional)
 
-**Your capstone must be deployed to Streamlit Community Cloud:**
+**Deployment is optional this term — a working local app (`streamlit run`) fully meets the requirements.** If students have time and want their app live, here's how:
 
 1. Push your code to GitHub (include `requirements.txt`)
 2. Go to [streamlit.io/cloud](https://streamlit.io/cloud) → log in
@@ -433,59 +433,45 @@ streamlit
 
 | Task | What You'll Do |
 |------|---------------|
-| 1 | Pandas bar chart: employee revenue from SQL |
-| 2 | Pandas line plot: cumulative revenue |
-| 3 | Plotly interactive scatter: wind dataset |
-| 4 | Reflection: static vs interactive visualization |
-| 5 | Commit your work |
-| 6 | **Streamlit dashboard for capstone project!** |
+| Optional warm-up | Plotly interactive scatter: wind dataset |
+| **Main deliverable** | **Streamlit dashboard for the web scraping capstone!** |
 
-<!-- Mentor note: Tasks 1-4 are in the python-assignment11 repo (separate from python_homework). Task 6 is the capstone finale — building and deploying the Streamlit dashboard for their web scraping project. This is the big deliverable. -->
+<!-- Mentor note: Week 11 is now a single-deliverable week — the Streamlit capstone dashboard, built on the SQLite database students already created in weeks 9-10. The Kaggle capstone was already finalized back in week 8, so it's NOT due this week. The old standalone Tasks 1-5 (Pandas plots, reflection, commit) have been cut; only an optional, ungraded Plotly warm-up remains, and it needs no separate repo or PR. This is the big — and only — deliverable. -->
 
 ---
 
 ## Assignment Tips
 
-**Task 1 (Pandas + SQL):** The SQL query is provided in the assignment — just load it with `pd.read_sql_query()`, then use `df.plot(kind="bar")`.
+**Optional Plotly warm-up:** The `strength` column in the wind dataset is a string — clean it with `str.replace()` and convert to float before plotting. This can be done in a Kaggle notebook or a single script; no repo or PR needed.
 
-**Task 2 (cumulative):** Use `df["total_price"].cumsum()` to calculate cumulative revenue.
-
-**Task 3 (Plotly wind):** The `strength` column is a string — clean it with `str.replace()` and convert to float before plotting.
-
-**Task 6 (capstone dashboard):**
-- Connect to your SQLite database
+**Capstone dashboard (the main deliverable):**
+- Connect to the SQLite database you built in weeks 9–10
 - Add at least 3 visualizations with `st.plotly_chart()`
 - Include user interactions (dropdowns, sliders)
-- Deploy to Streamlit Cloud
+- Running locally with `streamlit run` is sufficient; Cloud deploy is optional
 
 ---
 
 ## Final Project Checklist
 
-### Kaggle Data Pipeline (Capstone 1)
-- [ ] Data loading and inspection
-- [ ] Data cleaning and validation
-- [ ] Wrangling, aggregation, 2+ engineered features
-- [ ] 3+ visualizations with explanations
-- [ ] 3+ conclusions supported by charts
+**This week's only capstone: the Web Scraping Dashboard.** (The Kaggle Data Pipeline capstone was finalized and submitted back in week 8 — it is not due this week.)
 
-### Web Scraping Dashboard (Capstone 2)
+### Web Scraping Dashboard
 - [ ] Selenium web scraping → CSV
 - [ ] Data cleaning and transformation
-- [ ] SQLite database storage
+- [ ] SQLite database storage (done in weeks 9–10)
 - [ ] Streamlit dashboard with 3+ visualizations
-- [ ] Deployed to Streamlit Community Cloud
+- [ ] Runs locally with `streamlit run` (Cloud deployment optional)
 - [ ] README with setup steps and screenshot
 
 ---
 
-## Project Presentations
+## Project Presentation (Optional)
 
-**Record a 3–5 minute video showing both projects:**
+**Recording a presentation is optional this term and is not graded.** Encourage it as good interview practice, but it should not add pressure during a busy final week. If a student records one, it's a 3–5 minute video of their web scraping dashboard:
 
-1. Demo your Kaggle data visualizations
-2. Demo your Streamlit web scraping dashboard
-3. Describe what you built and what you learned
+1. Demo your Streamlit web scraping dashboard
+2. Describe what you built and what you learned
 
 **Recording options:**
 - Zoom (record a personal meeting with screen share)
