@@ -225,7 +225,7 @@ This week’s work on your capstone should focus on (and can be self-checked aga
 <details>
 <summary>Rubric (for AirHub reviewer and mentors)</summary>
 
-This lesson is done entirely in **Kaggle notebooks**, not the `python_homework` repo — there is **no PyTest file**. Grade by reading the notebook cells and confirming the shown output matches each task. The student submits **two public Kaggle links**: the assignment notebook (`CTD_Assignment_6`, Tasks 1–12) and their **capstone notebook** (Task 13). Look at the capstone link for Task 13. **Be lenient about:** Kaggle input file paths (the reviewer cannot see them — never fail a differing path), the sample-data values the student was told they may change, exact row/aggregate values from live datasets (verify structure, not numbers), and markdown wording.
+This lesson is done entirely in **Kaggle notebooks**, not the `python_homework` repo — there is **no PyTest file**. Grade by reading the notebook cells and confirming the shown output matches each task. The student submits **two public Kaggle links**: the assignment notebook (`CTD_Assignment_6`, Tasks 1–12) and their **capstone notebook** (Task 13). Look at the capstone link for Task 13. **Be lenient about:** Kaggle input file paths (the reviewer cannot see them — never fail a differing path), the sample-data values the student was told they may change, exact row/aggregate values from live datasets (verify structure, not numbers), and markdown wording. Accept any read_csv arguments (for example, sep="," or sep="\t") that load the file correctly. Judge by whether the printed head() shows the data split into the expected columns, not by the arguments used.
 
 ### Required Deliverables/Tasks
 
