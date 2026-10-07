@@ -96,7 +96,7 @@ def incrementor(x):
 list_two = list(map(incrementor, list_one)) # [4,5,6]
 ```
 
-You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversion to create a list.  Now, the incrementor() function above is more verbose than necessary.  You'd like to pass something in line, and for that, Python provides:
+You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversiofn to create a list.  Now, the incrementor() function above is more verbose than necessary.  You'd like to pass something in line, and for that, Python provides:
 
 ### Lambdas
 
@@ -111,10 +111,10 @@ Here is how the syntax breaks down:
 
 $$\text{lambda } \underline{\text{arguments}} : \underline{\text{expression}}$$
 
-* lambda: The keyword that starts the function.
-* Arguments: The inputs passed into the function, separated by commas. (Note: Because functions like `map()` only pass one parameter at a time, you will often see lambdas with just a single argument).
-* The Colon (:): Separates the arguments from the action.
-* Expression: The single operation or calculation to perform. The result of this expression is automatically returned.
+* **lambda**: The keyword that starts the function.
+* **Parameters**: The inputs passed into the function, separated by commas. (Note: Because functions like map() pass one value at a time, you will often see lambdas with just a single parameter.)
+* **Colon** (:): Separates the arguments from the action.
+* **Expression**: The single operation or calculation to perform. The result of this expression is automatically returned.
 
 Key Limitation: A lambda can only contain one expression. There is no room for multiple lines of code or complex statements inside a lambda function.
 
