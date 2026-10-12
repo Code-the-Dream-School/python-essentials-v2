@@ -164,26 +164,85 @@ Great job completing Lesson 1! You're building a strong foundation in Python. �
 ---
 
 <details>
-<summary>Rubric (for AirHub reviewer and mentors)</summary>
+<summary>Rubric (for AIRHub reviewer and mentors)</summary>
 
-### Required Deliverables/Tasks
+### Overview & Grading Guidelines
 
-All work is in `assignment1/assignment1.py`, on a branch submitted as a pull request into `main`. Grade against the requirements stated below, not by running the tests (the reviewer cannot run PyTest). Each task should be comment-labeled (e.g. `# Task 1`), but do not fail a student only for missing comment labels.
+Mentors and AIRHub should review the code submitted in `assignment1/assignment1.py` via the student's GitHub Pull Request. Since reviewers will be evaluating the code visually rather than running PyTest directly, focus on checking function logic, correct handling of arguments, and expected return strings. 
 
-- **Setup / submission** — code in `assignment1/assignment1.py`; PR from the student's branch into `main`. `Example — adapt to your own layout`: the working folder must NOT be failed for differing. The branch should be named `assignment1`, but do not fail for a differing branch name — the reviewer cannot verify it.
-- **Task 1: `hello`** — no arguments, **returns** (not prints) `Hello!`. `Use exactly as written`: function name `hello` and the returned string `Hello!`.
-- **Task 2: `greet`** — takes a name, returns a formatted string of the form `Hello, <name>!`. `Use exactly as written`: function name `greet`, and the literal text/punctuation `Hello, ` + name + `!`. The word "Name" in the assignment is a placeholder — do NOT require the literal string `Hello, Name!`; the name comes from the argument.
-- **Task 3: `calc`** — three arguments, third defaults to `"multiply"`; supports `add`, `subtract`, `multiply`, `divide`, `modulo`, `int_divide`, `power` and returns the result. On divide-by-zero returns `You can't divide by 0!`; on bad operand types returns `You can't multiply those values!`. `Use exactly as written`: function name `calc`, the operation keyword strings, and both error-message strings. Do NOT fail on which exception class the student catches — grade on the returned strings and behavior.
-- **Task 4: `data_type_conversion`** — takes a value and a type name (`float`, `str`, or `int`); returns the converted value. On a bad conversion returns `You can't convert {value} into a {type}.` with the actual value and type substituted in. `Use exactly as written`: function name, the type-name strings, and the error-message format (with substitution). Do NOT fail on which exception class is caught.
-- **Task 5: `grade`** — collects an arbitrary number of scores via `*args`, averages them, returns a letter grade: A (≥90), B (80–89), C (70–79), D (60–69), F (below 60). On invalid input returns `Invalid data was provided.` `Use exactly as written`: function name `grade`, the letter grades, and the error-message string.
-- **Task 6: `repeat`** — takes a string and a count, returns the string repeated `count` times, built with a `for` loop and `range` (not `string * count`). `Use exactly as written`: function name `repeat`. Grade the output; the for-loop/range approach is the stated requirement.
-- **Task 7: `student_scores`** — one positional argument (`"best"` or `"mean"`) plus student=score keyword arguments via `**kwargs`. `"best"` returns the name of the highest-scoring student; `"mean"` returns the average score. `Use exactly as written`: function name `student_scores` and the `"best"`/`"mean"` keywords.
-- **Task 8: `titleize`** — takes a string, returns it capitalized as a book title: first and last words always capitalized; the "little words" (`a`, `on`, `an`, `the`, `of`, `and`, `is`, `in`) stay lowercase in the middle. `Use exactly as written`: function name `titleize` and the little-words list.
-- **Task 9: `hangman`** — takes `secret` and `guess` strings; returns the secret with every letter not present in `guess` replaced by `_`, others left in place (e.g. secret `alphabet`, guess `ab` → `a___ab__`). `Use exactly as written`: function name `hangman` and the underscore substitution behavior.
-- **Task 10: `pig_latin`** — takes a lowercase, punctuation-free English string; returns Pig Latin: vowel-start word → add `ay`; consonant-start → move leading consonant(s) to the end, then add `ay`; `qu` moves as a unit. `Use exactly as written`: function name `pig_latin` and the stated rules.
+- **Git & Formatting:** Code should be in `assignment1/assignment1.py` on a pull request into `main`. Don't dock points if the student's branch name differs from `assignment1` or if comment labels (`# Task 1`) are missing, as long as the code is organized and identifiable.
+- **Return Values vs. Printing:** Ensure students are returning values rather than printing them inside functions (unless noted for debugging).
 
-### Optional Deliverables/Tasks
+---
 
-**None.** This assignment has no optional, stretch, or bonus work — all 10 tasks are required.
+### Required Deliverables
+
+#### **Setup & General Requirements**
+- Code is properly located in `assignment1/assignment1.py` submitted via PR.
+
+#### **Task 1: `hello()`**
+- Function name: `hello`
+- Takes no arguments.
+- **Returns** (does not print) the exact string `"Hello!"`.
+
+#### **Task 2: `greet(name)`**
+- Function name: `greet`
+- Takes one argument (a name string).
+- **Returns** `"Hello, <name>!"` using formatted string syntax (e.g., `f"Hello, {name}!"`).
+  > *Note:* The term "Name" in the task description is a placeholder—don't look for the literal string `"Hello, Name!"`.
+
+#### **Task 3: `calc(a, b, operation="multiply")`**
+- Function name: `calc`
+- Takes three arguments; the third defaults to `"multiply"`.
+- Supports math operations: `add`, `subtract`, `multiply`, `divide`, `modulo`, `int_divide`, and `power`.
+- **Error Handling:**
+  - Division by zero returns: `"You can't divide by 0!"`
+  - Incompatible operand types returns: `"You can't multiply those values!"`
+  > *Note:* Accept any valid `try/except` block regardless of the specific exception class caught.
+
+#### **Task 4: `data_type_conversion(value, type_name)`**
+- Function name: `data_type_conversion`
+- Converts `value` to requested type: `"float"`, `"str"`, or `"int"`.
+- **Error Handling:** Invalid conversions return formatted string: `"You can't convert {value} into a {type}."` (substituting the actual inputs).
+
+#### **Task 5: `grade(*args)`**
+- Function name: `grade`
+- Accepts arbitrary arguments (`*args`), calculates average, and returns letter grade:
+  - **A:** $\ge 90$ | **B:** $80$–$89$ | **C:** $70$–$79$ | **D:** $60$–$69$ | **F:** $<60$
+- **Error Handling:** Invalid/non-numeric inputs return: `"Invalid data was provided."`
+
+#### **Task 6: `repeat(text, count)`**
+- Function name: `repeat`
+- Repeatedly concatenates `text` using a `for` loop and `range()`.
+  > *Note:* Even if `text * count` works in Python, check that the student used a `for` loop with `range()` as specified in the assignment.
+
+#### **Task 7: `student_scores(mode, **kwargs)`**
+- Function name: `student_scores`
+- Accepts `mode` (`"best"` or `"mean"`) along with student scores via key-value arguments (`**kwargs`).
+- `"best"` returns the top student's name; `"mean"` returns the class average score.
+
+#### **Task 8: `titleize(title)`**
+- Function name: `titleize`
+- Capitalizes title words except specified lowercase words: `"a"`, `"on"`, `"an"`, `"the"`, `"of"`, `"and"`, `"is"`, `"in"`.
+- Always capitalizes the **first** and **last** words, even if they are in the lowercase list.
+
+#### **Task 9: `hangman(secret, guess)`**
+- Function name: `hangman`
+- Accepts two strings; returns `secret` with missing guessed letters replaced by underscores (`_`).
+- Example: `hangman("alphabet", "ab")` $\rightarrow$ `"a___ab__"`.
+
+#### **Task 10: `pig_latin(sentence)`**
+- Function name: `pig_latin`
+- Converts lowercase English text into Pig Latin:
+  - Vowel start: append `"ay"` (e.g., `"apple"` $\rightarrow$ `"appleay"`).
+  - Consonant start: move leading consonant cluster to end + `"ay"`.
+  - `"qu"` rule: treat `"qu"` together as a single consonant cluster (e.g., `"quiet"` $\rightarrow$ `"ietquay"`).
+
+---
+
+### Optional Tasks
+- **None.** All 10 tasks are required for this lesson.
+
+</details>
 
 </details>
