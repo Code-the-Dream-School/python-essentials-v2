@@ -8,7 +8,7 @@ In this assignment, you will gain hands-on experience cleaning and validating re
 
 The assignments up to this one have required you to create `.py` files and to submit them by creating pull requests for your python_homework repository.  For this assignment, you create a Jupyter notebook file.  Jupyter notebooks are a way to do data presentation and analysis, using Python code.  A notebook is comprised of a sequence of cells, which come in two kinds: Markdown cells, for putting in the text you want to show, and code cells, where you put your Python code.  You typically alternate Markdown and code cells.    
 
-With a little setup, you can create Jupyter notebooks in VSCode, and submit them to GitHub.  However, GitHub is not a friendly environment for collaboration on notebooks.  Your reviewer wants to see the notebooks, to run them, and to give you comments in context.  For that purpose, we use [https://kaggle.com].  That site also has an interesting collection of data sets you can use for practice in data analysis and presentation.  Your first capstone project will be based in Kaggle. Connect to the site now and register, so that you have an account. The AI reviewer accepts Kaggle links.
+With a little setup, you can create Jupyter notebooks in VSCode, and submit them to GitHub.  However, GitHub is not a friendly environment for collaboration on notebooks.  Your reviewer wants to see the notebooks, to run them, and to give you comments in context.  For that purpose, we use [Kaggle](https://www.kaggle.com).  That site also has an interesting collection of data sets you can use for practice in data analysis and presentation.  Your first capstone project will be based in Kaggle. Connect to the site now and register, so that you have an account. The AI reviewer accepts Kaggle links.
 
 ### **Tasks:**
 
@@ -18,11 +18,22 @@ With a little setup, you can create Jupyter notebooks in VSCode, and submit them
 
 **Note:** The various code cells in a Jupyter notebook are all part of the same program, so you have access to the variables and functions of one cell from each of the ones that follow.  You only need to import Pandas once, for example.  However, Kaggle sessions **time out** if your session is idle for a while.  When they time out, your variables go away.  So, if you then run cell 2, which is dependent on something in cell 1, you'll get an error.  To correct this, click on the Run All button at the top of your Kaggle notebook screen, and the entirety of the program runs in the order the cells appear.  You can turn on variable persistence in the lower right under Session Options at the lower right to avoid having variables time out.
 
+**How to add a Kaggle input:** A Kaggle input is a dataset that you attach to your notebook. Kaggle changes its screen labels from time to time, so the names you see may differ slightly. Follow these steps:
+
+- Open the Input section in the right sidebar of your notebook.
+- Choose **Add Input**.
+- Search for the dataset by name, and add it to your notebook.
+- Kaggle places the dataset's files in a folder under `/kaggle/input/<dataset-folder>/`.
+- Hover over a file in the sidebar, and use the copy option to copy its path.
+- Pass that path to `pd.read_csv()`, for example `pd.read_csv('/kaggle/input/<dataset-folder>/<file-name>.csv')`.
+
+The code cell that Kaggle adds to a new notebook also prints the path of every input file when you run it.
+
 2. **Create a DataFrame using the provided data:**
 
    - Add another input dataset.  This time, search on "code the dream lesson 5"
    - Create another code block.
-   - Resolve the name of the file as usual.
+   - Resolve the name of the file, as described in "How to add a Kaggle input" above.
    - Read it into a DataFrame called df.
    - The DataFrame contains columns for 'Name', 'Age', 'Salary', 'Join Date', and 'City', with some missing values.
    - Print the original DataFrame.
@@ -61,6 +72,8 @@ df = pd.DataFrame(data)
    - Print the first 20 lines of the revised df3.  Examine what is stored for the dates that could not be converted.
 
 ### **Task 3: Validating Data Ranges**
+Use df2 from Task 1 for this task.
+
 1. **Ensure the 'Age' column contains values within the valid range (18 to 65):**
    - Replace invalid ages (less than 18 or greater than 65) with a NaN value.  (NaN is actually part of numpy: `np.nan` is the value you should use.  Don't use the string 'NaN'!)
    - Print the updated Dataframe.
@@ -96,7 +109,7 @@ For this task, we'll use fixed thresholds instead of a statistical method.
 2. **Standardize inconsistent entries in the 'City' column:**
    - Find variations in the City name:
    ```python
-   print(df.groupby('City').agg({'Name': 'count'})) # This will show all city names, so you can see variations
+   print(df2.groupby('City').agg({'Name': 'count'})) # This will show all city names, so you can see variations
    ```
    - Replace variations like 'NYC' with 'New York' and 'LA' with 'Los Angeles'.
    - Print the updated DataFrame.
@@ -224,7 +237,7 @@ Now that you have worked with pandas and gotten started with data cleaning and a
 
 # **Capstone Project - Kaggle Data Pipeline**
 
-Select one of the following datasets and perform cleaning, aggregation, analysis and visualization, illustrating at least 3 insights gleaned from the data.  Optionally, students can propose an alternative dataset and set of metrics to their CIL by the end of week 13.  The projects are intentionally open-ended in that it is up to the student to decide what they learn from the data, and how it is documented and visualized.
+Select one of the following datasets and perform cleaning, aggregation, analysis and visualization, illustrating at least 3 insights gleaned from the data.  Optionally, students can propose an alternative dataset and set of metrics to their CIL by the end of week 11.  The projects are intentionally open-ended in that it is up to the student to decide what they learn from the data, and how it is documented and visualized.
 
 ## **Global Superstore**
 
