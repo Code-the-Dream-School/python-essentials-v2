@@ -64,7 +64,7 @@ Again, you create a markdown cell to describe this task, and a code cell contain
 
 2. Resolve the file you need to read, by running the first cell in your notebook. Then read the file into a DataFrame called `ecommerce`.  Print out the first 5 rows, so that you know what the data looks like.
 
-3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.  Note: `str.replace('$', '')` by itself will not remove it as expected; add `regex=False` (as in `str.replace('$', '', regex=False)`) so the dollar sign is treated as ordinary text.
+3. In the following step, you will want to sum the Purchase_Amount values.  Unfortunately, this column is stored as a string.  Replace the column with one that converts the string to a float.  You will need to take the dollar sign off before conversion.  Note: add `regex=False` (as in `str.replace('$', '', regex=False)`) so the dollar sign is treated as ordinary text.  In regular expressions, `$` has a special meaning, so `regex=False` makes your intent clear and works the same way in every version of pandas.
 
 4. Create a "buying_patterns" pivot table from the data.  The index should be the 'Purchase_Category'.  The columns should be 'Gender' and 'Income_Level'.  The value you sum should be 'Purchase_Amount'.  Print out the resulting DataFrame.
 
