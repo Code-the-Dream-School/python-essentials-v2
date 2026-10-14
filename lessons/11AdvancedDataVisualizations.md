@@ -1,4 +1,3 @@
-
 # **Lesson 11 — Advanced Data Visualization Techniques**
 
 ## **Lesson Overview**
@@ -15,7 +14,7 @@ For your final project, you will create a dashboard using Streamlit. Check out t
 
 ### **Setup**
 
-You are using your own repository to practice this lesson's examples. Do the Streamlit portions in the same repository (e.g., in a streamlit/ folder). Note: your graded final project — the web scraping capstone dashboard — lives in its own separate capstone repository, described in this week's assignment. This `python-assignment11` repository is just a practice sandbox for the lesson exercises below and is not itself a graded submission.
+You are using your own repository to practice this lesson's examples. Do the Streamlit portions in the same repository, in the `assignment11` folder. Note: your graded final project — the web scraping capstone dashboard — lives in its own separate capstone repository, described in this week's assignment. This `python-assignment11` repository is just a practice sandbox for the lesson exercises below and is not itself a graded submission.
 
 1. Create a folder called  `python-assignment11`.  This should **not** be inside of the `python_homework` folder.  Change to this directory.
 2. Do a `git init`.
@@ -48,12 +47,13 @@ You are using your own repository to practice this lesson's examples. Do the Str
     ```bash
     pip install -r requirements.txt
     ```
-8. Do `VSCode .`.  Bring up VSCode command palette (Ctrl-Shift-P) and select Python: Select Interpreter.  Select the one with `.venv`.  Close any VSCode terminal sessions and start a new one.  You should see in the command prompt that `.venv` is active.
+8. Do `code .`.  Bring up VSCode command palette (Ctrl-Shift-P) and select Python: Select Interpreter.  Select the one with `.venv`.  Close any VSCode terminal sessions and start a new one.  You should see in the command prompt that `.venv` is active.
 9. On GitHub, create a new public repository called python-assignment11.  Do not create a README.md or .gitignore or license.  Copy the URL of the repository.  You can use either the HTTPS or SSH URL, depending on your preference.  Set the remote for the repository, and push your code.
     ```bash
     git remote add origin <url>
     git add -A
     git commit -m "first commit"
+    git branch -M main
     git push origin main
     ```
 10. Create an `assignment11` git branch. Create a folder called `assignment11`.  This is for practicing this lesson's code exercises.
@@ -105,6 +105,7 @@ plt.show()
 ```
 
 Try this out.  The behavior of Matplotlib is like what you saw in the previous lesson.  A graphic window appears, and the program stops to wait at that point, until you close the window.
+
 ---
 
 ## **11.2 Interactive Visualizations with Plotly**
@@ -188,7 +189,7 @@ import streamlit as st  # Importing the Streamlit library
 st.title("My First Streamlit App")  # Adds a big title at the top of the app
 st.header("Section 1")  # Adds a section header — good for breaking content into parts
 st.subheader("Header")  # Slightly smaller than header — useful for structure
-st.subheader("Subheader")  # Another level down — keeps things organized
+st.subheader("Subheader")  # A second subheader at the same level — keeps things organized
 st.text("Simple text")  # Displays plain, unformatted text — like a basic message
 st.markdown("**Bold** and *italic* text")  # Markdown lets you add simple formatting like bold and italics
 
@@ -206,8 +207,8 @@ streamlit run app.py
 ```
 Open your browser to http://localhost:8501 to view your app.
 
-Note: Any time you change a value in one of the input components, go to the browser tab and refresh, Streamlit  reruns the entire script from top to bottom using the updated values. This means your app always reflects the latest state .
-You can refresh the tab manually, or use the “Always rerun” option in the top-right of the Streamlit page for instant updates as you code.
+Note: Any time you change a value in one of the input components, Streamlit reruns the entire script from top to bottom with the updated values. You do not need to refresh the browser for this. A browser refresh resets the input components to their default values.
+When you edit and save your source file, Streamlit shows a "Rerun" option in the top-right of the page. Select "Rerun" to see your changes, or select "Always rerun" to update the app automatically each time you save.
 
 ## Exercise 2: Data Input Components
 ```python
@@ -248,7 +249,7 @@ Streamlit renders output in the order the code runs — so the st.write() here a
 ## Exercise 3: Layout and Containers
 In this section, you’ll learn how to organize your app using columns, expanders, and a sidebar.
 
-Continue working in the same app.py file you created earlier. You can either:
+Continue working in the same app.py file you created earlier. You can:
 - Append the new code at the bottom of the file
 
 

@@ -140,7 +140,7 @@ WHERE salary = (
 ### **Implementation in Python:**
 ```python
 # Example using SQLite
-conn = sqlite3.connect("company.db")
+conn = sqlite3.connect("db/company.db")
 cursor = conn.cursor()
 
 # Execute the query
@@ -193,7 +193,7 @@ cursor = conn.cursor()
 # create Projects table
 
 creation = """
-CREATE TABLE Projects (
+CREATE TABLE IF NOT EXISTS Projects (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     department_id INTEGER NOT NULL,
@@ -272,6 +272,9 @@ conn.close()
 ### **Python example which uses Inner Join so department name is used:**
 
 ```python
+conn = sqlite3.connect("db/company.db")
+cursor = conn.cursor()
+
 query = """
 SELECT d.department_name AS department,
        MIN(e.salary)  AS min_salary,
@@ -302,6 +305,9 @@ List all departments where the average salary exceeds 70,000 and display the dep
 
 ### **Python Example:**
 ```python
+conn = sqlite3.connect("db/company.db")
+cursor = conn.cursor()
+
 query = """
 SELECT d.department_name, 
        d.manager_id, 
@@ -320,6 +326,9 @@ conn.close()
 ### **Example which lists the manager by name**
 ```python
 # This version reports the manager's name instead of id 
+conn = sqlite3.connect("db/company.db")
+cursor = conn.cursor()
+
 query = """
 WITH dept_avg AS (
   SELECT e.department_id, AVG(e.salary) AS avg_salary
@@ -389,12 +398,18 @@ Transactions ensure that multiple database operations are completed successfully
 ### **Example:**
 ```python
 # Start a transaction
-conn = sqlite3.connect("company.db")
+conn = sqlite3.connect("db/company.db")
 cursor = conn.cursor()
 
 try:
-    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('Mario Rossi', 2)")
-    cursor.execute("INSERT INTO Employees (name, department_id) VALUES ('Yamada Hanako', 3)")
+    cursor.execute(
+        "INSERT INTO Employees (first_name, last_name, department_id, title, salary) "
+        "VALUES ('Mario', 'Rossi', 20, 'Sales Associate', 85000)"
+    )
+    cursor.execute(
+        "INSERT INTO Employees (first_name, last_name, department_id, title, salary) "
+        "VALUES ('Hanako', 'Yamada', 30, 'HR Generalist', 62000)"
+    )
     conn.commit()  # Commit transaction
 except Exception as e:
     conn.rollback()  # Rollback transaction if there's an error
@@ -402,6 +417,8 @@ except Exception as e:
 
 conn.close()
 ```
+
+Both `INSERT` statements succeed, so `commit()` saves both new rows. If either `INSERT` fails, the `except` block calls `rollback()`. For example, an `INSERT` that leaves out the required `salary` column fails. After a rollback, neither row is saved.
 
 ---
 
@@ -470,6 +487,28 @@ print(cursor.fetchall())
 
 conn.close()
 ```
+
+### **Python Example: ROW_NUMBER()**
+`ROW_NUMBER()` numbers the rows within each partition. This example numbers the employees in each department by salary.
+
+```python
+conn = sqlite3.connect("db/company.db")
+cursor = conn.cursor()
+
+query = """
+SELECT (e.first_name || ' ' || e.last_name) AS employee_name,
+       e.salary,
+       e.department_id,
+       ROW_NUMBER() OVER (PARTITION BY e.department_id ORDER BY e.salary DESC) AS row_num
+FROM Employees AS e;
+"""
+cursor.execute(query)
+print(cursor.fetchall())
+
+conn.close()
+```
+
+`RANK()` gives tied rows the same rank and then skips the next numbers. `ROW_NUMBER()` always gives each row a unique number, even when rows are tied. In the sample data, Bob Smith and Carol Zhang both earn 135000 in department 10. `RANK()` gives them both rank 1, and Alice Nguyen gets rank 3. `ROW_NUMBER()` gives them 1 and 2, and Alice Nguyen gets 3. The `ORDER BY` does not decide which tied employee gets the lower number, so add a second sort column, such as `e.employee_id`, if you need a predictable order.
 
 ---
 

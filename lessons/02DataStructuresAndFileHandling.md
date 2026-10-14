@@ -96,7 +96,7 @@ def incrementor(x):
 list_two = list(map(incrementor, list_one)) # [4,5,6]
 ```
 
-You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type coversiofn to create a list.  Now, the incrementor() function above is more verbose than necessary.  You'd like to pass something in line, and for that, Python provides:
+You pass the map() function two arguments, the function that changes the list item, and the iterable itself.  The function returns an iterable, and we can do type conversion to create a list.  Now, the incrementor() function above is more verbose than necessary.  You'd like to pass something in line, and for that, Python provides:
 
 ### Lambdas
 
@@ -124,10 +124,11 @@ You can create a subset list from a list by slicing.  Here are examples:
 
 ```python
 list_1 = ['A','B','C','D','E']
-list_2 = list_1[1:3] # Slicing from beginning to end. Gives ['B','C'].  list_1[3] is not included.
+list_2 = list_1[1:3] # Slicing from index 1 up to, but not including, index 3. Gives ['B','C'].  list_1[3] is not included.
 list_3 = list_1[2:]  # Gives ['C','D','E']
 list_4 = list_1[:2]  # Gives ['A', 'B']
 list_5 = list_1[-2:] # Gives ['D', 'E'] -- the last two elements
+```
 
 ### Tuples
 
@@ -145,7 +146,7 @@ print(dimensions[0])  # Access the first element: Output: 1920
 
 ### Dictionaries
 
-A **dictionary** is an unordered collection of key-value pairs. Each key is unique and used to store and retrieve data efficiently. Dictionaries are ideal for mapping relationships, such as a user’s name to their profile data or an item to its price.
+A **dictionary** is a collection of key-value pairs. Since Python 3.7, dictionaries keep the order in which you insert the keys. Each key is unique and used to store and retrieve data efficiently. Dictionaries are ideal for mapping relationships, such as a user’s name to their profile data or an item to its price.
 
 ```python
 person = {'name': 'Jazmine', 'age': 30}  # Define a dictionary
@@ -155,8 +156,8 @@ person['email'] = 'jazmine@example.com'  # Add a new key-value pair
 
 #### Key Dictionary Methods
 
-* `keys()`: Returns a list of keys in the dictionary.
-* `values()`: Returns a list of values.
+* `keys()`: Returns a view object (`dict_keys`) of the keys in the dictionary. Use `list()` to convert it to a list.
+* `values()`: Returns a view object (`dict_values`) of the values. Use `list()` to convert it to a list.
 * `items()`: Returns an iterable over the key, value pairs in the dictionary
 * `get(key)`: Returns the value associated with `key`, or `None` if `key` is not found.
 
@@ -188,7 +189,7 @@ Ok, let's review! Here's a table demonstrating the key differences between the f
 |----------------|---------|----------------------|-------------------|-----------------|
 | **List**       | Yes     | Yes                 | Yes               | No              |
 | **Tuple**      | Yes     | No                  | Yes               | No              |
-| **Dictionary** | No      | Yes (Keys: No)      | Keys: No, Values: Yes | Yes           |
+| **Dictionary** | Yes (insertion order) | Yes (Keys: No)      | Keys: No, Values: Yes | Yes           |
 | **Set**        | No      | Yes                 | No                | No              |
 
 ### 2.1 Video: Lists, Tuples, Dictonaries, and Sets
@@ -248,7 +249,7 @@ In Python, reading from and writing to text files is handled with the `open()` f
 
 #### Reading a Text File
 
-To read a file, use `open()` with the `"r"` (read) mode and call `.read()`, `.readline()`, or .`readlines()` to get the content.
+To read a file, use `open()` with the `"r"` (read) mode and call `.read()`, `.readline()`, or `.readlines()` to get the content.
 
 ```python
 with open('example.txt', 'r') as file:
@@ -649,7 +650,7 @@ and the script might load the contents of the file into a database.  The sys pac
 ```python
 import sys
 for arg in sys.argv:
-    print(arg)  # arg[0] is the program name.  The other arguments are what was passed on the command line.
+    print(arg)  # sys.argv[0] is the program name.  The other arguments are what was passed on the command line.
 ```
 
 The [argparse](https://docs.python.org/3/library/argparse.html#module-argparse) module provides a powerful framework for handling command line arguments.

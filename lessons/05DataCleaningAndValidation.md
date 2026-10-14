@@ -1,4 +1,3 @@
-
 ## Lesson 05 — Data Cleaning and Validation
 
 **Lesson Overview**
@@ -7,9 +6,9 @@
 
 ### Topics
 1. What is Data Cleaning?
-2. Handling Missing Data (`isnull`, `dropna`, `fillna`)
+2. Handling Missing Data (`isnull`/`isna`, `notna`, `dropna`, `fillna`)
 3. Data Types & Datetime (`astype`, `to_numeric`, `to_datetime`)
-4. Validation (ranges / allowed values)
+4. Validation (ranges / allowed values with `isin`)
 5. Duplicates (`duplicated`, `drop_duplicates`)
 6. Outliers (simple rules; median concept)
 7. Text Standardization & Regex (`lower/strip`, `replace` vs `map`, `str.contains`/`str.extract`/`str.replace`, `filter(regex=...)`)
@@ -39,7 +38,8 @@ Missing data is common in datasets and can significantly affect the outcome of a
 
 ### Key Methods
 
-- `isnull()`: Find the rows where data is missing.
+- `isnull()` or `isna()`: Find the rows where data is missing.
+- `notnull()` or `notna()`: Find the rows where data is present.
 - `dropna()`: Removes rows or columns with missing data.
 - `fillna()`: Replaces missing values with specified values.
 
@@ -80,6 +80,32 @@ print(df_filled)
 `dropna()` removes any row that contains a `None` (missing) value. This can remove quite a lot of data, especially if you have a lot of columns.
 
 `fillna()` is used to replace missing values. In this case, the `Age` column's missing values are replaced with 0, and the `Score` column's missing values are filled with the mean of the existing scores. This can cause issues if the values you are replacing become outliers.
+
+### Example: Using `isna()` and `notna()`
+
+The `isna()` method is the same method as `isnull()`. The two names are aliases, so they return the same result. You will see both names in other people's code. The `notna()` method does the opposite. It returns `True` where a value is present. The `notnull()` method is an alias for `notna()`.
+
+```python
+import pandas as pd
+
+# Sample DataFrame with missing values
+data = {'Name': ['Amara', 'Yulia', None, 'David'],
+        'Age': [24, 27, 22, None],
+        'Score': [85, None, 88, 76]}
+df = pd.DataFrame(data)
+
+# Count the missing values in each column
+print(df.isna().sum())
+
+# Keep only the rows that have a Name
+df_named = df[df['Name'].notna()]
+print(df_named)
+```
+
+**Explanation:**
+`df.isna()` returns a DataFrame of `True` and `False` values. Python counts `True` as 1, so `sum()` gives the number of missing values in each column. In this example, each column has one missing value.
+
+`df['Name'].notna()` returns `True` for each row where `Name` has a value. Using it inside `df[...]` keeps only those rows. Here, the row with the missing name is removed.
 
 ### AI Prompt: Retrieval Practice
 
@@ -129,10 +155,11 @@ print(df.dtypes)  # Verify data types
 print(df)
 ```
 ---
-## **5.3 Validating Data Ranges**
+## **5.3 Validating Data Ranges and Allowed Values**
 
 ### **Overview**
 Validating data ranges ensures all values fall within acceptable limits, avoiding invalid or erroneous data.
+Validating allowed values ensures that a column only contains values from a permitted list.
 
 ### **Example Task:**
 - Ensure ages are between 18 and 65. Replace invalid values with `NaN` and fill them with the median.
@@ -152,6 +179,35 @@ print(df)
 ### **Explanation:**
 - Any age outside the range of 18 to 65 is replaced with `None` (NaN).
 - Missing values in the `Age` column are filled with the median value of the column.
+
+### **Validating Allowed Values**
+
+Some columns should only contain values from a fixed list. For example, a `Location` column might only allow certain city codes. The `isin()` method checks each value against a list. It returns `True` when the value is in the list. The `~` operator reverses the result, so `~df['Location'].isin(allowed)` is `True` for values that are not allowed.
+
+```python
+import pandas as pd
+
+# Sample DataFrame with an unexpected location
+data = {'Name': ['Amara', 'Yulia', 'Charlie', 'David'],
+        'Location': ['LA', 'NY', 'Paris', 'LA']}
+df = pd.DataFrame(data)
+
+# The only locations we accept
+allowed = ['LA', 'NY']
+
+# Find rows whose Location is not in the allowed list
+invalid = df[~df['Location'].isin(allowed)]
+print(invalid)
+
+# Keep only the rows with an allowed Location
+df_valid = df[df['Location'].isin(allowed)]
+print(df_valid)
+```
+
+### **Explanation:**
+- The `invalid` DataFrame shows the row for Charlie, because `Paris` is not in the allowed list.
+- The `df_valid` DataFrame keeps only the rows with `LA` or `NY`.
+- Dropping rows is one choice. You could also replace the values that are not allowed with `NaN`, as the age example above does.
 
 ---
 
@@ -379,7 +435,7 @@ df = pd.DataFrame(data)
 # Standardize text data (convert to lowercase and strip spaces)
 df['City'] = df['City'].str.lower().str.strip()
 
-# Use Regex to replace shorthand names
+# Replace shorthand names that exactly match a full value
 df['City'] = df['City'].replace({'san fran': 'san francisco'})
 
 print("DataFrame with Inconsistent Data Handled:")
@@ -388,7 +444,7 @@ print(df)
 
 ### **Explanation:**
 - **String standardization**: Converts all entries in the `City` column to lowercase and removes extra spaces.
-- **Regex**: Matches and replaces shorthand for cities with their full names.
+- **Exact-match replacement**: The `replace()` method replaces a value only when the whole entry matches exactly.  Here, it replaces `san fran` with `san francisco`.
 
 ---
 
@@ -441,9 +497,9 @@ D) `remove_redundant()`
 
 In this lesson, you learned how to:
 
-* Handle missing data with `isna/notna`, `dropna`, and `fillna`.
+* Handle missing data with `isnull`/`isna`, `notna`, `dropna`, and `fillna`.
 * Convert data types and parse datetimes.
-* Validate ranges / allowed values (e.g., age 18–65).
+* Validate ranges (e.g., age 18–65) and allowed values with `isin`.
 * Identify and remove duplicates with `drop_duplicates`.
 * Flag/handle outliers with simple rules.
 * Standardize text and apply regex (`replace`, `contains`, `extract`, `filter(regex)`).

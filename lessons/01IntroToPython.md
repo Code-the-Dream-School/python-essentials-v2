@@ -125,7 +125,7 @@ Follow the installation instructions for your operating system:
     ```
 
 4. **Create a Working Folder**
-    - Your assignments will use a git repository, and the instructions for setting up that repository are included in the first lesson.  You should also have a separate folder to try the code samples from the lessons.  This working folder should be outside of the cloned repository on your computer.  For example, you could create a folder called `python_class`.  Inside that folder, create a folder called `working` to use for lesson code samples.  When you do the first assignment, you will also clone a repository called `python_homework` inside the `python_class` folder.  Your lessons and assignments will require some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
+    - Your assignments will use a git repository, and the instructions for setting up that repository are included in the first assignment.  You should also have a separate folder to try the code samples from the lessons.  This working folder should be outside of the cloned repository on your computer.  For example, you could create a folder called `python_class`.  Inside that folder, create a folder called `working` to use for lesson code samples.  When you do the first assignment, you will also clone a repository called `python_homework` inside the `python_class` folder.  Your lessons and assignments will require some packages to be added to Python using pip.  These should be installed into a virtual environment -- a collection of packages specifically for your project.  (The JavaScript and Rails package managers set up a virtual environment automatically, but it requires several additional steps for Python.) 
     
     Create a folder, cd to that folder, and then do the following:
 
@@ -374,9 +374,9 @@ print(num_int)
 
 **Question**: What will the following code output?
 
-``python
+```python
 print(10 % 3)
-``
+```
 
 * A) `3`
 * B) `1`
@@ -792,7 +792,7 @@ print(name) # Prints "Hima"
 def set_name_2(name):
     name = "Nguyen"
 
-set_name_2()
+set_name_2(name)
 print(name) # Prints "Hima"
 ```
 
@@ -1016,14 +1016,16 @@ else:
 The `finally` block runs regardless of whether an exception occurred or not. It’s often used for cleanup actions like closing files or database connections.
 
 ```python
+file = None
 try:
     file = open("example.txt", "r")
     content = file.read()
 except FileNotFoundError:
     print("Error: File not found.")
 finally:
-    file.close()
-    print("File closed.")
+    if file is not None:
+        file.close()
+        print("File closed.")
 ```
 
 ### Raising exceptions

@@ -126,7 +126,7 @@ Try the code above in your Python interactive shell.  You'll see something a lit
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')  # Enable headless mode
 options.add_argument('--disable-gpu')  # Optional, recommended for Windows
-options.add_argument('--window-size=1920x1080')  # Optional, set window size
+options.add_argument('--window-size=1920,1080')  # Optional, set window size
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=options)
 
@@ -156,26 +156,26 @@ There are others.  There are also combined selectors:
 'div.main-container' : All div elements that have a class of main-container.
 ```
 
-CSS selectors can be as complicated as need be, but typically you do not want to do complicated selection when web scraping, as this will make your scraping program frail.  If you want a full tutorial on CSS selectors, go here: [https://www.w3schools.com/css/css_selectors.asp]
+CSS selectors can be as complicated as need be, but typically you do not want to do complicated selection when web scraping, as this will make your scraping program frail.  If you want a full tutorial on CSS selectors, go here: [https://www.w3schools.com/css/css_selectors.asp](https://www.w3schools.com/css/css_selectors.asp)
 
 Here are some examples.  Try them out in your Python interative shell (assuming you have already loaded the web page into your driver as shown above):
 
 ```python
 from selenium.webdriver.common.by import By
 
-title = driver.title # Find the title.  Parts of the header are accessed directly, not via find_element(), which only works on the body
+title = driver.title # Find the title.  find_element() can find head elements such as title, but their .text is empty because they are not displayed.  driver.title is the easy way to get the title.
 print(title)
 
-body = driver.find_element(By.CSS_SELECTOR,'body') # Find the first body element, typically only one
-if body:
-    links = body.find_elements(By.CSS_SELECTOR,'a') # Find all the links in the body.
-    if len(links) > 0:
-        print("href: ", links[0].get_attribute('href'))  # getting the value of an attribute
+body = driver.find_element(By.CSS_SELECTOR,'body') # Find the first body element, typically only one.  find_element() raises a NoSuchElementException if nothing matches.
+links = body.find_elements(By.CSS_SELECTOR,'a') # Find all the links in the body.
+if len(links) > 0:
+    print("href: ", links[0].get_attribute('href'))  # getting the value of an attribute
 
 
 
-main_div = body.find_element(By.CSS_SELECTOR,'div[id="mw-content-text"]')
-if main_div:
+main_divs = body.find_elements(By.CSS_SELECTOR,'div[id="mw-content-text"]') # find_elements() returns an empty list if nothing matches
+if len(main_divs) > 0:
+    main_div = main_divs[0]
     bolds = main_div.find_elements(By.CSS_SELECTOR,'b')
     if len(bolds) > 0:
         print("bolds: ",bolds[0].text)
@@ -255,7 +255,7 @@ driver.quit()
 
 ---
 
-## **8.4 XPath to Traverse the DOM**
+## **8.4 Scraping Structured Data with XPath**
 
 ### **Overview**
 After scraping basic data, you can refine your scraping strategy to focus on specific sections of a webpage.  Sometimes, though, the find by CSS selector approach does not suffice.  Have a look at the [Wikipedia Web Scraping page.](https://en.wikipedia.org/wiki/Web_scraping) Somewhere near the bottom, you see the `See also` section.  Suppose you want to scrape each of the links in that section.  You first open up the developer tools in your browser to see how you find the section.  Open up the elements tab and do a ctrl-f to find "See also".  The second hit gets you pretty close.  This is an `h2` element.  If you scroll down a little bit, you see a `div` further down in the page, and that div has the list of links you want.  But (sigh) there are no good identifiers like class or id or attribute to find this div.  So you go back to that h2 with "See also".  That h2 has the id of "See_also".  This helps some.  What you want to do is go up to the parent div, the one that contains that h2, call it parent_div.  Then you get the div that is the next div sibling of parent_div.  That's the one you want.
@@ -267,23 +267,25 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.get("https://en.wikipedia.org/wiki/Web_scraping")  # this much you've seen before
 
-see_also_h2 = driver.find_element(By.CSS_SELECTOR,'[id="See_also"]') # our starting point
 links = []
-if (see_also_h2):
+try:
+    see_also_h2 = driver.find_element(By.CSS_SELECTOR,'[id="See_also"]') # our starting point
     parent_div = see_also_h2.find_element(By.XPATH, '..') # up to the parent div
-    if parent_div:
-        see_also_div = parent_div.find_element(By.XPATH,'following-sibling::div' ) # over to the div with all the links
-        link_elements = see_also_div.find_elements(By.CSS_SELECTOR, 'a')
-        for link in link_elements:
-            print(f"{link.text}: {link.get_attribute('href')}")
-            name = link.text.strip()
-            url = link.get_attribute("href")
-            if name and url:
-                links.append({"name": name, "url": url})
+    see_also_div = parent_div.find_element(By.XPATH,'following-sibling::div' ) # over to the div with all the links
+    link_elements = see_also_div.find_elements(By.CSS_SELECTOR, 'a')
+    for link in link_elements:
+        print(f"{link.text}: {link.get_attribute('href')}")
+        name = link.text.strip()
+        url = link.get_attribute("href")
+        if name and url:
+            links.append({"name": name, "url": url})
+except NoSuchElementException: # find_element() raises this exception if nothing matches
+    print("The See also section was not found.")
 
 
 driver.quit()
@@ -316,6 +318,38 @@ When scraping large numbers of web pages, managing requests responsibly is essen
         driver.quit()
 
     ```
+
+### **Retrying a Failed Request**
+
+Some errors are temporary. For example, the site may be busy for a moment, or the page may take too long to load. In these cases, a second attempt often works. A retry loop tries the request again a small number of times and waits between attempts. Keep the number of attempts small, and wait a few seconds between them. Each retry is another request to the site, so many fast retries put extra load on the server. If every attempt fails, stop and report the problem.
+
+```python
+from time import sleep
+from selenium.common.exceptions import TimeoutException, WebDriverException
+
+def get_page_with_retries(driver, url, max_attempts=3):
+    for attempt in range(1, max_attempts + 1):
+        try:
+            driver.get(url)
+            return True  # the page loaded, so stop retrying
+        except (TimeoutException, WebDriverException) as e:
+            print(f"Attempt {attempt} failed: {type(e).__name__}")
+            if attempt < max_attempts:
+                wait = 2 * attempt  # wait longer after each failure: 2 seconds, then 4 seconds
+                print(f"Waiting {wait} seconds before the next attempt.")
+                sleep(wait)
+    print(f"Giving up on {url} after {max_attempts} attempts.")
+    return False
+
+try:
+    if get_page_with_retries(driver, "https://en.wikipedia.org/wiki/Web_scraping"):
+        print(driver.title)
+finally:
+    driver.quit()
+```
+
+`TimeoutException` is a type of `WebDriverException`. The code lists both so that you can see which errors it handles.
+
 ---
 
 ## **8.6 Saving Scraped Data**
@@ -349,7 +383,7 @@ with open('scraped_data.json', 'w') as json_file:
 
 Suppose you are scraping from multiple sites.  You may want to record different information from each site, and keep track of which site provided which information.  
 
-For example, you may scrape airline sites for destinations, prices, and departure times.  You could create three tables, one for airlines, which would record the airline name and URL, and then three others for destinations, prices, and departure_times.  There would be a many-to-many relationship between airlines and destinations, which might have where_we_fly as a join table.  There would be a one-to-many relationship between where_we_fly entries and departure_times. Additionally, there would be a one-to-many relationship between departure_times and prices (for economy, business, and first class). This is a little more complicated, to be sure -- but think about your data model when you get ready to store web scraping data!
+For example, you may scrape airline sites for destinations, prices, and departure times.  You could create four tables: one for airlines, which would record the airline name and URL, and then three others for destinations, prices, and departure_times.  There would be a many-to-many relationship between airlines and destinations, which might have where_we_fly as a join table.  There would be a one-to-many relationship between where_we_fly entries and departure_times. Additionally, there would be a one-to-many relationship between departure_times and prices (for economy, business, and first class). This is a little more complicated, to be sure -- but think about your data model when you get ready to store web scraping data!
 
 ## **8.7 Frailty in Web Scraping**
 

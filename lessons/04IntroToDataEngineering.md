@@ -101,9 +101,9 @@ A Series is a one dimensional data structure.  The column on the left is the ind
      print(data2[1])
      # This gives a key error!
      ```
-    - **Notice the following:** Index labels are not necessarily numbers, nor are they in sequential order, and they may not even be unique.  They are **not** the same as the row number.  If some index label is not unique, and you request the value of the series for that index label, what is returned is another series.  This is called `levels` in Pandas.  Try the following:
+    - **Notice the following:** Index labels are not necessarily numbers, nor are they in sequential order, and they may not even be unique.  They are **not** the same as the row number.  If some index label is not unique, and you request the value of the series for that index label, what is returned is another series.  You can replace the index labels with the row numbers 0 through 3.  Try the following:
      ```python
-     data3 = data2.reset_index()
+     data3 = data2.reset_index(drop=True)
      print(data3)
      # output:
      # 0 Tom
@@ -134,9 +134,9 @@ print(my_series.iloc[2]) # Access by integer position
 my_revised_series = my_series * 2
 print(my_revised_series)
 # Output:
-a 20
-b 40
-c 60
+# a    20
+# b    40
+# c    60
 ```
 This does not work for lists!  As we will see, there are other ways to change a series, including a map() method and numpy functions.
 
@@ -242,8 +242,9 @@ print(df['Age'])
 print(df[['Name', 'City']])
 
 ```
-When you select columns in this way, you obtain views or references to one or more columns in the DataFrame.
-- Each reference points to a Series.  Each Series has the same index labels as the DataFrame itself.
+When you select a single column with `df['Age']`, you obtain a view or reference to that column in the DataFrame.
+- The reference points to a Series.  The Series has the same index labels as the DataFrame itself.
+- When you select multiple columns with `df[['Name', 'City']]`, you obtain a new DataFrame.  This new DataFrame is a copy of the data.
 - You should regard these views as read/only.  If you try to change the values in one of these series, you might get a warning, and it might not change the value in the original DataFrame.
 - The following is not best practice:
   ```python
@@ -267,7 +268,7 @@ print(df.iloc[1])  # Select the second row
 # Select rows by condition
 print(df[df['Age'] > 23])
 ```
-When you select rows in this way, you get one or more Series.  These are copies of the data from the DataFrame.  If you change the values in these Series, that does not affect the original DataFrame.  The index labels for these series are the column labels from the original DataFrame.
+When you select a single row with `df.iloc[1]`, you get a Series.  The index labels for this Series are the column labels from the original DataFrame.  When you select rows by condition, you get a new DataFrame.  In both cases, the result is a copy of the data from the DataFrame.  If you change the values in the copy, that does not affect the original DataFrame.
 
 The size, row order, and index labels for a Pandas DataFrame are immutable.  The values and column labels are mutable, and entire columns can be added, removed, or replaced.
 
@@ -362,11 +363,11 @@ print(df)
 
 # Forward fill (propagate last valid observation forward)
 df_ffill = df.copy()
-df_ffill["Sales"] = df_ffill["Sales"].fillna(method="ffill")
+df_ffill["Sales"] = df_ffill["Sales"].ffill()
 
 # Backward fill (use next valid observation to fill gaps)
 df_bfill = df.copy()
-df_bfill["Sales"] = df_bfill["Sales"].fillna(method="bfill")
+df_bfill["Sales"] = df_bfill["Sales"].bfill()
 
 print("\nForward Fill Result:")
 print(df_ffill)
@@ -595,8 +596,8 @@ The same DataFrame can be read using this JSON structure.  It's a bit simpler si
 
 ```json
 { "Name": ["Amara", "Yulia", "Carlos"],
-  "Age": [25, 30, 35],
-  "City": ["New York", "Los Angeles", "Chicago"]
+  "Age": [24, 27, 22],
+  "City": ["New York", "San Francisco", "Chicago"]
 }
 ```
 

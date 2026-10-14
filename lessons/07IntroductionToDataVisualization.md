@@ -79,6 +79,7 @@ plt.show()
 - The **Histogram** shows the distribution of random data.
 
 The third example uses an interesting function, `randn()`.  This gives a random collection of values, but the random values cluster around the average value.  This is called a normal or Gaussian distribution, and many things in nature, such as people's heights, lifetimes of lightbulbs, sizes of snowflakes, and measurement errors in typical experiments, are roughly Gaussian.
+
 ---
 
 ## **7.2 Customizing Plots**
@@ -101,6 +102,8 @@ import matplotlib.pyplot as plt
 
 months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
 revenue = [1000, 1200, 1500, 1700, 1600, 1800]
+categories = ["Region A", "Region B"]
+sales = [500, 700]
 
 # Customized Line Plot
 plt.plot(months, revenue, marker='o', linestyle='--', color='red', linewidth=2)
@@ -144,7 +147,7 @@ Seaborn is a powerful Python visualization library built on top of Matplotlib. I
 
 For the example below, you use the Titanic dataset.  This dataset is built into Seaborn, so you can do sns.load_dataset().  In more typical cases, you load CSV files using pandas.  The Titanic dataset has the following columns:
 
-- survived: True or False.
+- survived: 1 if the passenger survived, or 0 if the passenger did not survive.
 - pclass: Passenger class, meaning what kind of ticket or accommodation the passenger had.
 - age
 - sibsp: How many siblings or spouses each passenger had on the ship.
@@ -169,8 +172,8 @@ plt.title("Correlation Heatmap")
 plt.show()
 
 # Pair Plot
-sns.pairplot(titanic, vars=["age", "fare", "adult_male"], hue="survived", palette="Set2")
-plt.title("Pair Plot of Age, Fare, and Survival")
+g = sns.pairplot(titanic, vars=["age", "fare", "adult_male"], hue="survived", palette="Set2")
+g.figure.suptitle("Pair Plot of Age, Fare, and Survival", y=1.02)
 plt.show()
 ```
 
@@ -210,7 +213,7 @@ Before asking the AI for the answer:
 ## **7.4 Advanced Customization**
 
 ### **Overview**
-Advanced customization techniques include working with multiple subplots, adjusting figure sizes, and using color palettes to enhance the aesthetics of visualizations.
+Advanced customization techniques include working with multiple subplots, adjusting figure sizes, using color palettes to enhance the aesthetics of visualizations, and adding annotations.
 
 ### **Key Concepts:**
 - **Subplots:** Create multiple plots in one figure.
@@ -252,14 +255,51 @@ plt.show()
 
 # Using a Custom Color Palette in Seaborn
 sns.set_palette("muted")
-sns.barplot(x=categories, y=sales)
+sns.barplot(x=categories, y=sales, hue=categories, legend=False)
 plt.title("Sales by Region with Custom Palette")
+plt.show()
+```
+
+### **Example Code: Annotations**
+An annotation is a text label that points to a specific data point. This example uses the monthly revenue data from 7.1 and adds an arrow that points to the highest value. The `plt.annotate()` function takes the label text and three other important arguments:
+- `xy` is the data point that the arrow points to.
+- `xytext` is the position of the text.
+- `arrowprops` is a dictionary that controls how the arrow looks.
+
+Use `plt.text()` when you want a plain text label with no arrow. If you use subplots, call `ax.text()` and `ax.annotate()` on an axes object instead. When the x-axis shows category names, Matplotlib places the categories at positions 0, 1, 2, and so on. That is why the example can use a number such as `2` or `4` as an x position.
+
+```python
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+revenue = [1000, 1200, 1500, 1700, 1600, 1800]
+
+# Find the month with the highest revenue
+best = revenue.index(max(revenue))
+
+plt.plot(months, revenue, marker='o', color='blue')
+plt.title("Monthly Revenue with Annotations")
+plt.xlabel("Months")
+plt.ylabel("Revenue ($)")
+plt.ylim(800, 2000)
+
+# Annotation with an arrow that points to the highest value
+plt.annotate(
+    "Highest revenue",
+    xy=(months[best], revenue[best]),   # the point the arrow points to
+    xytext=(2, 1850),                   # where the text is placed
+    arrowprops=dict(arrowstyle="->", color="black")
+)
+
+# Plain text label with no arrow
+plt.text(4, 1530, "Small drop in May", ha="center", color="gray")
 plt.show()
 ```
 
 ### **Key Techniques:**
 - **Subplots** allow you to create multiple plots in a single figure for better comparison.
 - Seaborn’s **custom color palette** gives more control over the visual appearance.
+- **Annotations** with `plt.annotate()` point to a specific data point, and `plt.text()` adds a plain text label.
 
 ---
 

@@ -44,7 +44,7 @@ pip install pyreadline3
 
 ## **9.1 What SQL Is, and Why it is Used**
 
-SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheet.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite only supports TEXT, NUMERIC, INTEGER, REAL, or BLOB datatypes.  Other datatypes are supported in SQLite by mapping them to one of these four.  (Other SQL implementations support more.)  You can compare this to no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema may feel rigid at first, but it is really what keeps data organized and reliable.
+SQL is the language used to access relational databases.  In a relational database, the data is stored in tables, each of which looks like a spreadsheet.  The database has a schema, and for each table in the database, the schema describes the columns in each table, giving each a name and a datatype.  There aren't many datatypes in a relational database.  We'll use SQLite, and SQLite only supports TEXT, NUMERIC, INTEGER, REAL, or BLOB datatypes.  Other datatypes are supported in SQLite by mapping them to one of these five.  (Other SQL implementations support more.)  You can compare this to no-SQL databases like MongoDB, when you can store any JSON document you like.  The schema may feel rigid at first, but it is really what keeps data organized and reliable.
 
 Read the following introduction: <https://www.theodinproject.com/lessons/databases-databases-and-sql>.  Or, if you know this stuff, jump to the bottom of that page and do the Knowledge Check.  Be sure that you understand the concepts of Primary Key and Foreign Key.
 
@@ -63,7 +63,7 @@ We can't put a list of subscribers into a magazine record. Relational database r
 
 Relational databases use associations to connect data. Let's practice explaining the most complex one:
 1. Open your AI chatbot.
-2. Explain why we need a join table (like the Enrollments table) to manage a many-to-many association between Students and Courses,.
+2. Explain why we need a join table (like the Enrollments table) to manage a many-to-many association between Students and Courses.
 3. Explain why we can't just put a list of courses directly into a single student's record.
 4. Ask the AI: "Can you review my explanation of join tables and many-to-many relationships? Did I correctly identify why relational databases can't store lists in a single record?"
 
@@ -71,15 +71,21 @@ Relational databases use associations to connect data. Let's practice explaining
 
 ### **Transactions**
 
-A transaction is a write operation on an SQL database that guarantees consistency.  Consider a banking operation.  A user wants to transfer money from one account to another.  The sequence of SQL operations is as follows (this is pseudocode of course):
+A transaction is a write operation on an SQL database that guarantees consistency.  Consider a banking operation.  A user wants to transfer money from one account to another.  The following pseudocode shows the sequence of SQL operations:
 
-- Begin the transaction.
-- Read the amount in account A to make sure there's enough.
-- Update that record to decrease the balance by the desired amount.
-- Update that record to increase the balance by the desired amount.
-- Commit the transaction
+```text
+BEGIN TRANSACTION
+    READ balance FROM account A
+    IF balance < amount THEN
+        ROLLBACK
+    ELSE
+        UPDATE account A SET balance = balance - amount
+        UPDATE account B SET balance = balance + amount
+        COMMIT
+    END IF
+```
 
-The transaction maintains consistency.  When the read occurs, that entry is locked. (This depends on the isolation level and other stuff we won't get into now.)  That lock is important, as otherwise there could be another withdrawal from the account that happens after the read but before the update, and the account would go overdrawn.  Neither do you want the update that decreases the balance to complete while the update that increases the balance in the other account fails.  That would anger the user, and justifiably so.  With transactions, either both write operations succeed or neither succeeds.
+The transaction maintains consistency.  When the read occurs, the database locks that entry.  (The exact locking behavior depends on the isolation level, which this lesson does not cover.)  The lock is important.  Without it, another withdrawal could happen after the read but before the update, and the account could become overdrawn.  You also do not want the first update to decrease the balance of account A if the second update to increase the balance of account B fails.  The user would lose money.  With a transaction, either both write operations succeed or neither succeeds.
 
 Relational databases' strength, by comparison with no-SQL databases, is the efficient handing of structured and interrelated data and transactional operations on that data.
 
@@ -88,8 +94,8 @@ Relational databases' strength, by comparison with no-SQL databases, is the effi
 Now that you have explored the concept of transactions and how they maintain consistency, let's reinforce your understanding:
 
 1. Open your preferred AI chatbot.
-2. Explain in your own words what a transaction is and why it is described as "all or nothing",.
-3. Use a real-world scenario other than banking—such as an e-commerce order or a library book checkout—to illustrate why a transaction is necessary to prevent data errors,.
+2. Explain in your own words what a transaction is and why it is described as "all or nothing".
+3. Use a real-world scenario other than banking—such as an e-commerce order or a library book checkout—to illustrate why a transaction is necessary to prevent data errors.
 4. Ask the AI to give you feedback on your explanation and if your example accurately demonstrates transactional consistency.
 
 > **Example prompt:** "I'm learning about SQL transactions. Here is my explanation of what they are and a scenario where they are useful: [your explanation and scenario]. Does this accurately reflect how transactions ensure data consistency? Is there any part of the 'commit' process I should clarify?"
@@ -98,7 +104,7 @@ Now that you have explored the concept of transactions and how they maintain con
 
 When a table is defined in the schema, one or several **constraints** on the values may also be specified.
 
-- Datatype constraints: One constraint comes from the datatype of the column: you can't put a TEXT value in an INTEGER column, etc.  
+- Datatype constraints: In most SQL databases, the datatype of a column is a constraint, so you cannot put a TEXT value in an INTEGER column.  SQLite is more flexible.  It converts a value to the column type when it can, and otherwise it stores the value as it is.  If you want SQLite to enforce datatypes, you add the STRICT keyword at the end of the CREATE TABLE statement.  
 - NOT NULL constraint:  When present, it means that whenever a record is created or updated, that column in the record must have a value.  
 - UNIQUE constraint: You wouldn't want several users to have the same ID for example.  
 - FOREIGN KEY constraint.  In the blog example above, each post must belong to a blog, meaning that the post record has the blog's primary key as a foreign key.  Otherwise you'd have a post that belonged to no blog, a worthless situation.
@@ -119,8 +125,8 @@ SQLite is a file-based database, meaning the database itself is stored in a file
 
 The `sqlite3.connect()` statement in Python creates a database if it does not exist.  Then it connects to that database.
 
-1. Open VSCode for your `python_homework` folder.  As you will create files as part of the lesson, create your `assignment7` branch now.
-2. Open your code editor within your `python_homework/assignment7` folder.  Create a new Python script file called `school_a.py`.  In your VSCode terminal, `cd` to the assignment7 folder.
+1. Open VSCode for your `python_homework` folder.  As you will create files as part of the lesson, create your `assignment9` branch now.
+2. Open your code editor within your `python_homework/assignment9` folder.  Create a new Python script file called `school_a.py`.  In your VSCode terminal, `cd` to the assignment9 folder.
 3. Add the following code to that program to create or connect to a new SQLite database.
 
 ### **Example Code:**
@@ -133,7 +139,9 @@ with  sqlite3.connect("../db/school.db") as conn:  # Create the file here, so th
     print("Database created and connected successfully.")
 
 # The "with" statement commits successful transactions and rolls back transactions which cause exceptions within the block.  You must close the connection explicitly with conn.close().
+conn.close()
 ```
+The `with` block commits or rolls back the transaction, but it does not close the connection.  Call `conn.close()` after the `with` block when you are done with the database.
 See [connection context manager](https://docs.python.org/3/library/sqlite3.html#sqlite3-connection-context-manager) for more details.
 
 Run the program to create a database.
@@ -219,7 +227,7 @@ Populating tables with data helps simulate real-world scenarios, allowing you to
 
 ### **Steps:**
 
-1. Create a file in the assignment7 folder called `school_b.py`. Within it, connect to the database, create a curson, and use SQL `INSERT INTO` queries to add data to the tables.
+1. Create a file in the assignment9 folder called `school_b.py`. Within it, connect to the database, create a cursor, and use SQL `INSERT INTO` queries to add data to the tables.
 2. Add a commit() statement
 
 ### **Example Code:**
@@ -241,7 +249,8 @@ with sqlite3.connect("../db/school.db") as conn:
     cursor.execute("INSERT INTO Courses (course_name, instructor_name) VALUES ('Chemistry 101', 'Dr. Lee')") 
 
     conn.commit() 
-    # If you don't commit the transaction, it is rolled back at the end of the with statement, and the data is discarded.
+    # If the with block ends without an exception, the with statement commits the transaction for you.
+    # If an exception occurs, the transaction is rolled back.  The with statement does not close the connection.
     print("Sample data inserted successfully.")
 ```
 Note that you do not have to specify the primary keys (student_id and course_id), although you can.  If you don't specify the primary keys, these are chosen for you, and the primary key column will never be null and will always have unique values.  If you do specify the primary keys, they have to be unique -- there can be no record in that table with the same primary key, or you get an exception.  You notice that there is no 'begin' statement for the commit.  By default, SQLite begins a transaction for you automatically.
@@ -262,6 +271,23 @@ Now, you'd like to insert into the Enrollments table as well -- but, each enroll
 Answer:
 
 1. You get an exception!  Student and course names must be unique.  You need to handle the exceptions!  So change your code as follows:
+
+```python
+import sqlite3 
+
+# Connect to the database
+with sqlite3.connect("../db/school.db") as conn:
+    conn.execute("PRAGMA foreign_keys = 1") # This turns on the foreign key constraint
+    cursor = conn.cursor()
+
+    # Insert sample data into tables
+    try:
+        cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Jasmine', 20, 'Computer Science')")
+    except sqlite3.IntegrityError:
+        print("Jasmine is already in the database.")
+    cursor.execute("INSERT INTO Students (name, age, major) VALUES ('Pratik', 22, 'History')") 
+    # ... the rest of the inserts are unchanged
+```
 
 But, you still get an exception, for the next Insert.  You need to add the try/except for each of the insert statements.  This seems to violate the DRY principle (Do not Repeat Yourself).  You solve this by creating functions, as follows
 
@@ -291,12 +317,13 @@ with sqlite3.connect("../db/school.db") as conn:
     add_student(cursor, 'Jasmine', 20, 'Computer Science')  
     add_student(cursor, 'Pratik', 22, 'History')
     add_student(cursor, 'Carlos', 19, 'Biology')
-    add_course(cursor, 'Math 101', 'Dr. Smith')
+    add_course(cursor, 'Math 101', 'Dr. Sanchez')
     add_course(cursor, 'English 101', 'Ms. Jones')
     add_course(cursor, 'Chemistry 101', 'Dr. Lee')
 
     conn.commit() 
-    # If you don't commit the transaction, it is rolled back at the end of the with statement, and the data is discarded.
+    # If the with block ends without an exception, the with statement commits the transaction for you.
+    # If an exception occurs, the transaction is rolled back.  The with statement does not close the connection.
     print("Sample data inserted successfully.")
 ```
 
@@ -321,7 +348,7 @@ SELECT * FROM Students;
 - Find courses taught by a specific instructor:
 
 ```sql
-SELECT * FROM Courses WHERE instructor_name = 'Dr. Smith';
+SELECT * FROM Courses WHERE instructor_name = 'Dr. Sanchez';
 ```
 
 - Find only the student_ids and names from the Student table:
@@ -336,7 +363,7 @@ SELECT student_id, name FROM Students;
 SELECT * FROM Students ORDER BY age;
 ```
 
-- Find the students of a given age majoring in English:
+- Find the students of a given age majoring in History:
 
 ```sql
 SELECT * FROM Students WHERE age = 22 AND major = 'History';
@@ -350,7 +377,7 @@ Within Python, SQL SELECT statements are executed like the INSERT statements, bu
     for row in result:
         print(row)
 ```
-When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() creates an iterable connection of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Jasmine", and the first element in the tuple is the student_id.
+When the SELECT statement is executed, it makes a collection of rows available.  The fetchall() method returns a list of the matching rows, and each row is a tuple of the values from the requested columns.  In this case, you are using '*' which means all columns.  In this case, the first row returns the record for "Jasmine", and the first element in the tuple is the student_id.
 
 ## **9.6 Adding Entries with Foreign Keys**
 
@@ -381,9 +408,11 @@ def enroll_student(cursor, student, course):
         print(f"There was no course named {course}.")
         return
     cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (?, ?)", (student_id, course_id))
+```
 
-    ... # And at the bottom of your "with" block
+Then add the following lines at the bottom of your `with` block:
 
+```python
     enroll_student(cursor, "Jasmine", "Math 101")
     enroll_student(cursor, "Jasmine", "Chemistry 101")
     enroll_student(cursor, "Pratik", "Math 101")
@@ -400,7 +429,7 @@ You could add exception handling, but it is not clear which exceptions you might
 
 1. What would happen if you tried the following:
     ```python
-    cursor.execute("INSERT INTO Enrollments (student_id, course_id) (95, 43)")
+    cursor.execute("INSERT INTO Enrollments (student_id, course_id) VALUES (95, 43)")
     ```
 
 2. Try running school_b.py again, and check what happens with Enrollments.  You get duplicate records!  Duplicate, that is, except for the enrollment_id.  How could you prevent this?
@@ -463,8 +492,8 @@ JOIN Courses ON Enrollments.course_id = Courses.course_id;
 Let’s test your intuition on how JOINs combine data from different tables. Study this schema and query without running it: 
 
 **Tables:**
-• Students: (student_id: 1, name: 'Jasmine'), (student_id: 2, name: 'Pratik').
-• Enrollments: (enrollment_id: 101, student_id: 1, course_id: 5). 
+- Students: (student_id: 1, name: 'Jasmine'), (student_id: 2, name: 'Pratik').
+- Enrollments: (enrollment_id: 101, student_id: 1, course_id: 5). 
 
 Query:
 
@@ -475,7 +504,7 @@ LEFT JOIN Enrollments ON Students.student_id = Enrollments.student_id;
 ```
 
 Before running any code:
-1. Predict what the output will look like for Pratik, specifically. (Hint: Does Pratik have a matching record in the Enrollments table?,).
+1. Predict what the output will look like for Pratik, specifically. (Hint: Does Pratik have a matching record in the Enrollments table?)
 2. Explain to an AI chatbot why you think Pratik will (or will not) appear in the results and what will happen to his course_id column.
 3. Ask: "Is my reasoning about how a LEFT JOIN handles records without matches correct?"
 
@@ -487,7 +516,7 @@ Before running any code:
 
 Answer:
 
-2. The enrollment_id doesn't correspond to anything in the Students table.  You have to use the foreign key, student_id, from the Enrollments table.  An ON clause typically combines a primary key (Students.student_id) with a foreign key (Enrollments.student_id).  By the way, the primary key doesn't have to have the same name as the foreign key.  If the primary key in the Students table were named `id`, you'd do `ON Students.id = Enrollments.student_id`.
+1. The enrollment_id doesn't correspond to anything in the Students table.  You have to use the foreign key, student_id, from the Enrollments table.  An ON clause typically combines a primary key (Students.student_id) with a foreign key (Enrollments.student_id).  By the way, the primary key doesn't have to have the same name as the foreign key.  If the primary key in the Students table were named `id`, you'd do `ON Students.id = Enrollments.student_id`.
 
 ### **Example Code:**
 
@@ -523,7 +552,7 @@ This is a very brief and incomplete summary of the SQL language.  The SQLBolt tu
 
 ## **9.10 SQL Query Practice**
 
-Your python_homework folder contains a program called `load_db.py`.  Take a look at its contents.  It creates a series of tables, for employees, customers, orders, products, and order_details.  Each order is associated with a customer and an employee.  For each order, there are line_items associated with the order, one line item for each product comprising the order.  You'll see the schema created at the top of the file.  Then, the file uses pandas to load data for each table from csv files into the database.  The resulting database is stored as `./db/lesson.db`.
+Your python_homework folder contains a program called `load_db.py`.  Take a look at its contents.  It creates a series of tables, for employees, customers, orders, products, and line_items.  Each order is associated with a customer and an employee.  For each order, there are line_items associated with the order, one line item for each product comprising the order.  You'll see the schema created at the top of the file.  Then, the file uses pandas to load data for each table from csv files into the database.  The resulting database is stored as `./db/lesson.db`.
 
 Change the directory to the python_homework folder and run the `load_db.py` program to create and populate the database.  You can run it again as needed to restore the database to its initial state.  Next, run the `sqlcommand.py` program.  This prompts you with a command line you can use to enter SQL statements.  (Each statement must end with a semicolon.)  Experiment with various SELECT, INSERT, UPDATE, and DELETE statements.  Have a look at the code in `sqlcommand.py` to see how it works.
 
@@ -544,6 +573,30 @@ with sqlite3.connect("../db/lesson.db") as conn:
     print(df)
 ```
 This loads a dataframe from the results of a SELECT statement.  You then have access to all the statistical power of pandas.  In this case, we get a dataframe that lists all the customer names, all the orders, and the names of all the products that were ordered.  Note that there is a many-to-many association between orders and products, in that an order may have many products, but there may be many orders for a given product. The line_items table acts as a join table for orders and products.
+
+### **Writing a DataFrame to SQLite**
+
+You can also do the reverse.  The DataFrame `to_sql()` method writes the rows of a DataFrame into a database table.  This is how you load a CSV file into SQLite: you read the CSV file into a DataFrame, and then you call `to_sql()`.
+
+```python
+import pandas as pd
+import sqlite3
+
+# You could also load this DataFrame from a file, for example with pd.read_csv("cities.csv")
+df = pd.DataFrame({
+    "city": ["Austin", "Denver", "Seattle"],
+    "temperature": [95, 88, 72],
+})
+
+with sqlite3.connect("../db/practice.db") as conn:
+    df.to_sql("weather", conn, if_exists="replace", index=False)
+    result = pd.read_sql_query("SELECT * FROM weather WHERE temperature > 80", conn)
+    print(result)
+
+conn.close()
+```
+
+If the table does not exist, `to_sql()` creates it.  The `if_exists` parameter controls what happens when the table already exists.  The value `"append"` adds the rows to the existing table, `"replace"` deletes the table and creates a new one, and the default `"fail"` raises a `ValueError`.  Be careful with `"replace"`.  It drops the existing table, including any constraints such as `PRIMARY KEY`, `UNIQUE`, or `FOREIGN KEY` that you defined with `CREATE TABLE`.  If you want to keep your own table definition, create the table first and use `"append"`.  The `index=False` argument keeps the DataFrame index from being written as an extra column.
 
 
 ## **9.12 Optional: More Practice**

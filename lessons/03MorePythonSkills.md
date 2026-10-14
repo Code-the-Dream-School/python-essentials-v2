@@ -12,11 +12,11 @@
 ---
 
 ## 3.1 Object-oriented programming in Python
-Everything in Python is an object, and objects are instances of *classes*. That means when you create a variable like a string, list, or even a function — you’re actually creating an object. Before finishing Python 100, it's worth understanding what this actually means.  
+Everything in Python is an object, and objects are instances of *classes*. That means when you create a variable like a string, list, or even a function — you’re actually creating an object. Before finishing Python Essentials, it is worth understanding what this actually means.  
 
 Until now we have been following principles of *functional programming*: writing standalone functions that take in inputs, return outputs, and typically don't remember anything between calls. But sometimes we want to bundle together data and the functions -- called *methods* -- that operate on that data. This is the core idea of object-oriented programming (OOP). This bundling is called *encapsulation*, and helps keep related code organized in one place. If you are creating a new data type, OOP lets you define not only what that data type is, but what you can do with it. 
 
-> If you want to go a little deeper, there is a nice overview of OOP at [Real Python](https://realpython.com/python3-object-oriented-programming/). 
+> If you want to go a little deeper, we recommend this overview of OOP: [Real Python](https://realpython.com/python3-object-oriented-programming/). 
 
 ### Basic class definition
 Let’s look at a very concrete example — a class that represents dogs:
@@ -350,7 +350,7 @@ Breaking down the above. When you run `greet("Amanda")` you get:
 Here's what happened behind the scenes:
 - The decorator factory is called: `@repeat_with_prefix(">>", 3)` creates and returns a decorator function customized with the appropriate arguments.
 - The decorator wraps the function: The `decorator` function (returned by the factory) is applied to `greet`.
-- The wrapper runs the function: When you call `greet("Amanda")`,  the wrapper function uses the `prefix` and `num_repeats` provided by the factory to add the prefix to each output and print the result (`num_repeat` times)
+- The wrapper runs the function: When you call `greet("Amanda")`,  the wrapper function uses the `prefix` and `num_repeats` provided by the factory to add the prefix to each output and print the result (`num_repeats` times)
 
 Feel free to modify the code or the parameters (e.g., change ">>" to "**" or 3 to 5) to see how the decorator’s behavior changes. Parameterized decorators are a powerful but advanced concept, so take your time to experiment and build your intuition.
 
