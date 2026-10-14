@@ -12,7 +12,7 @@ Students will deepen their understanding of SQL by learning advanced techniques 
 
 ## **Assignment Instructions**
 
-You create the code for this assignment in your python_homework/assignment10 folder.  You may want to have two VSCode terminal sessions.  In one, you have changed directories to `assignment10`.  This is the session where you will run your code.  In the other terminal session, you will run `sqlcommand.py` from the `python_homework` folder.  You need to have the working directory set differently, so that each program will be able to find `db/lesson.db`.  Be sure to create an `assignment10` git branch before you start.  As usual, mark the code that completes each task with a comment line.
+You create the code for this assignment in your python_homework/assignment10 folder.  You may want to have two VSCode terminal sessions.  In one, you have changed directories to `assignment10`.  This is the session where you will run your code.  In the other terminal session, you will run `sqlcommand.py` from the `python_homework` folder.  You need to have the working directory set differently, so that each program will be able to find `db/lesson.db`.  Because `advanced_sql.py` runs from the `assignment10` folder, it must connect to `../db/lesson.db`.  Be sure to create an `assignment10` git branch before you start.  As usual, mark the code that completes each task with a comment line.
 
 ### **Preparation and Practice**
 
