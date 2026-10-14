@@ -184,7 +184,7 @@ result1 = df.groupby('Category').agg({'Values': 'sum'})
 # or
 result2 = df.groupby('Category').agg({'Values': ['sum', 'mean', 'count']})
 ```
-If you print out result1 and result2, you'll see that they look different.  The result2 DataFrame has column headers with several rows, because 3 columns are needed for Values aggregation: one for sum, one for mean, and one for count.  The column names in this case are tuples, such as `("Values","sum").
+If you print out result1 and result2, you'll see that they look different.  The result2 DataFrame has column headers with several rows, because 3 columns are needed for Values aggregation: one for sum, one for mean, and one for count.  The column names in this case are tuples, such as `("Values","sum")`.
 
 In the result1 case, you just have one column for the sum of values, and the column name is "Values".  The difference hangs on whether you specify a single aggregation function or a list.
 
@@ -404,11 +404,11 @@ print(renamed_df)
 You can sort a DataFrame by column values: 
 
 ```python
-joined_df.sort_values(by='Score',ascending=False,inplace=True)
+joined_df.sort_values(by='Test Score',ascending=False,inplace=True)
 print(joined_df)
 ```
 
-### **Resetting the Index***
+### **Resetting the Index**
 
 After you sort, the index values are no longer in order.  In this and other cases, you may want to reset the index:
 
@@ -457,7 +457,7 @@ print(df_encoded)
 ### Overview
 Derived features (e.g., buckets) can simplify relationships.
 
-For **Data Discretization** we have to use the more complicated pandas.cut() function. This will allow us to automatically split data into a series of equal sized bins.
+For **Data Discretization** we have to use the more complicated pandas.cut() function. When you pass an integer as the number of bins, `pd.cut()` splits the range of values into bins of equal width. The bins do not necessarily contain the same number of rows. If you want bins that contain roughly the same number of rows, use `pd.qcut()` instead.
 
 ```python
 import pandas as pd
@@ -513,4 +513,3 @@ In this lesson, you’ve learned:
 - Some utilities to rename columns, sort, convert a column to an index, and reset the index.
 
 Use these techniques to perform advanced data analysis in Pandas. For further exploration, refer to the [Pandas Documentation](https://pandas.pydata.org/docs/) and Python's [official documentation](https://docs.python.org/3/).
-```
