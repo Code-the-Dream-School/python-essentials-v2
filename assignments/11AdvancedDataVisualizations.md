@@ -187,6 +187,7 @@ If you record a presentation, include the YouTube link to it in your Assignment 
 
 <details>
 <summary>Web Scraping Capstone Rubric</summary>
+
 * **Web Scraping**
 
     * [ ] Uses appropriate libraries (e.g., Selenium) to retrieve data from the web
@@ -222,10 +223,11 @@ If you record a presentation, include the YouTube link to it in your Assignment 
     * [ ] All dependencies are listed and environment setup is reproducible
     * [ ] Comments or markdown cells explain logic
     * [ ] `README.md` includes summary, setup steps, and a screenshot
+
 </details>
 </br>
 
-Use this [link for the final project submission form](https://airtable.com/appoSRJMlXH9KvE6w/shrBpqHbS6wgInoF9?prefill_Lessons=Python+100+v2%3A+Lesson+11+-+Advanced+Data+Visualization+Techniques&prefill_Student+Class+Records=Mary+Alice+Moore+%28Python-essentials-26.2%29) for your web scraping capstone and optional presentation video.
+Use this [link for the final project submission form](https://airtable.com/appoSRJMlXH9KvE6w/shrBpqHbS6wgInoF9?prefill_Lessons=Python+100+v2%3A+Lesson+11+-+Advanced+Data+Visualization+Techniques) for your web scraping capstone and optional presentation video.
 
 What happens next?
 Once you've submitted your final capstone (and your optional video), your reviewer will check your work and either declare it needing revisions or being successful, as they have with all your other assignments.  Watch your email for those results.
