@@ -1,8 +1,6 @@
 
 # **Assignment 10: Advanced SQL and Database Integration**
 
----
-
 ## **Lesson Overview**
 
 **Learning Objective**:  
