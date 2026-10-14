@@ -10,7 +10,7 @@ Homework for this assignment is created within your `python_homework` folder.  B
 
 You may find these tasks a little challenging.  If you get stuck, 1:1 mentors are available to answer your questions.  Appointments are available in the [1:1 Mentor Table](https://airtable.com/appoSRJMlXH9KvE6w/shrQinGb1phZYwdiL)
 
-On Windows, if you find that the prompt in git bash is unexpected, you can fix it by running ``cd \`pwd``.
+On Windows, if you find that the prompt in git bash is unexpected, you can fix it by running `` cd `pwd` ``.
 
 Since Python uses indentation to define blocks of code, it is often necessary to indent or outdent a whole block of code.  You can do this in vscode by selecting the code and then typing `ctl-]` to indent or `ctl-[` to outdent.
 
@@ -70,7 +70,7 @@ Remember to import the `csv` module for this task.
    - Add the list of rows (this is a list of lists) to the dict, using the key "rows".
    - The function should return the dict.
    - Add a line below the function that calls read_employees and stores the returned value in a global variable called employees. Then print out this value, to verify that the function works.
-   - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, use the same approach as described above: catch the exception, print out the information, and exit the program.  One likely exception in this case is an error in the syntax of your code.
+   - In this case, it's not clear what to do if you get an exception.  You might get an exception because the filename is bad, or because the file couldn't be parsed as a CSV file.  For now, use the same approach as described above: catch the exception, print out the information, and exit the program.
 
 2. Run the test to see if you have this much right.
 
@@ -241,7 +241,7 @@ The "story" behind the following list of tasks is as follows.  A club meets, and
 
 2. Create a function called create_minutes_list.  It takes no parameters, and does the following:
    - Create a list from the minutes_set.  This is just type conversion.
-   - Use the `map()` function to convert each element of the list.  At present, each element is a list of strings, where the first element of that list is the name of the recorder and the second element is the date when they recorded.
+   - Use the `map()` function to convert each element of the list.  At present, each element is a tuple of strings, where the first element of that tuple is the name of the recorder and the second element is the date when they recorded.
    - The map() should covert each of these into a tuple.  The first element of the tuple is the name (unchanged).  The second element of the tuple is the date string converted to a datetime object.
    - You convert the date strings into datetime objects using `datetime.strptime(string, "%B %d, %Y")`. Use the format string "%B %d, %Y" exactly as written — it matches the date format stored in the CSV files.
    - So, you could use the following lambda:
@@ -257,7 +257,7 @@ The "story" behind the following list of tasks is as follows.  A club meets, and
 1. Create a function called write_sorted_list.  It takes no parameters.  It should do the following:
    - Sort minutes_list in ascending order of datetime.
    - Call map again to convert the list.  In this case, for each tuple, you create a new tuple.  The first element of the tuple is the name (unchanged).  The second element of the tuple is the datetime converted back to a string, using `datetime.strftime(date, "%B %d, %Y")`
-   - Open a file called `./minutes.csv`.  Use a csv.writer to write out the resulting sorted data.  The first row you write should be the value of `fields` the from minutes1 dict.  The subsequent rows should be the elements from minutes_list.
+   - Open a file called `./minutes.csv` for writing, with `open("./minutes.csv", "w", newline="")`.  Use a csv.writer to write out the resulting sorted data.  The first row you write should be the value of `fields` from the minutes1 dict.  The subsequent rows should be the elements from minutes_list.
    - The function should return the converted list.
 
 2. Call this function from within your program.  Then check that the file is created, and that it contains appropriate content.
