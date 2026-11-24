@@ -8,8 +8,6 @@ You learn to harvest data from a live web site, scraping values from the HTML pa
 
 You create the code for this assignment in the assignment8 folder within your python_homework folder.  Be sure to create an `assignment8` git branch before you start.  As usual, mark the code that completes each task with a comment line.
 
----
-
 ## **Overview**
 This lesson introduces web scraping concepts and practices, including:
 1. Understanding HTML and the DOM structure in a live web page.
@@ -17,59 +15,52 @@ This lesson introduces web scraping concepts and practices, including:
 3. Storing data in CSV and JSON files.
 4. Ethical considerations in web scraping.
 
-
----
-
 ## **Tasks**
 
-### **Task 1: Review robots.txt to Ensure Policy Compliance**
+## Task 1: Check robots.txt to Ensure Policy Compliance
 
-In this assignment, you collect data from the Durham County Library site.  As always, when you do web scraping, you need to review the policy described in robots.txt, to ensure that you comply.
+In this assignment, you collect data from Books to Scrape, a demo bookstore site designed for practicing web scraping. As always, before you scrape a site, you need to check whether a `robots.txt` file exists and review its contents.
 
-1. Open <https://durhamcounty.bibliocommons.com/robots.txt>. This is the site you will scrape, and each site has its own `robots.txt` file.
+1. Try to open <https://books.toscrape.com/robots.txt>.
+2. You should find that this URL returns a "Not Found" page — the site has no `robots.txt` file. When a site has no `robots.txt`, that means it places no restrictions on automated access. Combined with the fact that the site explicitly states it is built for scraping practice, we can proceed.
+3. For comparison, try opening <https://durhamcounty.bibliocommons.com/robots.txt>. This is a public library catalog that used to allow scraping, but now returns `User-agent: * / Disallow: /`, which means all automated access to all pages is disallowed. Many library sites have added restrictions like this in response to heavy traffic from AI bots. This is a good example of why checking `robots.txt` matters — a site's policy can change at any time.
 
-2. Verify that the following steps are not in breach of policy.
-
-### **Task 2: Understanding HTML and the DOM for the Durham Library Site**
+## Task 2: Understanding HTML and the DOM for Books to Scrape
 
 You are going to find where in the HTML page the data you want is located.
 
-1. Open <https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart>
-
-2. Open your browser developer tools to show the HTML elements.  For Chrome, this is `shift-ctrl-J`.
-
-3. Find the HTML element for a single entry in the search results list.  This takes a few steps.  When you select an element in the Chrome developer tools, that part of the web page is highlighted.  But, that typically only gets you to the main `div`.  There is a little arrow next to that div in the developer tools element window, and you click on that to open it up to show the child elements.  Then, you select the element that corresponds to the search results area.  Continue in this way, opening up divs or other containers and selecting the one that highlights the area you want.  Eventually, you'll get to the first search result.  Hint: You are looking for an `li` element, because this is an element in an unordered list.  Note the values for the class attribute of this entry.  You'll want to save these in some temporary file, as your program will need them.
-
-4. Within that element, find the element that stores the title.  Note the tag type and the class value.  Your program will need this value too, so save it too.
-
-5. Within the search results `li` element, find the element that stores the author.  Hint: This is a link.  Note the class value and save it.  Some books do have multiple authors, so you'll have to handle that case.
-
-6. Within the search results `li` element, find the element that stores the format of the book and the year it was published.  Note the class value and save it.  Now in this case, the class might not be enough to find the part of the `li` element you want.  So look at the `div` element that contains the format and year.  You want to note that class value too.
+1. Open <https://books.toscrape.com/>.
+2. Open your browser developer tools to show the HTML elements. For Chrome, this is `Shift-Ctrl-J` (or `Shift-Cmd-J` on Mac).
+3. Find the HTML element for a single book listing. When you select an element in the Chrome developer tools, that part of the web page is highlighted. Start by selecting elements and expanding them until you get to an individual book. Hint: You are looking for an `article` element with a specific class. Note the class value — your program will need it.
+4. Within that `article` element, find the element that contains the book's title. Note two things: the tag type, and also look at the `title` attribute of the link inside it. The displayed text on the page may be truncated, but the full title is stored in this attribute. Save these details — your program will need them.
+5. Within the same `article` element, find the element that contains the book's price. Note the tag type and its class value. Save it.
+6. Within the same `article` element, find the element that indicates the book's star rating. This one is a little different — the rating is not stored as text content. Instead, look at the class attribute of the element. The rating (One, Two, Three, Four, or Five) is part of the class name itself. Note this pattern — your program will need to extract it.
 
 ### **Task 3: Write a Program to Extract this Data**
 
-1. `get_books.py`. The program should import from selenium and webdriver_manager.  You also need pandas and json.
+>[!note]
+> There are several tools for web scraping in Python. This assignment uses **Selenium**, which controls a real browser. Selenium is especially useful for scraping sites that render content with JavaScript — the browser executes the JavaScript before you extract data, so you see the same page a human visitor would. Other tools like `requests` + `BeautifulSoup` work well for simpler pages that serve static HTML. Books to Scrape is a static site, but we use Selenium here because most real-world sites rely on JavaScript, and learning Selenium prepares you for those.
 
-2. Add code to load the web page given in task 2.
+1. Create a file called `get_books.py`. The program should import from `selenium` and `webdriver_manager`. You also need `pandas` and `json`.
+2. Add code to load the Books to Scrape homepage: `https://books.toscrape.com/`.
+3. Find all the `article` elements on the page for the book listings. Use the class value you identified in Task 2 step 3. Also use the tag name when you do the find, to make sure you get the right elements.
+4. Within your program, create an empty list called `results`. You are going to add `dict` values to this list, one for each book.
+5. Main loop: Iterate through the list of `article` elements. For each one:
+   - Find the element that contains the title. The displayed text may be truncated, so get the full title from the `title` attribute of the link (the `a` tag inside the heading). Use `get_attribute('title')` for this.
+   - Find the element that contains the price, and get its text.
+   - Find the element that contains the star rating. Since the rating is encoded in the class name (for example, `star-rating Three`), you need to get the class attribute and extract the rating word from it.
+   - Create a `dict` that stores these three values with the keys `Title`, `Price`, and `Rating`. Then append that `dict` to your `results` list.
+6. Create a DataFrame from this list of dicts. Print the DataFrame.
 
-3. Find all the `li` elements in that page for the search list results.  You use the class values you stored in task 2 step 3.  Also use the tag name when you do the find, to make sure you get the right elements.
+**Hint:** You can add small print statements at each step to check whether that part works. For example, when you find all the `article` elements, print the length of the list to verify you get 20. Then implement just the title extraction and print it. Build the program incrementally.
 
-4. Within your program, create an empty list called `results`.  You are going to add `dict` values to this list, one for each search result.
-
-5. Main loop: You iterate through the list of `li` entries.  For each, you find the entry that contains title of the book, and get the text for that entry.  Then you find the entries that contain the authors of the book, and get the text for each.  If you find more than one author, you want to join the author names with a semicolon `;` between each.  Then you find the `div` that contains the format and the year, and then you find the `span` entry within it that contains this information.  You get that text too.  You now have three pieces of text.  Create a `dict` that stores these values, with the keys being `Title`, `Author`, and `Format-Year`.  Then append that `dict` to your `results` list.
-
-6. Create a DataFrame from this list of dicts.  Print the DataFrame.
-
-**Hint** You can put little print statements in at each step, to see if that part works.  For example, when you find all the `li` entries, you could print out the length of the list.  Then, you could just implement the part of the main loop that finds the Title, and just print out that title.  In this way, you can get the program done incrementally.
-
-**For Further Thought (Optional)**  You are getting the search results from the first page of the search results list.  How would you get all the search results from all the pages?  How can you make the program do this regardless of how many pages you might have?  **Optional:** Change your program to page through the search results so as to get all of the results.  However! You need to make sure your program pauses between pages.  Fast screen scraping, where many requests are sent in short order, is an abuse of the privilege.
+**For Further Thought (Optional):** The homepage shows 20 books, but the site has 1,000 books across 50 pages. How would you get all the books from all pages? Look at how the "next" button works and what the URL pattern looks like for each page. **Optional:** Change your program to page through all the results. However — you need to make sure your program pauses between pages. Fast scraping, where many requests are sent in short order, is an abuse of the privilege, even on a site that welcomes scraping.
 
 ### **Task 4: Write out the Data**
 Modify your program to do the following:
 
-1. Write the DataFrame to a file called `get_books.csv`, within the assignment8 folder.  Examine the file to see if it looks right.
-
-2. Write the `results` list out to a file called `get_books.json`, also within the assignment8 folder.  You should write it out in JSON format.  Examine the file to see if it looks right.
+1. Write the DataFrame to a file called `get_books.csv`, within the assignment8 folder. Examine the file to see if it looks right.
+2. Write the `results` list out to a file called `get_books.json`, also within the assignment8 folder. You should write it out in JSON format. Examine the file to see if it looks right.
 
 ### **Task 5: Ethical Web Scraping**
 
@@ -291,14 +282,14 @@ Before you submit, check your Kaggle notebook against the full rubric:
 <details>
 <summary>Rubric (for AirHub reviewer and mentors)</summary>
 
-This assignment scrapes **live web sites** with Selenium and has **no automated tests**. Grade the **method**, not exact output. The exact scraped values (titles, authors, years, vulnerability names/links) and the exact CSS class names / XPath selectors **change over time** — `Example — adapt to your own layout`: do NOT fail a submission because its selectors or scraped values differ from any reference. The reviewer also cannot see the student's filesystem — do NOT fail a student because you cannot confirm a file sits in a particular folder. Tasks 1–6 are submitted as an `assignment8` branch PR into `main` in `python_homework`; Task 7 and the Kaggle finalization are **separate repos/notebooks** submitted via their own links (see the last two Required items).
+This assignment scrapes **live web sites** with Selenium and has **no automated tests**. Grade the **method**, not exact output. The exact scraped values (titles, prices, ratings, vulnerability names/links) and the exact CSS class names / XPath selectors **change over time** — `Example — adapt to your own layout`: do NOT fail a submission because its selectors or scraped values differ from any reference. The reviewer also cannot see the student's filesystem — do NOT fail a student because you cannot confirm a file sits in a particular folder. Tasks 1–6 are submitted as an `assignment8` branch PR into `main` in `python_homework`; Task 7 and the Kaggle finalization are **separate repos/notebooks** submitted via their own links (see the last two Required items).
 
 ### Required Deliverables/Tasks
 
-- **Task 1 — robots.txt review (Durham County Library)** — A compliance check; no file deliverable. Done = the student shows they read `durhamcounty.bibliocommons.com/robots.txt` and understood it lists `Disallow`ed paths. Do not require an exact quote (live file).
-- **Task 2 — DOM/selector notes** — Notes (in a student-chosen temporary file) identifying the repeating result `li` and sensible selectors for Title, Author, and Format-Year (including the containing `div`). Feeds Task 3; judge whether the right *kind* of element was found, not the literal class string.
-- **Task 3 — `get_books.py`** — Loads the Durham library search page, finds all result `li` elements, and for each builds a `dict` appended to a list named `results`, then builds and prints a pandas DataFrame. Dict keys are `Title`, `Author`, `Format-Year`; multiple authors joined with a semicolon `;`. Use exactly as written (later tasks depend on these names) for the dict keys, the `results` list, and the `;` join. Must import from `selenium` and `webdriver_manager` (and `pandas`; `json` is used in Task 4). `Example — adapt to your own layout` for the CSS/class selectors and the scraped values.
-- **Task 4 — `get_books.csv` and `get_books.json`** — `get_books.py` writes the DataFrame to `get_books.csv` (header + one row per book) and the `results` list to `get_books.json` as valid JSON (list of objects). Use exactly as written (later tasks depend on these names) for the filenames. An index column from `to_csv` is a minor nit, not a failure; `df.to_json(...)` is an acceptable alternative to `json.dump`. The CSV should be comma-separated (the default for to_csv() and the csv module). A different separator is a minor miss, not a failure.
+- **Task 1 — robots.txt review (Books to Scrape)** — A compliance check; no file deliverable. Done = the student shows they checked for `books.toscrape.com/robots.txt`, understood that the file does not exist (meaning no restrictions), and noted the contrast with a site like the Durham County Library that disallows all access. Do not require exact wording.
+- **Task 2 — DOM/selector notes** — Notes (in a student-chosen temporary file) identifying the repeating `article` element (with class `product_pod`) and sensible selectors for Title (the `a` tag's `title` attribute inside `h3`), Price (a `p` with the price class), and Rating (the star-rating class pattern). Feeds Task 3; judge whether the right *kind* of element was found, not the literal class string. `Example — adapt to your own layout` for the class strings.
+- **Task 3 — `get_books.py`** — Loads the Books to Scrape homepage, finds all `article` elements for book listings, and for each builds a `dict` appended to a list named `results`, then builds and prints a pandas DataFrame. Dict keys are `Title`, `Price`, `Rating`. The title should be the full title (from the `title` attribute), not the truncated display text. Use exactly as written (later tasks depend on these names) for the dict keys and the `results` list. Must import from `selenium` and `webdriver_manager` (and `pandas`; `json` is used in Task 4). `Example — adapt to your own layout` for the CSS/class selectors and the scraped values.
+- **Task 4 — `get_books.csv` and `get_books.json`** — `get_books.py` writes the DataFrame to `get_books.csv` (header + one row per book) and the `results` list to `get_books.json` as valid JSON (list of objects). Use exactly as written (later tasks depend on these names) for the filenames. An index column from `to_csv` is a minor nit, not a failure; `df.to_json(...)` is an acceptable alternative to `json.dump`. The CSV should be comma-separated (the default for `to_csv()` and the csv module). A different separator is a minor miss, not a failure.
 - **Task 5 — `ethical_scraping.txt`** — Reads Wikipedia's `robots.txt` and answers: which sections are restricted (some `Disallow`ed paths named), whether there are user-agent-specific rules (yes), plus 2–3 sentences on why sites use `robots.txt`. Use exactly as written for the filename. Subjective otherwise; do not require exact paths (live file). All Task 5 files go in `assignment8/`.
 - **Task 6 — `owasp_top_10.py` and `owasp_top_10.csv`** — Uses Selenium with **XPath** (`By.XPATH`) to collect the 10 vulnerability titles and their `href` links from the OWASP Top Ten page, accumulates them as dicts in a list, prints the list, and writes `owasp_top_10.csv` (title + link). Use exactly as written (later tasks depend on these names) for the filenames and the use of XPath. `Example — adapt to your own layout` for the exact XPath and the scraped titles/links.
 - **Task 6 — `challenges.txt`** — A short, honest reflection on difficulties and how they were resolved. Any genuine reflection passes; empty/missing fails. Use exactly as written for the filename.
@@ -308,6 +299,6 @@ This assignment scrapes **live web sites** with Selenium and has **no automated 
 
 ### Optional Deliverables/Tasks
 
-- **Task 3 — "For Further Thought" pagination** — Marked **Optional** in the text. Paging through all search-result pages to collect every result. **Do not fail a student for omitting this.** If a student attempted it, confirm they added a pause between page requests (e.g. `time.sleep`) — scraping without a delay is the abuse the lesson warns against. `Example — adapt to your own layout` for any pagination approach and pacing value.
+- **Task 3 — "For Further Thought" pagination** — Marked **Optional** in the text. Paging through all 50 pages of book listings to collect all 1,000 books. **Do not fail a student for omitting this.** If a student attempted it, confirm they added a pause between page requests (e.g. `time.sleep`) — scraping without a delay is the abuse the lesson warns against. `Example — adapt to your own layout` for any pagination approach and pacing value.
 
 </details>
